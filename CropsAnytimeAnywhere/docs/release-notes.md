@@ -1,6 +1,12 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.4.10
+Released 28 March 2024 for SMAPI 4.0.0 or later.
+
+* Fixed unable to plant crops and trees in some parts of Ginger Island farm.
+* Fixed unable to plant trees in town.
+
 ## 1.4.9
 Released 22 March 2024 for SMAPI 4.0.0 or later.
 

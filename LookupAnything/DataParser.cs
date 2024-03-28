@@ -387,7 +387,8 @@ namespace Pathoschild.Stardew.LookupAnything
             // machine recipes
             recipes.AddRange(
                 from entry in metadata.MachineRecipes
-                let machineName = ItemRegistry.GetDataOrErrorItem("(BC)" + entry.MachineID).DisplayName
+                let itemData = ItemRegistry.GetDataOrErrorItem(ItemRegistry.type_bigCraftable + entry.MachineID)
+                let machineName = itemData.DisplayName
 
                 from recipe in entry.Recipes
                 from output in recipe.PossibleOutputs
@@ -406,8 +407,7 @@ namespace Pathoschild.Stardew.LookupAnything
                     maxOutput: output.MaxOutput,
                     outputChance: output.OutputChance,
                     machineId: entry.MachineID,
-                    isForMachine: p => p is SObject obj && obj.QualifiedItemId == $"{ItemRegistry.type_object}{entry.MachineID}"
-                )
+                    isForMachine: p => p is SObject obj && obj.QualifiedItemId == itemData.QualifiedItemId)
             );
 
             // building recipes
