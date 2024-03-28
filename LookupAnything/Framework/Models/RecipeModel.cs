@@ -213,7 +213,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
             switch (this.Type)
             {
                 case RecipeType.Cooking:
-                    return this.OutputQualifiedItemId != null && player.recipesCooked.TryGetValue(this.OutputQualifiedItemId, out int timesCooked) ? timesCooked : 0;
+                    {
+                        string? localId = ItemRegistry.GetData(this.OutputQualifiedItemId)?.ItemId;
+                        if (localId != null)
+                            return player.recipesCooked.TryGetValue(localId, out int timesCooked) ? timesCooked : 0;
+                    }
+                    return 0;
 
                 case RecipeType.Crafting:
                     return player.craftingRecipes.TryGetValue(this.Key, out int timesCrafted) ? timesCrafted : 0;
