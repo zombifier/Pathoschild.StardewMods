@@ -11,6 +11,7 @@ using Pathoschild.Stardew.CropsAnytimeAnywhere.Framework;
 using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Extensions;
+using StardewValley.Locations;
 using xTile.Tiles;
 
 namespace Pathoschild.Stardew.CropsAnytimeAnywhere.Patches
@@ -52,6 +53,7 @@ namespace Pathoschild.Stardew.CropsAnytimeAnywhere.Patches
         /// <inheritdoc />
         public override void Apply(Harmony harmony, IMonitor monitor)
         {
+            // main methods
             harmony.Patch(
                 original: typeof(GameLocation).GetMethod(nameof(GameLocation.CheckItemPlantRules)) ?? throw new InvalidOperationException($"Can't find method {nameof(GameLocation.CheckItemPlantRules)}"),
                 prefix: this.GetHarmonyMethod(nameof(LocationPatcher.Before_CheckItemPlantRules))
@@ -69,6 +71,22 @@ namespace Pathoschild.Stardew.CropsAnytimeAnywhere.Patches
                     postfix: this.GetHarmonyMethod(nameof(LocationPatcher.After_DoesTileHaveProperty))
                 );
             }
+
+            // IslandWest methods
+            harmony.Patch(
+                original: this.RequireMethod<IslandWest>(nameof(IslandWest.CanPlantSeedsHere)),
+                prefix: this.GetHarmonyMethod(nameof(LocationPatcher.Before_IslandWest_CanPlantSeedsHere))
+            );
+            harmony.Patch(
+                original: this.RequireMethod<IslandWest>(nameof(IslandWest.CanPlantTreesHere)),
+                prefix: this.GetHarmonyMethod(nameof(LocationPatcher.Before_IslandWestOrTown_CanPlantTreesHere))
+            );
+
+            // Town methods
+            harmony.Patch(
+                original: this.RequireMethod<Town>(nameof(Town.CanPlantTreesHere)),
+                prefix: this.GetHarmonyMethod(nameof(LocationPatcher.Before_IslandWestOrTown_CanPlantTreesHere))
+            );
         }
 
 
@@ -125,6 +143,43 @@ namespace Pathoschild.Stardew.CropsAnytimeAnywhere.Patches
                     }
                 }
             }
+        }
+
+        /// <summary>A method called via Harmony before <see cref="IslandWest.CanPlantSeedsHere"/>.</summary>
+        /// <param name="__instance">The location instance.</param>
+        /// <param name="itemId">The qualified or unqualified item ID for the seed being planted.</param>
+        /// <param name="isGardenPot">Whether the item is being planted in a garden pot.</param>
+        /// <param name="deniedMessage">The translated message to show to the user indicating why it can't be planted, if applicable.</param>
+        /// <param name="__result">The return value to use for the method.</param>
+        private static bool Before_IslandWest_CanPlantSeedsHere(IslandWest __instance, string itemId, bool isGardenPot, out string deniedMessage, out bool __result)
+        {
+            __result = __instance.CheckItemPlantRules(
+                itemId,
+                isGardenPot,
+                defaultAllowed: true,
+                deniedMessage: out deniedMessage
+            );
+
+            return false;
+        }
+
+        /// <summary>A method called via Harmony before <see cref="GameLocation.CanPlantTreesHere"/> for <see cref="IslandWest"/> or <see cref="Town"/>.</summary>
+        /// <param name="__instance">The location instance.</param>
+        /// <param name="itemId">The qualified or unqualified item ID for the sapling being planted.</param>
+        /// <param name="tileX">The X tile position for which to apply location-specific overrides.</param>
+        /// <param name="tileY">The Y tile position for which to apply location-specific overrides.</param>
+        /// <param name="deniedMessage">The translated message to show to the user indicating why it can't be planted, if applicable.</param>
+        /// <param name="__result">The return value to use for the method.</param>
+        public static bool Before_IslandWestOrTown_CanPlantTreesHere(GameLocation __instance, string itemId, int tileX, int tileY, out string deniedMessage, out bool __result)
+        {
+            __result = __instance.CheckItemPlantRules(
+                itemId,
+                isGardenPot: false,
+                defaultAllowed: true,
+                deniedMessage: out deniedMessage
+            );
+
+            return false;
         }
 
 
