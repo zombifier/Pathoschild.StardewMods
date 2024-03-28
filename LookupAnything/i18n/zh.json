@@ -182,7 +182,7 @@
     "building.output-processing": "产品处理中",
     "building.output-ready": "产品完成",
     "building.slimes.summary": "已容纳{{count}}只史莱姆，最大可容纳{{max}}只史莱姆",
-    "building.stored-hay.summary": "该地点已存放 {{hayCount}}/{{maxHayInLocation}} 个干草（该建筑最大容量：{{maxHayInBuilding}}）", 
+    "building.stored-hay.summary": "该地点已存放 {{hayCount}}/{{maxHayInLocation}} 个干草（该建筑最大容量：{{maxHayInBuilding}}）",
     "building.upgrades.barn.0": "可容纳动物量上升至 4 只动物，解锁牛",
     "building.upgrades.barn.1": "可容纳动物量上升至 8 只动物，解锁繁殖和山羊",
     "building.upgrades.barn.2": "可容纳动物量上升至 12 只动物，解锁自动喂食、猪和绵羊",
@@ -282,7 +282,7 @@
     ** Item > generic lookups
     *********/
     // labels
-    "item.custom-item": "自定义物品", 
+    "item.custom-item": "自定义物品",
     "item.contents": "内容",
     "item.loves-this": "最爱",
     "item.likes-this": "喜欢",
@@ -301,7 +301,7 @@
     "item.produces-dye": "产生染料",
 
     // values
-    "item.custom-item.summary": "由 {{modName}} 添加", 
+    "item.custom-item.summary": "由 {{modName}} 添加",
     "item.contents.placed": "已放置{{name}}",
     "item.contents.ready": "目前{{name}}",
     "item.contents.partial": "{{name}}在{{time}}后完成",
@@ -623,9 +623,9 @@
     "tree.next-growth.winter": "除非施肥，冬天在温室之外无法生长",
     "tree.next-growth.adjacent-trees": "因其他树靠的太近无法生长",
     "tree.next-growth.chance": "明天有{{chance}}%几率成长到{{stage}}",
-    "tree.seed.not-ready": "尚未就绪", 
-    "tree.seed.probability-daily": "每天有{{chance}}%几率产生{{itemName}}。", 
-    "tree.seed.probability-on-chop": "砍倒时有{{chance}}%几率掉落{{itemName}}。", 
+    "tree.seed.not-ready": "尚未就绪",
+    "tree.seed.probability-daily": "每天有{{chance}}%几率产生{{itemName}}。",
+    "tree.seed.probability-on-chop": "砍倒时有{{chance}}%几率掉落{{itemName}}。",
 
     // growth stages
     "tree.stages.seed": "种子",
