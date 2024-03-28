@@ -688,7 +688,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 // output item
                 if (heldObj != null)
                 {
-
                     string summary = minutesLeft <= 0
                     ? I18n.Item_Contents_Ready(name: heldObj.DisplayName)
                     : I18n.Item_Contents_Partial(name: heldObj.DisplayName, time: this.Stringify(TimeSpan.FromMinutes(minutesLeft)));

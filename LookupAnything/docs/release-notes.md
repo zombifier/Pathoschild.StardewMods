@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed machine output recipes no longer shown.
 * Improved translations. Thanks to MakinDay (updated Italian), mc-kaishixiaxue (updated Chinese), and Shi974 (updated French)!
 
 ## 1.41.2
