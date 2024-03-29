@@ -271,7 +271,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         private int? GetUpgradeLevel(Building building)
         {
             // barn
-            if (this.IsBarn(building) && int.TryParse(building.GetIndoorsName().Substring("Barn".Length), out int barnUpgradeLevel))
+            if (this.IsBarn(building) && int.TryParse(building.GetIndoors()?.mapPath.Value?.Substring("Maps\\Barn".Length), out int barnUpgradeLevel))
                 return barnUpgradeLevel - 1; // Barn2 is first upgrade
 
             // cabin
@@ -279,7 +279,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                 return cabin.upgradeLevel;
 
             // coop
-            if (this.IsCoop(building) && int.TryParse(building.GetIndoorsName().Substring("Coop".Length), out int coopUpgradeLevel))
+            if (this.IsCoop(building) && int.TryParse(building.GetIndoors()?.mapPath.Value?.Substring("Maps\\Coop".Length), out int coopUpgradeLevel))
                 return coopUpgradeLevel - 1; // Coop2 is first upgrade
 
             return null;

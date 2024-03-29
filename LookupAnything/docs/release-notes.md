@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed upgrade level check for barns and coops.
+
 ## 1.41.3
 Released 28 March 2024 for SMAPI 4.0.0 or later.
 
