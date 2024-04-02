@@ -301,7 +301,7 @@
     "item.produces-dye": "Boya üretir",
 
     // values
-    "item.custom-item.summary": "{{modName}} tarafından eklendi", // TODO
+    "item.custom-item.summary": "{{modName}} tarafından eklendi",
     "item.contents.placed": "{{name}} yerleştirildi",
     "item.contents.ready": "{{name}} hazır",
     "item.contents.partial": "{{name}} içinde {{time}}",
