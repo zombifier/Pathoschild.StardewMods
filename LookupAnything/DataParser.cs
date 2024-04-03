@@ -137,6 +137,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <remarks>Derived from <see cref="GameLocation.getFish"/>.</remarks>
         public FishSpawnData? GetFishSpawnRules(string fishID, Metadata metadata)
         {
+            Console.WriteLine("Getting spawn rules for fish: " + fishID);
             // get raw fish data
             string[] fishFields;
             {
@@ -147,12 +148,15 @@ namespace Pathoschild.Stardew.LookupAnything
                     return null;
             }
 
+            Console.WriteLine("Fish fields: "+string.Join(", ",fishFields));
+
             // parse location data
             var locations = new List<FishSpawnLocationData>();
             foreach ((string locationName, LocationData value) in DataLoader.Locations(Game1.content))
             {
-                if (metadata.IgnoreFishingLocations.Contains(locationName))
+                if (metadata.IgnoreFishingLocations.Contains(locationName)) {
                     continue; // ignore event data
+                }
 
                 List<FishSpawnLocationData> curLocations = new List<FishSpawnLocationData>();
 
@@ -162,8 +166,14 @@ namespace Pathoschild.Stardew.LookupAnything
                     if (fishItem?.ObjectType != "Fish" || fishItem.ItemId != fishID)
                         continue;
 
+                    if (locationName.Equals("Backwoods"))
+                        continue;
+
+                    Console.WriteLine("Found fish in "+locationName);
+
                     if (fish.Season.HasValue)
                     {
+                        Console.WriteLine("Adding fish with season"+fish.Season.Value.ToString());
                         curLocations.Add(new FishSpawnLocationData(locationName, fish.FishAreaId, new[] { fish.Season.Value.ToString() }));
                     }
                     else if (fish.Condition != null)
@@ -178,8 +188,12 @@ namespace Pathoschild.Stardew.LookupAnything
                                 if (!condition.Negated && condition.Query.Any(word => word.Equals(season, StringComparison.OrdinalIgnoreCase)))
                                     seasons.Add(season);
                             }
+                            Console.WriteLine("Adding fish with seasons "+string.Join(", ", seasons.ToArray()));
                             curLocations.Add(new FishSpawnLocationData(locationName, fish.FishAreaId, seasons.ToArray()));
                         }
+                    }else {
+                        Console.WriteLine("Third, unhandled state");
+                        curLocations.Add(new FishSpawnLocationData(locationName, fish.FishAreaId, new[] { "spring", "summer", "fall", "winter" }));
                     }
                 }
 
@@ -190,6 +204,7 @@ namespace Pathoschild.Stardew.LookupAnything
                     select new FishSpawnLocationData(locationName, areaGroup.Key, seasons)
                 );
             }
+            Console.WriteLine("Locations: " + string.Join(", ", locations.Select(x => x.LocationName)));
 
             // parse fish data
             var timesOfDay = new List<FishSpawnTimeOfDayData>();
@@ -198,6 +213,7 @@ namespace Pathoschild.Stardew.LookupAnything
             bool isUnique = false;
             if (locations.Any()) // ignore default spawn criteria if the fish doesn't spawn naturally; in that case it should be specified explicitly in custom data below (if any)
             {
+                Console.WriteLine("Fishfields: "+ string.Join(", ", fishFields));
                 // times of day
                 string[] timeFields = fishFields[5].Split(' ');
                 for (int i = 0, last = timeFields.Length + 1; i + 1 < last; i += 2)
