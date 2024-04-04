@@ -43,7 +43,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             if (this.Machine.growthStage.Value < Tree.treeStage || this.Machine.stump.Value)
                 return MachineState.Disabled;
 
-            return this.HasSeed()
+            return this.HasSeed() || this.HasMoss()
                 ? MachineState.Done
                 : MachineState.Processing;
         }
@@ -65,6 +65,14 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
                 // get extra drops
                 foreach (string itemId in this.GetRandomExtraDrops())
                     drops.Push(itemId);
+
+                // get moss
+                if (this.HasMoss())
+                {
+                    Item item = Tree.CreateMossItem();
+                    for (int i = 0; i < item.Stack; i++)
+                        drops.Push(item.ItemId);
+                }
             }
 
             // get next drop
@@ -101,6 +109,8 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
 
             if (ItemRegistry.HasItemId(item, TreeMachine.GetSeedForTree(tree, this.Location)))
                 tree.hasSeed.Value = false;
+            if (ItemRegistry.HasItemId(item, "(O)Moss"))
+                tree.hasMoss.Value = false;
 
             Stack<string> drops = this.ItemDrops.Value;
             if (drops.Any() && drops.Peek() == item.ItemId)
@@ -113,6 +123,12 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             return
                 this.Machine.hasSeed.Value
                 && (Game1.IsMultiplayer || Game1.player.ForagingLevel >= 1);
+        }
+
+        /// <summary>Get whether the tree has grown moss</summary>>
+        private bool HasMoss()
+        {
+            return this.Machine.hasMoss.Value;
         }
 
         /// <summary>Get the random items that should also drop when this tree has a seed.</summary>
