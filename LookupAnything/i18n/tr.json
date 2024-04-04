@@ -282,7 +282,7 @@
     ** Item > generic lookups
     *********/
     // labels
-    "item.custom-item": "Custom item", // TODO
+    "item.custom-item": "Özel eşya",
     "item.contents": "İçindekiler",
     "item.loves-this": "Bunu seviyor",
     "item.likes-this": "Bunu beğeniyor",
@@ -610,14 +610,14 @@
     "tree.is-fertilized": "Gübrelenmiş",
 
     // values
-    "tree.name.big-mushroom": "Mantar Ağaçı",
-    "tree.name.mahogany": "Maun Ağaçı",
+    "tree.name.big-mushroom": "Mantar Ağacı",
+    "tree.name.mahogany": "Maun Ağacı",
     "tree.name.maple": "Akçaağaç",
-    "tree.name.oak": "Meşe Ağaçı",
-    "tree.name.palm": "Palmiye Ağaçı",
-    "tree.name.pine": "Çam Ağaçı",
-    "tree.name.mossy": "Mossy Tree", // TODO
-    "tree.name.mystic": "Mystic Tree", // TODO
+    "tree.name.oak": "Meşe Ağacı",
+    "tree.name.palm": "Palmiye Ağacı",
+    "tree.name.pine": "Çam Ağacı",
+    "tree.name.mossy": "Yosun Ağacı",
+    "tree.name.mystic": "Mistik Ağaç",
     "tree.name.unknown": "Bilinmeyen Ağaç",
     "tree.stage.done": "Tamamen olgunlaşmış",
     "tree.stage.partial": "{{stageName}} ({{step}} of {{max}})",
