@@ -30,6 +30,8 @@ namespace ContentPatcher
         /// </param>
         IManagedConditions ParseConditions(IManifest manifest, IDictionary<string, string?>? rawConditions, ISemanticVersion formatVersion, string[]? assumeModIds = null);
 
+        IManagedValue ParseValues(IManifest manifest, string rawValue, ISemanticVersion formatVersion, string[]? assumeModIDs = null);
+
         /// <summary>Register a simple token.</summary>
         /// <param name="mod">The manifest of the mod defining the token (see <see cref="Mod.ModManifest"/> in your entry class).</param>
         /// <param name="name">The token name. This only needs to be unique for your mod; Content Patcher will prefix it with your mod ID automatically, like <c>YourName.ExampleMod/SomeTokenName</c>.</param>

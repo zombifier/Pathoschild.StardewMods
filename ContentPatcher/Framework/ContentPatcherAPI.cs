@@ -38,6 +38,9 @@ namespace ContentPatcher.Framework
         /// <summary>Parse raw conditions for an API consumer.</summary>
         private readonly ParseConditionsDelegate ParseConditionsImpl;
 
+        /// <summary>Parse raw values for an API consumer.</summary>
+        private readonly ParseValuesDelegate ParseValuesImpl;
+
 
         /*********
         ** Accessors
@@ -57,6 +60,8 @@ namespace ContentPatcher.Framework
         internal delegate IManagedConditions ParseConditionsDelegate(IManifest manifest, InvariantDictionary<string?>? rawConditions, ISemanticVersion formatVersion, string[]? assumeModIds = null);
 
 
+        internal delegate IManagedValue ParseValuesDelegate(IManifest manifest, string rawValue, ISemanticVersion formatVersion, string[]? assumeModIds = null);
+
         /*********
         ** Public methods
         *********/
@@ -67,7 +72,7 @@ namespace ContentPatcher.Framework
         /// <param name="addModToken">The action to add a mod token.</param>
         /// <param name="isConditionsApiReady">Whether the conditions API is initialized and ready for use.</param>
         /// <param name="parseConditions">Parse raw conditions for an API consumer.</param>
-        internal ContentPatcherAPI(string contentPatcherID, IMonitor monitor, IReflectionHelper reflection, Action<ModProvidedToken> addModToken, Func<bool> isConditionsApiReady, ParseConditionsDelegate parseConditions)
+        internal ContentPatcherAPI(string contentPatcherID, IMonitor monitor, IReflectionHelper reflection, Action<ModProvidedToken> addModToken, Func<bool> isConditionsApiReady, ParseConditionsDelegate parseConditions, ParseValuesDelegate parseValues)
         {
             this.ContentPatcherID = contentPatcherID;
             this.Monitor = monitor;
@@ -75,6 +80,7 @@ namespace ContentPatcher.Framework
             this.AddModToken = addModToken;
             this.IsConditionsApiReadyImpl = isConditionsApiReady;
             this.ParseConditionsImpl = parseConditions;
+            this.ParseValuesImpl = parseValues;
         }
 
         /// <inheritdoc />
@@ -95,6 +101,21 @@ namespace ContentPatcher.Framework
                ? new(rawConditions)
                : null;
             return this.ParseConditionsImpl(manifest, conditions, formatVersion, assumeModIds);
+        }
+
+        public IManagedValue ParseValues(IManifest manifest, string rawValue, ISemanticVersion formatVersion, string[]? assumeModIds = null)
+        {
+            // validate lifecycle
+            if (!this.IsConditionsApiReady)
+                throw new InvalidOperationException($"'{manifest.Name}' accessed Content Patcher's conditions API before it was ready to use. (For mod authors: see the documentation on {nameof(IContentPatcherAPI)}.{nameof(IContentPatcherAPI.IsConditionsApiReady)} for details.)");
+
+            // validate dependency on Content Patcher
+            if (!manifest.HasDependency(this.ContentPatcherID, out ISemanticVersion? minVersion, canBeOptional: false))
+                throw new InvalidOperationException($"'{manifest.Name}' must list Content Patcher as a required dependency in its manifest.json to access the values API.");
+            if (minVersion == null || minVersion.IsOlderThan("1.22.0")) // TODO Change me
+                throw new InvalidOperationException($"'{manifest.Name}' must specify Content Patcher 1.22.0 as the minimum required version in its manifest.json to access the values API.");
+
+            return this.ParseValuesImpl(manifest, rawValue, formatVersion, assumeModIds);
         }
 
         /// <inheritdoc />

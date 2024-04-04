@@ -133,7 +133,8 @@ namespace ContentPatcher
                 reflection: this.Helper.Reflection,
                 addModToken: this.AddModToken,
                 isConditionsApiReady: () => Game1.ticks >= this.ConditionsApiReadyTick,
-                parseConditions: this.ParseConditionsForApi
+                parseConditions: this.ParseConditionsForApi,
+                parseValues: this.ParseValuesForApi
             );
         }
 
@@ -405,6 +406,31 @@ namespace ContentPatcher
 
                     bool isValid = screen.PatchLoader.TryParseConditions(rawConditions, tokenParser, new LogPathBuilder(), out Condition[] conditions, out _, out string? error);
                     var managed = new ApiManagedConditionsForSingleScreen(conditions, context, isValid: isValid, validationError: error);
+                    managed.UpdateContext();
+
+                    return managed;
+                }
+            );
+        }
+
+        private IManagedValue ParseValuesForApi(IManifest manifest, string rawValue, ISemanticVersion formatVersion, string[]? assumeModIds = null)
+        {
+            IInvariantSet assumeModIdsLookup = assumeModIds is not null
+                ? InvariantSets.From(assumeModIds)
+                : InvariantSets.FromValue(manifest.UniqueID);
+            IMigration migrator = new AggregateMigration(formatVersion, this.GetFormatVersions(null));
+
+            return new ApiManagedValue(
+                parse: () =>
+                {
+                    ScreenManager screen = this.ScreenManager.Value;
+                    IContext context = screen.TokenManager;
+                    TokenParser tokenParser = new(context, manifest, migrator, assumeModIdsLookup);
+                    LogPathBuilder logPathBuilder = new();
+
+                    bool isValid = tokenParser.TryParseString(rawValue, assumeModIdsLookup, logPathBuilder, out string? error, out IManagedTokenString? parsedString);
+                    parsedString ??= new LiteralString(string.Empty, logPathBuilder);
+                    var managed = new ApiManagedValueForSingleScreen(parsedString, context, isValid: isValid, validationError: error);
                     managed.UpdateContext();
 
                     return managed;
