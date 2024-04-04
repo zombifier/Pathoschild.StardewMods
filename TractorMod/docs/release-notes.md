@@ -1,6 +1,11 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed fertilizer able to apply to grown crops using the tractor (thanks to foxwhite25!).
+* Improved compatibility with mods which change fertilizer logic (thanks to foxwhite25!).
+* Improved translations. Thanks to Scomar82 (updated German), JhonatanMedeiros (updated Portuguese), and Shi974 (updated French)!
+
 ## 4.17.2
 Released 23 March 2024 for SMAPI 4.0.0 or later.
 

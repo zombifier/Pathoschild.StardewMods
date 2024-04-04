@@ -13,7 +13,6 @@
     /****
     ** Section titles
     ****/
-    // TODO
     "config.main-options": "Opções Principais",
     "config.controls": "Controles",
     "config.axe": "Recursos do Machado",
@@ -30,7 +29,6 @@
     /****
     ** Main options
     ****/
-    // TODO
     "config.distance.name": "Distância",
     "config.distance.tooltip": "O número de blocos em cada direção ao redor do trator a serem afetados (além do bloco sob ele). Padrão {{defaultValue}}; um valor de {{maxRecommendedValue}} cobre a maior parte da tela visível, e valores mais altos podem impactar negativamente o desempenho do jogo.",
 
@@ -62,7 +60,6 @@
     /****
     ** Keybind options
     ****/
-    // TODO
     "config.summon-key.name": "Invocar Trator",
     "config.summon-key.tooltip": "Teletransportar um trator disponível para a sua posição. Padrão backspace.",
 
@@ -76,7 +73,6 @@
     /****
     ** Trees & bushes
     ****/
-    // TODO
     "config.chop-fruit-trees-seeds.name": "Cortar Árvores Frutíferas (Sementes)",
     "config.chop-fruit-trees-seeds.tooltip": "Se deve limpar as sementes de árvores frutíferas.",
 
@@ -108,7 +104,6 @@
     /****
     ** Crops/forage/grass
     ****/
-    // TODO
     "config.clear-dead-crops.name": "Limpar Colheitas Mortas",
     "config.clear-dead-crops.tooltip": "Se deve destruir colheitas mortas.",
 
@@ -134,7 +129,6 @@
     /****
     ** Debris
     ****/
-    // TODO
     "config.clear-debris.name": "Limpar Detritos",
     "config.clear-debris.tooltip": "Se deve destruir detritos como ervas daninhas, galhos, tocos gigantes e troncos caídos.",
 
@@ -145,7 +139,6 @@
     /****
     ** Dirt
     ****/
-    // TODO
     "config.till-dirt.name": "Arar Terra",
     "config.till-dirt.tooltip": "Se deve arar a terra vazia.",
 
@@ -159,7 +152,6 @@
     /****
     ** Mining
     ****/
-    // TODO
     "config.break-boulders-and-meteorites.name": "Quebrar Pedregulhos e Meteoritos",
     "config.break-boulders-and-meteorites.tooltip": "Se deve quebrar pedregulhos e meteoritos.",
 
@@ -170,7 +162,6 @@
     /****
     ** Placed items
     ****/
-    // TODO
     "config.break-flooring.name": "Quebrar Piso",
     "config.break-flooring.tooltip": "Se deve quebrar o piso colocado.",
 
@@ -187,7 +178,6 @@
     /****
     ** Melee
     ****/
-    // TODO
     "config.Attack-monsters.name": "Atacar Monstros",
     "config.Attack-monsters.tooltip": "Se deve atacar monstros. (Isso é extremamente poderoso devido à velocidade da ferramenta do trator.)",
 
@@ -195,7 +185,6 @@
     /****
     ** Other
     ****/
-    // TODO
     "config.milk-pail.name": "Habilitar Balde de Leite",
     "config.milk-pail.tooltip": "Se deve coletar leite de animais de fazenda usando o balde de leite.",
 

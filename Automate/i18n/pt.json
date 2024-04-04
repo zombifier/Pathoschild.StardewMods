@@ -28,13 +28,13 @@
     "config.junimo-hut-fertilizer.name": "Fertilizante",
     "config.junimo-hut-fertilizer.desc": "O que as cabanas de Junimo devem fazer com itens de fertilizantes. 'Auto-detecção' irá ignorá-los se o mod Better Junimos estiver instalado, caso contrário, irá movê-los da cabana para os baús conectados.",
     "config.junimo-hut-seeds.name": "Sementes",
-    "config.junimo-hut-seeds.desc": "O que as cabanas de Junimo devem fazer com itens de sementes. 'Auto-detecção' irá ignorá-los se o mod Better Junimos estiver instalado, caso contrário, irá movê-los da cabana para os baús conectados."
+    "config.junimo-hut-seeds.desc": "O que as cabanas de Junimo devem fazer com itens de sementes. 'Auto-detecção' irá ignorá-los se o mod Better Junimos estiver instalado, caso contrário, irá movê-los da cabana para os baús conectados.",
 
     // Junimo hut dropdown values
     "config.junimo-huts.auto-detect": "Auto-detecção",
     "config.junimo-huts.ignore": "Ignorá-los",
     "config.junimo-huts.move-into-chests": "Mover das cabanas de Junimo para os baús",
-    "config.junimo-huts.move-into-huts": "Mover dos baús para as cabanas de Junimo"
+    "config.junimo-huts.move-into-huts": "Mover dos baús para as cabanas de Junimo",
 
     // per-machine settings
     "config.title.machine-settings": "Configurações de {{machineName}}",

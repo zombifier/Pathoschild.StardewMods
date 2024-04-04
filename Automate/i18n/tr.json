@@ -9,7 +9,7 @@
     "config.automation-interval.name": "Otomasyon aralığı",
     "config.automation-interval.desc": "Her bir otomasyon süreci arasındaki tıklama sayısı (saniyede bir kez 60, iki saniyede bir 120, vb.).",
     "config.min-minutes-for-fairy-dust.name": "Peri tozu için en az süre",
-    "config.min-minutes-for-fairy-dust.desc": "Peri tozu kullanılması için en az makine işleme süresi. Örnek olarak; 30 dakikaya ayarlanırsa, 20 dakika içerisinde bitecek işlem için peri tozu kullanılmayacaktır.", // TODO
+    "config.min-minutes-for-fairy-dust.desc": "Peri tozu kullanılması için en az makine işleme süresi. Örnek olarak; 30 dakikaya ayarlanırsa, 20 dakika içerisinde bitecek işlem için peri tozu kullanılmayacaktır.",
     "config.toggle-overlay-key.name": "Kaplama anahtarını aç/kapat",
     "config.toggle-overlay-key.desc": "Otomasyon kaplamasını değiştiren tuşlar.",
     "config.warn-for-missing-bridge-mod.name": "Eksik köprü modu için uyar",
