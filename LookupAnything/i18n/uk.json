@@ -616,6 +616,8 @@
     "tree.name.oak": "Дуб",
     "tree.name.palm": "Пальма",
     "tree.name.pine": "Сосна",
+    "tree.name.mossy": "Mossy Tree", // TODO
+    "tree.name.mystic": "Mystic Tree", // TODO
     "tree.name.unknown": "Невідоме дерево",
     "tree.stage.done": "Повністю виросло",
     "tree.stage.partial": "{{stageName}} ({{step}} з {{max}})",

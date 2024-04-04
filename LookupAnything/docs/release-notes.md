@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed display names for new wild tree types.
 * Fixed upgrade level check for barns and coops.
 * Fixed error if a target has an invalid texture.
 * Fixed error showing lookup when a mod adds broken textures.

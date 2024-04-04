@@ -618,6 +618,8 @@
     "tree.name.oak": "Dąb",
     "tree.name.palm": "Palma",
     "tree.name.pine": "Sosna",
+    "tree.name.mossy": "Mossy Tree", // TODO
+    "tree.name.mystic": "Mystic Tree", // TODO
     "tree.name.unknown": "Nieznane Drzewo",
     "tree.stage.done": "w pełni wyrośnięte",
     "tree.stage.partial": "{{stageName}} ({{step}} z {{max}})",

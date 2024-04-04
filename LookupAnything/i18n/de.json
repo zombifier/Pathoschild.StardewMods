@@ -615,6 +615,8 @@
     "tree.name.oak": "Eichenbaum",
     "tree.name.palm": "Palme",
     "tree.name.pine": "Tannenbaum",
+    "tree.name.mossy": "Mossy Tree", // TODO
+    "tree.name.mystic": "Mystic Tree", // TODO
     "tree.name.unknown": "unbekannter Baum",
     "tree.stage.done": "Voll ausgewachsen",
     "tree.stage.partial": "{{stageName}} ({{step}} von {{max}})",

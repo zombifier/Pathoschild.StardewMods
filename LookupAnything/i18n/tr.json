@@ -616,6 +616,8 @@
     "tree.name.oak": "Meşe Ağaçı",
     "tree.name.palm": "Palmiye Ağaçı",
     "tree.name.pine": "Çam Ağaçı",
+    "tree.name.mossy": "Mossy Tree", // TODO
+    "tree.name.mystic": "Mystic Tree", // TODO
     "tree.name.unknown": "Bilinmeyen Ağaç",
     "tree.stage.done": "Tamamen olgunlaşmış",
     "tree.stage.partial": "{{stageName}} ({{step}} of {{max}})",

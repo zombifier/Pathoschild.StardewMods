@@ -2,13 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Pathoschild.Stardew.Common.Enums;
 using Pathoschild.Stardew.Common.Utilities;
 using StardewValley;
 using StardewValley.GameData.WildTrees;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
-using SObject = StardewValley.Object;
 
 namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
 {
@@ -124,7 +122,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             string type = tree.treeType.Value;
 
             // golden coconut
-            if ((type == TreeType.Palm || type == TreeType.Palm2) && this.Location is IslandLocation && new Random((int)Game1.uniqueIDForThisGame + (int)Game1.stats.DaysPlayed + this.TileArea.X * 13 + this.TileArea.Y * 54).NextDouble() < 0.1)
+            if (type is (Tree.palmTree or Tree.palmTree2) && this.Location is IslandLocation && new Random((int)Game1.uniqueIDForThisGame + (int)Game1.stats.DaysPlayed + this.TileArea.X * 13 + this.TileArea.Y * 54).NextDouble() < 0.1)
                 yield return "791";
 
             // Qi bean
