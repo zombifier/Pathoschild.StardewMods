@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed tractor being shown in the animal social menu. (This will take effect in Stardew Valley 1.6.4.)
 * Fixed fertilizer able to apply to grown crops using the tractor (thanks to foxwhite25!).
 * Improved compatibility with mods which change fertilizer logic (thanks to foxwhite25!).
 * Improved translations. Thanks to Scomar82 (updated German), JhonatanMedeiros (updated Portuguese), and Shi974 (updated French)!

@@ -221,7 +221,7 @@ namespace Pathoschild.Stardew.TractorMod
 
                         // normalize tractor
                         if (tractor != null)
-                            TractorManager.SetTractorInfo(tractor, this.Config.SoundEffects);
+                            TractorManager.SetTractorInfo(tractor, this.Config.SoundEffects, this.Helper.Reflection);
 
                         // normalize ownership
                         garage.owner.Value = 0;
@@ -320,7 +320,7 @@ namespace Pathoschild.Stardew.TractorMod
                     foreach (Horse horse in horses)
                     {
                         if (tractorIDs.Contains(horse.HorseId) && !TractorManager.IsTractor(horse))
-                            TractorManager.SetTractorInfo(horse, this.Config.SoundEffects);
+                            TractorManager.SetTractorInfo(horse, this.Config.SoundEffects, this.Helper.Reflection);
                     }
                 }
             }
@@ -560,7 +560,7 @@ namespace Pathoschild.Stardew.TractorMod
             if (tractor == null && this.Config.CanSummonWithoutGarage && Context.IsMainPlayer)
             {
                 tractor = new Horse(Guid.NewGuid(), 0, 0);
-                TractorManager.SetTractorInfo(tractor, this.Config.SoundEffects);
+                TractorManager.SetTractorInfo(tractor, this.Config.SoundEffects, this.Helper.Reflection);
                 this.TextureManager.ApplyTextures(tractor, this.IsTractor);
             }
 
