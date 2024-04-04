@@ -34,7 +34,7 @@ namespace ContentPatcher.Framework.Api
         public string? ValidationError { get; }
 
         /// <inheritdoc />
-        public bool IsReady => this.Contextuals.IsReady;
+        public bool IsReady => this.TokenString.IsReady;
 
         /// <inheritdoc />
         public string? Value { get; private set; }
@@ -85,7 +85,7 @@ namespace ContentPatcher.Framework.Api
         /// <summary>Get whether the conditions need to be updated for the current context.</summary>
         private bool ShouldUpdate()
         {
-            // update once if immutable
+            // don't update if immutable
             if (!this.TokenString.IsMutable)
                 return false;
 
