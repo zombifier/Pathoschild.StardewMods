@@ -301,7 +301,7 @@
     "item.produces-dye": "Boya üretir",
 
     // values
-    "item.custom-item.summary": "added by {{modName}}", // TODO
+    "item.custom-item.summary": "{{modName}} tarafından eklendi",
     "item.contents.placed": "{{name}} yerleştirildi",
     "item.contents.ready": "{{name}} hazır",
     "item.contents.partial": "{{name}} içinde {{time}}",
@@ -616,6 +616,8 @@
     "tree.name.oak": "Meşe Ağaçı",
     "tree.name.palm": "Palmiye Ağaçı",
     "tree.name.pine": "Çam Ağaçı",
+    "tree.name.mossy": "Mossy Tree", // TODO
+    "tree.name.mystic": "Mystic Tree", // TODO
     "tree.name.unknown": "Bilinmeyen Ağaç",
     "tree.stage.done": "Tamamen olgunlaşmış",
     "tree.stage.partial": "{{stageName}} ({{step}} of {{max}})",
@@ -659,7 +661,7 @@
     "config.show-gift-tastes.hated.desc": "Nefret edilen hediyelerin NPC'de ve eşya aramalarında gösterilip gösterilmeyeceği.",
 
     "config.show-unowned-gifts.name": "Sahip olunmayan hediye zevklerini göster",
-    "config.show-unowned-gifts.desc": "Whether to show gift tastes for items that the player doesn't own somewhere in the world.",
+    "config.show-unowned-gifts.desc": "Oyuncunun, dünyanın herhangi bir yerinde sahip olmadığı hediye zevklerini gösterir.",
 
     "config.highlight-unrevealed-gift-tastes.name": "Açıklanmayan hediye zevklerini vurgulayın",
     "config.highlight-unrevealed-gift-tastes.desc": "NPC profilinde açıklanmayan eşya hediye zevklerinin vurgulanıp vurgulanmayacağı. Etkinleştirildiğinde, açıklanmayan hediye zevkleri gösterilecek.",

@@ -1,6 +1,12 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 2.0.4
+Released 04 April 2024 for SMAPI 4.0.0 or later.
+
+* Chests now collect moss from connected trees (thanks to skoliosaurus!).
+* Improved translations. Thanks to EngurRuzgar (updated Turkish), JhonatanMedeiros (updated Portuguese), Jualko (updated German), and MakinDay (updated Italian)!
+
 ## 2.0.3
 Released 21 March 2024 for SMAPI 4.0.0 or later.
 

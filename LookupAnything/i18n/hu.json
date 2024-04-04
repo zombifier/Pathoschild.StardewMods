@@ -625,6 +625,8 @@
     "tree.name.oak": "Tölgyfa",
     "tree.name.palm": "Pálmafa",
     "tree.name.pine": "Fenyőfa",
+    "tree.name.mossy": "Mossy Tree", // TODO
+    "tree.name.mystic": "Mystic Tree", // TODO
     "tree.name.unknown": "Ismeretlen Fa",
     "tree.stage.done": "Teljesen megnőtt",
     "tree.stage.partial": "{{stageName}} ({{step}} / {{max}})",

@@ -618,6 +618,8 @@
     "tree.name.oak": "ต้นโอ๊ก (Oak Tree)",
     "tree.name.palm": "ต้นปาล์ม (Palm Tree)",
     "tree.name.pine": "ต้นสน (Pine Tree)",
+    "tree.name.mossy": "Mossy Tree", // TODO
+    "tree.name.mystic": "Mystic Tree", // TODO
     "tree.name.unknown": "ต้นไม้ไม่ทราบชนิด (Unknown Tree)",
     "tree.stage.done": "โตเต็มที่",
     "tree.stage.partial": "{{stageName}} ({{step}}/{{max}})",

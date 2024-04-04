@@ -1,6 +1,16 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.41.4
+Released 04 April 2024 for SMAPI 4.0.0 or later.
+
+* Improved fish spawn rules in lookups (thanks to gr3ger!).
+* Fixed display names for new wild tree types.
+* Fixed upgrade level check for barns and coops.
+* Fixed errors showing lookups when a mod has broken textures.
+* Fixed backwoods shown as a source for some fish (thanks to gr3ger!).
+* Improved translations. Thanks to EngurRuzgar (updated Turkish) and Jualko (updated German)!
+
 ## 1.41.3
 Released 28 March 2024 for SMAPI 4.0.0 or later.
 

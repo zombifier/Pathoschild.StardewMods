@@ -2,13 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Pathoschild.Stardew.Common.Enums;
 using Pathoschild.Stardew.Common.Utilities;
 using StardewValley;
 using StardewValley.GameData.WildTrees;
 using StardewValley.Locations;
 using StardewValley.TerrainFeatures;
-using SObject = StardewValley.Object;
 
 namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
 {
@@ -45,7 +43,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             if (this.Machine.growthStage.Value < Tree.treeStage || this.Machine.stump.Value)
                 return MachineState.Disabled;
 
-            return this.HasSeed()
+            return this.HasSeed() || this.HasMoss()
                 ? MachineState.Done
                 : MachineState.Processing;
         }
@@ -67,6 +65,14 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
                 // get extra drops
                 foreach (string itemId in this.GetRandomExtraDrops())
                     drops.Push(itemId);
+
+                // get moss
+                if (this.HasMoss())
+                {
+                    Item item = Tree.CreateMossItem();
+                    for (int i = 0; i < item.Stack; i++)
+                        drops.Push(item.ItemId);
+                }
             }
 
             // get next drop
@@ -103,6 +109,8 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
 
             if (ItemRegistry.HasItemId(item, TreeMachine.GetSeedForTree(tree, this.Location)))
                 tree.hasSeed.Value = false;
+            if (ItemRegistry.HasItemId(item, "(O)Moss"))
+                tree.hasMoss.Value = false;
 
             Stack<string> drops = this.ItemDrops.Value;
             if (drops.Any() && drops.Peek() == item.ItemId)
@@ -117,6 +125,12 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
                 && (Game1.IsMultiplayer || Game1.player.ForagingLevel >= 1);
         }
 
+        /// <summary>Get whether the tree has grown moss</summary>>
+        private bool HasMoss()
+        {
+            return this.Machine.hasMoss.Value;
+        }
+
         /// <summary>Get the random items that should also drop when this tree has a seed.</summary>
         private IEnumerable<string> GetRandomExtraDrops()
         {
@@ -124,7 +138,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             string type = tree.treeType.Value;
 
             // golden coconut
-            if ((type == TreeType.Palm || type == TreeType.Palm2) && this.Location is IslandLocation && new Random((int)Game1.uniqueIDForThisGame + (int)Game1.stats.DaysPlayed + this.TileArea.X * 13 + this.TileArea.Y * 54).NextDouble() < 0.1)
+            if (type is (Tree.palmTree or Tree.palmTree2) && this.Location is IslandLocation && new Random((int)Game1.uniqueIDForThisGame + (int)Game1.stats.DaysPlayed + this.TileArea.X * 13 + this.TileArea.Y * 54).NextDouble() < 0.1)
                 yield return "791";
 
             // Qi bean
