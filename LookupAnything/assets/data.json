@@ -1186,7 +1186,8 @@ You shouldn't change this file unless you know what you're doing.
     "IgnoreFishingLocations": [
         "Temp",
         "fishingGame",
-        "IslandSecret"
+        "IslandSecret",
+        "Backwoods"
     ],
 
     /*********
