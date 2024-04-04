@@ -321,7 +321,7 @@ namespace Pathoschild.Stardew.LookupAnything.Components
                         : this.height / (float)Sprites.Letter.Sprite.Height;
 
                     backgroundBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp);
-                    backgroundBatch.DrawSprite(Sprites.Letter.Sheet, Sprites.Letter.Sprite, x, y, scale: scale);
+                    backgroundBatch.DrawSprite(Sprites.Letter.Sheet, Sprites.Letter.Sprite, x, y, Sprites.Letter.Sprite.Size, scale: scale);
                     backgroundBatch.End();
                 }
 

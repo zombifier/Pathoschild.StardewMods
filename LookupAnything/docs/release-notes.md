@@ -4,6 +4,7 @@
 ## Upcoming release
 * Fixed upgrade level check for barns and coops.
 * Fixed error if a target has an invalid texture.
+* Fixed error showing lookup when a mod adds broken textures.
 
 ## 1.41.3
 Released 28 March 2024 for SMAPI 4.0.0 or later.
