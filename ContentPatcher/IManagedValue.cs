@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ContentPatcher
 {
-    /// <summary>A set of parsed values linked to the Content Patcher context. These values are <strong>per-screen</strong>, so the result depends on the screen that's active when calling the members.</summary>
+    /// <summary>A parsed string which may contain Content Patcher tokens linked to the Content Patcher context. These values are <strong>per-screen</strong>, so the result depends on the screen that's active when calling the members.</summary>
     public interface IManagedValue
     {
         /*********

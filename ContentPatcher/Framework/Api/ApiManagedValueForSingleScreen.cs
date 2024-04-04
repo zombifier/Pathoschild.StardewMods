@@ -13,13 +13,11 @@ namespace ContentPatcher.Framework.Api
         /*********
         ** Fields
         *********/
+        /// <summary>The managed token string corresponding to this managed value.</summary>
         private readonly IManagedTokenString TokenString;
 
         /// <summary>The context with which to update conditions.</summary>
         private readonly IContext Context;
-
-        /// <summary>A contextual manager for the underlying conditions.</summary>
-        private readonly AggregateContextual Contextuals;
 
         /// <summary>The context update tick when the conditions were last updated.</summary>
         private int LastUpdateTick = -1;
@@ -29,7 +27,7 @@ namespace ContentPatcher.Framework.Api
         ** Accessors
         *********/
         /// <inheritdoc />
-        [MemberNotNullWhen(false, nameof(ApiManagedConditions.ValidationError))]
+        [MemberNotNullWhen(false, nameof(ApiManagedValue.ValidationError))]
         public bool IsValid { get; }
 
         /// <inheritdoc />
@@ -46,7 +44,7 @@ namespace ContentPatcher.Framework.Api
         ** Public methods
         *********/
         /// <summary>Construct an instance.</summary>
-        /// <param name="conditions">The underlying conditions.</param>
+        /// <param name="tokenString">The underlying token string.</param>
         /// <param name="context">The context with which to update conditions.</param>
         /// <param name="isValid">Whether the conditions were parsed successfully (regardless of whether they're in scope currently).</param>
         /// <param name="validationError">If <paramref name="isValid"/> is false, an error phrase indicating why the conditions failed to parse.</param>
@@ -56,8 +54,6 @@ namespace ContentPatcher.Framework.Api
             this.Context = context;
             this.IsValid = isValid;
             this.ValidationError = validationError;
-
-            this.Contextuals = new AggregateContextual().Add(tokenString);
         }
 
         /// <inheritdoc />
@@ -72,7 +68,7 @@ namespace ContentPatcher.Framework.Api
             string? oldValue = this.Value;
             if (this.IsValid)
             {
-                this.Contextuals.UpdateContext(this.Context);
+                this.TokenString.UpdateContext(this.Context);
                 this.Value = this.IsReady ? this.TokenString.Value : null;
             }
 
@@ -91,7 +87,7 @@ namespace ContentPatcher.Framework.Api
         {
             // update once if immutable
             if (!this.TokenString.IsMutable)
-                return !this.Contextuals.WasEverUpdated;
+                return false;
 
             // else update if context changed
             return this.LastUpdateTick < this.Context.UpdateTick;

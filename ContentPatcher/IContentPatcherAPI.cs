@@ -30,7 +30,14 @@ namespace ContentPatcher
         /// </param>
         IManagedConditions ParseConditions(IManifest manifest, IDictionary<string, string?>? rawConditions, ISemanticVersion formatVersion, string[]? assumeModIds = null);
 
-        IManagedValue ParseValues(IManifest manifest, string rawValue, ISemanticVersion formatVersion, string[]? assumeModIDs = null);
+        /// <param name="manifest">The manifest of the mod parsing the conditions (see <see cref="Mod.ModManifest"/> in your enter class).</param>
+        /// <param name="rawValue">The string to parse, in the same format as strings in Content Patcher content packs.</param>
+        /// <param name="formatVersion">The format version for which to parse conditions, used to ensure forward compatibility with future Content Patcher versions. See <c>Format</c> in the Content Patcher token documentation.</param>
+        /// <param name="assumeModIds">
+        /// <para>The unique IDs of mods whose custom tokens to allow in the <paramref name="rawValue"/>. You don't need to list the mod identified by <paramref name="manifest"/>, mods listed as a required dependency in the <paramref name="manifest"/>.</para>
+        /// <para>NOTE: this is meant to prevent mods from breaking if a player doesn't have a required mod installed. You shouldn't simply list all installed mods, and parsing conditions will still fail if a mod isn't installed regardless of the listed mod IDs.</para>
+        /// </param>
+        IManagedValue ParseValues(IManifest manifest, string rawValue, ISemanticVersion formatVersion, string[]? assumeModIds = null);
 
         /// <summary>Register a simple token.</summary>
         /// <param name="mod">The manifest of the mod defining the token (see <see cref="Mod.ModManifest"/> in your entry class).</param>

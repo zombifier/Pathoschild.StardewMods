@@ -12,7 +12,7 @@ namespace ContentPatcher.Framework.Api
         /*********
         ** Fields
         *********/
-        /// <summary>The underlying conditions.</summary>
+        /// <summary>The underlying values.</summary>
         private readonly PerScreen<IManagedValue> ManagedValues;
 
 
@@ -37,7 +37,7 @@ namespace ContentPatcher.Framework.Api
         ** Public methods
         *********/
         /// <summary>Construct an instance.</summary>
-        /// <param name="parse">Get parsed conditions for the currently active screen.</param>
+        /// <param name="parse">Get parsed value for the currently active screen.</param>
         public ApiManagedValue(Func<IManagedValue> parse)
         {
             this.ManagedValues = new PerScreen<IManagedValue>(parse);

@@ -413,6 +413,11 @@ namespace ContentPatcher
             );
         }
 
+        /// <summary>Parse a raw string for an API consumer.</summary>
+        /// <param name="manifest">The manifest of the mod parsing the conditions.</param>
+        /// <param name="rawValue">The raw string to parse.</param>
+        /// <param name="formatVersion">The format version for which to parse conditions.</param>
+        /// <param name="assumeModIds">The unique IDs of mods whose custom tokens to allow in the <paramref name="rawValue"/>.</param>
         private IManagedValue ParseValuesForApi(IManifest manifest, string rawValue, ISemanticVersion formatVersion, string[]? assumeModIds = null)
         {
             IInvariantSet assumeModIdsLookup = assumeModIds is not null
