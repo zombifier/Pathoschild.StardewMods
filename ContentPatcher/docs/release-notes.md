@@ -9,6 +9,11 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 
 -->
+## 2.0.4
+Released 05 April 2024 for SMAPI 4.0.0 or later.
+
+* Fixed `MigrateIds` setting incorrect sprite for former Json Assets items when Json Assets is still installed.
+
 ## 2.0.3
 Released 04 April 2024 for SMAPI 4.0.0 or later.
 
