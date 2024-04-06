@@ -234,7 +234,7 @@ namespace ContentPatcher.Framework.TriggerActions
             {
                 if (mapQualifiedIds.TryGetValue(item.QualifiedItemId, out ItemMetadata? data))
                 {
-                    if (int.TryParse(item.ItemId, out int oldIndex) && item.ParentSheetIndex == oldIndex)
+                    if (item.ParentSheetIndex == 0 || (int.TryParse(item.ItemId, out int oldIndex) && item.ParentSheetIndex == oldIndex))
                         item.ParentSheetIndex = data.GetParsedData()?.SpriteIndex ?? item.ParentSheetIndex;
 
                     item.ItemId = data.LocalItemId;
