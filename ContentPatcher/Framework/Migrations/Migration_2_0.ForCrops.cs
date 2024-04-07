@@ -20,7 +20,7 @@ namespace ContentPatcher.Framework.Migrations
             /*********
             ** Fields
             *********/
-            /// <summary>The pre-1.6 asset name.</summary>
+            /// <summary>The asset name.</summary>
             private const string AssetName = "Data/Crops";
 
 

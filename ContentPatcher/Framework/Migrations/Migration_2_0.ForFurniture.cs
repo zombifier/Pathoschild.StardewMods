@@ -9,14 +9,14 @@ namespace ContentPatcher.Framework.Migrations
 {
     internal partial class Migration_2_0 : BaseRuntimeMigration
     {
-        /// <summary>The migration logic to apply pre-1.6 <c>Data/Boots</c> patches to the new format.</summary>
-        private class BootsMigrator : IEditAssetMigrator
+        /// <summary>The migration logic to apply pre-1.6 <c>Data/Furniture</c> patches to the new format.</summary>
+        private class FurnitureMigrator : IEditAssetMigrator
         {
             /*********
             ** Fields
             *********/
             /// <summary>The asset name.</summary>
-            private const string AssetName = "Data/Boots";
+            private const string AssetName = "Data/Furniture";
 
 
             /*********
@@ -25,7 +25,7 @@ namespace ContentPatcher.Framework.Migrations
             /// <inheritdoc />
             public bool AppliesTo(IAssetName assetName)
             {
-                return assetName?.IsEquivalentTo(BootsMigrator.AssetName, useBaseName: true) is true;
+                return assetName?.IsEquivalentTo(FurnitureMigrator.AssetName, useBaseName: true) is true;
             }
 
             /// <inheritdoc />
@@ -69,10 +69,15 @@ namespace ContentPatcher.Framework.Migrations
                     int fieldCount = RuntimeMigrationHelper.CountFields(fromEntry, '/');
 
                     // copy name into display name
-                    if (fieldCount == 6)
+                    if (fieldCount is 6 or 7)
                     {
                         string name = fromEntry[..fromEntry.IndexOf('/')];
-                        asset[key] = fromEntry + '/' + name;
+                        asset[key] =
+                            fromEntry
+                            + (fieldCount is 6
+                                ? "/-1/" + name // placement restrictions + name
+                                : "/" + name
+                            );
                     }
                 }
             }

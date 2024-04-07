@@ -9,6 +9,9 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 
 -->
+## Upcoming release
+* Fixed furniture from pre-Stardew-Valley-1.6 content packs shown in-game as "Unnamed Item".
+
 ## 2.0.4
 Released 05 April 2024 for SMAPI 4.0.0 or later.
 
