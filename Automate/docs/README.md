@@ -419,6 +419,17 @@ for more info.
   </td>
 </tr>
 <tr>
+  <td><code>CollectTreeMoss</code></td>
+  <td>
+
+Whether to collect moss on trees. Default true.
+
+For example, you may want to disable this to keep moss on trees to boost the quality of mushrooms
+from [mushroom logs](https://stardewvalleywiki.com/Mushroom_Log).
+
+  </td>
+</tr>
+<tr>
   <td><code>JunimoHutBehaviorForGems</code><br /><code>JunimoHutBehaviorForFertilizer</code><br /><code>JunimoHutBehaviorForSeeds</code></td>
   <td>
 

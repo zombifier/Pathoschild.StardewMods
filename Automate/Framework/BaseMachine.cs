@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Buildings;
+using StardewValley.TerrainFeatures;
 
 namespace Pathoschild.Stardew.Automate.Framework
 {
@@ -37,6 +38,7 @@ namespace Pathoschild.Stardew.Automate.Framework
         public abstract bool SetInput(IStorage input);
 
         /// <summary>Get the default ID for an Automate machine type.</summary>
+        /// <param name="machineType">The machine type.</param>
         public static string GetDefaultMachineId(Type machineType)
         {
             string id = machineType.Name;
@@ -46,11 +48,32 @@ namespace Pathoschild.Stardew.Automate.Framework
             return id;
         }
 
+        /// <summary>Get the default ID for an Automate machine type.</summary>
+        /// <typeparam name="TMachine">The machine type.</typeparam>
+        public static string GetDefaultMachineId<TMachine>()
+            where TMachine : IMachine
+        {
+            return BaseMachine.GetDefaultMachineId(typeof(TMachine));
+        }
+
         /// <summary>Get the tile area for a building.</summary>
         /// <param name="building">The building.</param>
         public static Rectangle GetTileAreaFor(Building building)
         {
             return new Rectangle(building.tileX.Value, building.tileY.Value, building.tilesWide.Value, building.tilesHigh.Value);
+        }
+
+        /// <summary>Get the tile area covered by a bush.</summary>
+        /// <param name="bush">The bush whose area to get.</param>
+        public static Rectangle GetTileAreaFor(LargeTerrainFeature bush)
+        {
+            Rectangle box = bush.getBoundingBox();
+            return new Rectangle(
+                x: box.X / Game1.tileSize,
+                y: box.Y / Game1.tileSize,
+                width: box.Width / Game1.tileSize,
+                height: box.Height / Game1.tileSize
+            );
         }
 
 

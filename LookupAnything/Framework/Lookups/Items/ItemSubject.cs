@@ -21,6 +21,7 @@ using StardewValley.GameData.Movies;
 using StardewValley.Locations;
 using StardewValley.Objects;
 using StardewValley.TerrainFeatures;
+using StardewValley.TokenizableStrings;
 using StardewValley.Tools;
 using SObject = StardewValley.Object;
 
@@ -336,9 +337,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                     // movie this week
                     yield return new GenericField(I18n.Item_MovieTicket_MovieThisWeek(), new IFormattedText[]
                     {
-                        new FormattedText(movie.Title, bold: true),
+                        new FormattedText(TokenParser.ParseText(movie.Title), bold: true),
                         new FormattedText(Environment.NewLine),
-                        new FormattedText(movie.Description)
+                        new FormattedText(TokenParser.ParseText(movie.Description))
                     });
 
                     // movie tastes

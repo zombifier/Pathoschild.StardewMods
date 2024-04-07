@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pathoschild.Stardew.Automate.Framework.Machines;
+using Pathoschild.Stardew.Automate.Framework.Machines.Buildings;
+using Pathoschild.Stardew.Automate.Framework.Machines.Objects;
+using Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures;
+using Pathoschild.Stardew.Automate.Framework.Machines.Tiles;
 using Pathoschild.Stardew.Automate.Framework.Models;
 using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.Common.Integrations.GenericModConfigMenu;
@@ -141,6 +145,7 @@ namespace Pathoschild.Stardew.Automate.Framework
             );
 
             // per-machine settings
+            string treeId = BaseMachine.GetDefaultMachineId<TreeMachine>();
             var machines = this
                 .GetMachineIds()
                 .OrderByDescending(p => p.Key == "MiniShippingBin")
@@ -160,6 +165,17 @@ namespace Pathoschild.Stardew.Automate.Framework
                     get: config => this.IsMachineEnabled(config, machineId),
                     set: (config, value) => this.SetMachineOptions(config, machineId, options => options.Enabled = value)
                 );
+
+                if (machineId == treeId)
+                {
+                    menu.AddCheckbox(
+                        name: I18n.Config_Machines_WildTree_CollectMoss_Name,
+                        tooltip: I18n.Config_Machines_WildTree_CollectMoss_Desc,
+                        get: config => config.CollectTreeMoss,
+                        set: (config, value) => config.CollectTreeMoss = value
+                    );
+                }
+
                 menu.AddNumberField(
                     name: I18n.Config_MachineSettingsPriority_Name,
                     tooltip: () => I18n.Config_MachineSettingsPriority_Desc(GetName()),
@@ -264,14 +280,16 @@ namespace Pathoschild.Stardew.Automate.Framework
         /****
         ** Machine overrides
         ****/
-        /// <summary>Get the machine IDs and item IDs to show in the config UI.</summary>
+        /// <summary>Get the machine IDs and display names to show in the config UI.</summary>
         private Dictionary<string, string> GetMachineIds()
         {
             Dictionary<string, string> machineIds = new();
 
+            // default overrides
             foreach (string id in this.Data.DefaultMachineOverrides.Keys)
-                machineIds[id] = id;
+                machineIds[id] = this.GetTranslatedMachineName(id);
 
+            // Data/Machines
             foreach (string itemId in DataLoader.Machines(Game1.content).Keys)
             {
                 ParsedItemData? data = ItemRegistry.GetData(itemId);
@@ -279,8 +297,25 @@ namespace Pathoschild.Stardew.Automate.Framework
                     continue; // invalid entry
 
                 string machineId = DataBasedMachine.GetMachineId(data.InternalName);
-                machineIds[machineId] = itemId;
+                machineIds[machineId] = data.DisplayName;
             }
+
+            // other building machines
+            machineIds[BaseMachine.GetDefaultMachineId<FishPondMachine>()] = GameI18n.GetBuildingName("Fish Pond");
+            machineIds[BaseMachine.GetDefaultMachineId<JunimoHutMachine>()] = GameI18n.GetBuildingName("Junimo Hut");
+            machineIds[BaseMachine.GetDefaultMachineId<MillMachine>()] = GameI18n.GetBuildingName("Mill");
+
+            // other object machines
+            machineIds[BaseMachine.GetDefaultMachineId<AutoGrabberMachine>()] = GameI18n.GetBigCraftableName("165");
+            machineIds[BaseMachine.GetDefaultMachineId<CrabPotMachine>()] = GameI18n.GetObjectName("710");
+            machineIds[BaseMachine.GetDefaultMachineId<FeedHopperMachine>()] = GameI18n.GetBigCraftableName("99");
+            machineIds[BaseMachine.GetDefaultMachineId<MiniShippingBinMachine>()] = GameI18n.GetBigCraftableName("248");
+
+            // other terrain feature machines
+            machineIds[BaseMachine.GetDefaultMachineId<BushMachine>()] = I18n.Config_Machines_Bush();
+            machineIds[BaseMachine.GetDefaultMachineId<FruitTreeMachine>()] = I18n.Config_Machines_FruitTree();
+            machineIds[BaseMachine.GetDefaultMachineId<TreeMachine>()] = I18n.Config_Machines_WildTree();
+            machineIds[BaseMachine.GetDefaultMachineId<TrashCanMachine>()] = I18n.Config_Machines_TrashCan();
 
             return machineIds;
         }

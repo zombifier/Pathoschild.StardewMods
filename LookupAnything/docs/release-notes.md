@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed movie ticket lookup showing broken movie title/description.
+
 ## 1.41.4
 Released 04 April 2024 for SMAPI 4.0.0 or later.
 

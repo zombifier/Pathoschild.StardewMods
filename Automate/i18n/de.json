@@ -41,5 +41,17 @@
     "config.machine-settings-enabled.Name": "Aktiviert",
     "config.machine-settings-enabled.desc": "Ob Automatisierung für {{machineName}} aktiviert werden soll.",
     "config.machine-settings-priority.name": "Priorität",
-    "config.machine-settings-priority.desc": "Die Prioritätsreihenfolge, in der {{machineName}} Maschinen im Verhältnis zu anderen Maschinen verarbeitet werden sollen. Maschinen haben eine Standardpriorität von 0, wobei höhere Werte zuerst verarbeitet werden."
+    "config.machine-settings-priority.desc": "Die Prioritätsreihenfolge, in der {{machineName}} Maschinen im Verhältnis zu anderen Maschinen verarbeitet werden sollen. Maschinen haben eine Standardpriorität von 0, wobei höhere Werte zuerst verarbeitet werden.",
+
+    // machine names
+    // TODO
+    "config.machines.bush": "Bush",
+    "config.machines.fruit-tree": "Tree (Fruit Tree)",
+    "config.machines.trash-can": "Trash Can",
+    "config.machines.wild-tree": "Tree (Wild Tree)",
+
+    // special settings for individual machines
+    // TODO
+    "config.machines.wild-tree.collect-moss.name": "Collect Moss",
+    "config.machines.wild-tree.collect-moss.desc": "Whether to collect moss on trees. For example, keeping moss on trees will boost the quality of mushrooms from nearby mushroom logs."
 }
