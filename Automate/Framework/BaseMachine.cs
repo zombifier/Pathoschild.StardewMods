@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Buildings;
+using StardewValley.TerrainFeatures;
 
 namespace Pathoschild.Stardew.Automate.Framework
 {
@@ -60,6 +61,19 @@ namespace Pathoschild.Stardew.Automate.Framework
         public static Rectangle GetTileAreaFor(Building building)
         {
             return new Rectangle(building.tileX.Value, building.tileY.Value, building.tilesWide.Value, building.tilesHigh.Value);
+        }
+
+        /// <summary>Get the tile area covered by a bush.</summary>
+        /// <param name="bush">The bush whose area to get.</param>
+        public static Rectangle GetTileAreaFor(LargeTerrainFeature bush)
+        {
+            Rectangle box = bush.getBoundingBox();
+            return new Rectangle(
+                x: box.X / Game1.tileSize,
+                y: box.Y / Game1.tileSize,
+                width: box.Width / Game1.tileSize,
+                height: box.Height / Game1.tileSize
+            );
         }
 
 

@@ -25,7 +25,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
         /// <param name="bush">The underlying bush.</param>
         /// <param name="location">The machine's in-game location.</param>
         public BushMachine(Bush bush, GameLocation location)
-            : this(bush, location, GetTileAreaFor(bush)) { }
+            : this(bush, location, BaseMachine.GetTileAreaFor(bush)) { }
 
         /// <summary>Construct an instance.</summary>
         /// <param name="indoorPot">The indoor pot containing the bush.</param>
@@ -105,19 +105,6 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
         {
             this.Machine.tileSheetOffset.Value = 0;
             this.Machine.setUpSourceRect();
-        }
-
-        /// <summary>Get the tile area covered by a bush.</summary>
-        /// <param name="bush">The bush whose area to get.</param>
-        private static Rectangle GetTileAreaFor(Bush bush)
-        {
-            var box = bush.getBoundingBox();
-            return new Rectangle(
-                x: box.X / Game1.tileSize,
-                y: box.Y / Game1.tileSize,
-                width: box.Width / Game1.tileSize,
-                height: box.Height / Game1.tileSize
-            );
         }
 
         /// <summary>Get whether the bush is currently in-season to produce berries or tea leaves.</summary>

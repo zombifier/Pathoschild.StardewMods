@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Fixed some machines missing in Generic Mod Config Menu UI.
+* Fixed errors when an automated bush is destroyed.
 
 ## 2.0.4
 Released 04 April 2024 for SMAPI 4.0.0 or later.
