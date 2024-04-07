@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 2.0.5
+Released 07 April 2024 for SMAPI 4.0.0 or later.
+
 * Automate now ignores raisins in Junimo huts.
 * Added config option to toggle whether Automate collects moss from trees.
 * Fixed some machines missing in Generic Mod Config Menu UI.
