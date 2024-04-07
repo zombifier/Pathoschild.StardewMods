@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Automate now ignores raisins in Junimo huts.
 * Fixed some machines missing in Generic Mod Config Menu UI.
 * Fixed errors when an automated bush is destroyed.
 

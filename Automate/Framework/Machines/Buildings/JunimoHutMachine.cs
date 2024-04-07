@@ -1,4 +1,3 @@
-using System.Linq;
 using Pathoschild.Stardew.Automate.Framework.Models;
 using StardewValley;
 using StardewValley.Buildings;
@@ -135,8 +134,11 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Buildings
         /// <summary>Get the next output item.</summary>
         private Item? GetNextOutput()
         {
-            foreach (Item item in this.Output.Items.Where(p => p != null))
+            foreach (Item item in this.Output.Items)
             {
+                if (item is null || item.QualifiedItemId == "(O)Raisins")
+                    continue;
+
                 if (this.HasIgnoredOutput)
                 {
                     bool ignore = false;
