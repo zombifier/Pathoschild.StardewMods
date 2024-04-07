@@ -50,5 +50,10 @@
     "config.machines.bush": "Bush",
     "config.machines.fruit-tree": "Tree (Fruit Tree)",
     "config.machines.trash-can": "Trash Can",
-    "config.machines.wild-tree": "Tree (Wild Tree)"
+    "config.machines.wild-tree": "Tree (Wild Tree)",
+
+    // special settings for individual machines
+    // TODO
+    "config.machines.wild-tree.collect-moss.name": "Collect Moss",
+    "config.machines.wild-tree.collect-moss.desc": "Whether to collect moss on trees. For example, keeping moss on trees will boost the quality of mushrooms from nearby mushroom logs."
 }

@@ -145,6 +145,7 @@ namespace Pathoschild.Stardew.Automate.Framework
             );
 
             // per-machine settings
+            string treeId = BaseMachine.GetDefaultMachineId<TreeMachine>();
             var machines = this
                 .GetMachineIds()
                 .OrderByDescending(p => p.Key == "MiniShippingBin")
@@ -164,6 +165,17 @@ namespace Pathoschild.Stardew.Automate.Framework
                     get: config => this.IsMachineEnabled(config, machineId),
                     set: (config, value) => this.SetMachineOptions(config, machineId, options => options.Enabled = value)
                 );
+
+                if (machineId == treeId)
+                {
+                    menu.AddCheckbox(
+                        name: I18n.Config_Machines_WildTree_CollectMoss_Name,
+                        tooltip: I18n.Config_Machines_WildTree_CollectMoss_Desc,
+                        get: config => config.CollectTreeMoss,
+                        set: (config, value) => config.CollectTreeMoss = value
+                    );
+                }
+
                 menu.AddNumberField(
                     name: I18n.Config_MachineSettingsPriority_Name,
                     tooltip: () => I18n.Config_MachineSettingsPriority_Desc(GetName()),

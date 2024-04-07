@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Automate now ignores raisins in Junimo huts.
+* Added config option to toggle whether Automate collects moss from trees.
 * Fixed some machines missing in Generic Mod Config Menu UI.
 * Fixed errors when an automated bush is destroyed.
 * Fixed tree machines not always updated correctly if moss is collected manually before the machine does it.

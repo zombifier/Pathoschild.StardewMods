@@ -17,6 +17,9 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
         /*********
         ** Fields
         *********/
+        /// <summary>Whether to collect moss on the tree.</summary>
+        private readonly bool CollectMoss;
+
         /// <summary>The items to drop.</summary>
         private readonly Cached<Stack<string>> ItemDrops;
 
@@ -28,11 +31,14 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
         /// <param name="tree">The underlying tree.</param>
         /// <param name="location">The machine's in-game location.</param>
         /// <param name="tile">The tree's tile position.</param>
-        public TreeMachine(Tree tree, GameLocation location, Vector2 tile)
+        /// <param name="collectMoss">Whether to collect moss on the tree.</param>
+        public TreeMachine(Tree tree, GameLocation location, Vector2 tile, bool collectMoss)
             : base(tree, location, BaseMachine.GetTileAreaFor(tile))
         {
+            this.CollectMoss = collectMoss;
+
             this.ItemDrops = new Cached<Stack<string>>(
-                getCacheKey: () => $"{Game1.season},{Game1.dayOfMonth},{tree.hasSeed.Value},{tree.hasMoss.Value}",
+                getCacheKey: () => $"{Game1.season},{Game1.dayOfMonth},{tree.hasSeed.Value},{this.CollectMoss && tree.hasMoss.Value}",
                 fetchNew: () => new Stack<string>()
             );
         }
@@ -43,7 +49,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             if (this.Machine.growthStage.Value < Tree.treeStage || this.Machine.stump.Value)
                 return MachineState.Disabled;
 
-            return this.HasSeed() || this.HasMoss()
+            return this.HasSeed() || this.CanCollectMoss()
                 ? MachineState.Done
                 : MachineState.Processing;
         }
@@ -67,7 +73,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
                     drops.Push(itemId);
 
                 // get moss
-                if (this.HasMoss())
+                if (this.CanCollectMoss())
                 {
                     Item item = Tree.CreateMossItem();
                     for (int i = 0; i < item.Stack; i++)
@@ -126,9 +132,9 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
         }
 
         /// <summary>Get whether the tree has grown moss</summary>>
-        private bool HasMoss()
+        private bool CanCollectMoss()
         {
-            return this.Machine.hasMoss.Value;
+            return this.CollectMoss && this.Machine.hasMoss.Value;
         }
 
         /// <summary>Get the random items that should also drop when this tree has a seed.</summary>

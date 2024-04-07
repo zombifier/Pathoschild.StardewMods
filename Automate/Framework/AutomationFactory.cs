@@ -123,7 +123,7 @@ namespace Pathoschild.Stardew.Automate.Framework
                     return new FruitTreeMachine(fruitTree, location, tile);
 
                 case Tree tree when TreeMachine.CanAutomate(tree, location) && tree.growthStage.Value >= Tree.treeStage: // avoid accidental machine links due to seeds spreading automatically
-                    return new TreeMachine(tree, location, tile);
+                    return new TreeMachine(tree, location, tile, this.Config().CollectTreeMoss);
             }
 
             // connector
