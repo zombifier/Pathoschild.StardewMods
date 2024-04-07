@@ -32,7 +32,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             : base(tree, location, BaseMachine.GetTileAreaFor(tile))
         {
             this.ItemDrops = new Cached<Stack<string>>(
-                getCacheKey: () => $"{Game1.season},{Game1.dayOfMonth},{tree.hasSeed.Value}",
+                getCacheKey: () => $"{Game1.season},{Game1.dayOfMonth},{tree.hasSeed.Value},{tree.hasMoss.Value}",
                 fetchNew: () => new Stack<string>()
             );
         }
