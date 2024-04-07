@@ -37,6 +37,7 @@ namespace Pathoschild.Stardew.Automate.Framework
         public abstract bool SetInput(IStorage input);
 
         /// <summary>Get the default ID for an Automate machine type.</summary>
+        /// <param name="machineType">The machine type.</param>
         public static string GetDefaultMachineId(Type machineType)
         {
             string id = machineType.Name;
@@ -44,6 +45,14 @@ namespace Pathoschild.Stardew.Automate.Framework
                 id = id.Substring(0, id.Length - "Machine".Length);
 
             return id;
+        }
+
+        /// <summary>Get the default ID for an Automate machine type.</summary>
+        /// <typeparam name="TMachine">The machine type.</typeparam>
+        public static string GetDefaultMachineId<TMachine>()
+            where TMachine : IMachine
+        {
+            return BaseMachine.GetDefaultMachineId(typeof(TMachine));
         }
 
         /// <summary>Get the tile area for a building.</summary>

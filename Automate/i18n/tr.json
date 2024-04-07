@@ -41,5 +41,12 @@
     "config.machine-settings-enabled.Name": "Etkin",
     "config.machine-settings-enabled.desc": "{{machineName}} otomasyonunun etkinleştirilip etkinleştirilmeyeceği.",
     "config.machine-settings-priority.name": "Öncelik",
-    "config.machine-settings-priority.desc": "Diğer makinelerle kıyasla {{machineName}} makinelerinin işlenme öncelik sırası. Makinelerin varsayılan önceliği 0'dır, daha yüksek değerler önce işlenir."
+    "config.machine-settings-priority.desc": "Diğer makinelerle kıyasla {{machineName}} makinelerinin işlenme öncelik sırası. Makinelerin varsayılan önceliği 0'dır, daha yüksek değerler önce işlenir.",
+
+    // machine names
+    // TODO
+    "config.machines.bush": "Bush",
+    "config.machines.fruit-tree": "Tree (Fruit Tree)",
+    "config.machines.trash-can": "Trash Can",
+    "config.machines.wild-tree": "Tree (Wild Tree)"
 }

@@ -41,5 +41,12 @@
     "config.machine-settings-enabled.Name": "Engedélyezve",
     "config.machine-settings-enabled.desc": "A(z) {{machineName}} automatizálásának engedélyezése.",
     "config.machine-settings-priority.name": "Prioritás",
-    "config.machine-settings-priority.desc": "Az a sorrend, amelyben a {{machineName}} gépeket más gépekhez képest kell feldolgozni. Az alapértelmezett prioritás 0, a magasabb értékek kerülnek először feldolgozásra."
+    "config.machine-settings-priority.desc": "Az a sorrend, amelyben a {{machineName}} gépeket más gépekhez képest kell feldolgozni. Az alapértelmezett prioritás 0, a magasabb értékek kerülnek először feldolgozásra.",
+
+    // machine names
+    // TODO
+    "config.machines.bush": "Bush",
+    "config.machines.fruit-tree": "Tree (Fruit Tree)",
+    "config.machines.trash-can": "Trash Can",
+    "config.machines.wild-tree": "Tree (Wild Tree)"
 }
