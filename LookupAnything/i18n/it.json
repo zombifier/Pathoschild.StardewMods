@@ -615,9 +615,9 @@
     "tree.name.oak": "Quercia",
     "tree.name.palm": "Palma",
     "tree.name.pine": "Pino",
-    "tree.name.mossy": "Mossy Tree", // TODO
-    "tree.name.mystic": "Mystic Tree", // TODO
-    "tree.name.unknown": "Albero Sconosciuto",
+    "tree.name.mossy": "Albero muschiato",
+    "tree.name.mystic": "Albero mistico",
+    "tree.name.unknown": "Albero sconosciuto",
     "tree.stage.done": "Completamente cresciuto",
     "tree.stage.partial": "{{stageName}} ({{step}} di {{max}})",
     "tree.next-growth.winter": "non può crescere fuori da una serra in inverno se non fertilizzata",
