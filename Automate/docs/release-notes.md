@@ -2,6 +2,8 @@
 
 # Release notes
 ## Upcoming release
+* Fixed support for multiple machines per tile. For example, Automate can now collect moss/seeds and run a tapper on the same tree.
+* Fixed buildings sometimes not automated if there's flooring under them.
 * Fixed machine names not translated in Generic Mod Config Menu UI.
 * Fixed typo in `automate help` output.
 * Improved translations. Thanks to mc-kaishixiaxue (updated Chinese)!
