@@ -1,6 +1,11 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.23.2
+Released 08 April 2024 for SMAPI 4.0.0 or later.
+
+* Fixed chest options not updating Automate machines immediately when the chest is inside a farm building.
+
 ## 1.23.1
 Released 21 March 2024 for SMAPI 4.0.0 or later.
 

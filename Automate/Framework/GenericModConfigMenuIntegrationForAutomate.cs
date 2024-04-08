@@ -150,18 +150,13 @@ namespace Pathoschild.Stardew.Automate.Framework
                 .GetMachineIds()
                 .OrderByDescending(p => p.Key == "MiniShippingBin")
                 .ThenByDescending(p => p.Key == "ShippingBin")
-                .ThenBy(p => this.GetTranslatedMachineName(p.Value), new HumanSortComparer());
-            foreach ((string machineId, string translationOrItemId) in machines)
+                .ThenBy(p => p.Value(), new HumanSortComparer());
+            foreach ((string machineId, Func<string> getName) in machines)
             {
-                string GetName()
-                {
-                    return this.GetTranslatedMachineName(translationOrItemId);
-                }
-
-                menu.AddSectionTitle(() => I18n.Config_Title_MachineSettings(machineName: GetName()));
+                menu.AddSectionTitle(() => I18n.Config_Title_MachineSettings(machineName: getName()));
                 menu.AddCheckbox(
                     name: I18n.Config_MachineSettingsEnabled_Name,
-                    tooltip: () => I18n.Config_MachineSettingsEnabled_Desc(machineName: GetName()),
+                    tooltip: () => I18n.Config_MachineSettingsEnabled_Desc(machineName: getName()),
                     get: config => this.IsMachineEnabled(config, machineId),
                     set: (config, value) => this.SetMachineOptions(config, machineId, options => options.Enabled = value)
                 );
@@ -178,7 +173,7 @@ namespace Pathoschild.Stardew.Automate.Framework
 
                 menu.AddNumberField(
                     name: I18n.Config_MachineSettingsPriority_Name,
-                    tooltip: () => I18n.Config_MachineSettingsPriority_Desc(GetName()),
+                    tooltip: () => I18n.Config_MachineSettingsPriority_Desc(getName()),
                     get: config => this.GetMachinePriority(config, machineId),
                     set: (config, value) => this.SetMachineOptions(config, machineId, options => options.Priority = value),
                     min: -100,
@@ -281,41 +276,45 @@ namespace Pathoschild.Stardew.Automate.Framework
         ** Machine overrides
         ****/
         /// <summary>Get the machine IDs and display names to show in the config UI.</summary>
-        private Dictionary<string, string> GetMachineIds()
+        private Dictionary<string, Func<string>> GetMachineIds()
         {
-            Dictionary<string, string> machineIds = new();
+            Dictionary<string, Func<string>> machineIds = new();
 
             // default overrides
-            foreach (string id in this.Data.DefaultMachineOverrides.Keys)
-                machineIds[id] = this.GetTranslatedMachineName(id);
+            foreach (string rawId in this.Data.DefaultMachineOverrides.Keys)
+            {
+                string id = rawId; // avoid reference to loop variable
+                machineIds[rawId] = () => this.GetTranslatedMachineName(id);
+            }
 
             // Data/Machines
-            foreach (string itemId in DataLoader.Machines(Game1.content).Keys)
+            foreach (string rawItemId in DataLoader.Machines(Game1.content).Keys)
             {
+                string itemId = rawItemId;
                 ParsedItemData? data = ItemRegistry.GetData(itemId);
                 if (data is null)
                     continue; // invalid entry
 
                 string machineId = DataBasedMachine.GetMachineId(data.InternalName);
-                machineIds[machineId] = data.DisplayName;
+                machineIds[machineId] = () => ItemRegistry.GetDataOrErrorItem(itemId).DisplayName;
             }
 
             // other building machines
-            machineIds[BaseMachine.GetDefaultMachineId<FishPondMachine>()] = GameI18n.GetBuildingName("Fish Pond");
-            machineIds[BaseMachine.GetDefaultMachineId<JunimoHutMachine>()] = GameI18n.GetBuildingName("Junimo Hut");
-            machineIds[BaseMachine.GetDefaultMachineId<MillMachine>()] = GameI18n.GetBuildingName("Mill");
+            machineIds[BaseMachine.GetDefaultMachineId<FishPondMachine>()] = () => GameI18n.GetBuildingName("Fish Pond");
+            machineIds[BaseMachine.GetDefaultMachineId<JunimoHutMachine>()] = () => GameI18n.GetBuildingName("Junimo Hut");
+            machineIds[BaseMachine.GetDefaultMachineId<MillMachine>()] = () => GameI18n.GetBuildingName("Mill");
 
             // other object machines
-            machineIds[BaseMachine.GetDefaultMachineId<AutoGrabberMachine>()] = GameI18n.GetBigCraftableName("165");
-            machineIds[BaseMachine.GetDefaultMachineId<CrabPotMachine>()] = GameI18n.GetObjectName("710");
-            machineIds[BaseMachine.GetDefaultMachineId<FeedHopperMachine>()] = GameI18n.GetBigCraftableName("99");
-            machineIds[BaseMachine.GetDefaultMachineId<MiniShippingBinMachine>()] = GameI18n.GetBigCraftableName("248");
+            machineIds[BaseMachine.GetDefaultMachineId<AutoGrabberMachine>()] = () => GameI18n.GetBigCraftableName("165");
+            machineIds[BaseMachine.GetDefaultMachineId<CrabPotMachine>()] = () => GameI18n.GetObjectName("710");
+            machineIds[BaseMachine.GetDefaultMachineId<FeedHopperMachine>()] = () => GameI18n.GetBigCraftableName("99");
+            machineIds[BaseMachine.GetDefaultMachineId<MiniShippingBinMachine>()] = () => GameI18n.GetBigCraftableName("248");
 
             // other terrain feature machines
-            machineIds[BaseMachine.GetDefaultMachineId<BushMachine>()] = I18n.Config_Machines_Bush();
-            machineIds[BaseMachine.GetDefaultMachineId<FruitTreeMachine>()] = I18n.Config_Machines_FruitTree();
-            machineIds[BaseMachine.GetDefaultMachineId<TreeMachine>()] = I18n.Config_Machines_WildTree();
-            machineIds[BaseMachine.GetDefaultMachineId<TrashCanMachine>()] = I18n.Config_Machines_TrashCan();
+            machineIds[BaseMachine.GetDefaultMachineId<BushMachine>()] = I18n.Config_Machines_Bush;
+            machineIds[BaseMachine.GetDefaultMachineId<FruitTreeMachine>()] = I18n.Config_Machines_FruitTree;
+            machineIds[BaseMachine.GetDefaultMachineId<TreeMachine>()] = I18n.Config_Machines_WildTree;
+            machineIds[BaseMachine.GetDefaultMachineId<TrashCanMachine>()] = I18n.Config_Machines_TrashCan;
 
             return machineIds;
         }

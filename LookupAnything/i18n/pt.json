@@ -103,13 +103,14 @@
     "location.bugLand": "Covil dos Insetos Mutantes",
     "location.busStop": "Parada de ônibus",
     "location.desert": "Deserto",
+    "location.desert.topPond": "desert (north pond)", // TODO
     "location.farm": "fazenda",
     "location.farmCave": "Caverna",
     "location.farmHouse": "Casa da Fazenda",
     "location.forest": "Floresta Cinzaseiva",
-    "location.forest.fish-area-0": "Rio da Floresta Cinzaseiva",
-    "location.forest.fish-area-1": "Lagoa da Floresta Cinzaseiva",
     "location.forest.island-tip": "Rio da Floresta Cinzaseiva (ponta sul da ilha grande)",
+    "location.forest.lake": "Lagoa da Floresta Cinzaseiva",
+    "location.forest.river": "Rio da Floresta Cinzaseiva",
     "location.mountain": "Montanha",
     "location.railroad": "Ferrovia",
     "location.sewer": "Esgotos",
@@ -129,8 +130,8 @@
     "location.islandSouthEast": "Ilha Gengibre Sudeste",
     "location.islandSouthEastCave": "Ilha Gengibre Caverna Sudeste",
     "location.islandWest": "Ilha Gengibre Oeste",
-    "location.islandWest.fish-area-1": "Ilha Gengibre Ocean Oeste",
-    "location.islandWest.fish-area-2": "Ilha Gengibre Lagoa Oeste",
+    "location.islandWest.freshwater": "Ilha Gengibre Lagoa Oeste",
+    "location.islandWest.ocean": "Ilha Gengibre Ocean Oeste",
 
     "location.unknown-fish-area": "{{locationName}} (área de pesca {{id}})",
 

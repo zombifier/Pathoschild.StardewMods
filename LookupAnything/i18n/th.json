@@ -103,13 +103,14 @@
     "location.bugLand": "ลังแมลงกลายพันธุ์",
     "location.busStop": "ป้ายรถประจำทาง",
     "location.desert": "ทะเลทราย",
+    "location.desert.topPond": "desert (north pond)", // TODO
     "location.farm": "ฟาร์ม",
     "location.farmCave": "ถ้ำในฟาร์ม",
     "location.farmHouse": "บ้านของเรา",
     "location.forest": "ป่า",
-    "location.forest.fish-area-0": "แม่น้ำในป่า",
-    "location.forest.fish-area-1": "ทะลสาบในป่า",
     "location.forest.island-tip": "แม่น้ำในป่า (ปลายทางใต้สุดของเกาะใหญ่กลางแม่น้ำ)",
+    "location.forest.lake": "ทะลสาบในป่า",
+    "location.forest.river": "แม่น้ำในป่า",
     "location.mountain": "ภูเขา",
     "location.railroad": "ทางรถไฟ",
     "location.sewer": "ท่อระบายน้ำ",
@@ -129,8 +130,8 @@
     "location.islandSouthEast": "เกาะขิงฝั่งตะวันออกเฉียงใต้",
     "location.islandSouthEastCave": "ถ้ำที่เกาะขิงฝั่งตะวันออกเฉียงใต้",
     "location.islandWest": "เกาะขิงฝั่งตะวันตก",
-    "location.islandWest.fish-area-1": "เกาะขิงฝั่งตะวันตก (ทะเล)",
-    "location.islandWest.fish-area-2": "เกาะขิงฝั่งตะวันตก (ทะเลสาบ)",
+    "location.islandWest.freshwater": "เกาะขิงฝั่งตะวันตก (ทะเลสาบ)",
+    "location.islandWest.ocean": "เกาะขิงฝั่งตะวันตก (ทะเล)",
 
     "location.unknown-fish-area": "{{locationName}} (จุดตกปลา {{id}})",
 

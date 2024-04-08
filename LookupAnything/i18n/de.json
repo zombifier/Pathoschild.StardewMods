@@ -103,13 +103,14 @@
     "location.bugLand": "Mutantenkäferhöhle",
     "location.busStop": "Bushaltestelle",
     "location.desert": "Wüste",
+    "location.desert.topPond": "desert (north pond)", // TODO
     "location.farm": "Bauernhof",
     "location.farmCave": "Bauernhof Höhle",
     "location.farmHouse": "Bauernhaus",
     "location.forest": "Wald",
-    "location.forest.fish-area-0": "Waldfluss",
-    "location.forest.fish-area-1": "Waldteich",
     "location.forest.island-tip": "Waldfluss (Südspitze der großen Insel)",
+    "location.forest.lake": "Waldteich",
+    "location.forest.river": "Waldfluss",
     "location.mountain": "Berge",
     "location.railroad": "Eisenbahn",
     "location.sewer": "Kanalisation",
@@ -129,8 +130,8 @@
     "location.islandSouthEast": "Insel Südost",
     "location.islandSouthEastCave": "Piratenhöhle",
     "location.islandWest": "Insel West",
-    "location.islandWest.fish-area-1": "Insel West (Meer)",
-    "location.islandWest.fish-area-2": "Insel West (Teich)",
+    "location.islandWest.freshwater": "Insel West (Teich)",
+    "location.islandWest.ocean": "Insel West (Meer)",
 
     "location.unknown-fish-area": "{{locationName}} (Angelgebiet {{id}})",
 
