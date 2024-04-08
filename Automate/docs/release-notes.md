@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Fixed machine names not translated in Generic Mod Config Menu UI.
+* Fixed typo in `automate help` output.
 * Improved translations. Thanks to mc-kaishixiaxue (updated Chinese)!
 
 ## 2.0.5
