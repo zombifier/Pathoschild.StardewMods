@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.41.5
+Released 08 April 2024 for SMAPI 4.0.0 or later.
+
 * Fixed movie ticket lookup showing broken movie title/description.
 * Fixed fish area names no longer translated.
 * Improved translations. Thanks to EngurRuzgar (updated Turkish), fjf010223 & mc-kaishixiaxue (updated Chinese), iglnierod (updated Spanish), and MakinDay (updated Italian)!

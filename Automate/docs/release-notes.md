@@ -1,8 +1,11 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
-* Fixed support for multiple machines per tile. For example, Automate can now collect moss/seeds and run a tapper on the same tree.
+## 2.0.6
+Released 08 April 2024 for SMAPI 4.0.0 or later.
+
+* Added support for multiple machines per tile. For example, Automate can now simultaneously collect moss/seeds and run a tapper on the same tree.
+* Set minimum game version to 1.6.3 to avoid confusing 'no longer compatible' message.
 * Fixed buildings sometimes not automated if there's flooring under them.
 * Fixed machine names not translated in Generic Mod Config Menu UI.
 * Fixed typo in `automate help` output.
