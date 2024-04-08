@@ -103,13 +103,14 @@
     "location.bugLand": "guarida de los insectos mutantes",
     "location.busStop": "parada de autobús",
     "location.desert": "desierto",
+    "location.desert.topPond": "desert (north pond)", // TODO
     "location.farm": "granja",
     "location.farmCave": "cueva de granja",
     "location.farmHouse": "casa de granja",
     "location.forest": "bosque",
-    "location.forest.fish-area-0": "río de bosque",
-    "location.forest.fish-area-1": "estanque de bosque",
     "location.forest.island-tip": "río de bosque (en la punta sureña de la gran isla)",
+    "location.forest.lake": "estanque de bosque",
+    "location.forest.river": "río de bosque",
     "location.mountain": "montaña",
     "location.railroad": "ferrocarril",
     "location.sewer": "alcantarilla",
@@ -129,8 +130,8 @@
     "location.islandSouthEast": "Sureste de la isla Jengibre",
     "location.islandSouthEastCave": "Cueva sureste de la isla Jengibre",
     "location.islandWest": "Oeste de la isla Jengibre",
-    "location.islandWest.fish-area-1": "Oeste de la isla Jengibre (Oceano)",
-    "location.islandWest.fish-area-2": "Oeste de la isla Jengibre (Estanque)",
+    "location.islandWest.freshwater": "Oeste de la isla Jengibre (Estanque)",
+    "location.islandWest.ocean": "Oeste de la isla Jengibre (Oceano)",
 
     "location.unknown-fish-area": "{{locationName}} (zona de pesca {{id}})",
 

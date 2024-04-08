@@ -103,13 +103,14 @@
     "location.bugLand": "логово жуков-мутантов",
     "location.busStop": "автобусная остановка",
     "location.desert": "пустыня",
+    "location.desert.topPond": "desert (north pond)", // TODO
     "location.farm": "ферма",
     "location.farmCave": "пещера на ферме",
     "location.farmHouse": "дом на ферме",
     "location.forest": "лес",
-    "location.forest.fish-area-0": "лесная река",
-    "location.forest.fish-area-1": "лесное озеро",
     "location.forest.island-tip": "лесная река (южная часть большого острова)",
+    "location.forest.lake": "лесное озеро",
+    "location.forest.river": "лесная река",
     "location.mountain": "горы",
     "location.railroad": "железная дорога",
     "location.sewer": "канализация",
@@ -129,8 +130,8 @@
     "location.islandSouthEast": "Имбирный остров - Юго-Восток",
     "location.islandSouthEastCave": "Имбирный остров - Юго-Восточная Пещера",
     "location.islandWest": "Имбирный остров - Запад",
-    "location.islandWest.fish-area-1": "Имбирный остров - Запад (океан)",
-    "location.islandWest.fish-area-2": "Имбирный остров - Запад (пруд)",
+    "location.islandWest.freshwater": "Имбирный остров - Запад (пруд)",
+    "location.islandWest.ocean": "Имбирный остров - Запад (океан)",
 
     "location.unknown-fish-area": "{{locationName}} (рыболовный район {{id}})",
 
