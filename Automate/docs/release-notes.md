@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed machine names not translated in Generic Mod Config Menu UI.
 * Improved translations. Thanks to mc-kaishixiaxue (updated Chinese)!
 
 ## 2.0.5
