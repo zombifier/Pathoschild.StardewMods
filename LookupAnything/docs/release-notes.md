@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Fixed movie ticket lookup showing broken movie title/description.
+* Improved translations. Thanks to EngurRuzgar (updated Turkish), fjf010223 & mc-kaishixiaxue (updated Chinese), iglnierod (updated Spanish), and MakinDay (updated Italian)!
 
 ## 1.41.4
 Released 04 April 2024 for SMAPI 4.0.0 or later.
