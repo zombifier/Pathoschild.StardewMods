@@ -9,6 +9,9 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 
 -->
+## Upcoming release
+* Fixed various issues caused by pre-1.6 content packs replacing data assets which changed format in 1.6.
+
 ## 2.0.5
 Released 07 April 2024 for SMAPI 4.0.0 or later.
 
