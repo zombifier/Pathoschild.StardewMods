@@ -28,6 +28,9 @@ namespace ContentPatcher.Framework.Migrations
             /// <summary>The 1.6 asset name.</summary>
             private const string NewAssetName = "Data/Objects";
 
+            /// <summary>The numeric object IDs added in Stardew Valley 1.6.</summary>
+            private readonly HashSet<string> NumericIdsAddedIn16 = new() { "6", "8", "10", "12", "14", "32", "34", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58", "742" };
+
             /// <summary>The vanilla data without mod edits applied, used as the base when a pre-1.6 content pack loads the asset.</summary>
             private readonly VanillaAssetFactory<Dictionary<string, ObjectData>> OriginalData = new(DataLoader.Objects);
 
@@ -128,7 +131,12 @@ namespace ContentPatcher.Framework.Migrations
                 foreach (string key in asset.Keys)
                 {
                     if (!from.ContainsKey(key))
+                    {
+                        if (!int.TryParse(key, out _) || this.NumericIdsAddedIn16.Contains(key))
+                            continue; // don't remove 1.6 content for a pre-1.6 content pack (usually a load patch)
+
                         asset.Remove(key);
+                    }
                 }
 
                 // apply entries

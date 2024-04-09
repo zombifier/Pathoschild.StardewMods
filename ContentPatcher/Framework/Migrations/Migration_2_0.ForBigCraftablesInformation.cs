@@ -29,6 +29,9 @@ namespace ContentPatcher.Framework.Migrations
             /// <summary>The vanilla data without mod edits applied, used as the base when a pre-1.6 content pack loads the asset.</summary>
             private readonly VanillaAssetFactory<Dictionary<string, BigCraftableData>> OriginalData = new(DataLoader.BigCraftables);
 
+            /// <summary>The numeric bigcraftable IDs added in Stardew Valley 1.6.</summary>
+            private readonly HashSet<string> NumericIdsAddedIn16 = new() { "221", "262", "263" };
+
 
             /*********
             ** Public methods
@@ -120,7 +123,12 @@ namespace ContentPatcher.Framework.Migrations
                 foreach (string key in asset.Keys)
                 {
                     if (!from.ContainsKey(key))
+                    {
+                        if (!int.TryParse(key, out _) || this.NumericIdsAddedIn16.Contains(key))
+                            continue; // don't remove 1.6 content for a pre-1.6 content pack (usually a load patch)
+
                         asset.Remove(key);
+                    }
                 }
 
                 // apply entries

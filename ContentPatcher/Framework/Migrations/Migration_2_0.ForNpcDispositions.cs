@@ -27,6 +27,9 @@ namespace ContentPatcher.Framework.Migrations
             /// <summary>The 1.6 asset name.</summary>
             private const string NewAssetName = "Data/Characters";
 
+            /// <summary>The NPC names added in Stardew Valley 1.6.</summary>
+            private readonly HashSet<string> NpcNamesAddedIn16 = new() { "???", "Bear", "Birdie", "Bouncer", "Gil", "Governor", "Grandpa", "Gunther", "Henchman", "Mister Qi", "Morris", "Old Mariner", "Welwick" };
+
             /// <summary>The vanilla data without mod edits applied, used as the base when a pre-1.6 content pack loads the asset.</summary>
             private readonly VanillaAssetFactory<Dictionary<string, CharacterData>> OriginalData = new(DataLoader.Characters);
 
@@ -123,7 +126,12 @@ namespace ContentPatcher.Framework.Migrations
                 foreach (string key in asset.Keys)
                 {
                     if (!from.ContainsKey(key))
+                    {
+                        if (this.NpcNamesAddedIn16.Contains(key))
+                            continue; // don't remove 1.6 content for a pre-1.6 content pack (usually a load patch)
+
                         asset.Remove(key);
+                    }
                 }
 
                 // apply entries
