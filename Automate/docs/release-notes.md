@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed Ginger Island shipping bin being automated before it's unlocked.
+
 ## 2.0.6
 Released 08 April 2024 for SMAPI 4.0.0 or later.
 
