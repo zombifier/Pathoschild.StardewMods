@@ -743,9 +743,13 @@ namespace Pathoschild.Stardew.LookupAnything
                 Item[] spoolItems = GetObjectsWithTags(recipe.SecondItemTags);
 
                 // get output IDs
-                string[] outputItemIds = recipe.CraftedItemIds?.Any() == true
-                    ? recipe.CraftedItemIds.ToArray()
-                    : new[] { recipe.CraftedItemId };
+                string[] outputItemIds;
+                if (recipe.CraftedItemIds?.Any() == true)
+                    outputItemIds = recipe.CraftedItemIds.ToArray();
+                else if (recipe.CraftedItemIdFeminine != null && Game1.player.Gender == Gender.Female)
+                    outputItemIds = new[] { recipe.CraftedItemIdFeminine };
+                else
+                    outputItemIds = new[] { recipe.CraftedItemId };
 
                 // build recipe models
                 foreach (string outputId in outputItemIds)

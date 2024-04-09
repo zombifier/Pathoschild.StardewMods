@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed handling of tailoring recipes with gender-dependent output.
+
 ## 1.41.5
 Released 08 April 2024 for SMAPI 4.0.0 or later.
 
