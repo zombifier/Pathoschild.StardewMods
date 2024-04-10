@@ -102,7 +102,7 @@
     "location.bugLand": "tana dell'insetto mutante",
     "location.busStop": "fermata dell'autobus",
     "location.desert": "deserto",
-    "location.desert.topPond": "desert (north pond)", // TODO
+    "location.desert.topPond": "deserto (stagno a nord)",
     "location.farm": "fattoria",
     "location.farmCave": "grotta nella fattoria",
     "location.farmHouse": "casale",
