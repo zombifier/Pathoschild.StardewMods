@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathoschild.Stardew.Common;
+using Pathoschild.Stardew.Common.Integrations.CustomBush;
 using Pathoschild.Stardew.Common.Integrations.CustomFarmingRedux;
 using Pathoschild.Stardew.Common.Integrations.MultiFertilizer;
 using Pathoschild.Stardew.Common.Items;
@@ -70,6 +71,9 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Provides metadata that's not available from the game data directly.</summary>
         public Metadata Metadata { get; }
 
+        /// <summary>The CustomBush integration.</summary>
+        public CustomBushIntegration CustomBush { get; }
+
         /// <summary>The MultiFertilizer integration.</summary>
         public MultiFertilizerIntegration MultiFertilizer { get; }
 
@@ -89,6 +93,7 @@ namespace Pathoschild.Stardew.LookupAnything
             this.ModRegistry = modRegistry;
             this.WorldItemScanner = new WorldItemScanner(reflection);
 
+            this.CustomBush = new CustomBushIntegration(modRegistry, this.Monitor);
             this.CustomFarmingRedux = new CustomFarmingReduxIntegration(modRegistry, this.Monitor);
             this.MultiFertilizer = new MultiFertilizerIntegration(modRegistry, monitor);
             //this.ProducerFrameworkMod = new ProducerFrameworkModIntegration(modRegistry, this.Monitor);  // TODO: restore when PFM is updated
