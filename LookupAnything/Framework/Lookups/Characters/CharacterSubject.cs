@@ -13,6 +13,7 @@ using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Characters;
+using StardewValley.GameData;
 using StardewValley.GameData.Pets;
 using StardewValley.Locations;
 using StardewValley.Monsters;
@@ -270,14 +271,16 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             yield return new GenericField(I18n.Monster_Attack(), this.Stringify(monster.DamageToFarmer));
 
             // Adventure Guild quest
-            AdventureGuildQuestData? adventureGuildQuest = this.Metadata.GetAdventurerGuildQuest(monster.Name);
-            if (adventureGuildQuest != null)
+            foreach (MonsterSlayerQuestData questData in DataLoader.MonsterSlayerQuests(Game1.content).Values)
             {
-                int kills = adventureGuildQuest.Targets.Select(p => Game1.stats.getMonstersKilled(p)).Sum();
-                string goalName = GameI18n.GetString($@"Strings\Locations:AdventureGuild_KillList_{adventureGuildQuest.KillListKey}");
+                if (questData.Targets?.Contains(monster.Name) is not true)
+                    continue;
+
+                int kills = questData.Targets.Sum(Game1.stats.getMonstersKilled);
+                string goalName = TokenParser.ParseText(questData.DisplayName);
                 var checkbox = CheckboxListField.Checkbox(
-                    text: I18n.Monster_AdventureGuild_EradicationGoal(name: goalName, count: kills, requiredCount: adventureGuildQuest.RequiredKills),
-                    value: kills >= adventureGuildQuest.RequiredKills
+                    text: I18n.Monster_AdventureGuild_EradicationGoal(name: goalName, count: kills, requiredCount: questData.Count),
+                    value: kills >= questData.Count
                 );
                 yield return new CheckboxListField(I18n.Monster_AdventureGuild(), checkbox);
             }
