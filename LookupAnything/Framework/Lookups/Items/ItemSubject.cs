@@ -292,19 +292,16 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 yield return new FishSpawnRulesField(this.GameHelper, I18n.Item_FishSpawnRules(), item.ItemId);
 
             // fish pond data
-            // derived from FishPond::doAction and FishPond::isLegalFishForPonds
-            if (!item.HasContextTag("fish_legendary") && (item.Category == SObject.FishCategory || item.QualifiedItemId is "(O)393"/*coral*/ or "(O)397"/*sea urchin*/))
+            // derived from FishPond::doAction
+            if (item.HasTypeObject() && (item.Category is SObject.FishCategory || item.QualifiedItemId is "(O)393"/*coral*/ or "(O)397"/*sea urchin*/))
             {
-                foreach (FishPondData fishPondData in DataLoader.FishPondData(Game1.content))
+                FishPondData? fishPondData = FishPond.GetRawData(item.ItemId);
+                if (fishPondData is not null)
                 {
-                    if (!fishPondData.RequiredTags.All(item.HasContextTag))
-                        continue;
-
                     int minChanceOfAnyDrop = (int)Math.Round(Utility.Lerp(0.15f, 0.95f, 1 / 10f) * 100);
                     int maxChanceOfAnyDrop = (int)Math.Round(Utility.Lerp(0.15f, 0.95f, FishPond.MAXIMUM_OCCUPANCY / 10f) * 100);
                     string preface = I18n.Building_FishPond_Drops_Preface(chance: I18n.Generic_Range(min: minChanceOfAnyDrop, max: maxChanceOfAnyDrop));
                     yield return new FishPondDropsField(this.GameHelper, I18n.Item_FishPondDrops(), -1, fishPondData, preface);
-                    break;
                 }
             }
 
