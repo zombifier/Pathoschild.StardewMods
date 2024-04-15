@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.41.6
+Released 15 April 2024 for SMAPI 4.0.0 or later.
+
 * Fixed handling of tailoring recipes with gender-dependent output.
 * Fixed support for custom adventurer's guild slayer goals, and updated for the goal changes in Stardew Valley 1.6.
 * Fixed fish lookups not handling fish pond changes in Stardew Valley 1.6.
