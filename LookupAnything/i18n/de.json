@@ -103,9 +103,9 @@
     "location.bugLand": "Mutantenkäferhöhle",
     "location.busStop": "Bushaltestelle",
     "location.desert": "Wüste",
-    "location.desert.topPond": "desert (north pond)", // TODO
+    "location.desert.topPond": "Wüste (nördlicher Teich)",
     "location.farm": "Bauernhof",
-    "location.farmCave": "Bauernhof Höhle",
+    "location.farmCave": "Bauernhof-Höhle",
     "location.farmHouse": "Bauernhaus",
     "location.forest": "Wald",
     "location.forest.island-tip": "Waldfluss (Südspitze der großen Insel)",
@@ -114,14 +114,14 @@
     "location.mountain": "Berge",
     "location.railroad": "Eisenbahn",
     "location.sewer": "Kanalisation",
-    "location.submarine": "Nachtmarkt Tiefsee-U-boot",
+    "location.submarine": "Nachtmarkt Tiefsee-U-Boot",
     "location.town": "Stadt",
     "location.town.northmost-bridge": "Stadt (Nord-östliche Brücke)",
     "location.tunnel": "Bus Tunnel",
     "location.undergroundMine": "Mine",
-    "location.undergroundMine.level": "Minen Level {{level}}",
+    "location.undergroundMine.level": "Minenebene {{level}}",
     "location.witchSwamp": "Hexensumpf",
-    "location.woods": "Geheimnisvolle Wälder",
+    "location.woods": "Geheime Wälder",
 
     "location.caldera": "Feuerberg",
     "location.islandEast": "Insel Ost",
@@ -360,11 +360,11 @@
     ** Item > fish lookups
     *********/
     // labels
-    "item.fish-pond-drops": "Fischteich Items",
-    "item.fish-spawn-rules": "Spawn Regeln",
+    "item.fish-pond-drops": "Fischteich-Produktion",
+    "item.fish-spawn-rules": "Spawn-Regeln",
 
     // values
-    "item.fish-spawn-rules.min-fishing-level": "Mindest Angelstufe: {{level}}",
+    "item.fish-spawn-rules.min-fishing-level": "Mindest-Angelstufe: {{level}}",
     "item.fish-spawn-rules.not-caught-yet": "Noch nicht gefangen (kann nur einmal gefangen werden)",
     "item.fish-spawn-rules.locations": "Standorte: {{locations}}",
     "item.fish-spawn-rules.locations-by-season.label": "Standorte:",
@@ -557,14 +557,14 @@
     ** Puzzles > Fern Islands mermaid puzzle
     *********/
     // labels
-    "puzzle.island-mermaid.title": "Meerjungfrauen Rätsel",
+    "puzzle.island-mermaid.title": "Meerjungfrauen-Rätsel",
     "puzzle.island-mermaid.solution.intro": "Benutze Flötenblöcke um das Lied der Meerjungfrau vom Nachtmarkt zu spielen. Tonhöhen: (Es ist möglich die Tonhöhe eines Flötenblocks nachzusehen):",
 
     /*********
     ** Puzzles > Fern Islands shrine puzzle
     *********/
     // labels
-    "puzzle.island-shrine.title": "Edelsteinvogel Rätsel",
+    "puzzle.island-shrine.title": "Edelsteinvogel-Rätsel",
     "puzzle.island-shrine.solution": "Lege den Edelstein auf den Sockel der vom Edelsteinvogel am passenden Ort bei Regen gelegt wurde. Die Edelsteine sind für jeden Speicherstand zufällig.",
 
     // values
@@ -616,8 +616,8 @@
     "tree.name.oak": "Eichenbaum",
     "tree.name.palm": "Palme",
     "tree.name.pine": "Tannenbaum",
-    "tree.name.mossy": "Mossy Tree", // TODO
-    "tree.name.mystic": "Mystic Tree", // TODO
+    "tree.name.mossy": "Moosiger Baum",
+    "tree.name.mystic": "Mystischer Baum",
     "tree.name.unknown": "unbekannter Baum",
     "tree.stage.done": "Voll ausgewachsen",
     "tree.stage.partial": "{{stageName}} ({{step}} von {{max}})",
@@ -641,8 +641,8 @@
     ** Generic Mod Config Menu UI
     *********/
     // main options
-    "config.title.main-options": "Haupt Optionen",
-    "config.progression-mode.name": "Fortschritts Modus",
+    "config.title.main-options": "Hauptoptionen",
+    "config.progression-mode.name": "Fortschrittsmodus",
     "config.progression-mode.desc": "Ob bestimmte Inhalte (z. B. Geschenkvorlieben und Rätsellösungen) versteckt werden sollen, bis man sie im Spiel entdeckt hat.",
     "config.force-full-screen.name": "Erzwinge Vollbild",
     "config.force-full-screen.desc": "Legt fest, ob das Menü immer als Vollbild angezeigt werden soll, anstatt in der Mitte des Fensters. Dies ist vor allem bei der Anzeige von Data Mining Feldern nützlich.",
