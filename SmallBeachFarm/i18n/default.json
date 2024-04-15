@@ -2,12 +2,12 @@
     /*********
     ** Farm info
     *********/
-    "farm.name": "Pequena Fazenda na Praia",
-    "farm.description": "Uma pequena praia fértil, onde você pode pescar tanto peixes de rio quanto de oceano.",
+    "farm.name": "Small Beach Farm",
+    "farm.description": "A small fertile pocket beach, where you can catch both river and ocean fish.",
 
-    "farm.fish-areas.river": "Rio",
-    "farm.fish-areas.estuary": "Estuário",
-    "farm.fish-areas.ocean": "Oceano",
+    "farm.fish-areas.river": "River",
+    "farm.fish-areas.estuary": "Estuary",
+    "farm.fish-areas.ocean": "Ocean",
 
 
     /*********
@@ -16,39 +16,39 @@
     /****
     ** Farm options
     ****/
-    "config.farm-options-section": "Opções da fazenda",
+    "config.farm-options-section": "Farm options",
 
-    "config.beach-sounds.name": "Tocar sons da praia",
-    "config.beach-sounds.tooltip": "Tocar a música de fundo da praia (ou seja, sons das ondas) na fazenda.",
+    "config.beach-sounds.name": "Play beach sounds",
+    "config.beach-sounds.tooltip": "Play the beach's background music (i.e. wave sounds) on the beach farm.",
 
-    "config.spawn-monsters.name": "Spawnar monstros por padrão",
-    "config.spawn-monsters.tooltip": "O valor padrão para a opção 'spawnar monstros à noite' ao criar um novo jogo. Você ainda pode alterar a opção ao criar um novo jogo. Isso não tem efeito em jogos salvos existentes.",
+    "config.spawn-monsters.name": "Spawn monsters by default",
+    "config.spawn-monsters.tooltip": "The default value for the 'spawn monsters at night' option when creating a new save. You can still change the option when creating a new save. This has no effect on existing saves.",
 
     /****
     ** Farm layout
     ****/
-    "config.farm-layout-section": "Layout da fazenda",
+    "config.farm-layout-section": "Farm layout",
 
-    "config.campfire.name": "Adicionar fogueira",
-    "config.campfire.tooltip": "Adiciona uma fogueira funcional na frente da casa da fazenda.",
+    "config.campfire.name": "Add campfire",
+    "config.campfire.tooltip": "Add a functional campfire in front of the farmhouse.",
 
-    "config.pier.name": "Adicionar um cais de pesca",
-    "config.pier.tooltip": "Adiciona um cais onde você pode pescar.",
+    "config.pier.name": "Add fishing pier",
+    "config.pier.tooltip": "Add a pier where you can fish.",
 
-    "config.islands.name": "Adicionar ilhas",
-    "config.islands.tooltip": "Adiciona ilhas oceânicas com área de terra adicional.",
+    "config.islands.name": "Add islands",
+    "config.islands.tooltip": "Add ocean islands with extra land area.",
 
-    "config.shipping-bin-path.name": "Adicionar caminho para a caixa de remessas",
-    "config.shipping-bin-path.tooltip": "Adiciona caminhos de pedra na frente da caixa de remessas.",
+    "config.shipping-bin-path.name": "Add shipping bin path",
+    "config.shipping-bin-path.tooltip": "Place stone path tiles in front of the default shipping bin position.",
 
     /****
     ** Farm positions
     ****/
-    "config.farm-positions-section": "Posições da fazenda",
+    "config.farm-positions-section": "Farm positions",
 
-    "config.pier-x.name": "Cais de pesca X",
-    "config.pier-x.tooltip": "A posição do bloco onde o cais de pesca deve ser adicionado, se estiver habilitado. Defina tanto X quanto Y como zero para posicionar automaticamente.",
+    "config.pier-x.name": "Fishing pier X",
+    "config.pier-x.tooltip": "The tile position where the fishing pier should be added, if enabled. Set both X and Y to zero to position it automatically.",
 
-    "config.pier-y.name": "Cais de pesca Y",
-    "config.pier-y.tooltip": "A posição do bloco onde o cais de pesca deve ser adicionado, se estiver habilitado. Defina tanto X quanto Y como zero para posicionar automaticamente."
+    "config.pier-y.name": "Fishing pier Y",
+    "config.pier-y.tooltip": "The tile position where the fishing pier should be added, if enabled. Set both X and Y to zero to position it automatically."
 }
