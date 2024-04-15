@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed ghost pet bowl left behind if you move the default one.
+
 ## 2.5.2
 Released 04 April 2024 for SMAPI 4.0.0 or later.
 
