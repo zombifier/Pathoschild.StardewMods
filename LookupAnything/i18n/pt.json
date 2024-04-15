@@ -103,7 +103,7 @@
     "location.bugLand": "Covil dos Insetos Mutantes",
     "location.busStop": "Parada de ônibus",
     "location.desert": "Deserto",
-    "location.desert.topPond": "Deserto (lagoa do norte)", // TODO
+    "location.desert.topPond": "Deserto (lagoa do norte)",
     "location.farm": "Fazenda",
     "location.farmCave": "Caverna",
     "location.farmHouse": "Casa da Fazenda",
@@ -183,7 +183,7 @@
     "building.output-processing": "Processamento de saída",
     "building.output-ready": "Processamento pronto",
     "building.slimes.summary": "{{count}} de no máximo {{max}} slimes",
-    "building.stored-hay.summary": "{{hayCount}} de {{maxHayInLocation}} feno nesse local (capacidade máxima nessa construção: {{maxHayInBuilding}})", // TODO
+    "building.stored-hay.summary": "{{hayCount}} de {{maxHayInLocation}} feno nesse local (capacidade máxima nessa construção: {{maxHayInBuilding}})",
     "building.upgrades.barn.0": "até 4 animais, adiciona vacas",
     "building.upgrades.barn.1": "até 8 animais, adiciona gravidez e bodes",
     "building.upgrades.barn.2": "até 12 animais, adiciona auto alimentação, porcos e ovelhas",
@@ -283,7 +283,7 @@
     ** Item > generic lookups
     *********/
     // labels
-    "item.custom-item": "Item personalizado", // TODO
+    "item.custom-item": "Item personalizado",
     "item.contents": "Conteúdo",
     "item.loves-this": "Ama isso",
     "item.likes-this": "Gosta disso",
@@ -302,7 +302,7 @@
     "item.produces-dye": "Produz corante",
 
     // values
-    "item.custom-item.summary": "Adicionado por {{modName}}", // TODO
+    "item.custom-item.summary": "Adicionado por {{modName}}",
     "item.contents.placed": "{{name}} colocado",
     "item.contents.ready": "{{name}} pronto",
     "item.contents.partial": "{{name}} em {{time}}",
@@ -380,7 +380,6 @@
     ** Item > melee weapon lookups
     *********/
     // labels
-    // TODO
     "item.melee-weapon.accuracy": "Precisão",
     "item.melee-weapon.critical-chance": "Chance Crítica",
     "item.melee-weapon.critical-damage": "Dano Crítico",
@@ -391,7 +390,6 @@
     "item.melee-weapon.speed": "Velocidade de Ataque",
 
     // values
-    // TODO
     "item.melee-weapon.critical-damage.label": "{{multiplier}} vezes dano normal (antes dos bônus do jogador)",
     "item.melee-weapon.defense.label": "{{amount}} quando equipado",
     "item.melee-weapon.knockback.label": "{{amount}} ({{multiplier}} vezes distância normal)",
@@ -409,7 +407,7 @@
     "item.movie-ticket.loves-movie": "Ama o filme",
     "item.movie-ticket.likes-movie": "Gosta do filme",
     "item.movie-ticket.dislikes-movie": "Não gosta do filme",
-    "item.movie-ticket.rejects-movie": "Não vai assistir o filme", // TODO
+    "item.movie-ticket.rejects-movie": "Não vai assistir o filme",
 
     // values
     "item.movie-snack-preference.love": "{{name}} ama isso",
@@ -468,7 +466,7 @@
     "npc.friendship.need-bouquet": "Precisa de um buquê pra prosseguir",
     "npc.friendship.need-points": "Precisa de {{count}} pontos para prosseguir",
     "npc.undiscovered-gift-taste": "{{count}} itens não revelados",
-    "npc.unowned-gift-taste": "{{count}} itens não possuídos", // TODO
+    "npc.unowned-gift-taste": "{{count}} itens não possuídos",
 
 
     /*********
@@ -619,17 +617,17 @@
     "tree.name.oak": "Carvalho",
     "tree.name.palm": "Palmeira",
     "tree.name.pine": "Pinheiro",
-    "tree.name.mossy": "Árvore Musgosa", // TODO
-    "tree.name.mystic": "Árvore Mística", // TODO
+    "tree.name.mossy": "Árvore Musgosa",
+    "tree.name.mystic": "Árvore Mística",
     "tree.name.unknown": "Árvore desconhecida",
     "tree.stage.done": "Totalmente crescido",
     "tree.stage.partial": "{{stageName}} ({{step}} de {{max}})",
     "tree.next-growth.winter": "Não pode crescer no inverno fora da estufa, a menos que seja fertilizado",
     "tree.next-growth.adjacent-trees": "Não pode crescer pois as outras árvores estão muito perto",
     "tree.next-growth.chance": "{{chance}}% Chance de crescer {{stage}} amanhã",
-    "tree.seed.not-ready": "Não está pronta", // TODO
-    "tree.seed.probability-daily": "{{chance}}% chance de {{itemName}} cada dia.", // TODO
-    "tree.seed.probability-on-chop": "{{chance}}% chance de derrubar {{itemName}} quando cortada.", // TODO
+    "tree.seed.not-ready": "Não está pronta",
+    "tree.seed.probability-daily": "{{chance}}% chance de {{itemName}} cada dia.",
+    "tree.seed.probability-on-chop": "{{chance}}% chance de derrubar {{itemName}} quando cortada.",
 
     // growth stages
     "tree.stages.seed": "Semente",
@@ -644,7 +642,6 @@
     ** Generic Mod Config Menu UI
     *********/
     // main options
-    // TODO
     "config.title.main-options": "Opções principais",
     "config.progression-mode.name": "Modo de progressão",
     "config.progression-mode.desc": "Se deve ocultar algum conteúdo (ex. presentes amados e soluções de quebra-cabeças) até que você tenha descoberto dentro do jogo.",
@@ -652,7 +649,6 @@
     "config.force-full-screen.desc": "Se o menu deve estar sempre em tela cheia, em vez de centralizado na janela. Isso é útil principalmente ao visualizar campos de mineração de dados.",
 
     // gift tastes
-    // TODO
     "config.title.gift-tastes": "Preferências de presentes",
     "config.show-gift-tastes.loved.name": "Mostrar presentes amados",
     "config.show-gift-tastes.loved.desc": "Se deve mostrar presentes amados em NPCs e pesquisas de itens.",
@@ -672,7 +668,6 @@
     "config.highlight-unrevealed-gift-tastes.desc": "Se deve destacar preferências de presentes que não foram revelados no perfil do NPC. Quando ativado, as preferências de presentes não reveladas estarão em negrito.",
 
     // advanced options
-    // TODO
     "config.title.advanced-options": "Opções avançadas",
     "config.tile-lookups.name": "Pesquisa por blocos",
     "config.tile-lookups.desc": "Se deve incluir blocos de mapa como alvos de pesquisa.",
@@ -684,7 +679,6 @@
     "config.scroll-amount.desc": "O número de pixels para deslocar o conteúdo em cada rolagem para cima/para baixo.",
 
     // controls section
-    // TODO
     "config.title.controls": "Controles",
     "config.hide-on-key-up.name": "Ocultar ao soltar a tecla",
     "config.hide-on-key-up.desc": "Se deve ocultar a interface de busca ao soltar a tecla de busca.",

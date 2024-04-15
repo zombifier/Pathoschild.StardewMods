@@ -5,6 +5,7 @@
 * Fixed handling of tailoring recipes with gender-dependent output.
 * Fixed support for custom adventurer's guild slayer goals, and updated for the goal changes in Stardew Valley 1.6.
 * Fixed fish lookups not handling fish pond changes in Stardew Valley 1.6.
+* Improved translations. Thanks to Jualko (updated German), Kaian-Campos (updated Portuguese), MakinDay (updated Italian), Timur13240 (updated Russian), and wally232 (updated Korean)!
 
 ## 1.41.5
 Released 08 April 2024 for SMAPI 4.0.0 or later.
