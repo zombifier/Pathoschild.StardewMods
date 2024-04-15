@@ -192,7 +192,7 @@ namespace Pathoschild.Stardew.Automate.Framework
         public IAutomatable? GetForTile(GameLocation location, in Vector2 tile)
         {
             // shipping bin on island farm
-            if (location is IslandWest farm && (int)tile.X == farm.shippingBinPosition.X && (int)tile.Y == farm.shippingBinPosition.Y)
+            if (location is IslandWest farm && farm.farmhouseRestored.Value && (int)tile.X == farm.shippingBinPosition.X && (int)tile.Y == farm.shippingBinPosition.Y)
                 return new ShippingBinMachine(Game1.getFarm(), new Rectangle(farm.shippingBinPosition.X, farm.shippingBinPosition.Y, 2, 1));
 
             // garbage can

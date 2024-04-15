@@ -1,6 +1,13 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 2.0.7
+Released 15 April 2024 for SMAPI 4.0.0 or later.
+
+* Fixed Ginger Island shipping bin being automated before it's unlocked.
+* Fixed Automate getting the wrong item from custom bushes (thanks to LeFauxMatt!).
+* Improved translations. Thanks to Jualko (updated German), Kaian-Campos (updated Portuguese), and MakinDay (updated Italian)!
+
 ## 2.0.6
 Released 08 April 2024 for SMAPI 4.0.0 or later.
 

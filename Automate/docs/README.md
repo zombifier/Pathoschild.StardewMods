@@ -47,7 +47,7 @@ By default, Automate supports these machines:
 * [cheese presses](https://stardewvalleywiki.com/Cheese_Press);
 * [coffee makers](https://stardewvalleywiki.com/Coffee_Maker);
 * [crab pots](https://stardewvalleywiki.com/Crab_Pot);
-* [crystalariums](https://stardewvalleywiki.com/Crystalarium) (once started with the gem/mineral you want);
+* [crystalariums](https://stardewvalleywiki.com/Crystalarium);
 * [deconstructors](https://stardewvalleywiki.com/Deconstructor);
 * [fish ponds](https://stardewvalleywiki.com/Fish_Pond) (for output only);
 * [fruit trees](https://stardewvalleywiki.com/Fruit_Trees);
@@ -509,11 +509,6 @@ to add custom machines to Automate.)
 Path connectors aren't enabled by default. See the "Enable path connectors (config.json)" download
 on [the mod page's Files tab](https://www.nexusmods.com/stardewvalley/mods/1063/?tab=files) which
 enables some for you, or see [_connectors_ above](#connectors) for more info.
-
-### Why aren't my crystalariums starting automatically?
-Once a crystalarium is started, it continues producing the initial gem forever. So you need to
-start them with the gem you want manually, then Automate will collect their output automatically.
-(You can check the machine list in the mod description, it has notes about how some machines work.)
 
 ### In multiplayer, who gets XP and whose professions apply?
 A few machines give XP, update player stats, or check player skills based on the player who uses
