@@ -290,7 +290,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
 
                 if (recipes.Length > 0)
                 {
-                    var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), item, recipes);
+                    var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), item, recipes, this.ProgressionMode);
                     if (this.CollapseFieldsConfig.Enabled && recipes.Length >= this.CollapseFieldsConfig.ItemRecipes)
                         field.CollapseByDefault(I18n.Generic_ShowXResults(count: recipes.Length));
                     yield return field;
@@ -753,19 +753,25 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                         let item = recipe.TryCreateItem(this.Target)
                         where item != null
                         orderby item.DisplayName
-                        select new { recipe.Type, item.DisplayName, TimesCrafted = recipe.GetTimesCrafted(Game1.player) }
+                        select new { recipe.Type, item.DisplayName, TimesCrafted = recipe.GetTimesCrafted(Game1.player), IsKnown = recipe.IsKnown() }
                     )
                     .ToArray();
 
                 // gourmet chef achievement (cook every recipe)
-                string[] uncookedNames = (from recipe in recipes where recipe.Type == RecipeType.Cooking && recipe.TimesCrafted <= 0 select recipe.DisplayName).ToArray();
-                if (uncookedNames.Any())
-                    neededFor.Add(I18n.Item_NeededFor_GourmetChef(recipes: string.Join(", ", uncookedNames)));
+                var uncookedRecipes = recipes.Where(recipe => recipe.Type == RecipeType.Cooking && recipe.TimesCrafted <= 0);
+                if (uncookedRecipes.Any())
+                {
+                    string uncookedRecipesText = this.GetNeededForRecipeText(uncookedRecipes);
+                    neededFor.Add(I18n.Item_NeededFor_GourmetChef(uncookedRecipesText));
+                }
 
                 // craft master achievement (craft every item)
-                string[] uncraftedNames = (from recipe in recipes where recipe.Type == RecipeType.Crafting && recipe.TimesCrafted <= 0 select recipe.DisplayName).ToArray();
-                if (uncraftedNames.Any())
-                    neededFor.Add(I18n.Item_NeededFor_CraftMaster(recipes: string.Join(", ", uncraftedNames)));
+                var uncraftedRecipes = recipes.Where(recipe => recipe.Type == RecipeType.Crafting && recipe.TimesCrafted <= 0);
+                if (uncraftedRecipes.Any())
+                {
+                    string uncraftedRecipesText = this.GetNeededForRecipeText(uncraftedRecipes);
+                    neededFor.Add(I18n.Item_NeededFor_CraftMaster(uncraftedRecipesText));
+                }
             }
 
             // quests
@@ -782,6 +788,34 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             // yield
             if (neededFor.Any())
                 yield return new GenericField(I18n.Item_NeededFor(), string.Join(", ", neededFor));
+        }
+
+        /// <summary>
+        /// Constructs a text representation of uncooked/uncrafted recipes.
+        /// If progression mode is enabled, includes the count of unknown recipes.
+        /// </summary>
+        /// <param name="unmadeRecipes">A list of uncooked/uncrafted recipes.</param>
+        private string GetNeededForRecipeText(IEnumerable<dynamic> unmadeRecipes)
+        {
+            if (!this.ProgressionMode)
+            {
+                // return all recipe names
+                string[] recipeNames = (from recipe in unmadeRecipes select (string)recipe.DisplayName).ToArray();
+                return string.Join(", ", recipeNames);
+            }
+
+            var knownUnmadeRecipes = unmadeRecipes.Where(recipe => recipe.IsKnown);
+            int unknownUnmadeRecipeCount = unmadeRecipes.Count() - knownUnmadeRecipes.Count();
+
+            if (knownUnmadeRecipes.Any())
+            {
+                // return learned recipe names + count of unlearned recipes
+                string[] knownRecipeNames = (from recipe in knownUnmadeRecipes select (string)recipe.DisplayName).ToArray();
+                return string.Join(", ", knownRecipeNames.Append(I18n.Item_UnknownRecipe(unknownUnmadeRecipeCount)));
+            }
+
+            // return just the count of unlearned recipes
+            return I18n.Item_UnknownRecipe(unknownUnmadeRecipeCount);
         }
 
         /// <summary>Get unfinished bundles which require this item.</summary>

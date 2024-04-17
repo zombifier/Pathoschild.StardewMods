@@ -41,11 +41,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="label">A short field label.</param>
         /// <param name="ingredient">The ingredient item.</param>
         /// <param name="recipes">The recipes to list.</param>
-        public ItemRecipesField(GameHelper gameHelper, string label, Item ingredient, RecipeModel[] recipes)
+        /// <param name="progressionMode">Whether to only show content once the player discovers it.</param>
+        public ItemRecipesField(GameHelper gameHelper, string label, Item ingredient, RecipeModel[] recipes, bool progressionMode)
             : base(label, true)
         {
             this.GameHelper = gameHelper;
-            this.Recipes = this.BuildRecipeGroups(ingredient, recipes).ToArray();
+            this.Recipes = this.BuildRecipeGroups(ingredient, recipes, progressionMode).ToArray();
         }
 
         /// <inheritdoc />
@@ -175,12 +176,16 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <summary>Build an optimized representation of the recipes to display.</summary>
         /// <param name="ingredient">The ingredient item.</param>
         /// <param name="rawRecipes">The raw recipes to list.</param>
-        private IEnumerable<RecipeByTypeGroup> BuildRecipeGroups(Item ingredient, RecipeModel[] rawRecipes)
+        /// <param name="progressionMode">Whether to only show content once the player discovers it.</param>
+        private IEnumerable<RecipeByTypeGroup> BuildRecipeGroups(Item ingredient, RecipeModel[] rawRecipes, bool progressionMode)
         {
             /****
             ** build models for matching recipes
             ****/
             Dictionary<string, RecipeEntry[]> rawGroups = rawRecipes
+                // first filter out unknown recipes if in progression mode
+                .Where(recipe => !progressionMode || recipe.IsKnown())
+
                 // split into specific recipes that match the item
                 // (e.g. a recipe with several possible inputs => several recipes with one possible input)
                 .Select(recipe =>
