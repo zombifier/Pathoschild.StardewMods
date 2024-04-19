@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed tile overlap when trees are planted below the farm cave.
+
 ## 2.5.3
 Released 15 April 2024 for SMAPI 4.0.0 or later.
 
