@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed some missing `NPCBarrier`/`NoFurniture`/`NoSpawn` tile properties to match the vanilla farm maps.
 * Fixed tile overlap when trees are planted below the farm cave.
 
 ## 2.5.3
