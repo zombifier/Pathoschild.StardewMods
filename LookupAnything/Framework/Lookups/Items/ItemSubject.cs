@@ -283,8 +283,13 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                     .Concat(this.GameHelper.GetRecipesForMachine(item as SObject))
                     .ToArray();
 
-                if (recipes.Any())
-                    yield return new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), item, recipes.ToArray());
+                if (recipes.Length > 0)
+                {
+                    var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), item, recipes);
+                    if (recipes.Length > 10)
+                        field.CollapseByDefault(I18n.Generic_ShowXResults(count: recipes.Length));
+                    yield return field;
+                }
             }
 
             // fish spawn rules

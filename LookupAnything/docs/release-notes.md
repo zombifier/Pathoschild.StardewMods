@@ -2,6 +2,9 @@
 
 # Release notes
 ## Upcoming release
+* Some fields now collapse by default when they have too much content. You can click a link to show the full list. This affects:
+  * in item lookups, the 'recipes' field with more than 10 recipes.
+  * in NPC lookups, gift taste fields with more than 30 items.
 * Fixed `no translation:trees.stages.4` message in some tree lookups.
 
 ## 1.41.6
