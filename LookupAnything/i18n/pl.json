@@ -27,6 +27,7 @@
     "generic.price": "{{price}}zł",
     "generic.price-for-quality": "{{price}}zł ({{quality}})",
     "generic.price-for-stack": "{{price}}zł za {{count}}",
+    "generic.show-x-results": "show {{count}} results", // TODO
 
     // types
     "type.building": "Budowla",

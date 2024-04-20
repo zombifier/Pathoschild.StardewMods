@@ -27,6 +27,7 @@
     "generic.price": "{{price}}g",
     "generic.price-for-quality": "{{price}}g ({{quality}})",
     "generic.price-for-stack": "{{count}}개를 묶음 판매 시 {{price}}G",
+    "generic.show-x-results": "show {{count}} results", // TODO
 
     // types 유형
     "type.building": "건물",

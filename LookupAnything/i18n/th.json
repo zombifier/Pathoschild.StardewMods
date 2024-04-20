@@ -27,6 +27,7 @@
     "generic.price": "{{price}}g",
     "generic.price-for-quality": "{{price}}g ({{quality}})",
     "generic.price-for-stack": "{{price}}g สำหรับปริมาณ {{count}} ชิ้น",
+    "generic.show-x-results": "show {{count}} results", // TODO
 
     // types
     "type.building": "สิ่งก่อสร้าง",

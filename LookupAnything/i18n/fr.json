@@ -27,6 +27,7 @@
     "generic.price": "{{price}}po",
     "generic.price-for-quality": "{{price}}po ({{quality}})",
     "generic.price-for-stack": "{{price}}po le lot de {{count}}",
+    "generic.show-x-results": "show {{count}} results", // TODO
 
     // types
     "type.building": "Bâtiment",
