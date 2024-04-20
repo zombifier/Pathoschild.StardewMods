@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed `no translation:trees.stages.4` message in some tree lookups.
+
 ## 1.41.6
 Released 15 April 2024 for SMAPI 4.0.0 or later.
 
