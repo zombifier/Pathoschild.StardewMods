@@ -71,7 +71,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Provides metadata that's not available from the game data directly.</summary>
         public Metadata Metadata { get; }
 
-        /// <summary>The CustomBush integration.</summary>
+        /// <summary>The Custom Bush integration.</summary>
         public CustomBushIntegration CustomBush { get; }
 
         /// <summary>The MultiFertilizer integration.</summary>

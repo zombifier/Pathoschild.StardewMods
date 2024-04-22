@@ -114,14 +114,16 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             Point targetSize = new((int)(spriteSize.X * scale), (int)(spriteSize.Y * scale));
             Vector2 offset = new Vector2(size.X - targetSize.X, size.Y - targetSize.Y) / 2;
 
-            // determine texture
-            Texture2D texture = Bush.texture.Value;
-            if (this.TryGetCustomBush(bush, out var customBush))
+            // get texture
+            Texture2D texture;
+            if (this.TryGetCustomBush(bush, out ICustomBush? customBush))
             {
                 texture = bush.IsSheltered()
                     ? Game1.content.Load<Texture2D>(customBush.IndoorTexture)
                     : Game1.content.Load<Texture2D>(customBush.Texture);
             }
+            else
+                texture = Bush.texture.Value;
 
             // draw portrait
             spriteBatch.Draw(
@@ -155,14 +157,16 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             return bush.size.Value == Bush.greenTeaBush;
         }
 
-        /// <summary>Get a custom bush from a bush if applicable.</summary>
+        /// <summary>Get bush data from the Custom Bush mod if applicable.</summary>
         /// <param name="bush">The bush to check.</param>
         /// <param name="customBush">The resulting custom bush, if applicable.</param>
         /// <returns>Returns whether a custom bush was found.</returns>
-        private bool TryGetCustomBush(Bush bush, [NotNullWhen(true)]out ICustomBush? customBush)
+        private bool TryGetCustomBush(Bush bush, [NotNullWhen(true)] out ICustomBush? customBush)
         {
             customBush = null;
-            return this.GameHelper.CustomBush.IsLoaded && this.GameHelper.CustomBush.ModApi.TryGetCustomBush(bush, out customBush);
+            return
+                this.GameHelper.CustomBush.IsLoaded
+                && this.GameHelper.CustomBush.ModApi.TryGetCustomBush(bush, out customBush);
         }
 
         /// <summary>Get the date when the bush was planted.</summary>

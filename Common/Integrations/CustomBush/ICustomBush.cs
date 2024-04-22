@@ -8,30 +8,30 @@ namespace Pathoschild.Stardew.Common.Integrations.CustomBush
     public interface ICustomBush
     {
         /// <summary>Gets the age needed to produce.</summary>
-        public int AgeToProduce { get; }
+        int AgeToProduce { get; }
 
         /// <summary>Gets the day of month to begin producing.</summary>
-        public int DayToBeginProducing { get; }
+        int DayToBeginProducing { get; }
 
         /// <summary>Gets the description of the bush.</summary>
-        public string Description { get; }
+        string Description { get; }
 
         /// <summary>Gets the display name of the bush.</summary>
-        public string DisplayName { get; }
+        string DisplayName { get; }
 
         /// <summary>Gets the default texture used when planted indoors.</summary>
-        public string IndoorTexture { get; }
+        string IndoorTexture { get; }
 
         /// <summary>Gets the season in which this bush will produce its drops.</summary>
-        public List<Season> Seasons { get; }
+        List<Season> Seasons { get; }
 
         /// <summary>Gets the rules which override the locations that custom bushes can be planted in.</summary>
-        public List<PlantableRule> PlantableLocationRules { get; }
+        List<PlantableRule> PlantableLocationRules { get; }
 
         /// <summary>Gets the texture of the tea bush.</summary>
-        public string Texture { get; }
+        string Texture { get; }
 
         /// <summary>Gets the row index for the custom bush's sprites.</summary>
-        public int TextureSpriteRow { get; }
+        int TextureSpriteRow { get; }
     }
 }
