@@ -404,7 +404,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
         /// <param name="taste">The gift taste to display.</param>
         private ICustomField GetGiftTasteField(string label, IDictionary<GiftTaste, GiftTasteModel[]> giftTastes, IDictionary<string, bool> ownedItemsCache, GiftTaste taste)
         {
-            return new CharacterGiftTastesField(label, giftTastes, taste, onlyRevealed: this.ProgressionMode, highlightUnrevealed: this.HighlightUnrevealedGiftTastes, onlyOwned: !this.ShowUnownedGifts, ownedItemsCache);
+            var field = new CharacterGiftTastesField(label, giftTastes, taste, onlyRevealed: this.ProgressionMode, highlightUnrevealed: this.HighlightUnrevealedGiftTastes, onlyOwned: !this.ShowUnownedGifts, ownedItemsCache);
+            if (giftTastes.TryGetValue(taste, out GiftTasteModel[]? tastes) && tastes.Length > 30)
+                field.CollapseByDefault(I18n.Generic_ShowXResults(tastes.Length));
+            return field;
         }
 
         /*****

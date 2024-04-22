@@ -27,6 +27,7 @@
     "generic.price": "{{price}}g",
     "generic.price-for-quality": "{{price}}g ({{quality}})",
     "generic.price-for-stack": "{{count}} adet için {{price}}g",
+    "generic.show-x-results": "show {{count}} results", // TODO
 
     // types
     "type.building": "Bina",

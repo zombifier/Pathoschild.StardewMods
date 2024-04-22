@@ -70,7 +70,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                 else if (stage == WildTreeGrowthStage.Tree - 1 && this.HasAdjacentTrees(this.Tile))
                     yield return new GenericField(label, I18n.Tree_NextGrowth_AdjacentTrees());
                 else
-                    yield return new GenericField(label, I18n.Tree_NextGrowth_Chance(stage: I18n.For(stage + 1), chance: (isFertilized ? data.FertilizedGrowthChance : data.GrowthChance) * 100));
+                {
+                    double chance = Math.Round((isFertilized ? data.FertilizedGrowthChance : data.GrowthChance) * 100, 2);
+                    yield return new GenericField(label, I18n.Tree_NextGrowth_Chance(stage: I18n.For(stage + 1), chance: chance));
+                }
             }
 
             // get fertilizer

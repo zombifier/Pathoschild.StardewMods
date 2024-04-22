@@ -27,6 +27,7 @@
     "generic.price": "{{price}}g",
     "generic.price-for-quality": "{{price}}g ({{quality}})",
     "generic.price-for-stack": "{{price}}g por montón de {{count}}",
+    "generic.show-x-results": "show {{count}} results", // TODO
 
     // types
     "type.building": "Edificio",
@@ -103,7 +104,7 @@
     "location.bugLand": "guarida de los insectos mutantes",
     "location.busStop": "parada de autobús",
     "location.desert": "desierto",
-    "location.desert.topPond": "desert (north pond)", // TODO
+    "location.desert.topPond": "desierto (estanque del norte)",
     "location.farm": "granja",
     "location.farmCave": "cueva de granja",
     "location.farmHouse": "casa de granja",

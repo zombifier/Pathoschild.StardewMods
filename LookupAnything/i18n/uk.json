@@ -27,6 +27,7 @@
     "generic.price": "{{price}} з.",
     "generic.price-for-quality": "{{price}} з. ({{quality}})",
     "generic.price-for-stack": "{{price}} з. за набір з {{count}} од.",
+    "generic.show-x-results": "show {{count}} results", // TODO
 
     // types
     "type.building": "Будівля",

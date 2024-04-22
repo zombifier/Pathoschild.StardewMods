@@ -27,6 +27,7 @@
     "generic.price": "{{price}} ouros",
     "generic.price-for-quality": "{{price}} ouros ({{quality}})",
     "generic.price-for-stack": "{{price}} ouros por uma pilha de {{count}}",
+    "generic.show-x-results": "show {{count}} results", // TODO
 
     // types
     "type.building": "Construção",
