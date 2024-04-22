@@ -451,11 +451,13 @@ namespace Pathoschild.Stardew.LookupAnything
             Item output;
             switch (outputId)
             {
-                case "(O)342":
+                // if ingredient is Preserves Jar, we want generic pickles instead of flavored
+                case "(O)342" when ingredient.ItemId != "15":
                     output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredPickle(ingredient as SObject);
                     break;
 
-                case "(O)344":
+                // if ingredient is Preserves Jar, we want generic jelly instead of flavored
+                case "(O)344" when ingredient.ItemId != "15":
                     output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJelly(ingredient as SObject);
                     break;
 
