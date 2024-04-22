@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 2.5.4
+Released 21 April 2024 for SMAPI 4.0.0 or later.
+
 * Fixed some missing `NPCBarrier`/`NoFurniture`/`NoSpawn` tile properties to match the vanilla farm maps.
 * Fixed tile overlap when trees are planted below the farm cave.
 

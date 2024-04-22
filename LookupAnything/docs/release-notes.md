@@ -1,9 +1,11 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.42.0
+Released 21 April 2024 for SMAPI 4.0.0 or later.
+
 * Some fields now collapse by default when they have too much content. You can click a link to show the full list. This affects:
-  * in item lookups, the 'recipes' field with more than 10 recipes.
+  * in item lookups, the recipes field with more than 10 recipes;
   * in NPC lookups, gift taste fields with more than 30 items.
 * Added integration with Custom Bushes (thanks to LeFauxMatt!).
 * In tree lookups, the growth chance is now rounded to avoid strange values like 15.000001% (thanks to b3nk3lly!).
