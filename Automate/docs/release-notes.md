@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed support for custom trash cans outside the town map.
+
 ## 2.0.7
 Released 15 April 2024 for SMAPI 4.0.0 or later.
 

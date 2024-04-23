@@ -196,15 +196,12 @@ namespace Pathoschild.Stardew.Automate.Framework
                 return new ShippingBinMachine(Game1.getFarm(), new Rectangle(farm.shippingBinPosition.X, farm.shippingBinPosition.Y, 2, 1));
 
             // garbage can
-            if (location is Town town)
+            string action = location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
+            if (!string.IsNullOrWhiteSpace(action))
             {
-                string action = town.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
-                if (!string.IsNullOrWhiteSpace(action))
-                {
-                    string[] fields = ArgUtility.SplitBySpace(action);
-                    if (string.Equals(fields[0], "Garbage", StringComparison.OrdinalIgnoreCase) && ArgUtility.HasIndex(fields, 1))
-                        return new TrashCanMachine(town, tile, fields[1]);
-                }
+                string[] fields = ArgUtility.SplitBySpace(action);
+                if (string.Equals(fields[0], "Garbage", StringComparison.OrdinalIgnoreCase) && ArgUtility.HasIndex(fields, 1))
+                    return new TrashCanMachine(location, tile, fields[1]);
             }
 
             // fridge

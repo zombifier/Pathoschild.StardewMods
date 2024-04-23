@@ -11,9 +11,6 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Tiles
         /*********
         ** Fields
         *********/
-        /// <summary>The machine's position in its location.</summary>
-        private readonly Vector2 Tile;
-
         /// <summary>The trash can ID.</summary>
         private readonly string TrashCanId;
 
@@ -22,13 +19,12 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Tiles
         ** Public methods
         *********/
         /// <summary>Construct an instance.</summary>
-        /// <param name="town">The town to search.</param>
+        /// <param name="location">The location to search.</param>
         /// <param name="tile">The machine's position in its location.</param>
         /// <param name="trashCanId">The trash can ID.</param>
-        public TrashCanMachine(Town town, Vector2 tile, string trashCanId)
-            : base(town, BaseMachine.GetTileAreaFor(tile))
+        public TrashCanMachine(GameLocation location, Vector2 tile, string trashCanId)
+            : base(location, BaseMachine.GetTileAreaFor(tile))
         {
-            this.Tile = tile;
             this.TrashCanId = trashCanId;
         }
 
