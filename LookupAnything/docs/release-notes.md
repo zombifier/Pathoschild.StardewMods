@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Added config options for the new collapsible fields.
+
 ## 1.42.0
 Released 21 April 2024 for SMAPI 4.0.0 or later.
 

@@ -669,6 +669,17 @@
     "config.highlight-unrevealed-gift-tastes.name": "加粗显示未揭露的礼物",
     "config.highlight-unrevealed-gift-tastes.desc": "是否加粗显示未揭露的礼物品位",
 
+    // collapse fields
+    // TODO
+    "config.title.collapse-fields": "Collapse large fields",
+
+    "config.collapse-fields.enabled.name": "Enabled",
+    "config.collapse-fields.enabled.desc": "Whether to collapse large fields, so the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
+
+    "config.collapse-fields.npc-gift-tastes.name": "NPC lookup: gift tastes",
+    "config.collapse-fields.item-recipes.name": "Item lookup: recipes",
+    "config.collapse-fields.any.desc": "If the field contains this many values, the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
+
     // advanced options
     "config.title.advanced-options": "高级",
     "config.tile-lookups.name": "图块查询",

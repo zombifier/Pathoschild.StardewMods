@@ -669,6 +669,17 @@
     "config.highlight-unrevealed-gift-tastes.name": "Подсвечивать ещё не известные подарки",
     "config.highlight-unrevealed-gift-tastes.desc": "Следует ли выделять подарки, которые не указаны в профиле персонажа. Если эта функция включена, то нераскрытые предпочтения подарков будут выделены жирным шрифтом.",
 
+    // collapse fields
+    // TODO
+    "config.title.collapse-fields": "Collapse large fields",
+
+    "config.collapse-fields.enabled.name": "Enabled",
+    "config.collapse-fields.enabled.desc": "Whether to collapse large fields, so the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
+
+    "config.collapse-fields.npc-gift-tastes.name": "NPC lookup: gift tastes",
+    "config.collapse-fields.item-recipes.name": "Item lookup: recipes",
+    "config.collapse-fields.any.desc": "If the field contains this many values, the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
+
     // advanced options
     // TODO
     "config.title.advanced-options": "Advanced options",
