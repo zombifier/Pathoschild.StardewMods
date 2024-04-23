@@ -25,7 +25,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Tiles
         public TrashCanMachine(GameLocation location, Vector2 tile, string trashCanId)
             : base(location, BaseMachine.GetTileAreaFor(tile))
         {
-            this.TrashCanId = trashCanId;
+            this.TrashCanId = this.GetActualTrashCanId(trashCanId);
         }
 
         /// <summary>Get the machine's processing state.</summary>
@@ -62,11 +62,30 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Tiles
         /*********
         ** Private methods
         *********/
-        /// <summary>Reset the machine so it starts processing the next item.</summary>
+        /// <summary>Reset the machine, so it starts processing the next item.</summary>
         private void MarkChecked()
         {
             if (Game1.netWorldState.Value.CheckedGarbage.Add(this.TrashCanId))
                 Game1.stats.Increment("trashCansChecked");
+        }
+
+        /// <summary>Get the actual trash can ID for an <c>Action Garbage</c> tile property value.</summary>
+        /// <param name="id">The trash can ID from the <c>Action Garbage</c> tile property.</param>
+        /// <returns>This maps pre-1.6 trash can IDs (e.g. from a map mod which wasn't updated) to match the logic in <see cref="GameLocation.CheckGarbage"/>.</returns>
+        private string GetActualTrashCanId(string id)
+        {
+            return id switch
+            {
+                "0" => "JodiAndKent",
+                "1" => "EmilyAndHaley",
+                "2" => "Mayor",
+                "3" => "Museum",
+                "4" => "Blacksmith",
+                "5" => "Saloon",
+                "6" => "Evelyn",
+                "7" => "JojaMart",
+                _ => id
+            };
         }
     }
 }
