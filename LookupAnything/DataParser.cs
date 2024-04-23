@@ -448,25 +448,34 @@ namespace Pathoschild.Stardew.LookupAnything
         {
             outputId = ItemRegistry.QualifyItemId(outputId);
 
+            bool isIngredientKeg = ingredient.ItemId == "12";
+            bool isIngredientPreservesJar = ingredient.ItemId == "15";
+            bool isIngredientRoe = ingredient.ItemId == "812";
+
             Item output;
             switch (outputId)
             {
-                // if ingredient is Preserves Jar, we want generic pickles instead of flavored
-                case "(O)342" when ingredient.ItemId != "15":
+                // if ingredient is preserves jar we want generic pickles / jelly instead
+                case "(O)342" when !isIngredientPreservesJar:
                     output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredPickle(ingredient as SObject);
                     break;
 
-                // if ingredient is Preserves Jar, we want generic jelly instead of flavored
-                case "(O)344" when ingredient.ItemId != "15":
+                case "(O)344" when !isIngredientPreservesJar:
                     output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJelly(ingredient as SObject);
                     break;
 
-                case "(O)348":
+                // if ingredient is keg we want generic wine / juice instead
+                case "(O)348" when !isIngredientKeg: 
                     output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredWine(ingredient as SObject);
                     break;
 
-                case "(O)350":
+                case "(O)350" when !isIngredientKeg:
                     output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJuice(ingredient as SObject);
+                    break;
+
+                // if ingredient is non-sturgeon roe, get the flavored aged roe. Otherwise we want caviar
+                case "(O)445" when isIngredientRoe && ingredient is SObject ingredientObj && ingredientObj.preservedParentSheetIndex.Value != "698": // 698 = sturgeon
+                    output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredAgedRoe(ingredient as SObject);
                     break;
 
                 default:
@@ -475,11 +484,11 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             if (outputData != null && output is SObject obj)
-            {
-                obj.preservedParentSheetIndex.Value = outputData.PreservedParentSheetIndex ?? obj.preservedParentSheetIndex.Value;
-                obj.preserve.Value = outputData.PreserveType ?? obj.preserve.Value;
-            }
-
+                {
+                    obj.preservedParentSheetIndex.Value = outputData.PreservedParentSheetIndex ?? obj.preservedParentSheetIndex.Value;
+                    obj.preserve.Value = outputData.PreserveType ?? obj.preserve.Value;
+                }
+                                    
             return output;
         }
     }
