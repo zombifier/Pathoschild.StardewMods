@@ -484,11 +484,11 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             if (outputData != null && output is SObject obj)
-                {
-                    obj.preservedParentSheetIndex.Value = outputData.PreservedParentSheetIndex ?? obj.preservedParentSheetIndex.Value;
-                    obj.preserve.Value = outputData.PreserveType ?? obj.preserve.Value;
-                }
-                                    
+            {
+                obj.preservedParentSheetIndex.Value = outputData.PreservedParentSheetIndex ?? obj.preservedParentSheetIndex.Value;
+                obj.preserve.Value = outputData.PreserveType ?? obj.preserve.Value;
+            }
+
             return output;
         }
     }
