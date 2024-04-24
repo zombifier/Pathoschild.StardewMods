@@ -17,7 +17,7 @@
     "config.controls": "键位",
     "config.axe": "斧头",
     "config.hoe": "锄头",
-    "config.pickaxe": "镐头",
+    "config.pickaxe": "十字镐",
     "config.scythe": "镰刀",
     "config.melee-blunt": "武器-锤",
     "config.melee-dagger": "武器-匕首",
@@ -64,7 +64,7 @@
     "config.summon-key.tooltip": "将一台可用的拖拉机传送至你的位置。默认退格键。",
 
     "config.dismiss-key.name": "收回拖拉机",
-    "config.dismiss-key.tooltip": "将你正在开的拖拉机收回仓库。",
+    "config.dismiss-key.tooltip": "将你正在驾驶的拖拉机收回仓库。",
 
     "config.hold-to-activate-key.name": "按住以激活功能",
     "config.hold-to-activate-key.tooltip": "如果有指定键位，只有按住此键时才能激活拖拉机功能。",
@@ -142,8 +142,8 @@
     "config.till-dirt.name": "耕地",
     "config.till-dirt.tooltip": "是否耕地。",
 
-    "config.dig-artifact-spots.name": "挖掘古物挖掘点",
-    "config.dig-artifact-spots.tooltip": "是否挖掘古物挖掘点。",
+    "config.dig-artifact-spots.name": "挖掘远古斑点",
+    "config.dig-artifact-spots.tooltip": "是否挖掘远古斑点。",
 
     "config.clear-tilled-dirt.name": "填平耕地",
     "config.clear-tilled-dirt.tooltip": "是否填平已耕的地块。",
