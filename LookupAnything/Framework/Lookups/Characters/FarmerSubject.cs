@@ -72,6 +72,17 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             yield return new SkillBarField(I18n.Player_FishingSkill(), target.experiencePoints[SFarmer.fishingSkill], maxSkillPoints, skillPointsPerLevel);
             yield return new SkillBarField(I18n.Player_CombatSkill(), target.experiencePoints[SFarmer.combatSkill], maxSkillPoints, skillPointsPerLevel);
 
+
+            if (ModEntry.SpaceCoreLoaded && ModEntry.iSpaceCore is not null)
+            {
+                foreach (string skill in ModEntry.iSpaceCore.GetCustomSkills())
+                {
+                    yield return new SkillBarField(ModEntry.iSpaceCore.GetDisplayNameOfCustomSkill(skill), ModEntry.iSpaceCore.GetExperienceForCustomSkill(target, skill), maxSkillPoints, skillPointsPerLevel);
+                }
+            }
+
+
+
             // luck
             string luckSummary = I18n.Player_Luck_Summary(percent: (Game1.player.DailyLuck >= 0 ? "+" : "") + Math.Round(Game1.player.DailyLuck * 100, 2));
             yield return new GenericField(I18n.Player_Luck(), $"{this.GetSpiritLuckMessage()}{Environment.NewLine}({luckSummary})");
