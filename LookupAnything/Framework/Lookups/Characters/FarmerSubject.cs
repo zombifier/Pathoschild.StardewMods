@@ -81,8 +81,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
                 }
             }
 
-
-
             // luck
             string luckSummary = I18n.Player_Luck_Summary(percent: (Game1.player.DailyLuck >= 0 ? "+" : "") + Math.Round(Game1.player.DailyLuck * 100, 2));
             yield return new GenericField(I18n.Player_Luck(), $"{this.GetSpiritLuckMessage()}{Environment.NewLine}({luckSummary})");
