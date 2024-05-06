@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pathoschild.Stardew.Common;
+using Pathoschild.Stardew.Common.Integrations.ExtraMachineConfig;
 using Pathoschild.Stardew.LookupAnything.Framework;
 using Pathoschild.Stardew.LookupAnything.Framework.Constants;
 using Pathoschild.Stardew.LookupAnything.Framework.Data;
@@ -11,9 +12,12 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Characters;
+using StardewValley.GameData;
 using StardewValley.GameData.Buildings;
 using StardewValley.GameData.FishPonds;
 using StardewValley.GameData.Locations;
+using StardewValley.GameData.Machines;
+using StardewValley.Internal;
 using StardewValley.ItemTypeDefinitions;
 using StardewValley.TokenizableStrings;
 using SFarmer = StardewValley.Farmer;
@@ -360,7 +364,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Get the recipe ingredients.</summary>
         /// <param name="metadata">Provides metadata that's not available from the game data directly.</param>
         /// <param name="monitor">The monitor with which to log errors.</param>
-        public RecipeModel[] GetRecipes(Metadata metadata, IMonitor monitor)
+        public RecipeModel[] GetRecipes(Metadata metadata, IMonitor monitor, ExtraMachineConfigIntegration extraMachineConfig)
         {
             List<RecipeModel> recipes = new List<RecipeModel>();
 
@@ -411,6 +415,83 @@ namespace Pathoschild.Stardew.LookupAnything
                     machineId: entry.MachineID,
                     isForMachine: p => p is SObject obj && obj.QualifiedItemId == itemData.QualifiedItemId)
             );
+
+            // Get machine recipes from Data/Machines
+            // TODO: Add support for checking conditions/GSQ/Item Queries
+            var machineRecipes = new List<RecipeModel>();
+			foreach (var entry in Game1.content.Load<Dictionary<string, MachineData>>("Data\\Machines")) {
+                (string machineName, MachineData machineData) = entry;
+                SObject machine = ItemRegistry.Create<SObject>(machineName);
+                if (machine == null) continue;
+                IEnumerable<RecipeIngredientModel> additionalConsumedItems = machineData.AdditionalConsumedItems?.Select(item =>
+                        new RecipeIngredientModel(item.ItemId, item.RequiredCount)) ?? [];
+
+                foreach (var outputRule in machineData?.OutputRules ?? []) {
+                    foreach (var trigger in outputRule?.Triggers ?? []) {
+                        foreach (var outputItem in outputRule?.OutputItem ?? []) {
+                            List<RecipeIngredientModel> ingredients = new List<RecipeIngredientModel>();
+                            // Use RequiredTags if specified, otherwise use RequiredItemId
+                            // Machines can technically specify both, but why would they?
+                            ingredients.Add(new RecipeIngredientModel(
+                                        trigger.RequiredTags != null ? [String.Join(",", trigger.RequiredTags)] :
+                                        (trigger.RequiredItemId != null ? [trigger.RequiredItemId] : []),
+                                        trigger.RequiredCount,
+                                        null,
+                                        null));
+                            ingredients.AddRange(additionalConsumedItems);
+                            // add fuel from ExtraMachineConfig
+                            if (extraMachineConfig.IsLoaded) {
+                                foreach (var extraFuelEntry in extraMachineConfig.ModApi.GetExtraRequirements(outputItem)) {
+                                    ingredients.Add(new RecipeIngredientModel(
+                                                extraFuelEntry.Item1,
+                                                extraFuelEntry.Item2,
+                                                null,
+                                                null));
+                                }
+                                foreach (var extraTagFuelEntry in extraMachineConfig.ModApi.GetExtraTagsRequirements(outputItem)) {
+                                    ingredients.Add(new RecipeIngredientModel(
+                                                extraTagFuelEntry.Item1,
+                                                extraTagFuelEntry.Item2,
+                                                null,
+                                                null));
+                                }
+                            }
+                            // add recipe
+                            ItemQueryContext itemQueryContext = new();
+                            var itemQueryResults = ItemQueryResolver.TryResolve(outputItem, itemQueryContext,
+                                    formatItemId: (string id) => {
+                                    if (string.IsNullOrWhiteSpace(id)) {
+                                    return id;
+                                    }
+                                    return id.Replace("DROP_IN_ID", "0").Replace("DROP_IN_PRESERVE", "0").Replace("NEARBY_FLOWER_ID", "0");
+                                    });
+                            foreach (var itemQueryResult in itemQueryResults) {
+                                machineRecipes.Add(new RecipeModel(
+                                            key: null,
+                                            type: RecipeType.MachineInput,
+                                            displayType: machine.DisplayName,
+                                            ingredients,
+                                            item: ingredient => {
+                                              return ItemRegistry.Create(itemQueryResult.Item.QualifiedItemId);
+                                            },
+                                            isKnown: () => true,
+                                            machineId: machine.ItemId,
+                                            isForMachine: p => p is SObject obj && obj.QualifiedItemId == machine.QualifiedItemId,
+                                            //exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id!.Value, 1)),
+                                            exceptIngredients: null,
+                                            outputQualifiedItemId: itemQueryResult.Item.QualifiedItemId,
+                                            minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,
+                                            maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null,
+                                            // TODO: Calculate this better
+                                            outputChance: 100 / outputRule.OutputItem.Count / itemQueryResults.Count,
+                                            hasCondition: trigger.Condition != null || outputItem.Condition != null
+                                            ));
+                            }
+                        }
+                    }
+                }
+            }
+                recipes.AddRange(machineRecipes);
 
             // building recipes
             recipes.AddRange(

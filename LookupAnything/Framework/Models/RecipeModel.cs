@@ -62,6 +62,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /// <summary>The sprite and display text for a non-standard recipe output.</summary>
         public RecipeItemEntry? SpecialOutput { get; }
 
+        /// <summary>Whether this recipe has special conditions that might affect its chance of outputting.</summary>
+        public bool HasCondition { get; }
+
 
         /*********
         ** Public methods
@@ -80,7 +83,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /// <param name="minOutput">The minimum number of items output by the recipe.</param>
         /// <param name="maxOutput">The maximum number of items output by the recipe.</param>
         /// <param name="outputChance">The percentage chance of this recipe being produced (or <c>null</c> if the recipe is always used).</param>
-        public RecipeModel(string? key, RecipeType type, string displayType, IEnumerable<RecipeIngredientModel> ingredients, Func<Item?, Item?>? item, Func<bool> isKnown, string? machineId, Func<object, bool> isForMachine, IEnumerable<RecipeIngredientModel>? exceptIngredients = null, string? outputQualifiedItemId = null, int? minOutput = null, int? maxOutput = null, decimal? outputChance = null)
+        /// <param name="hasCondition">Whether this recipe has any special conditions.</param>
+        public RecipeModel(string? key, RecipeType type, string displayType, IEnumerable<RecipeIngredientModel> ingredients, Func<Item?, Item?>? item, Func<bool> isKnown, string? machineId, Func<object, bool> isForMachine, IEnumerable<RecipeIngredientModel>? exceptIngredients = null, string? outputQualifiedItemId = null, int? minOutput = null, int? maxOutput = null, decimal? outputChance = null, bool hasCondition = false)
         {
             // normalize values
             if (minOutput == null && maxOutput == null)
@@ -107,6 +111,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
             this.MinOutput = minOutput!.Value;
             this.MaxOutput = maxOutput!.Value;
             this.OutputChance = outputChance is > 0 and < 100 ? outputChance.Value : 100;
+            this.HasCondition = hasCondition;
         }
 
         /// <summary>Construct an instance.</summary>

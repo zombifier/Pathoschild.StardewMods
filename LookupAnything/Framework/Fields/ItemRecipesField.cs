@@ -330,7 +330,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         displayName = input.getCategoryName();
                         break;
                 }
-                
+
                 return this.CreateItemEntry(
                     name: displayName,
                     minCount: ingredient.Count,
@@ -340,7 +340,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
 
             // from item
             {
-                Item input = ItemRegistry.Create(id);
+                Item input = ItemRegistry.Create(id, allowNull: true);
 
                 if (input is SObject obj)
                 {
@@ -348,14 +348,27 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         obj.preservedParentSheetIndex.Value = ingredient.PreservedItemId;
                     if (ingredient.PreserveType != null)
                         obj.preserve.Value = ingredient.PreserveType.Value;
+                    return this.CreateItemEntry(
+                            name: input?.DisplayName ?? string.Empty,
+                            item: input,
+                            minCount: ingredient.Count,
+                            maxCount: ingredient.Count
+                            );
                 }
 
+            }
+
+            // other (e.g. context tags)
+            // TODO: Implement showing context tags
+            {
+                //Item? input = this.GameHelper.GetObjectsByContextTagQuery(id).FirstOrDefault();
+                //if (input == null)
+                //    return null;
                 return this.CreateItemEntry(
-                    name: input?.DisplayName ?? string.Empty,
-                    item: input,
-                    minCount: ingredient.Count,
-                    maxCount: ingredient.Count
-                );
+                        name: id,
+                        minCount: ingredient.Count,
+                        maxCount: ingredient.Count
+                        );
             }
         }
 
