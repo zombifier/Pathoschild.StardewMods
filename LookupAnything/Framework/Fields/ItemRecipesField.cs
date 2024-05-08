@@ -398,11 +398,13 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 if (chance is > 0 and < 100)
                     text += $" ({I18n.Generic_Percent(chance)})";
 
+                // has condition
+                if (hasCondition)
+                    text += " (conditional)";
+
                 // output suffix
                 if (isOutput)
                     text += ":";
-                if (hasCondition)
-                    text += " (conditional)";
             }
 
             return new RecipeItemEntry(
