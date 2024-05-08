@@ -430,11 +430,18 @@ namespace Pathoschild.Stardew.LookupAnything
                     foreach (var trigger in outputRule?.Triggers ?? []) {
                         foreach (var outputItem in outputRule?.OutputItem ?? []) {
                             List<RecipeIngredientModel> ingredients = new List<RecipeIngredientModel>();
-                            // Use RequiredTags if specified, otherwise use RequiredItemId
-                            // Machines can technically specify both, but why would they?
+                            // Use RequiredTags if specified (and append RequiredItemId as an extra tag rule),
+                            // otherwise use RequiredItemId
+                            string inputId = null;
+                            if (trigger.RequiredTags != null) {
+                                inputId = String.Join(",", trigger.RequiredTags);
+                            }
+                            if (trigger.RequiredItemId != null) {
+                                if (inputId == null) inputId = trigger.RequiredItemId;
+                                else inputId += ",id_" + ItemRegistry.QualifyItemId(trigger.RequiredItemId);
+                            }
                             ingredients.Add(new RecipeIngredientModel(
-                                        trigger.RequiredTags != null ? [String.Join(",", trigger.RequiredTags)] :
-                                        (trigger.RequiredItemId != null ? [trigger.RequiredItemId] : []),
+                                        inputId,
                                         trigger.RequiredCount,
                                         null,
                                         null));
