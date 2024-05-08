@@ -191,7 +191,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         minCount: recipe.MinOutput,
                         maxCount: recipe.MaxOutput,
                         chance: recipe.OutputChance,
-                        isOutput: true
+                        isOutput: true,
+                        hasCondition: recipe.HasCondition
                     );
 
                     return this.GetCartesianInputs(recipe)
@@ -380,7 +381,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="maxCount">The maximum number of items needed or created.</param>
         /// <param name="chance">The chance of creating an output item.</param>
         /// <param name="isOutput">Whether the item is output or input.</param>
-        private RecipeItemEntry CreateItemEntry(string name, Item? item = null, SpriteInfo? sprite = null, int minCount = 1, int maxCount = 1, decimal chance = 100, bool isOutput = false)
+        private RecipeItemEntry CreateItemEntry(string name, Item? item = null, SpriteInfo? sprite = null, int minCount = 1, int maxCount = 1, decimal chance = 100, bool isOutput = false, bool hasCondition = false)
         {
             // get display text
             string text;
@@ -400,6 +401,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 // output suffix
                 if (isOutput)
                     text += ":";
+                if (hasCondition)
+                    text += " (conditional)";
             }
 
             return new RecipeItemEntry(
