@@ -4,6 +4,7 @@
 ## Upcoming release
 * Fixed support for custom trash cans outside the town map.
 * Fixed trash can tracking for pre-1.6 town map mods.
+* Improved translations. Thanks to burunduk (updated Ukrainian)!
 
 ## 2.0.7
 Released 15 April 2024 for SMAPI 4.0.0 or later.
