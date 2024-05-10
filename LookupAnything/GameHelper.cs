@@ -652,9 +652,6 @@ namespace Pathoschild.Stardew.LookupAnything
                 List<RecipeModel> customRecipes = new List<RecipeModel>();
                 foreach (ProducerFrameworkRecipe recipe in this.ProducerFrameworkMod.GetRecipes())
                 {
-                    if (recipe.HasContextTags())
-                        continue;
-
                     // remove vanilla recipes overridden by a PFM one
                     // This is always an integer currently, but the API may return context_tag keys in the future.
                     recipes.RemoveAll(r => r.Type == RecipeType.MachineInput && r.MachineId == recipe.MachineId && recipe.InputId != null && r.Ingredients[0].PossibleIds.Contains(recipe.InputId));
