@@ -9,6 +9,13 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 
 -->
+## Upcoming release
+* Fixed some mod edits not applying correctly for non-English players.
+
+**Update notes for mod authors:**  
+* Content Patcher 2.1 changes how `"Action": "Load"` patches are applied for non-English players. See the
+  [2.1 migration guide](author-migration-guide.md#21) for more info.
+
 ## 2.0.6
 Released 15 April 2024 for SMAPI 4.0.0 or later.
 

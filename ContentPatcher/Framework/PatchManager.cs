@@ -12,6 +12,7 @@ using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.Common.Utilities;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
+using StardewValley;
 using xTile;
 
 namespace ContentPatcher.Framework
@@ -22,7 +23,7 @@ namespace ContentPatcher.Framework
     //        1. Dictionary inserts are much more expensive than lookups, so this leads to thrashing where the same
     //           keys are repeatedly removed & re-added and the dictionary tree gets repeatedly rebalanced.
     //        2. Some of the code assumes that a previously indexed key is guaranteed to be in the lookups, to avoid
-    //           repeating does-entry-exist checks every time. 
+    //           repeating does-entry-exist checks every time.
     //
 
     /// <summary>Manages loaded patches.</summary>
@@ -69,6 +70,9 @@ namespace ContentPatcher.Framework
             [ContextUpdateType.All] = new()
         };
 
+        /// <summary>A low-level content manager which is detached from SMAPI's content API, used to check whether an asset exists in the base game's content folder.</summary>
+        private readonly LocalizedContentManager RawFileContentManager;
+
 
         /*********
         ** Public methods
@@ -82,6 +86,7 @@ namespace ContentPatcher.Framework
             this.Monitor = monitor;
             this.TokenManager = tokenManager;
             this.AssetValidators = assetValidators;
+            this.RawFileContentManager = new LocalizedContentManager(Game1.content.ServiceProvider, Game1.content.RootDirectory);
         }
 
         /****
@@ -92,11 +97,11 @@ namespace ContentPatcher.Framework
         /// <param name="ignoreLoadPatches">Whether to ignore any load patches for this asset.</param>
         public void OnAssetRequested(AssetRequestedEventArgs e, bool ignoreLoadPatches)
         {
-            IAssetName assetName = e.NameWithoutLocale;
             LoadPatch[] loaders = !ignoreLoadPatches
-                ? this.GetCurrentLoaders(assetName).ToArray()
+                ? this.GetCurrentLoaders(e).ToArray()
                 : Array.Empty<LoadPatch>();
-            IPatch[] editors = this.GetCurrentEditors(assetName, e.DataType).ToArray();
+
+            IPatch[] editors = this.GetCurrentEditors(e).ToArray();
 
             if (loaders.Any() || editors.Any())
             {
@@ -395,26 +400,44 @@ namespace ContentPatcher.Framework
         }
 
         /// <summary>Get patches which load the given asset in the current context.</summary>
-        /// <param name="assetName">The asset being intercepted.</param>
-        public IEnumerable<LoadPatch> GetCurrentLoaders(IAssetName assetName)
+        /// <param name="request">The asset request being intercepted.</param>
+        public IEnumerable<LoadPatch> GetCurrentLoaders(AssetRequestedEventArgs request)
         {
+            // If this is a request for a localized asset which isn't normally localized (like `Data/Buildings.fr-FR`)
+            // *or* a new mod-provided asset, only load the base name. If the content manager doesn't find the
+            // localized form, it'll load the base form next.
+            {
+                IAssetName assetName = request.Name;
+                IAssetName baseAssetName = request.NameWithoutLocale;
+
+                bool skipLocalizedAsset =
+                    assetName.LocaleCode != null
+                    && (
+                        !this.RawFileContentManager.DoesAssetExist<object>($"{baseAssetName}.fr-FR") // check fr-FR instead of the actual locale, since we do want to load it for a custom language
+                        || !this.RawFileContentManager.DoesAssetExist<object>($"{baseAssetName}")
+                    );
+
+                if (skipLocalizedAsset)
+                    return Array.Empty<LoadPatch>();
+            }
+
+            // else find matching loader
             return this
-                .GetPatches(assetName)
+                .GetPatches(request.NameWithoutLocale)
                 .Where(patch => patch.IsReady)
                 .OfType<LoadPatch>();
         }
 
         /// <summary>Get patches which edit the given asset in the current context.</summary>
-        /// <param name="assetName">The asset being intercepted.</param>
-        /// <param name="dataType">The asset data type.</param>
-        public IEnumerable<IPatch> GetCurrentEditors(IAssetName assetName, Type dataType)
+        /// <param name="request">The asset request being intercepted.</param>
+        public IEnumerable<IPatch> GetCurrentEditors(AssetRequestedEventArgs request)
         {
-            PatchType? patchType = this.GetEditType(dataType);
+            PatchType? patchType = this.GetEditType(request.DataType);
             if (patchType == null)
                 return Array.Empty<IPatch>();
 
             return this
-                .GetPatches(assetName)
+                .GetPatches(request.NameWithoutLocale)
                 .Where(patch => patch.Type == patchType && patch.IsReady);
         }
 
