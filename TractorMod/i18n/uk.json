@@ -38,15 +38,14 @@
     "config.magnetic-radius.name": "Радіус Магнетизму",
     "config.magnetic-radius.tooltip": "Величина магнетизму предмета (При більших значеннях предмети притягуються з більшої відстані). За замовчуванням: {{defaultValue}}.",
 
-    // TODO
-    "config.tractor-sounds.name": "Sound Effects",
-    "config.tractor-sounds.tooltip": "Which sound effects to play while riding the tractor. Changes may not fully take effect until you reload the save. Default {{defaultValue}}.",
-    "config.tractor-sounds.value.None": "no sounds",
-    "config.tractor-sounds.value.Horse": "horse sounds",
-    "config.tractor-sounds.value.Tractor": "tractor sounds",
+    "config.tractor-sounds.name": "Звукові ефекти",
+    "config.tractor-sounds.tooltip": "Які звукові ефекти відтворювати під час їзди на тракторі. Зміни можуть не набути чинності до перезавантаження збереженої гри. За замовчуванням {{defaultValue}}.",
+    "config.tractor-sounds.value.None": "без звуків",
+    "config.tractor-sounds.value.Horse": "звуки коня",
+    "config.tractor-sounds.value.Tractor": "звуки трактора",
 
     "config.build-price.name": "Ціна побудови",
-    "config.build-price.tooltip": "Золота ціна купівлі гаража трактора. За замовчуванням: {{defaultValue}} з.",
+    "config.build-price.tooltip": "Золота ціна купівлі гаража трактора. За замовчуванням: {{defaultValue}} зол.",
 
     "config.can-summon-without-garage.name": "Можна викликати без гаража",
     "config.can-summon-without-garage.tooltip": "Можливість викликати тимчасовий трактор, не будуючи спочатку гараж.",
@@ -55,7 +54,7 @@
     "config.invincible-on-tractor.tooltip": "Можливість бути невразливим до атак під час їзди на тракторі",
 
     "config.highlight-radius.name": "Радіус виділення (налагодження)",
-    "config.highlight-radius.tooltip": "Можливість виділення радіусу дії трактора під час їзди, щоб допомогти візуалізувати параметр відстані.",
+    "config.highlight-radius.tooltip": "Можливість виділення радіуса дії трактора під час їзди, щоб допомогти візуалізувати параметр відстані.",
 
 
     /****
@@ -64,7 +63,7 @@
     "config.summon-key.name": "Викликати трактор",
     "config.summon-key.tooltip": "Виклик доступного трактора до вашого місцезнаходження. За замовчуванням: Пробіл.",
 
-    "config.dismiss-key.name": "Позбутися трактору",
+    "config.dismiss-key.name": "Позбутися трактора",
     "config.dismiss-key.tooltip": "Повернення трактора, на якому ви їдете, додому.",
 
     "config.hold-to-activate-key.name": "Утримувати, щоб активувати",
@@ -92,14 +91,14 @@
     "config.chop-trees-grown.name": "Рубати дерева (вирощені)",
     "config.chop-trees-grown.tooltip": "Рубка не плодових дерев, що повністю виросли.",
 
-    "config.chop-trees-stumps.name": "Рубати дерева (Пні)",
+    "config.chop-trees-stumps.name": "Рубати дерева (пні)",
     "config.chop-trees-stumps.tooltip": "Чи потрібно рубати пні не плодових дерев. (Не стосується гігантських пнів, які вважаються сміттям).",
 
     "config.chop-bushes.name": "Рубати кущі",
     "config.chop-bushes.tooltip": "Рубка плодових кущів.",
 
     "config.harvest-fruit-trees.name": "Збирати плоди фруктових дерев",
-    "config.harvest-fruit-trees.tooltip": "Збір плодів з фруткових дерев.",
+    "config.harvest-fruit-trees.tooltip": "Збір плодів з фруктових дерев.",
 
 
     /****
@@ -157,7 +156,7 @@
     "config.break-boulders-and-meteorites.tooltip": "Розбиття валунів та метеоритів.",
 
     "config.harvest-mine-spawns.name": "Збирати дари шахти",
-    "config.harvest-mine-spawns.tooltip": "Збір предметів, що породжуються шахтами, як-от кварц та замерша сльоза.",
+    "config.harvest-mine-spawns.tooltip": "Збір предметів, що породжуються шахтами, як-от кварц та крижана сльоза.",
 
 
 
@@ -212,5 +211,5 @@
     "config.slingshot.tooltip": "Стрілянина з рогатки за допомогою курсору. (Це дуже сильно навантажує та споживає купу боєприпасів через швидкість трактора.)",
 
     "config.custom-tool-names.name": "Користувацькі назви предметів",
-    "config.custom-tool-names.tooltip": "Користувацкі предмети/інструменти, які можна вмикати під час їзди на тракторі. Інструменти будуть використані на кожній навколишній клітині, а предмети будуть відкладені. Якщо ви вкажете предмет, що вже підтримується (наприклад, сокира), це зніме всі обмеження щодо його використання. Ви повинні вказати точну ігрову назву (не перекладену назву), наприклад \"Axe\" або \"Mega Bomb\". Розділіть кілька значень комами."
+    "config.custom-tool-names.tooltip": "Користувацькі предмети/інструменти, які можна вмикати під час їзди на тракторі. Інструменти будуть використані на кожній навколишній клітині, а предмети будуть відкладені. Якщо ви вкажете предмет, що вже підтримується (наприклад, сокира), це зніме всі обмеження щодо його використання. Ви повинні вказати точну ігрову назву (не перекладену назву), наприклад «Axe» або «Mega Bomb». Розділіть кілька значень комами."
 }
