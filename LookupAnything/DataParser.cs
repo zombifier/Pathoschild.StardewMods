@@ -444,33 +444,38 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <param name="ingredient">The input ingredient.</param>
         /// <param name="outputId">The output item ID.</param>
         /// <param name="outputData">The output data, if applicable.</param>
-        private Item CreateRecipeItem(Item ingredient, string outputId, MachineRecipeOutputData? outputData)
+        private Item CreateRecipeItem(Item? ingredient, string outputId, MachineRecipeOutputData? outputData)
         {
             outputId = ItemRegistry.QualifyItemId(outputId);
 
-            Item output;
-            switch (outputId)
+            Item? output = null;
+            if (ingredient is SObject fromObj)
             {
-                case "(O)342":
-                    output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredPickle(ingredient as SObject);
-                    break;
+                switch (outputId)
+                {
+                    case "(O)342":
+                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredPickle(fromObj);
+                        break;
 
-                case "(O)344":
-                    output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJelly(ingredient as SObject);
-                    break;
+                    case "(O)344":
+                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJelly(fromObj);
+                        break;
 
-                case "(O)348":
-                    output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredWine(ingredient as SObject);
-                    break;
+                    case "(O)348":
+                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredWine(fromObj);
+                        break;
 
-                case "(O)350":
-                    output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJuice(ingredient as SObject);
-                    break;
+                    case "(O)350":
+                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJuice(fromObj);
+                        break;
 
-                default:
-                    output = ItemRegistry.Create(outputId);
-                    break;
+                    case "(O)445" when fromObj.preservedParentSheetIndex.Value != "698": // 698 = sturgeon
+                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredAgedRoe(fromObj);
+                        break;
+                }
             }
+
+            output ??= ItemRegistry.Create(outputId);
 
             if (outputData != null && output is SObject obj)
             {
