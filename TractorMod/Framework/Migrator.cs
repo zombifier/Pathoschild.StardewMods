@@ -174,10 +174,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework
             {
                 for (int i = location.buildings.Count - 1; i >= 0; i--)
                 {
-                    if (location.buildings[i] is not Stable stable)
-                        continue;
-
-                    if (stable.getStableHorse()?.Name?.StartsWith("tractor/") != true) // Tractor Mod previously set a maxOccupants flag, but Stardew Valley 1.6 resets it based on the building data
+                    if (location.buildings[i] is not Stable stable || !Migrator.IsTractor(stable.getStableHorse()))
                         continue;
 
                     Stable garage = Migrator.BuildGarage(stable.HorseId, new Vector2(stable.tileX.Value, stable.tileY.Value));
@@ -216,11 +213,21 @@ namespace Pathoschild.Stardew.TractorMod.Framework
 
         /// <summary>Add a tractor to the garage if needed.</summary>
         /// <param name="garage">The garage instance.</param>
+        /// <param name="reflection">The SMAPI API to access code dynamically.</param>
         private static void AddHorseIfNeeded(Stable garage, IReflectionHelper reflection)
         {
             Horse horse = garage.getStableHorse();
-            if (horse != null && horse.Name.StartsWith("tractor/"))
+            if (Migrator.IsTractor(horse))
                 TractorManager.SetTractorInfo(horse, TractorSoundType.Horse, reflection); // sound effects will be reset later
+        }
+
+        /// <summary>Get whether the given horse should be treated as a tractor, accounting for legacy tractor data.</summary>
+        /// <param name="horse">The horse to check.</param>
+        private static bool IsTractor(Horse horse)
+        {
+            return
+                TractorManager.IsTractor(horse)
+                || horse?.Name?.StartsWith("tractor/") is true; // pre-4.12.2 tractor
         }
     }
 }

@@ -2,7 +2,13 @@
 
 # Release notes
 ## Upcoming release
+* Simplified tractor names to improve display in mods like NPC Map Locations.
 * Improved translations. Thanks to burunduk (updated Ukrainian), mc-kaishixiaxue (updated Chinese), and mitekano23 (updated Japanese)!
+
+**Note for mod authors:**
+* Tractor Mod now sets tractor names to `Tractor` instead of `tractor/<horse id>`, for better compatibility with mods
+  like NPC Map Locations. If you use the name to identify tractors, that was deprecated in 4.12.2 (January 2021); you
+  can check for a `Pathoschild.TractorMod` entry in the horse's `modData` field instead.
 
 ## 4.17.3
 Released 04 April 2024 for SMAPI 4.0.0 or later.

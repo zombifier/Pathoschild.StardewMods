@@ -101,7 +101,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework
         /// <param name="reflection">The SMAPI API to access code dynamically.</param>
         public static Horse SetTractorInfo(Horse tractor, TractorSoundType soundEffects, IReflectionHelper reflection)
         {
-            tractor.Name = $"tractor/{tractor.HorseId:N}";
+            tractor.Name = "Tractor";
             tractor.modData[TractorManager.TractorDataKey] = "1";
             if (soundEffects != TractorSoundType.Horse)
                 tractor.onFootstepAction = _ => { }; // disable horse clops, tractor audio will be managed separately
