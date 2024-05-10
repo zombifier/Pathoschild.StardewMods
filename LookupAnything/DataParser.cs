@@ -469,7 +469,12 @@ namespace Pathoschild.Stardew.LookupAnything
                         output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJuice(fromObj);
                         break;
 
-                    case "(O)445" when fromObj.preservedParentSheetIndex.Value != "698": // 698 = sturgeon
+                    case "(O)445": // caviar
+                        if (fromObj.preservedParentSheetIndex.Value is not "698")
+                            break; // not a caviar item
+                        if (fromObj.ItemId is ("698" or "447"))
+                            break; // avoid broken items like "Aged Aged Roe Roe"
+
                         output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredAgedRoe(fromObj);
                         break;
                 }

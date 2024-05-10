@@ -5,6 +5,7 @@
 * Added config options for the new collapsible fields.
 * Fixed keg and preserve jar lookups showing incorrect recipe items like "Error Item Jelly" (thanks to b3nk3lly!).
 * Fixed roe lookups showing incorrect caviar recipe (thanks to b3nk3lly!).
+* Fixed roe lookups showing recipes like 'Aged Aged Roe Roe'.
 * Improved translations. Thanks to burunduk (updated Ukrainian), nimbXnumb (updated Russian), ShanderB (updated Portuguese), and ykinsoul (updated Chinese)!
 
 ## 1.42.0
