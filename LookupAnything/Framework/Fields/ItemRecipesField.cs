@@ -344,8 +344,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 {
                     if (ingredient.PreservedItemId != null)
                         obj.preservedParentSheetIndex.Value = ingredient.PreservedItemId;
-                    // setting preserve.Value on any Roe breaks its Display Name
-                    if (ingredient.PreserveType != null && ingredient.PreserveType != SObject.PreserveType.Roe)
+                    if (ingredient.PreserveType != null)
                         obj.preserve.Value = ingredient.PreserveType.Value;
                 }
 
