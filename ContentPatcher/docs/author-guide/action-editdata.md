@@ -261,8 +261,9 @@ example, this [adds a new item](https://stardewvalleywiki.com/Modding:Items) wit
                     "Category": -74,
                     "Price": 1200,
                     "Texture": "Mods/{{ModId}}/Objects"
-            }
-        },
+                }
+            },
+        }
     ]
 }
 ```
