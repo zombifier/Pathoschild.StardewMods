@@ -27,7 +27,7 @@
     "generic.price": "{{price}} ouros",
     "generic.price-for-quality": "{{price}} ouros ({{quality}})",
     "generic.price-for-stack": "{{price}} ouros por uma pilha de {{count}}",
-    "generic.show-x-results": "show {{count}} results", // TODO
+    "generic.show-x-results": "mostrar {{count}} resultados",
 
     // types
     "type.building": "Construção",
@@ -669,15 +669,14 @@
     "config.highlight-unrevealed-gift-tastes.desc": "Se deve destacar preferências de presentes que não foram revelados no perfil do NPC. Quando ativado, as preferências de presentes não reveladas estarão em negrito.",
 
     // collapse fields
-    // TODO
-    "config.title.collapse-fields": "Collapse large fields",
+    "config.title.collapse-fields": "Recolher campos longos",
 
-    "config.collapse-fields.enabled.name": "Enabled",
-    "config.collapse-fields.enabled.desc": "Whether to collapse large fields, so the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
+    "config.collapse-fields.enabled.name": "Habilitado",
+    "config.collapse-fields.enabled.desc": "Se for para minimizar campos longos, o menu de pesquisa substituirá a lista com o a palavra 'mostrar X valores' que pode ser clicada para expandir.",
 
-    "config.collapse-fields.npc-gift-tastes.name": "NPC lookup: gift tastes",
-    "config.collapse-fields.item-recipes.name": "Item lookup: recipes",
-    "config.collapse-fields.any.desc": "If the field contains this many values, the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
+    "config.collapse-fields.npc-gift-tastes.name": "Pesquisa de NPC: preferências de presentes",
+    "config.collapse-fields.item-recipes.name": "Pesquisa de Items: receitas",
+    "config.collapse-fields.any.desc": "Se o campo tiver essa quantidade de valores, o menu de pesquisa substituirá a lista com o a palavra 'mostrar X valores' que pode ser clicada para expandir.",
 
     // advanced options
     "config.title.advanced-options": "Opções avançadas",
