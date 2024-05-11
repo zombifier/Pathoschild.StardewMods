@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Added config options for the new collapsible fields.
+* Re-enabled support for Producer Framework Mod machines (thanks to zombifier!).
 * Fixed keg and preserve jar lookups showing incorrect recipe items like "Error Item Jelly" (thanks to b3nk3lly!).
 * Fixed roe lookups showing incorrect caviar recipe (thanks to b3nk3lly!).
 * Fixed roe lookups showing recipes like 'Aged Aged Roe Roe'.
