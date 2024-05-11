@@ -428,18 +428,19 @@ namespace Pathoschild.Stardew.LookupAnything
 
                 foreach (var outputRule in machineData?.OutputRules ?? []) {
                     foreach (var trigger in outputRule?.Triggers ?? []) {
+                        // Use RequiredTags if specified (and append RequiredItemId as an extra tag rule),
+                        // otherwise use RequiredItemId
+                        string inputId = null;
+                        if (trigger.RequiredTags != null) {
+                            inputId = String.Join(",", trigger.RequiredTags);
+                        }
+                        if (trigger.RequiredItemId != null) {
+                            if (inputId == null) inputId = trigger.RequiredItemId;
+                            else inputId += ",id_" + ItemRegistry.QualifyItemId(trigger.RequiredItemId);
+                        }
+                        if (inputId == null) continue;
                         foreach (var outputItem in outputRule?.OutputItem ?? []) {
                             List<RecipeIngredientModel> ingredients = new List<RecipeIngredientModel>();
-                            // Use RequiredTags if specified (and append RequiredItemId as an extra tag rule),
-                            // otherwise use RequiredItemId
-                            string inputId = null;
-                            if (trigger.RequiredTags != null) {
-                                inputId = String.Join(",", trigger.RequiredTags);
-                            }
-                            if (trigger.RequiredItemId != null) {
-                                if (inputId == null) inputId = trigger.RequiredItemId;
-                                else inputId += ",id_" + ItemRegistry.QualifyItemId(trigger.RequiredItemId);
-                            }
                             ingredients.Add(new RecipeIngredientModel(
                                         inputId,
                                         trigger.RequiredCount,
