@@ -21,10 +21,10 @@ using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Characters;
+using StardewValley.Extensions;
 using StardewValley.GameData.Buildings;
 using StardewValley.GameData.Crafting;
 using StardewValley.GameData.FishPonds;
-using StardewValley.Extensions;
 using StardewValley.Locations;
 using StardewValley.Menus;
 using StardewValley.Objects;
@@ -41,7 +41,6 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>The Custom Farming Redux integration.</summary>
         private readonly CustomFarmingReduxIntegration CustomFarmingRedux;
 
-        // TODO: restore when PFM is updated
         /// <summary>The Producer Framework Mod integration.</summary>
         private readonly ProducerFrameworkModIntegration ProducerFrameworkMod;
 
@@ -653,7 +652,6 @@ namespace Pathoschild.Stardew.LookupAnything
                 foreach (ProducerFrameworkRecipe recipe in this.ProducerFrameworkMod.GetRecipes())
                 {
                     // remove vanilla recipes overridden by a PFM one
-                    // This is always an integer currently, but the API may return context_tag keys in the future.
                     recipes.RemoveAll(r => r.Type == RecipeType.MachineInput && r.MachineId == recipe.MachineId && recipe.InputId != null && r.Ingredients[0].PossibleIds.Contains(recipe.InputId));
 
                     // get machine
