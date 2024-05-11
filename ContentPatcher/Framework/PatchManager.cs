@@ -406,25 +406,25 @@ namespace ContentPatcher.Framework
             // If this is a request for a localized asset which isn't normally localized (like `Data/Buildings.fr-FR`)
             // *or* a new mod-provided asset, only load the base name. If the content manager doesn't find the
             // localized form, it'll load the base form next.
-            {
-                IAssetName assetName = request.Name;
-                IAssetName baseAssetName = request.NameWithoutLocale;
+            IAssetName assetName = request.Name;
+            IAssetName baseAssetName = request.NameWithoutLocale;
+            bool skipLocalizedAssetByDefault =
+                assetName.LocaleCode != null
+                && (
+                    !this.RawFileContentManager.DoesAssetExist<object>($"{baseAssetName}.fr-FR") // check fr-FR instead of the actual locale, since we do want to load it for a custom language
+                    || !this.RawFileContentManager.DoesAssetExist<object>($"{baseAssetName}")
+                );
 
-                bool skipLocalizedAsset =
-                    assetName.LocaleCode != null
-                    && (
-                        !this.RawFileContentManager.DoesAssetExist<object>($"{baseAssetName}.fr-FR") // check fr-FR instead of the actual locale, since we do want to load it for a custom language
-                        || !this.RawFileContentManager.DoesAssetExist<object>($"{baseAssetName}")
-                    );
-
-                if (skipLocalizedAsset)
-                    return Array.Empty<LoadPatch>();
-            }
-
-            // else find matching loader
+            // find matching loader
             return this
-                .GetPatches(request.NameWithoutLocale)
-                .Where(patch => patch.IsReady)
+                .GetPatches(baseAssetName)
+                .Where(patch =>
+                    patch.IsReady
+                    && (patch.TargetLocale is null
+                        ? skipLocalizedAssetByDefault
+                        : string.Equals(patch.TargetLocale, assetName.LocaleCode, StringComparison.InvariantCultureIgnoreCase)
+                    )
+                )
                 .OfType<LoadPatch>();
         }
 
@@ -438,7 +438,11 @@ namespace ContentPatcher.Framework
 
             return this
                 .GetPatches(request.NameWithoutLocale)
-                .Where(patch => patch.Type == patchType && patch.IsReady);
+                .Where(patch =>
+                    patch.Type == patchType
+                    && patch.IsReady
+                    && (patch.TargetLocale is null || string.Equals(patch.TargetLocale, request.Name.LocaleCode, StringComparison.InvariantCultureIgnoreCase))
+                );
         }
 
         /*********

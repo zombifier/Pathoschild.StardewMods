@@ -197,7 +197,7 @@ field         | purpose
 ------------- | -------
 `TargetField` | _(optional)_ When targeting a [list or dictionary](#data-assets), the field within the value to set as the root scope; see [_target field_](#target-field) below. This field supports [tokens](../author-guide.md#tokens).
 `When`        | _(optional)_ Only apply the patch if the given [conditions](../author-guide.md#conditions) match.
-`LogName`     | _(optional)_ A name for this patch to show in log messages. This is useful for understanding errors; if not specified, it'll default to a name like `entry #14 (EditImage Animals/Dinosaurs)`.
+`LogName`     | _(optional)_ A name for this patch to show in log messages. This can be useful for understanding errors. If omitted, it defaults to a name like `EditData Data/Achievements`.
 `Update`      | _(optional)_ How often the patch fields should be updated for token changes. See [update rate](../author-guide.md#update-rate) for more info.
 
 </dd>
@@ -234,9 +234,19 @@ This field does _not_ support tokens, and capitalization doesn't matter.
 > * There's no need to set priorities relative to _your own_ patches, since you can just list them
 >   in the order they should be applied.
 
+  </tr>
+  <tr>
+  <td><code>TargetLocale</code></td>
+  <td>
+
+_(optional)_ The locale code to match in the asset name. For example, setting `"TargetLocale": "fr-FR"`
+will only edit the French localized form of the asset (e.g. `Data/Achievements.fr-FR`). This can be
+an empty string to only edit the base unlocalized asset.
+
+If omitted, it's applied to all localized and unlocalized variants of the asset.
+
 </td>
 </table>
-
 </dd>
 </dl>
 

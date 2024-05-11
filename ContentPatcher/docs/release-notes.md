@@ -10,6 +10,7 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 -->
 ## Upcoming release
+* Added optional `TargetLocale` field to patch a specific localized variant (like `Data/Bundles.fr-FR` but not `Data/Bundles`, or vice versa).
 * Editing content pack settings through Generic Mod Config Menu now force-updates all patches to apply the config changes.
 * Fixed some mod edits not applying correctly for non-English players.
 
