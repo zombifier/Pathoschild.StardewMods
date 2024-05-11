@@ -85,12 +85,9 @@ namespace ContentPatcher.Framework.Api
         /// <summary>Get whether the conditions need to be updated for the current context.</summary>
         private bool ShouldUpdate()
         {
-            // don't update if immutable
-            if (!this.TokenString.IsMutable)
-                return false;
-
-            // else update if context changed
-            return this.LastUpdateTick < this.Context.UpdateTick;
+            return
+                this.TokenString.ShouldUpdate()
+                && this.LastUpdateTick < this.Context.UpdateTick;
         }
     }
 }
