@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Pathoschild.Stardew.LookupAnything.Framework.Data;
 using StardewValley;
 using SObject = StardewValley.Object;
@@ -11,7 +12,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /*********
         ** Accessors
         *********/
-        /// <summary>The unique item IDs that can be used for this ingredient slot.</summary>
+        /// <summary>The unique item IDs or comma-separated tag list that can be used for this ingredient slot.</summary>
         public ISet<string> PossibleIds { get; }
 
         /// <summary>The number required.</summary>
@@ -76,7 +77,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
             bool matchesId =
                 this.PossibleIds.Contains(item.Category.ToString())
                 || this.PossibleIds.Contains(item.ItemId)
-                || this.PossibleIds.Contains(item.QualifiedItemId);
+                || this.PossibleIds.Contains(item.QualifiedItemId)
+                || this.PossibleIds.Any(id => ItemContextTagManager.DoesTagQueryMatch(id, item.GetContextTags()));
             if (!matchesId)
                 return false;
 
