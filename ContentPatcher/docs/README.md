@@ -46,7 +46,7 @@ data       | Only directly affects players that have it installed, but can indir
 ## For mod authors
 * To create content packs, see the [author guide](author-guide.md) and its [tokens subpage](author-guide/tokens.md).
 * To add custom Content Patcher tokens from a SMAPI mod, see the [extensibility API](extensibility.md).
-* To use Content Patcher conditions and token strings in your own SMAPI mod, see the [conditions API](conditions-api.md) and [token string API](values-api.md).
+* To use Content Patcher conditions and token strings in your own SMAPI mod, see the [conditions API](conditions-api.md) and [token string API](token-strings-api.md).
 
 ## Configure
 Content Patcher creates a `config.json` file in its mod folder the first time you run it. You can
