@@ -52,6 +52,8 @@ To access the API:
    ```
 
 ## Parse conditions
+**Note:** see [_caveats_](#caveats) before calling this API.
+
 Now that you have access to the API, you can parse conditions.
 
 1. Create a `Dictionary<string, string>` model of the conditions you want to check. This can use
@@ -71,8 +73,6 @@ Now that you have access to the API, you can parse conditions.
    matches the [`Format` field described in the author guide](author-guide.md#overview) to
    enable forward compatibility with future versions of Content Patcher.
 
-   **Note:** see [_caveats_](#caveats) before calling this API.
-
    ```c#
    var conditions = api.ParseConditions(
       manifest: this.ModManifest,
@@ -81,18 +81,25 @@ Now that you have access to the API, you can parse conditions.
    );
    ```
 
-   If you want to allow custom tokens added by other SMAPI mods, you can specify a list of mod IDs
-   to assume are installed. You don't need to do this for your own mod ID, for mods listed as
-   required dependencies in your mod's `manifest.json`, or for mods listed via `HasMod` in the
-   conditions dictionary.
-   ```c#
-   var conditions = api.ParseConditions(
-      manifest: this.ModManifest,
-      raw: rawConditions,
-      formatVersion: new SemanticVersion("1.20.0"),
-      assumeModIds: new[] { "spacechase0.JsonAssets" }
-   );
+3. Get the result from the `IsMatch` property. For example:
+   ```cs
+   conditions.UpdateContext();
+   if (conditions.IsMatch)
+      ...
    ```
+
+If you want to allow custom tokens added by other SMAPI mods, you can specify a list of mod IDs
+to assume are installed. You don't need to do this for your own mod ID, for mods listed as
+required dependencies in your mod's `manifest.json`, or for mods listed via `HasMod` in the
+conditions dictionary.
+```c#
+var conditions = api.ParseConditions(
+   manifest: this.ModManifest,
+   raw: rawConditions,
+   formatVersion: new SemanticVersion("1.20.0"),
+   assumeModIds: new[] { "spacechase0.JsonAssets" }
+);
+```
 
 ## Manage conditions
 The `IManagedConditions` object you got above provides a number of properties and methods to manage
