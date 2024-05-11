@@ -49,8 +49,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Integrations\ProducerFrameworkMod\ProducerFrameworkRecipe.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integrations\SimpleSprinkler\ISimplerSprinklerApi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integrations\SimpleSprinkler\SimpleSprinklerIntegration.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Integrations\ExtraMachineConfig\IExtraMachineConfigApi.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Integrations\ExtraMachineConfig\ExtraMachineConfigIntegration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Items\SearchableItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Items\ItemRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListExtensions.cs" />

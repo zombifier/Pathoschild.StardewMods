@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pathoschild.Stardew.Common;
-using Pathoschild.Stardew.Common.Integrations.ExtraMachineConfig;
 using Pathoschild.Stardew.LookupAnything.Framework;
 using Pathoschild.Stardew.LookupAnything.Framework.Constants;
 using Pathoschild.Stardew.LookupAnything.Framework.Data;
@@ -364,7 +363,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Get the recipe ingredients.</summary>
         /// <param name="metadata">Provides metadata that's not available from the game data directly.</param>
         /// <param name="monitor">The monitor with which to log errors.</param>
-        public RecipeModel[] GetRecipes(Metadata metadata, IMonitor monitor, ExtraMachineConfigIntegration extraMachineConfig)
+        public RecipeModel[] GetRecipes(Metadata metadata, IMonitor monitor)
         {
             List<RecipeModel> recipes = new List<RecipeModel>();
 
@@ -447,23 +446,6 @@ namespace Pathoschild.Stardew.LookupAnything
                                         null,
                                         null));
                             ingredients.AddRange(additionalConsumedItems);
-                            // add fuel from ExtraMachineConfig
-                            if (extraMachineConfig.IsLoaded) {
-                                foreach (var extraFuelEntry in extraMachineConfig.ModApi.GetExtraRequirements(outputItem)) {
-                                    ingredients.Add(new RecipeIngredientModel(
-                                                extraFuelEntry.Item1,
-                                                extraFuelEntry.Item2,
-                                                null,
-                                                null));
-                                }
-                                foreach (var extraTagFuelEntry in extraMachineConfig.ModApi.GetExtraTagsRequirements(outputItem)) {
-                                    ingredients.Add(new RecipeIngredientModel(
-                                                extraTagFuelEntry.Item1,
-                                                extraTagFuelEntry.Item2,
-                                                null,
-                                                null));
-                                }
-                            }
                             // add recipe
                             ItemQueryContext itemQueryContext = new();
                             var itemQueryResults = ItemQueryResolver.TryResolve(outputItem, itemQueryContext,
