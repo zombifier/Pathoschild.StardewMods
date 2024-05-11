@@ -110,6 +110,7 @@ namespace ContentPatcher.Framework
             return this.ParseConditionsImpl(manifest, conditions, formatVersion, assumeModIds);
         }
 
+        /// <inheritdoc />
         public IApiManagedTokenString ParseTokenString(IManifest manifest, string rawValue, ISemanticVersion formatVersion, string[]? assumeModIds = null)
         {
             // validate lifecycle

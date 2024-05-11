@@ -12,13 +12,13 @@ namespace ContentPatcher.Framework.Api
         /*********
         ** Fields
         *********/
-        /// <summary>The managed token string corresponding to this managed value.</summary>
+        /// <summary>The underlying token string.</summary>
         private readonly IManagedTokenString TokenString;
 
-        /// <summary>The context with which to update conditions.</summary>
+        /// <summary>The context with which to update the token string.</summary>
         private readonly IContext Context;
 
-        /// <summary>The context update tick when the conditions were last updated.</summary>
+        /// <summary>The context update tick when the token string was last updated.</summary>
         private int LastUpdateTick = -1;
 
 
@@ -44,9 +44,9 @@ namespace ContentPatcher.Framework.Api
         *********/
         /// <summary>Construct an instance.</summary>
         /// <param name="tokenString">The underlying token string.</param>
-        /// <param name="context">The context with which to update conditions.</param>
-        /// <param name="isValid">Whether the conditions were parsed successfully (regardless of whether they're in scope currently).</param>
-        /// <param name="validationError">If <paramref name="isValid"/> is false, an error phrase indicating why the conditions failed to parse.</param>
+        /// <param name="context">The context with which to update the token string.</param>
+        /// <param name="isValid">Whether the token string was parsed successfully (regardless of whether its tokens are in scope currently).</param>
+        /// <param name="validationError">If <paramref name="isValid"/> is false, an error phrase indicating why the token string failed to parse.</param>
         public ApiManagedTokenStringForSingleScreen(IManagedTokenString tokenString, IContext context, bool isValid = true, string? validationError = null)
         {
             this.TokenString = tokenString;
@@ -81,7 +81,7 @@ namespace ContentPatcher.Framework.Api
         /*********
         ** Private methods
         *********/
-        /// <summary>Get whether the conditions need to be updated for the current context.</summary>
+        /// <summary>Get whether the token string needs to be updated for the current context.</summary>
         private bool ShouldUpdate()
         {
             return

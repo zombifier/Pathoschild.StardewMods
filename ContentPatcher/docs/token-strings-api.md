@@ -31,7 +31,7 @@ To access the API:
 1. Add Content Patcher as [a **required** dependency in your mod's `manifest.json`](https://stardewvalleywiki.com/Modding:Modder_Guide/APIs/Manifest#Dependencies):
    ```js
    "Dependencies": [
-      { "UniqueID": "Pathoschild.ContentPatcher", "MinimumVersion": "2.0.0" }
+      { "UniqueID": "Pathoschild.ContentPatcher", "MinimumVersion": "2.1.0" }
    ]
    ```
 2. Add a reference to the Content Patcher DLL in your mod's `.csproj` file. Make sure you set
@@ -48,18 +48,18 @@ To access the API:
    ```
 
 ## Parse token strings
+**Note:** see [_caveats_](#caveats) before calling this API.
+
 Now that you have access to the API, you can parse token strings.
 
 1. Create a string to evaluate. This can use Content Patcher features like [tokens](author-guide/tokens.md).
    For example:
    ```c#
-   string rawTokenString = "My favorite season is {{Season}}.";
+   string rawTokenString = "The current time is {{Time}} on {{Season}} {{Day}}, year {{Year}}.";
    ```
 2. Call the API to parse the string into an `IManagedTokenString` wrapper. The `formatVersion`
    matches the [`Format` field described in the author guide](author-guide.md#overview) to enable
    forward compatibility with future versions of Content Patcher.
-
-   **Note:** see [_caveats_](#caveats) before calling this API.
 
    ```c#
    var tokenString = api.ParseTokenString(
@@ -68,18 +68,23 @@ Now that you have access to the API, you can parse token strings.
       formatVersion: new SemanticVersion("2.0.0")
    );
    ```
-
-   If you want to allow custom tokens added by other SMAPI mods, you can specify a list of mod IDs
-   to assume are installed. You don't need to do this for your own mod ID or for mods listed as
-   required dependencies in your mod's `manifest.json`.
-   ```c#
-   var tokenString = api.ParseTokenString(
-      manifest: this.ModManifest,
-      rawValue: rawTokenString,
-      formatVersion: new SemanticVersion("2.0.0"),
-      assumeModIds: new[] { "spacechase0.JsonAssets" }
-   );
+3. Get the parsed string from the `Value` property. For example:
+   ```cs
+   tokenString.UpdateContext();
+   string value = tokenString.Value; // The current time is 1430 on Spring 5, year 2.
    ```
+
+If you want to allow custom tokens added by other SMAPI mods, you can specify a list of mod IDs
+to assume are installed. You don't need to do this for your own mod ID or for mods listed as
+required dependencies in your mod's `manifest.json`.
+```c#
+var tokenString = api.ParseTokenString(
+   manifest: this.ModManifest,
+   rawValue: rawTokenString,
+   formatVersion: new SemanticVersion("2.0.0"),
+   assumeModIds: new[] { "spacechase0.JsonAssets" }
+);
+```
 
 ## Manage token strings
 The `IManagedTokenString` object you got above provides a number of properties and methods to

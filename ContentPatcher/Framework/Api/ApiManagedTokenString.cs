@@ -21,7 +21,7 @@ namespace ContentPatcher.Framework.Api
         ** Accessors
         *********/
         /// <inheritdoc />
-        [MemberNotNullWhen(false, nameof(ApiManagedConditions.ValidationError))]
+        [MemberNotNullWhen(false, nameof(ApiManagedTokenString.ValidationError))]
         public bool IsValid => this.ManagedValues.Value.IsValid;
 
         /// <inheritdoc />
@@ -38,7 +38,7 @@ namespace ContentPatcher.Framework.Api
         ** Public methods
         *********/
         /// <summary>Construct an instance.</summary>
-        /// <param name="parse">Get parsed value for the currently active screen.</param>
+        /// <param name="parse">Get a parsed token string for the currently active screen.</param>
         public ApiManagedTokenString(Func<IApiManagedTokenString> parse)
         {
             this.ManagedValues = new PerScreen<IApiManagedTokenString>(parse);
