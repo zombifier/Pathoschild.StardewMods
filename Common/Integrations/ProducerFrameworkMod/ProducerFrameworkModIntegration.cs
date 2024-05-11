@@ -25,7 +25,7 @@ namespace Pathoschild.Stardew.Common.Integrations.ProducerFrameworkMod
         /// <param name="modRegistry">An API for fetching metadata about loaded mods.</param>
         /// <param name="monitor">Encapsulates monitoring and logging.</param>
         public ProducerFrameworkModIntegration(IModRegistry modRegistry, IMonitor monitor)
-            : base("Producer Framework Mod", "Digus.ProducerFrameworkMod", "1.3.0", modRegistry, monitor) { }
+            : base("Producer Framework Mod", "Digus.ProducerFrameworkMod", "1.9.3", modRegistry, monitor) { }
 
         /// <summary>Get the list of recipes.</summary>
         /// <remarks>The recipe format follow the MachineRecipeData class properties from Lookup Anything mod. There are some additional properties that are not presented on that class, these ones has the name of the content pack properties of this mod.</remarks>
