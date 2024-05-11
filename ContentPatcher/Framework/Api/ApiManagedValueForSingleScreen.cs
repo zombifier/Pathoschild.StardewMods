@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using ContentPatcher.Framework.Commands;
-using ContentPatcher.Framework.Conditions;
 using ContentPatcher.Framework.Tokens;
+using IApiManagedTokenString = ContentPatcher.IManagedTokenString;
 
 namespace ContentPatcher.Framework.Api
 {
-    /// <summary>A parsed string linked to the Content Patcher context for an API consumer, which assume they're always run on the same screen.</summary>
-    internal class ApiManagedValueForSingleScreen : IManagedValue
+    /// <summary>A parsed string which may contain Content Patcher tokens matched against Content Patcher's internal context for an API consumer. This implementation assume it's always run on the same screen.</summary>
+    internal class ApiManagedTokenStringForSingleScreen : IApiManagedTokenString
     {
         /*********
         ** Fields
@@ -27,7 +26,7 @@ namespace ContentPatcher.Framework.Api
         ** Accessors
         *********/
         /// <inheritdoc />
-        [MemberNotNullWhen(false, nameof(ApiManagedValue.ValidationError))]
+        [MemberNotNullWhen(false, nameof(ApiManagedTokenStringForSingleScreen.ValidationError))]
         public bool IsValid { get; }
 
         /// <inheritdoc />
@@ -48,7 +47,7 @@ namespace ContentPatcher.Framework.Api
         /// <param name="context">The context with which to update conditions.</param>
         /// <param name="isValid">Whether the conditions were parsed successfully (regardless of whether they're in scope currently).</param>
         /// <param name="validationError">If <paramref name="isValid"/> is false, an error phrase indicating why the conditions failed to parse.</param>
-        public ApiManagedValueForSingleScreen(IManagedTokenString tokenString, IContext context, bool isValid = true, string? validationError = null)
+        public ApiManagedTokenStringForSingleScreen(IManagedTokenString tokenString, IContext context, bool isValid = true, string? validationError = null)
         {
             this.TokenString = tokenString;
             this.Context = context;

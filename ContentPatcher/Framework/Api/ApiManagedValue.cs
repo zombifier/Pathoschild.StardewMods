@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using StardewModdingAPI.Utilities;
+using IApiManagedTokenString = ContentPatcher.IManagedTokenString;
 
 namespace ContentPatcher.Framework.Api
 {
-    /// <summary>A parsed string linked to the Content Patcher context for an API consumer. This implementation is <strong>per-screen</strong>, so the result depends on the screen that's active when calling the members.</summary>
-    internal class ApiManagedValue : IManagedValue
+    /// <summary>A parsed string which may contain Content Patcher tokens matched against Content Patcher's internal context for an API consumer. This implementation is <strong>per-screen</strong>, so the result depends on the screen that's active when calling the members.</summary>
+    internal class ApiManagedTokenString : IApiManagedTokenString
     {
         /*********
         ** Fields
         *********/
         /// <summary>The underlying values.</summary>
-        private readonly PerScreen<IManagedValue> ManagedValues;
+        private readonly PerScreen<IApiManagedTokenString> ManagedValues;
 
 
         /*********
@@ -38,9 +39,9 @@ namespace ContentPatcher.Framework.Api
         *********/
         /// <summary>Construct an instance.</summary>
         /// <param name="parse">Get parsed value for the currently active screen.</param>
-        public ApiManagedValue(Func<IManagedValue> parse)
+        public ApiManagedTokenString(Func<IApiManagedTokenString> parse)
         {
-            this.ManagedValues = new PerScreen<IManagedValue>(parse);
+            this.ManagedValues = new PerScreen<IApiManagedTokenString>(parse);
         }
 
         /// <inheritdoc />

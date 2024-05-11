@@ -8,8 +8,8 @@ the [main README](README.md) for other info**.
 ## Contents
 * [Overview](#overview)
 * [Access the API](#access-the-api)
-* [Parse conditions](#parse-tokens)
-* [Manage conditions](#manage-tokens)
+* [Parse token strings](#parse-token-strings)
+* [Manage token strings](#manage-token-strings)
 * [Caveats](#caveats)
 * [See also](#see-also)
 
@@ -21,9 +21,9 @@ strings using contextual values. For example:
 "My favorite season is {{Season}}." // If a save is loaded, {{Season}} will be replaced with the current season.
 ```
 
-Other SMAPI mods can use this token system too. They essentially create a string with the tokens they
-want to have evaluated and call the API below to get a 'managed value' object, then use that to
-manage the token string.
+Other SMAPI mods can use this token system too. They essentially create a string with the tokens
+they want to have evaluated and call the API below to get a 'managed token string' object, then use
+that to manage the token string.
 
 ## Access the API
 To access the API:
@@ -50,44 +50,41 @@ To access the API:
 ## Parse token strings
 Now that you have access to the API, you can parse token strings.
 
-1. Create a string that you want to evaluate. This can use
-   Content Patcher features like tokens. For this example, let's assume you have these hardcoded
-   conditions (see the [conditions documentation](author-guide/tokens.md) for the format):
+1. Create a string to evaluate. This can use Content Patcher features like [tokens](author-guide/tokens.md).
+   For example:
    ```c#
-   string tokenString = "My favorite season is {{Season}}.";
+   string rawTokenString = "My favorite season is {{Season}}.";
    ```
-
-2. Call the API to parse the conditions into an `IManagedValue` wrapper. The `formatVersion`
-   matches the [`Format` field described in the author guide](author-guide.md#overview) to
-   enable forward compatibility with future versions of Content Patcher.
+2. Call the API to parse the string into an `IManagedTokenString` wrapper. The `formatVersion`
+   matches the [`Format` field described in the author guide](author-guide.md#overview) to enable
+   forward compatibility with future versions of Content Patcher.
 
    **Note:** see [_caveats_](#caveats) before calling this API.
 
    ```c#
-   var conditions = api.ParseValues(
+   var tokenString = api.ParseTokenString(
       manifest: this.ModManifest,
-      rawValue: tokenString,
+      rawValue: rawTokenString,
       formatVersion: new SemanticVersion("2.0.0")
    );
    ```
 
    If you want to allow custom tokens added by other SMAPI mods, you can specify a list of mod IDs
-   to assume are installed. You don't need to do this for your own mod ID, for mods listed as
-   required dependencies in your mod's `manifest.json`, or for mods listed via `HasMod` in the
-   conditions dictionary.
+   to assume are installed. You don't need to do this for your own mod ID or for mods listed as
+   required dependencies in your mod's `manifest.json`.
    ```c#
-   var conditions = api.ParseConditions(
+   var tokenString = api.ParseTokenString(
       manifest: this.ModManifest,
-      rawValue: tokenString,
+      rawValue: rawTokenString,
       formatVersion: new SemanticVersion("2.0.0"),
       assumeModIds: new[] { "spacechase0.JsonAssets" }
    );
    ```
 
-## Manage conditions
-The `IManagedValue` object you got above provides a number of properties and methods to manage
-the parsed token string. You can check IntelliSense in Visual Studio to see what's available, but
-here are some of the most useful properties:
+## Manage token strings
+The `IManagedTokenString` object you got above provides a number of properties and methods to
+manage the parsed token string. You can check IntelliSense in Visual Studio to see what's available,
+but here are some of the most useful properties:
 
 <table>
 <tr>
@@ -101,7 +98,7 @@ here are some of the most useful properties:
 <td><code>bool</code></td>
 <td>
 
-Whether the token string was parsed successfully (regardless of whether they're in scope currently).
+Whether the token string was parsed successfully (regardless of whether its tokens are in scope currently).
 
 </td>
 </tr>
@@ -114,7 +111,7 @@ When `IsValid` is false, an error phrase indicating why the token string failed 
 like this:
 > 'seasonz' isn't a valid token name; must be one of &lt;token list&gt;
 
-If the conditions are valid, this is `null`.
+If the token string is valid, this is `null`.
 
 </td>
 </tr>
@@ -123,8 +120,8 @@ If the conditions are valid, this is `null`.
 <td><code>bool</code></td>
 <td>
 
-Whether the string's tokens are all valid in the current context. For example, this would be
-false if the conditions use `Season` and a save isn't loaded yet.
+Whether the token string's tokens are all valid in the current context. For example, this would be
+false if the token string uses `{{Season}}` and a save isn't loaded yet.
 
 </td>
 </tr>
@@ -165,36 +162,36 @@ context hasn't changed since you last called it.
 
 ## Caveats
 <dl>
-<dt>The conditions API isn't available immediately.</dt>
+<dt>The token string API isn't available immediately.</dt>
 <dd>
 
-The conditions API is available two ticks after the `GameLaunched` event (and anytime after that
+The token string API is available two ticks after the `GameLaunched` event (and anytime after that
 point). That's due to the Content Patcher lifecycle:
 
 1. `GameLaunched`: other mods can register custom tokens.
 2. `GameLaunched + 1 tick`: Content Patcher initializes the token context (including custom tokens).
-3. `GameLaunched + 2 ticks`: other mods can use the conditions API.
+3. `GameLaunched + 2 ticks`: other mods can use the token string API.
 
 </dd>
-<dt>Conditions should be cached.</dt>
+<dt>Token strings should be cached.</dt>
 <dd>
 
-Parsing conditions through the API is a relatively expensive operation. If you'll recheck the same
-conditions often, it's best to save and reuse the `IManagedConditions` instance.
+Parsing token strings through the API is a relatively expensive operation. If you'll recheck the
+same token string often, it's best to save and reuse the `IManagedTokenString` instance.
 
 </dd>
-<dt>Values don't update automatically.</dt>
+<dt>Token strings don't update automatically.</dt>
 <dd>
 
-When using a cached `IManagedValue` object, make sure to update it using
-`value.UpdateContext()` as needed.
+When using a cached `IManagedTokenString` object, make sure to update it using
+`tokenString.UpdateContext()` as needed.
 
-Note that condition updates are limited to Content Patcher's [update
-rate](author-guide.md#update-rate). When you call `conditions.UpdateContext()`, it will reflect the
-tokens as of Content Patcher's last internal context update.
+Note that token string updates are limited to Content Patcher's [update
+rate](author-guide.md#update-rate). When you call `tokenString.UpdateContext()`, it will reflect
+the tokens as of Content Patcher's last internal context update.
 
 </dd>
-<dt>Values handle split-screen automatically.</dt>
+<dt>Token strings handle split-screen automatically.</dt>
 <dd>
 
 For example, `Value` returns the value for the _current screen's_ context. The exception is
