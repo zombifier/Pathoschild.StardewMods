@@ -12,7 +12,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /*********
         ** Accessors
         *********/
-        /// <summary>The unique item IDs or comma-separated tag list that can be used for this ingredient slot.</summary>
+        /// <summary>The unique item IDs or comma-separated context tags that can be used for this ingredient slot.</summary>
         public ISet<string> PossibleIds { get; }
 
         /// <summary>The number required.</summary>

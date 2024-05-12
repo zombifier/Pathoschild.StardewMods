@@ -369,10 +369,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 //if (input == null)
                 //    return null;
                 return this.CreateItemEntry(
-                        name: id,
-                        minCount: ingredient.Count,
-                        maxCount: ingredient.Count
-                        );
+                    name: id,
+                    minCount: ingredient.Count,
+                    maxCount: ingredient.Count
+                );
             }
         }
 
@@ -384,6 +384,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="maxCount">The maximum number of items needed or created.</param>
         /// <param name="chance">The chance of creating an output item.</param>
         /// <param name="isOutput">Whether the item is output or input.</param>
+        /// <param name="hasCondition">Whether this recipe is only available if arbitrary conditions are met.</param>
         private RecipeItemEntry CreateItemEntry(string name, Item? item = null, SpriteInfo? sprite = null, int minCount = 1, int maxCount = 1, decimal chance = 100, bool isOutput = false, bool hasCondition = false)
         {
             // get display text

@@ -78,6 +78,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>The MultiFertilizer integration.</summary>
         public MultiFertilizerIntegration MultiFertilizer { get; }
 
+
         /*********
         ** Public methods
         *********/

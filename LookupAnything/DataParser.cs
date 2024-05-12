@@ -11,7 +11,6 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Characters;
-using StardewValley.GameData;
 using StardewValley.GameData.Buildings;
 using StardewValley.GameData.FishPonds;
 using StardewValley.GameData.Locations;
@@ -389,7 +388,7 @@ namespace Pathoschild.Stardew.LookupAnything
                 }
             }
 
-            // machine recipes
+            // machine recipes from metadata
             recipes.AddRange(
                 from entry in metadata.MachineRecipes
                 let itemData = ItemRegistry.GetDataOrErrorItem(ItemRegistry.type_bigCraftable + entry.MachineID)
@@ -415,73 +414,89 @@ namespace Pathoschild.Stardew.LookupAnything
                     isForMachine: p => p is SObject obj && obj.QualifiedItemId == itemData.QualifiedItemId)
             );
 
-            // Get machine recipes from Data/Machines
+            // machine recipes from Data/Machines
             // TODO: Add support for checking conditions/GSQ/Item Queries
-            var machineRecipes = new List<RecipeModel>();
-			foreach (var entry in Game1.content.Load<Dictionary<string, MachineData>>("Data\\Machines")) {
-                (string machineName, MachineData machineData) = entry;
-                SObject machine = ItemRegistry.Create<SObject>(machineName);
-                if (machine == null) continue;
-                IEnumerable<RecipeIngredientModel> additionalConsumedItems = machineData.AdditionalConsumedItems?.Select(item =>
-                        new RecipeIngredientModel(item.ItemId, item.RequiredCount)) ?? [];
+            foreach ((string entryKey, MachineData machineData) in Game1.content.Load<Dictionary<string, MachineData>>("Data\\Machines"))
+            {
+                string machineId = entryKey; // avoid referencing loop variable in closure
 
-                foreach (var outputRule in machineData?.OutputRules ?? []) {
-                    foreach (var trigger in outputRule?.Triggers ?? []) {
-                        // Use RequiredTags if specified (and append RequiredItemId as an extra tag rule),
-                        // otherwise use RequiredItemId
-                        string inputId = null;
-                        if (trigger.RequiredTags != null) {
-                            inputId = String.Join(",", trigger.RequiredTags);
+                if (machineData?.OutputRules?.Count is not > 0)
+                    continue;
+
+                RecipeIngredientModel[] additionalConsumedItems =
+                    machineData.AdditionalConsumedItems?.Select(item => new RecipeIngredientModel(item.ItemId, item.RequiredCount)).ToArray()
+                    ?? Array.Empty<RecipeIngredientModel>();
+
+                foreach (MachineOutputRule? outputRule in machineData.OutputRules)
+                {
+                    if (outputRule.Triggers?.Count is not > 0 || outputRule.OutputItem?.Count is not > 0)
+                        continue;
+
+                    foreach (MachineOutputTriggerRule? trigger in outputRule.Triggers)
+                    {
+                        if (trigger is null)
+                            continue;
+
+                        // build key to represent required context tag or ID
+                        string? inputId = null;
+                        if (trigger.RequiredTags?.Count > 0)
+                            inputId = string.Join(",", trigger.RequiredTags);
+                        if (trigger.RequiredItemId != null)
+                        {
+                            if (inputId == null)
+                                inputId = trigger.RequiredItemId;
+                            else
+                                inputId += ",id_" + ItemRegistry.QualifyItemId(trigger.RequiredItemId);
                         }
-                        if (trigger.RequiredItemId != null) {
-                            if (inputId == null) inputId = trigger.RequiredItemId;
-                            else inputId += ",id_" + ItemRegistry.QualifyItemId(trigger.RequiredItemId);
-                        }
-                        if (inputId == null) continue;
-                        foreach (var outputItem in outputRule?.OutputItem ?? []) {
-                            List<RecipeIngredientModel> ingredients = new List<RecipeIngredientModel>();
-                            ingredients.Add(new RecipeIngredientModel(
-                                        inputId,
-                                        trigger.RequiredCount,
-                                        null,
-                                        null));
+                        if (inputId is null)
+                            continue;
+
+                        // build output list
+                        foreach (MachineItemOutput? outputItem in outputRule.OutputItem)
+                        {
+                            if (outputItem is null)
+                                continue;
+
+                            // add ingredients
+                            List<RecipeIngredientModel> ingredients = new()
+                            {
+                                new RecipeIngredientModel(inputId, trigger.RequiredCount)
+                            };
                             ingredients.AddRange(additionalConsumedItems);
-                            // add recipe
+
+                            // add produced item
                             ItemQueryContext itemQueryContext = new();
-                            var itemQueryResults = ItemQueryResolver.TryResolve(outputItem, itemQueryContext,
-                                    formatItemId: (string id) => {
-                                    if (string.IsNullOrWhiteSpace(id)) {
-                                    return id;
-                                    }
-                                    return id.Replace("DROP_IN_ID", "0").Replace("DROP_IN_PRESERVE", "0").Replace("NEARBY_FLOWER_ID", "0");
-                                    });
-                            foreach (var itemQueryResult in itemQueryResults) {
-                                machineRecipes.Add(new RecipeModel(
-                                            key: null,
-                                            type: RecipeType.MachineInput,
-                                            displayType: machine.DisplayName,
-                                            ingredients,
-                                            item: ingredient => {
-                                              return ItemRegistry.Create(itemQueryResult.Item.QualifiedItemId);
-                                            },
-                                            isKnown: () => true,
-                                            machineId: machine.ItemId,
-                                            isForMachine: p => p is SObject obj && obj.QualifiedItemId == machine.QualifiedItemId,
-                                            //exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id!.Value, 1)),
-                                            exceptIngredients: null,
-                                            outputQualifiedItemId: itemQueryResult.Item.QualifiedItemId,
-                                            minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,
-                                            maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null,
-                                            // TODO: Calculate this better
-                                            outputChance: 100 / outputRule.OutputItem.Count / itemQueryResults.Count,
-                                            hasCondition: trigger.Condition != null || outputItem.Condition != null
-                                            ));
-                            }
+                            IList<ItemQueryResult>? itemQueryResults = ItemQueryResolver.TryResolve(
+                                outputItem,
+                                itemQueryContext,
+                                formatItemId: id => id?.Replace("DROP_IN_ID", "0").Replace("DROP_IN_PRESERVE", "0").Replace("NEARBY_FLOWER_ID", "0")
+                            );
+
+                            // add to list
+                            recipes.AddRange(
+                                from result in itemQueryResults
+                                select new RecipeModel(
+                                    key: null,
+                                    type: RecipeType.MachineInput,
+                                    displayType: ItemRegistry.GetDataOrErrorItem(machineId).DisplayName,
+                                    ingredients,
+                                    item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
+                                    isKnown: () => true,
+                                    machineId: machineId,
+                                    isForMachine: p => p is Item item && item.QualifiedItemId == machineId,
+                                    //exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id!.Value, 1)),
+                                    exceptIngredients: null,
+                                    outputQualifiedItemId: result.Item.QualifiedItemId,
+                                    minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,
+                                    maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null, // TODO: Calculate this better
+                                    outputChance: 100 / outputRule.OutputItem.Count / itemQueryResults.Count,
+                                    hasCondition: trigger.Condition != null || outputItem.Condition != null
+                                )
+                            );
                         }
                     }
                 }
             }
-                recipes.AddRange(machineRecipes);
 
             // building recipes
             recipes.AddRange(
