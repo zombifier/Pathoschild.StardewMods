@@ -27,7 +27,7 @@
     "generic.price": "{{price}}g",
     "generic.price-for-quality": "{{price}}g ({{quality}})",
     "generic.price-for-stack": "{{price}}g ogni {{count}}",
-    "generic.show-x-results": "show {{count}} results", // TODO
+    "generic.show-x-results": "mostra {{count}} risultati",
 
     // types
     "type.building": "Edificio",
@@ -668,15 +668,14 @@
     "config.highlight-unrevealed-gift-tastes.desc": "Scegli se evidenziare i gusti dei regali degli oggetti che non sono stati rivelati nel profilo del PNG. Se abilitato, i gusti dei regali non rivelati saranno in grassetto.",
 
     // collapse fields
-    // TODO
-    "config.title.collapse-fields": "Collapse large fields",
+    "config.title.collapse-fields": "Riduzione dei campi grandi",
 
-    "config.collapse-fields.enabled.name": "Enabled",
-    "config.collapse-fields.enabled.desc": "Whether to collapse large fields, so the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
+    "config.collapse-fields.enabled.name": "Abilitato",
+    "config.collapse-fields.enabled.desc": "Scegli se ridurre i campi grandi, in modo che il menu di ricerca sostituisca l'elenco con un link cliccabile 'mostra i valori X' per espanderlo.",
 
-    "config.collapse-fields.npc-gift-tastes.name": "NPC lookup: gift tastes",
-    "config.collapse-fields.item-recipes.name": "Item lookup: recipes",
-    "config.collapse-fields.any.desc": "If the field contains this many values, the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
+    "config.collapse-fields.npc-gift-tastes.name": "Ricerca PNG: gusti dei regali",
+    "config.collapse-fields.item-recipes.name": "Ricerca oggetti: ricette",
+    "config.collapse-fields.any.desc": "Se il campo contiene così tanti valori, il menu di ricerca sostituirà l'elenco con un link 'mostra X valori' cliccabile per espanderlo.",
 
     // advanced options
     "config.title.advanced-options": "Opzioni avanzate",
