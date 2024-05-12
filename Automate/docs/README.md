@@ -37,7 +37,7 @@ of it.
 
 By default, Automate supports...
 
-* custom machines using the Stardew Valley 1.6+ format;
+* custom buildings and machines using the Stardew Valley 1.6+ format;
 * all vanilla machines, including:
   * [anvils](https://stardewvalleywiki.com/Anvil);
   * [auto-grabbers](https://stardewvalleywiki.com/Auto-Grabber);
@@ -77,17 +77,18 @@ By default, Automate supports...
   * [statues of true perfection](https://stardewvalleywiki.com/Statue_Of_True_Perfection);
   * [wood chippers](https://stardewvalleywiki.com/Wood_Chipper);
   * and [worm bins](https://stardewvalleywiki.com/Worm_Bin) (including deluxe worm bins);
-* some things you wouldn't normally consider machines:
-  * bushes (including [blackberry](https://stardewvalleywiki.com/Blackberry), [salmonberry](https://stardewvalleywiki.com/Salmonberry), and [tea](https://stardewvalleywiki.com/Tea_Bush) bushes);
+* all vanilla buildings with input/output, including:
   * [fish ponds](https://stardewvalleywiki.com/Fish_Pond) (for output only);
-  * [fruit trees](https://stardewvalleywiki.com/Fruit_Trees);
-  * [garbage cans](https://stardewvalleywiki.com/Garbage_Can);
   * [Junimo huts](https://stardewvalleywiki.com/Junimo_Hut);
   * [mills](https://stardewvalleywiki.com/Mill);
+  * and [silos](https://stardewvalleywiki.com/Silo);
+* some things you wouldn't normally consider machines:
+  * bushes (including [blackberry](https://stardewvalleywiki.com/Blackberry), [salmonberry](https://stardewvalleywiki.com/Salmonberry), and [tea](https://stardewvalleywiki.com/Tea_Bush) bushes);
+  * [fruit trees](https://stardewvalleywiki.com/Fruit_Trees);
+  * [garbage cans](https://stardewvalleywiki.com/Garbage_Can);
   * [shipping bin](https://stardewvalleywiki.com/Shipping) (configurable);
-  * [silos](https://stardewvalleywiki.com/Silo);
   * [tappers](https://stardewvalleywiki.com/Tapper);
-  * [trees](https://stardewvalleywiki.com/Trees);
+  * and [trees](https://stardewvalleywiki.com/Trees);
 * and these containers:
   * [chests](https://stardewvalleywiki.com/Chest) (including variants like [big chests](https://stardewvalleywiki.com/Big_Chest) and [stone chests](https://stardewvalleywiki.com/Stone_Chest));
   * farmhouse/cabin fridges;

@@ -1,89 +1,104 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using StardewValley;
 using StardewValley.Buildings;
+using StardewValley.GameData.Buildings;
 using StardewValley.Inventories;
 using StardewValley.Objects;
-using SObject = StardewValley.Object;
 
 namespace Pathoschild.Stardew.Automate.Framework.Machines.Buildings
 {
-    /// <summary>A mill machine that accepts input and provides output.</summary>
-    internal class MillMachine : BaseMachineForBuilding<Building>
+    /// <summary>A building that accepts input and provides output based on the rules in <see cref="DataLoader.Buildings"/>.</summary>
+    internal class DataBasedBuildingMachine : BaseMachineForBuilding<Building>
     {
         /*********
         ** Fields
         *********/
-        /// <summary>The mill's input chest.</summary>
-        private Chest Input => this.Machine.GetBuildingChest("Input");
+        /// <summary>The cached building data from <see cref="Building.GetData"/>.</summary>
+        private BuildingData Data;
 
-        /// <summary>The mill's output chest.</summary>
-        private Chest Output => this.Machine.GetBuildingChest("Output");
+        /// <summary>The output chest IDs.</summary>
+        private readonly HashSet<string> OutputChests = new();
 
-        /// <summary>The maximum input stack size to allow per qualified item ID, if different from <see cref="Item.maximumStackSize"/>.</summary>
-        private readonly IDictionary<string, int> MaxInputStackSize;
+        /// <summary>The input chest IDs.</summary>
+        private readonly HashSet<string> InputChests = new();
 
 
         /*********
         ** Public methods
         *********/
         /// <summary>Construct an instance.</summary>
-        /// <param name="mill">The underlying mill.</param>
-        /// <param name="location">The location which contains the machine.</param>
-        public MillMachine(Building mill, GameLocation location)
-            : base(mill, location, BaseMachine.GetTileAreaFor(mill))
+        /// <param name="building">The underlying building.</param>
+        /// <param name="location">The location which contains the building.</param>
+        public DataBasedBuildingMachine(Building building, GameLocation location)
+            : base(building, location, GetTileAreaFor(building), GetDefaultMachineId(building.buildingType.Value))
         {
-            this.MaxInputStackSize = new Dictionary<string, int>
-            {
-                ["(O)284"] = ItemRegistry.Create("(O)284").maximumStackSize() / 3 // beet => 3 sugar (reduce stack to avoid overfilling output)
-            };
+            this.UpdateData();
         }
 
-        /// <summary>Get the machine's processing state.</summary>
+        /// <summary>Get whether a building can be automated by this implementation.</summary>
+        /// <param name="building">The building instance.</param>
+        public static bool CanAutomate(Building building)
+        {
+            return building.GetData()?.ItemConversions?.Count > 0;
+        }
+
+        /// <inheritdoc />
         public override MachineState GetState()
         {
-            if (this.Machine.isUnderConstruction())
+            Building building = this.Machine;
+
+            // disabled
+            if (building.isUnderConstruction())
                 return MachineState.Disabled;
 
-            if (this.Output.Items.Any(item => item != null))
-                return MachineState.Done;
-
-            return this.InputFull()
-                ? MachineState.Processing
-                : MachineState.Empty; // 'empty' insofar as it will accept more input, not necessarily empty
-        }
-
-        /// <summary>Get the output item.</summary>
-        public override ITrackedStack? GetOutput()
-        {
-            return this.GetTracked(this.Output.Items.FirstOrDefault(item => item != null), onEmpty: this.OnOutputTaken);
-        }
-
-        /// <summary>Provide input to the machine.</summary>
-        /// <param name="input">The available items.</param>
-        /// <returns>Returns whether the machine started processing an item.</returns>
-        public override bool SetInput(IStorage input)
-        {
-            if (this.InputFull())
-                return false;
-
-            // fill input with wheat (262), beets (284), and rice (271)
-            bool anyPulled = false;
-            foreach (ITrackedStack stack in input.GetItems().Where(i => i.Sample.QualifiedItemId is "(O)262" or "(O)284" or "(O)271"))
+            // output ready
+            foreach (string chestId in this.OutputChests)
             {
-                // add item
-                bool anyAdded = this.TryAddInput(stack);
-                if (!anyAdded)
-                    continue;
-                anyPulled = true;
-
-                // stop if full
-                if (this.InputFull())
-                    return true;
+                if (this.GetBuildingChest(chestId)?.Items?.Count > 0)
+                    return MachineState.Done;
             }
 
-            return anyPulled;
+            // can accept input
+            foreach (string chestId in this.InputChests)
+            {
+                Chest? chest = this.GetBuildingChest(chestId);
+                if (chest is null)
+                    continue;
+
+                if (!this.InputFull(chest))
+                    return MachineState.Empty;
+            }
+
+            return MachineState.Processing;
+        }
+
+        /// <inheritdoc />
+        public override ITrackedStack? GetOutput()
+        {
+            foreach (string outputId in this.OutputChests)
+            {
+                Chest? output = this.GetBuildingChest(outputId);
+                if (output is null)
+                    continue;
+
+                foreach (Item item in output.Items)
+                {
+                    if (item is not null)
+                        return this.GetTracked(item, onEmpty: taken => this.OnOutputTaken(output, taken));
+                }
+            }
+
+            return null;
+        }
+
+        /// <inheritdoc />
+        public override bool SetInput(IStorage input)
+        {
+            return
+                this.TryGetItemConversion(input, out Chest? inputChest, out ITrackedStack? fromStack, out BuildingItemConversion? rule)
+                && this.TryAddInput(fromStack, inputChest, rule.RequiredCount);
         }
 
 
@@ -92,51 +107,55 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Buildings
         *********/
         /// <summary>Try to add an item to the input queue, and adjust its stack size accordingly.</summary>
         /// <param name="item">The item stack to add.</param>
+        /// <param name="chest">The chest to which to add the item.</param>
+        /// <param name="count">The number of the <paramref name="item"/> to add.</param>
         /// <returns>Returns whether any items were taken from the stack.</returns>
-        private bool TryAddInput(ITrackedStack item)
+        private bool TryAddInput(ITrackedStack item, Chest chest, int count)
         {
             // nothing to add
             if (item.Count <= 0)
                 return false;
 
             // clean up input bin
-            this.Input.clearNulls();
+            chest.clearNulls();
 
             // try adding to input
-            int originalSize = item.Count;
-            IList<Item> slots = this.Input.Items;
-            int maxStackSize = this.GetMaxInputStackSize(item.Sample);
-            for (int i = 0; i < Chest.capacity; i++)
+            int originalCount = item.Count;
+            IInventory slots = chest.GetItemsForPlayer();
+            int maxStackSize = item.Sample.maximumStackSize();
+            for (int i = 0; i < chest.GetActualCapacity() && count > 0; i++)
             {
-                // done
-                if (item.Count <= 0)
-                    break;
+                // add new slot
+                if (slots.Count <= i)
+                {
+                    slots.Add(item.Take(count)!);
+                    count = 0;
+                }
 
-                // add to existing slot
-                if (slots.Count > i)
+                // else add to existing slot
+                else
                 {
                     Item slot = slots[i];
                     if (item.Sample.canStackWith(slot) && slot.Stack < maxStackSize)
                     {
                         Item sample = item.Sample.getOne();
-                        sample.Stack = Math.Min(item.Count, maxStackSize - slot.Stack); // the most items we can add to the stack (in theory)
+                        sample.Stack = Math.Min(count, maxStackSize - slot.Stack); // the most items we can add to the stack (in theory)
                         int actualAdded = sample.Stack - slot.addToStack(sample); // how many items were actually added to the stack
-                        item.Reduce(actualAdded);
-                    }
-                    continue;
-                }
 
-                // add to new slot
-                slots.Add(item.Take(Math.Min(item.Count, maxStackSize))!);
+                        item.Reduce(actualAdded);
+                        count -= actualAdded;
+                    }
+                }
             }
 
-            return item.Count < originalSize;
+            return count < originalCount;
         }
 
-        /// <summary>Get whether the mill's input bin is full.</summary>
-        private bool InputFull()
+        /// <summary>Get whether an input chest is full.</summary>
+        /// <param name="chest">The input chest to check.</param>
+        private bool InputFull(Chest chest)
         {
-            Inventory slots = this.Input.Items;
+            Inventory slots = chest.Items;
 
             // free slots
             if (slots.Count < Chest.capacity)
@@ -145,34 +164,85 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Buildings
             // free space in stacks
             foreach (Item? slot in slots)
             {
-                if (slot == null || slot.Stack < this.GetMaxInputStackSize(slot))
+                if (slot is null || slot.Stack < slot.maximumStackSize())
                     return false;
             }
+
             return true;
         }
 
-
-        /*********
-        ** Private methods
-        *********/
         /// <summary>Remove an output item once it's been taken.</summary>
+        /// <param name="outputChest">The chest from which the item was taken.</param>
         /// <param name="item">The removed item.</param>
-        private void OnOutputTaken(Item item)
+        private void OnOutputTaken(Chest outputChest, Item item)
         {
-            this.Output.clearNulls();
-            this.Output.Items.Remove(item);
+            outputChest.clearNulls();
+            outputChest.Items.Remove(item);
         }
 
-        /// <summary>Get the maximum input stack size to allow for an item.</summary>
-        /// <param name="item">The input item to check.</param>
-        private int GetMaxInputStackSize(Item? item)
+        /// <summary>Get an input or output chest that's part of the building (not a chest connected to it through Automate).</summary>
+        /// <param name="id">The chest ID.</param>
+        private Chest? GetBuildingChest(string id)
         {
-            if (item == null)
-                return 0;
+            return this.Machine.GetBuildingChest(id); // TODO: cache building chests to avoid iterating the list each time?
+        }
 
-            return this.MaxInputStackSize.TryGetValue(item.QualifiedItemId, out int max)
-                ? max
-                : item.maximumStackSize();
+        /// <summary>Update the cached data.</summary>
+        [MemberNotNull(nameof(Data))]
+        private void UpdateData()
+        {
+            // reset data
+            this.InputChests.Clear();
+            this.OutputChests.Clear();
+            BuildingData? data = this.Data = this.Machine.GetData();
+
+            // cache data
+            if (data?.ItemConversions?.Count is > 0)
+            {
+                foreach (BuildingItemConversion? rule in data.ItemConversions)
+                {
+                    if (rule?.SourceChest is not null)
+                        this.InputChests.Add(rule.SourceChest);
+
+                    if (rule?.DestinationChest is not null)
+                        this.OutputChests.Add(rule.DestinationChest);
+                }
+            }
+        }
+
+        /// <summary>Get an item and conversion rule which can be applied for the given input.</summary>
+        /// <param name="input">The available items.</param>
+        /// <param name="forInputChest">The building chest to which to add the input.</param>
+        /// <param name="item">The item to add to the chest.</param>
+        /// <param name="conversionRule">The conversion rule that will be applied.</param>
+        private bool TryGetItemConversion(IStorage input, [NotNullWhen(true)] out Chest? forInputChest, [NotNullWhen(true)] out ITrackedStack? item, [NotNullWhen(true)] out BuildingItemConversion? conversionRule)
+        {
+            // get matching conversion rule
+            Building building = this.Machine;
+            foreach (string inputChestId in this.InputChests)
+            {
+                Chest? curChest = this.GetBuildingChest(inputChestId);
+                if (curChest is null || this.InputFull(curChest))
+                    continue;
+
+                foreach (ITrackedStack curItem in input.GetItems())
+                {
+                    BuildingItemConversion? curRule = building.GetItemConversionForItem(curItem.Sample, curChest);
+                    if (curRule != null && curRule.RequiredCount <= curItem.Count)
+                    {
+                        forInputChest = curChest;
+                        item = curItem;
+                        conversionRule = curRule;
+                        return true;
+                    }
+                }
+            }
+
+            // none found
+            forInputChest = null;
+            item = null;
+            conversionRule = null;
+            return false;
         }
     }
 }

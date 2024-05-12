@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Added support for custom building rules in the game's new `Data/Buildings` asset.
 * Fixed support for custom trash cans outside the town map.
 * Fixed trash can tracking for pre-1.6 town map mods.
 * Improved translations. Thanks to burunduk (updated Ukrainian)!

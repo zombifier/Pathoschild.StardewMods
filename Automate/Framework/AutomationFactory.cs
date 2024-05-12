@@ -97,7 +97,7 @@ namespace Pathoschild.Stardew.Automate.Framework
 
             // machine in Data/Machines
             if (obj.GetMachineData() != null)
-                return new DataBasedMachine(obj, location, tile, () => this.Config().MinMinutesForFairyDust);
+                return new DataBasedObjectMachine(obj, location, tile, () => this.Config().MinMinutesForFairyDust);
 
             // connector
             if (this.IsConnector(obj))
@@ -169,11 +169,8 @@ namespace Pathoschild.Stardew.Automate.Framework
                     return new ShippingBinMachine(bin, location);
 
                 default:
-                    switch (building.buildingType.Value)
-                    {
-                        case "Mill":
-                            return new MillMachine(building, location);
-                    }
+                    if (DataBasedBuildingMachine.CanAutomate(building))
+                        return new DataBasedBuildingMachine(building, location);
                     break;
             }
 
