@@ -182,7 +182,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         curPos.Y + firstRecipeTopMargin
                     );
 
-                    this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, I18n.Item_UnknownRecipe(unknownRecipesCount), Color.Black);
+                    this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, I18n.Item_UnknownRecipe(unknownRecipesCount), Color.Gray);
                     curPos.Y += lineHeight;
                 }
 
