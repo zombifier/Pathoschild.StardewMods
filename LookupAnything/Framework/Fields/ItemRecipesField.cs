@@ -349,14 +349,17 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         obj.preservedParentSheetIndex.Value = ingredient.PreservedItemId;
                     if (ingredient.PreserveType != null)
                         obj.preserve.Value = ingredient.PreserveType.Value;
-                    return this.CreateItemEntry(
-                            name: input?.DisplayName ?? string.Empty,
-                            item: input,
-                            minCount: ingredient.Count,
-                            maxCount: ingredient.Count
-                            );
                 }
 
+                if (input is not null)
+                {
+                    return this.CreateItemEntry(
+                        name: input?.DisplayName ?? string.Empty,
+                        item: input,
+                        minCount: ingredient.Count,
+                        maxCount: ingredient.Count
+                    );
+                }
             }
 
             // other (e.g. context tags)
