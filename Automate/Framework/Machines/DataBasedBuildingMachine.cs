@@ -7,7 +7,7 @@ using StardewValley.GameData.Buildings;
 using StardewValley.Inventories;
 using StardewValley.Objects;
 
-namespace Pathoschild.Stardew.Automate.Framework.Machines.Buildings
+namespace Pathoschild.Stardew.Automate.Framework.Machines
 {
     /// <summary>A building that accepts input and provides output based on the rules in <see cref="DataLoader.Buildings"/>.</summary>
     internal class DataBasedBuildingMachine : BaseMachineForBuilding<Building>
