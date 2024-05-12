@@ -322,6 +322,7 @@
     "item.needed-for.full-collection": "Досягнення «Повна колекція» (Пожертвуйте музею артефакт чи мінерал)",
     "item.needed-for.gourmet-chef": "Досягнення «Шеф-кухар» (Приготуйте страву : {{recipes}})",
     "item.needed-for.craft-master": "Досягнення «Найкращий з ремісників» (Створіть предмет : {{recipes}})",
+    "item.unknown-recipe": "{{count}} unknown recipes", // TODO
     "item.needed-for.quests": "Завдання наразі ({{quests}})",
     "item.sells-to.shipping-box": "Ящик для продажу",
     "item.recipes-for-ingredient.entry": "{{name}} ({{count}} од.)",
