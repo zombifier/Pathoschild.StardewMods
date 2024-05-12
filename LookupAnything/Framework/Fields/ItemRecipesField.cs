@@ -23,6 +23,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <summary>Provides utility methods for interacting with the game code.</summary>
         private readonly GameHelper GameHelper;
 
+        /// <summary>Whether to hide recipes until the player discovers them.</summary>
+        private readonly bool ProgressionMode;
+
         /// <summary>The number of pixels between an item's icon and text.</summary>
         private readonly int IconMargin = 5;
 
@@ -41,12 +44,13 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="label">A short field label.</param>
         /// <param name="ingredient">The ingredient item.</param>
         /// <param name="recipes">The recipes to list.</param>
-        /// <param name="progressionMode">Whether to only show content once the player discovers it.</param>
+        /// <param name="progressionMode">Whether to hide recipes until the player discovers them.</param>
         public ItemRecipesField(GameHelper gameHelper, string label, Item ingredient, RecipeModel[] recipes, bool progressionMode)
             : base(label, true)
         {
             this.GameHelper = gameHelper;
-            this.Recipes = this.BuildRecipeGroups(ingredient, recipes, progressionMode).ToArray();
+            this.Recipes = this.BuildRecipeGroups(ingredient, recipes).ToArray();
+            this.ProgressionMode = progressionMode;
         }
 
         /// <inheritdoc />
@@ -81,9 +85,18 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 curPos.X = position.X + groupLeftMargin;
                 curPos += this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, $"{group.Type}:", Color.Black);
 
+                int unknownRecipesCount = 0;
+
                 // draw recipe lines
                 foreach (RecipeEntry entry in group.Recipes)
                 {
+                    // if in progression mode, skip recipes which aren't known
+                    if (this.ProgressionMode && !entry.IsKnown)
+                    {
+                        unknownRecipesCount++;
+                        continue;
+                    }
+
                     // fade recipes which aren't known
                     Color iconColor = entry.IsKnown ? Color.White : Color.White * .5f;
                     Color textColor = entry.IsKnown ? Color.Black : Color.Gray;
@@ -159,6 +172,20 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         curPos.Y += this.DrawIconText(spriteBatch, font, curPos with { X = curPos.X + this.IconSize + this.IconMargin }, absoluteWrapWidth, I18n.Item_RecipesForMachine_Conditions(conditions: entry.Conditions), textColor).Y;
                 }
 
+                // if in progression mode, draw number of unknown recipes
+                if (this.ProgressionMode && unknownRecipesCount > 0)
+                {
+                    // reset position for unknown recipe count
+                    curPos = new Vector2(
+                        // align horizontally with other recipes
+                        position.X + firstRecipeLeftMargin + this.IconMargin + this.IconSize,
+                        curPos.Y + firstRecipeTopMargin
+                    );
+
+                    this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, I18n.Item_UnknownRecipe(unknownRecipesCount), Color.Black);
+                    curPos.Y += lineHeight;
+                }
+
                 curPos.Y += lineHeight; // blank line between groups
             }
 
@@ -176,16 +203,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <summary>Build an optimized representation of the recipes to display.</summary>
         /// <param name="ingredient">The ingredient item.</param>
         /// <param name="rawRecipes">The raw recipes to list.</param>
-        /// <param name="progressionMode">Whether to only show content once the player discovers it.</param>
-        private IEnumerable<RecipeByTypeGroup> BuildRecipeGroups(Item ingredient, RecipeModel[] rawRecipes, bool progressionMode)
+        private IEnumerable<RecipeByTypeGroup> BuildRecipeGroups(Item ingredient, RecipeModel[] rawRecipes)
         {
             /****
             ** build models for matching recipes
             ****/
             Dictionary<string, RecipeEntry[]> rawGroups = rawRecipes
-                // first filter out unknown recipes if in progression mode
-                .Where(recipe => !progressionMode || recipe.IsKnown())
-
                 // split into specific recipes that match the item
                 // (e.g. a recipe with several possible inputs => several recipes with one possible input)
                 .Select(recipe =>
