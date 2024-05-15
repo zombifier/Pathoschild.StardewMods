@@ -319,6 +319,7 @@
     "item.sells-to.shipping-box": "กล่องส่งสินค้า",
     "item.recipes-for-ingredient.entry": "{{name}} (ต้องใช้ {{count}})",
     "item.recipes-for-machine.multiple-items": "{{name}} x{{count}}",
+    "item.recipes-for-machine.too-complex": "Some machine rules are too dynamic to display.", // TODO
     "item.number-owned.summary": "คุณมีแล้ว {{count}} ชิ้น",
     "item.number-crafted.summary": "คุณสร้างแล้ว {{count}} ชิ้น",
 

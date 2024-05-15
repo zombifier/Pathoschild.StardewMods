@@ -180,10 +180,29 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 // (e.g. a recipe with several possible inputs => several recipes with one possible input)
                 .Select(recipe =>
                 {
-                    // get output model
+                    // get output item
                     Item? outputItem = recipe.IsForMachine(ingredient)
                         ? recipe.TryCreateItem(null)
                         : recipe.TryCreateItem(ingredient);
+
+                    // handle error recipe
+                    if (recipe.OutputQualifiedItemId == "__ERROR_ITEM__")
+                    {
+                        return new RecipeEntry(
+                            name: recipe.Key,
+                            type: recipe.DisplayType,
+                            isKnown: recipe.IsKnown(),
+                            inputs: Array.Empty<RecipeItemEntry>(),
+                            output: this.CreateItemEntry(
+                                name: I18n.Item_RecipesForMachine_TooComplex(),
+                                item: outputItem,
+                                sprite: recipe.SpecialOutput?.Sprite,
+                                hasInputAndOutput: false
+                            )
+                        );
+                    }
+
+                    // get output model
                     RecipeItemEntry output = this.CreateItemEntry(
                         name: recipe.SpecialOutput?.DisplayText ?? outputItem?.DisplayName ?? string.Empty,
                         item: outputItem,
@@ -192,7 +211,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         maxCount: recipe.MaxOutput,
                         chance: recipe.OutputChance,
                         quality: recipe.Quality,
-                        isOutput: true,
+                        hasInputAndOutput: true,
                         hasCondition: recipe.HasCondition
                     );
 
@@ -398,9 +417,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="maxCount">The maximum number of items needed or created.</param>
         /// <param name="chance">The chance of creating an output item.</param>
         /// <param name="quality">The item quality that will be produced, if applicable.</param>
-        /// <param name="isOutput">Whether the item is output or input.</param>
+        /// <param name="hasInputAndOutput">Whether the item has both input and output ingredients.</param>
         /// <param name="hasCondition">Whether this recipe is only available if arbitrary conditions are met.</param>
-        private RecipeItemEntry CreateItemEntry(string name, Item? item = null, SpriteInfo? sprite = null, int minCount = 1, int maxCount = 1, decimal chance = 100, int? quality = null, bool isOutput = false, bool hasCondition = false)
+        private RecipeItemEntry CreateItemEntry(string name, Item? item = null, SpriteInfo? sprite = null, int minCount = 1, int maxCount = 1, decimal chance = 100, int? quality = null, bool hasInputAndOutput = false, bool hasCondition = false)
         {
             // get display text
             string text;
@@ -422,7 +441,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     text += " (conditional)";
 
                 // output suffix
-                if (isOutput)
+                if (hasInputAndOutput)
                     text += ":";
             }
 

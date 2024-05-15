@@ -401,6 +401,8 @@ namespace Pathoschild.Stardew.LookupAnything
                     machineData.AdditionalConsumedItems?.Select(item => new RecipeIngredientModel(item.ItemId, item.RequiredCount)).ToArray()
                     ?? Array.Empty<RecipeIngredientModel>();
 
+                bool someRulesTooComplex = false;
+
                 foreach (MachineOutputRule? outputRule in machineData.OutputRules)
                 {
                     if (outputRule.Triggers?.Count is not > 0 || outputRule.OutputItem?.Count is not > 0)
@@ -431,6 +433,10 @@ namespace Pathoschild.Stardew.LookupAnything
                             if (outputItem is null)
                                 continue;
 
+                            // track whether some recipes are too complex to fully display
+                            if (outputItem.OutputMethod != null)
+                                someRulesTooComplex = true;
+
                             // add ingredients
                             List<RecipeIngredientModel> ingredients = new()
                             {
@@ -440,7 +446,7 @@ namespace Pathoschild.Stardew.LookupAnything
 
                             // add produced item
                             ItemQueryContext itemQueryContext = new();
-                            IList<ItemQueryResult>? itemQueryResults = ItemQueryResolver.TryResolve(
+                            IList<ItemQueryResult> itemQueryResults = ItemQueryResolver.TryResolve(
                                 outputItem,
                                 itemQueryContext,
                                 formatItemId: id => id?.Replace("DROP_IN_ID", "0").Replace("DROP_IN_PRESERVE", "0").Replace("NEARBY_FLOWER_ID", "0")
@@ -470,6 +476,24 @@ namespace Pathoschild.Stardew.LookupAnything
                             );
                         }
                     }
+                }
+
+                // add placeholder 'too complex to display' recipe
+                if (someRulesTooComplex)
+                {
+                    recipes.Add(
+                        new RecipeModel(
+                            key: null,
+                            type: RecipeType.MachineInput,
+                            displayType: ItemRegistry.GetDataOrErrorItem(machineId).DisplayName,
+                            Array.Empty<RecipeIngredientModel>(),
+                            item: _ => ItemRegistry.Create("__ERROR_ITEM__"),
+                            isKnown: () => true,
+                            machineId: machineId,
+                            isForMachine: p => p is Item item && item.QualifiedItemId == machineId,
+                            outputQualifiedItemId: "__ERROR_ITEM__"
+                        )
+                    );
                 }
             }
 
