@@ -138,6 +138,13 @@
 
     "location.unknown-fish-area": "{{locationName}} (낚시 장소 {{id}})",
 
+    // context tags (e.g. for machine recipes)
+    // TODO
+    "context-tag.negate": "not {{tag}}",
+    "context-tag.bone": "any bone",
+    "context-tag.egg": "any egg",
+    "context-tag.large-egg": "any large egg",
+
 
     /*********
     ** Animal lookups

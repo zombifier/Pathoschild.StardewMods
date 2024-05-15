@@ -136,6 +136,12 @@
 
     "location.unknown-fish-area": "{{locationName}} (fishing area {{id}})",
 
+    // context tags (e.g. for machine recipes)
+    "context-tag.negate": "not {{tag}}",
+    "context-tag.bone": "any bone",
+    "context-tag.egg": "any egg",
+    "context-tag.large-egg": "any large egg",
+
 
     /*********
     ** Animal lookups

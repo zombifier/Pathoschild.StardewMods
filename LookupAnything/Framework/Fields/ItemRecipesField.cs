@@ -403,7 +403,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 //if (input == null)
                 //    return null;
                 return this.CreateItemEntry(
-                    name: string.Join(", ", ingredient.InputContextTags),
+                    name: string.Join(", ", ingredient.InputContextTags.Select(HumanReadableContextTagParser.Parse)),
                     minCount: ingredient.Count,
                     maxCount: ingredient.Count
                 );
