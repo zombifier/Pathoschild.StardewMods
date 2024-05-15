@@ -388,34 +388,8 @@ namespace Pathoschild.Stardew.LookupAnything
                 }
             }
 
-            // machine recipes from metadata
-            recipes.AddRange(
-                from entry in metadata.MachineRecipes
-                let itemData = ItemRegistry.GetDataOrErrorItem(ItemRegistry.type_bigCraftable + entry.MachineID)
-                let machineName = itemData.DisplayName
-
-                from recipe in entry.Recipes
-                from output in recipe.PossibleOutputs
-                from outputId in output.Ids
-
-                select new RecipeModel(
-                    key: null,
-                    type: RecipeType.MachineInput,
-                    displayType: machineName,
-                    ingredients: recipe.Ingredients.Select(p => new RecipeIngredientModel(p)),
-                    item: ingredient => this.CreateRecipeItem(ingredient, outputId, output),
-                    isKnown: () => true,
-                    exceptIngredients: recipe.ExceptIngredients?.Select(p => new RecipeIngredientModel(p)),
-                    outputQualifiedItemId: ItemRegistry.QualifyItemId(outputId) ?? outputId,
-                    minOutput: output.MinOutput,
-                    maxOutput: output.MaxOutput,
-                    outputChance: output.OutputChance,
-                    machineId: entry.MachineID,
-                    isForMachine: p => p is SObject obj && obj.QualifiedItemId == itemData.QualifiedItemId)
-            );
-
             // machine recipes from Data/Machines
-            // TODO: Add support for checking conditions/GSQ/Item Queries
+            // TODO: Add support for checking conditions, game state queries, and item queries
             foreach ((string entryKey, MachineData machineData) in Game1.content.Load<Dictionary<string, MachineData>>("Data\\Machines"))
             {
                 string machineId = entryKey; // avoid referencing loop variable in closure
@@ -510,7 +484,7 @@ namespace Pathoschild.Stardew.LookupAnything
                     type: RecipeType.BuildingInput,
                     displayType: TokenParser.ParseText(buildingData?.Name) ?? entry.BuildingKey,
                     ingredients: entry.Ingredients.Select(p => new RecipeIngredientModel(p.Key, p.Value)),
-                    item: ingredient => this.CreateRecipeItem(ingredient, entry.Output, null),
+                    item: ingredient => this.CreateRecipeItem(ingredient, entry.Output),
                     isKnown: () => true,
                     outputQualifiedItemId: ItemRegistry.QualifyItemId(entry.Output) ?? entry.Output,
                     minOutput: entry.OutputCount ?? 1,
@@ -530,8 +504,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Create a custom recipe output.</summary>
         /// <param name="ingredient">The input ingredient.</param>
         /// <param name="outputId">The output item ID.</param>
-        /// <param name="outputData">The output data, if applicable.</param>
-        private Item CreateRecipeItem(Item? ingredient, string outputId, MachineRecipeOutputData? outputData)
+        private Item CreateRecipeItem(Item? ingredient, string outputId)
         {
             outputId = ItemRegistry.QualifyItemId(outputId);
 
@@ -567,15 +540,7 @@ namespace Pathoschild.Stardew.LookupAnything
                 }
             }
 
-            output ??= ItemRegistry.Create(outputId);
-
-            if (outputData != null && output is SObject obj)
-            {
-                obj.preservedParentSheetIndex.Value = outputData.PreservedParentSheetIndex ?? obj.preservedParentSheetIndex.Value;
-                obj.preserve.Value = outputData.PreserveType ?? obj.preserve.Value;
-            }
-
-            return output;
+            return output ?? ItemRegistry.Create(outputId);
         }
     }
 }

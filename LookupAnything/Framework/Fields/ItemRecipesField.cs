@@ -178,12 +178,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             Dictionary<string, RecipeEntry[]> rawGroups = rawRecipes
                 // split into specific recipes that match the item
                 // (e.g. a recipe with several possible inputs => several recipes with one possible input)
-                .SelectMany(recipe =>
+                .Select(recipe =>
                 {
+                    // get output model
                     Item? outputItem = recipe.IsForMachine(ingredient)
                         ? recipe.TryCreateItem(null)
                         : recipe.TryCreateItem(ingredient);
-
                     RecipeItemEntry output = this.CreateItemEntry(
                         name: recipe.SpecialOutput?.DisplayText ?? outputItem?.DisplayName ?? string.Empty,
                         item: outputItem,
@@ -196,25 +196,21 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         hasCondition: recipe.HasCondition
                     );
 
-                    return this.GetCartesianInputs(recipe)
-                        .Select(inputIds =>
-                        {
-                            // get ingredient models
-                            IEnumerable<RecipeItemEntry> inputs = inputIds
-                                .Select((inputId, index) => this.TryCreateItemEntry(inputId, recipe.Ingredients[index]))
-                                .WhereNotNull();
-                            if (recipe.Type != RecipeType.TailorInput) // tailoring is always two ingredients with cloth first
-                                inputs = inputs.OrderBy(entry => entry.DisplayText);
+                    // get ingredient models
+                    IEnumerable<RecipeItemEntry> inputs = recipe.Ingredients
+                        .Select((input, index) => this.TryCreateItemEntry(input.InputId, recipe.Ingredients[index]))
+                        .WhereNotNull();
+                    if (recipe.Type != RecipeType.TailorInput) // tailoring is always two ingredients with cloth first
+                        inputs = inputs.OrderBy(entry => entry.DisplayText);
 
-                            // build recipe
-                            return new RecipeEntry(
-                                name: recipe.Key,
-                                type: recipe.DisplayType,
-                                isKnown: recipe.IsKnown(),
-                                inputs: inputs.ToArray(),
-                                output: output
-                            );
-                        });
+                    // build recipe
+                    return new RecipeEntry(
+                        name: recipe.Key,
+                        type: recipe.DisplayType,
+                        isKnown: recipe.IsKnown(),
+                        inputs: inputs.ToArray(),
+                        output: output
+                    );
                 })
 
                 // filter to unique recipe
@@ -372,7 +368,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 if (input is not null)
                 {
                     return this.CreateItemEntry(
-                        name: input?.DisplayName ?? string.Empty,
+                        name: input.DisplayName ?? string.Empty,
                         item: input,
                         minCount: ingredient.Count,
                         maxCount: ingredient.Count
@@ -435,43 +431,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 DisplayText: text,
                 Quality: quality
             );
-        }
-
-        /// <summary>Get the cartesian product of the possible input ingredients for a recipe.</summary>
-        /// <param name="recipe">The recipe whose input sets to list.</param>
-        /// <returns>An enumerable containing each set of item ids.</returns>
-        private IEnumerable<string[]> GetCartesianInputs(RecipeModel recipe)
-        {
-            string[][] sets = recipe.Ingredients.Select(p => p.PossibleIds.ToArray()).ToArray();
-            return this.GetCartesianProduct(sets);
-        }
-
-        /// <summary>Get the cartesian product of an arbitrary number of arrays.</summary>
-        /// <typeparam name="T">The array value type.</typeparam>
-        /// <param name="arrays">The arrays to combine.</param>
-        /// <returns>An enumerable containing each set of item ids.</returns>
-        /// <remarks>Derived from <a href="https://stackoverflow.com/a/33106054/262123">code by Peter Almazov</a>.</remarks>
-        private IEnumerable<T[]> GetCartesianProduct<T>(IReadOnlyList<T[]> arrays)
-        {
-            int[] lengths = arrays.Select(a => a.Length).ToArray();
-            int length = arrays.Count;
-            int[] inds = new int[length];
-
-            while (inds[0] != lengths[0])
-            {
-                var result = new T[length];
-                for (int i = 0; i != length; i++)
-                    result[i] = arrays[i][inds[i]];
-                yield return result;
-
-                int j = length - 1;
-                inds[j]++;
-                while (j > 0 && inds[j] == lengths[j])
-                {
-                    inds[j--] = 0;
-                    inds[j]++;
-                }
-            }
         }
     }
 }

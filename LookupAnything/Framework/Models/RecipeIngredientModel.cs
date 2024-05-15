@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Linq;
-using Pathoschild.Stardew.LookupAnything.Framework.Data;
 using StardewValley;
 using SObject = StardewValley.Object;
 
@@ -12,8 +10,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /*********
         ** Accessors
         *********/
-        /// <summary>The unique item IDs or comma-separated context tags that can be used for this ingredient slot.</summary>
-        public ISet<string> PossibleIds { get; }
+        /// <summary>The unique item ID or comma-separated context tags that can be used for this ingredient slot.</summary>
+        public string InputId { get; }
 
         /// <summary>The number required.</summary>
         public int Count { get; }
@@ -35,35 +33,11 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /// <param name="preservedItemId">The <see cref="SObject.preservedParentSheetIndex"/> value to match (or <c>null</c> to ignore it).</param>
         public RecipeIngredientModel(string inputId, int count, SObject.PreserveType? preserveType = null, string? preservedItemId = null)
         {
-            this.PossibleIds = new HashSet<string> { inputId };
+            this.InputId = inputId;
             this.Count = count;
             this.PreserveType = preserveType;
             this.PreservedItemId = preservedItemId;
         }
-
-        /// <summary>Construct an instance.</summary>
-        /// <param name="possibleIds">The unique item IDs that can be used for this ingredient slot.</param>
-        /// <param name="count">The number required.</param>
-        /// <param name="preserveType">The <see cref="SObject.preserve"/> value to match (or <c>null</c> to ignore it).</param>
-        /// <param name="preservedItemId">The <see cref="SObject.preservedParentSheetIndex"/> value to match (or <c>null</c> to ignore it).</param>
-        public RecipeIngredientModel(string[] possibleIds, int count, SObject.PreserveType? preserveType = null, string? preservedItemId = null)
-        {
-            this.PossibleIds = new HashSet<string>(possibleIds);
-            this.Count = count;
-            this.PreserveType = preserveType;
-            this.PreservedItemId = preservedItemId;
-        }
-
-        /// <summary>Construct an instance.</summary>
-        /// <param name="ingredient">The ingredient to copy.</param>
-        public RecipeIngredientModel(MachineRecipeIngredientData ingredient)
-            : this(
-                possibleIds: ingredient.PossibleIds,
-                count: ingredient.Count ?? 1,
-                preserveType: ingredient.PreserveType,
-                preservedItemId: ingredient.PreservedItemId
-            )
-        { }
 
         /// <summary>Get whether the ingredient matches a given item.</summary>
         /// <param name="item">The item to check.</param>
@@ -75,10 +49,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
 
             // item fields
             bool matchesId =
-                this.PossibleIds.Contains(item.Category.ToString())
-                || this.PossibleIds.Contains(item.ItemId)
-                || this.PossibleIds.Contains(item.QualifiedItemId)
-                || this.PossibleIds.Any(id => ItemContextTagManager.DoesTagQueryMatch(id, item.GetContextTags()));
+                this.InputId == item.Category.ToString()
+                || this.InputId == item.ItemId
+                || this.InputId == item.QualifiedItemId
+                || ItemContextTagManager.DoesTagQueryMatch(this.InputId, item.GetContextTags());
             if (!matchesId)
                 return false;
 
