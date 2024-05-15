@@ -96,7 +96,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     // draw output item (icon + name + count + chance)
                     float inputLeft;
                     {
-                        var outputSize = this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, entry.Output.DisplayText, textColor, entry.Output.Sprite, iconSize, iconColor);
+                        var outputSize = this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, entry.Output.DisplayText, textColor, entry.Output.Sprite, iconSize, iconColor, qualityIcon: entry.Output.Quality);
                         float outputWidth = alignColumns
                             ? group.ColumnWidths[0]
                             : outputSize.X;
@@ -111,7 +111,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         RecipeItemEntry input = entry.Inputs[i];
 
                         // move the draw position down to a new line if the next item would be drawn off the right edge
-                        Vector2 inputSize = this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, input.DisplayText, textColor, input.Sprite, iconSize, iconColor, probe: true);
+                        Vector2 inputSize = this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, input.DisplayText, textColor, input.Sprite, iconSize, iconColor, input.Quality, probe: true);
                         if (alignColumns)
                             inputSize.X = group.ColumnWidths[i + 1];
 
@@ -124,7 +124,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         }
 
                         // draw input item (icon + name + count)
-                        this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, input.DisplayText, textColor, input.Sprite, iconSize, iconColor);
+                        this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, input.DisplayText, textColor, input.Sprite, iconSize, iconColor, input.Quality);
                         curPos = new Vector2(
                             x: curPos.X + inputSize.X,
                             y: curPos.Y
@@ -191,6 +191,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         minCount: recipe.MinOutput,
                         maxCount: recipe.MaxOutput,
                         chance: recipe.OutputChance,
+                        quality: recipe.Quality,
                         isOutput: true,
                         hasCondition: recipe.HasCondition
                     );
@@ -276,9 +277,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="icon">The sprite to draw.</param>
         /// <param name="iconSize">The size to draw.</param>
         /// <param name="iconColor">The color to tint the sprite.</param>
+        /// <param name="qualityIcon">The quality for which to draw an icon over the sprite.</param>
         /// <param name="probe">Whether to calculate the positions without actually drawing anything to the screen.</param>
         /// <returns>Returns the drawn size.</returns>
-        private Vector2 DrawIconText(SpriteBatch batch, SpriteFont font, Vector2 position, float absoluteWrapWidth, string text, Color textColor, SpriteInfo? icon = null, Vector2? iconSize = null, Color? iconColor = null, bool probe = false)
+        private Vector2 DrawIconText(SpriteBatch batch, SpriteFont font, Vector2 position, float absoluteWrapWidth, string text, Color textColor, SpriteInfo? icon = null, Vector2? iconSize = null, Color? iconColor = null, int? qualityIcon = null, bool probe = false)
         {
             // draw icon
             int textOffset = 0;
@@ -290,6 +292,22 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             }
             else
                 iconSize = Vector2.Zero;
+
+            // draw quality icon overlay
+            if (qualityIcon > 0 && iconSize is { X: > 0, Y: > 0 })
+            {
+                Rectangle qualityRect = qualityIcon < SObject.bestQuality ? new(338 + (qualityIcon.Value - 1) * 8, 400, 8, 8) : new(346, 392, 8, 8); // from Item.DrawMenuIcons
+                Texture2D qualitySprite = Game1.mouseCursors;
+
+                Vector2 qualitySize = iconSize.Value / 2;
+                Vector2 qualityPos = new Vector2(
+                    position.X + iconSize.Value.X - qualitySize.X,
+                    position.Y + iconSize.Value.Y - qualitySize.Y
+                );
+
+                batch.DrawSpriteWithin(qualitySprite, qualityRect, qualityPos.X, qualityPos.Y, qualitySize, iconColor);
+            }
+
 
             // draw text
             Vector2 textSize = probe
@@ -383,9 +401,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="minCount">The minimum number of items needed or created.</param>
         /// <param name="maxCount">The maximum number of items needed or created.</param>
         /// <param name="chance">The chance of creating an output item.</param>
+        /// <param name="quality">The item quality that will be produced, if applicable.</param>
         /// <param name="isOutput">Whether the item is output or input.</param>
         /// <param name="hasCondition">Whether this recipe is only available if arbitrary conditions are met.</param>
-        private RecipeItemEntry CreateItemEntry(string name, Item? item = null, SpriteInfo? sprite = null, int minCount = 1, int maxCount = 1, decimal chance = 100, bool isOutput = false, bool hasCondition = false)
+        private RecipeItemEntry CreateItemEntry(string name, Item? item = null, SpriteInfo? sprite = null, int minCount = 1, int maxCount = 1, decimal chance = 100, int? quality = null, bool isOutput = false, bool hasCondition = false)
         {
             // get display text
             string text;
@@ -413,7 +432,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
 
             return new RecipeItemEntry(
                 Sprite: sprite ?? this.GameHelper.GetSprite(item),
-                DisplayText: text
+                DisplayText: text,
+                Quality: quality
             );
         }
 

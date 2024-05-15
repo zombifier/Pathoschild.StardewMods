@@ -489,6 +489,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                     outputQualifiedItemId: result.Item.QualifiedItemId,
                                     minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,
                                     maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null, // TODO: Calculate this better
+                                    quality: outputItem.Quality,
                                     outputChance: 100 / outputRule.OutputItem.Count / itemQueryResults.Count,
                                     hasCondition: trigger.Condition != null || outputItem.Condition != null
                                 )
