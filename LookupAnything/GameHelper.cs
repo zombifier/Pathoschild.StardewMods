@@ -665,7 +665,7 @@ namespace Pathoschild.Stardew.LookupAnything
                         key: null,
                         type: RecipeType.MachineInput,
                         displayType: machine.DisplayName,
-                        ingredients: recipe.Ingredients.Select(p => new RecipeIngredientModel(p.InputId!, p.Count)),
+                        ingredients: recipe.Ingredients.Select(p => new RecipeIngredientModel(p.InputId, p.Count)),
                         item: ingredient =>
                         {
                             SObject output = ItemRegistry.Create<SObject>(recipe.OutputId);
@@ -677,7 +677,7 @@ namespace Pathoschild.Stardew.LookupAnything
                             return output;
                         },
                         isKnown: () => true,
-                        exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id!, 1)),
+                        exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id, 1)),
                         outputQualifiedItemId: recipe.OutputId,
                         minOutput: recipe.MinOutput,
                         maxOutput: recipe.MaxOutput,

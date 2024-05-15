@@ -217,7 +217,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
 
                     // get ingredient models
                     IEnumerable<RecipeItemEntry> inputs = recipe.Ingredients
-                        .Select((input, index) => this.TryCreateItemEntry(input.InputId, recipe.Ingredients[index]))
+                        .Select(this.TryCreateItemEntry)
                         .WhereNotNull();
                     if (recipe.Type != RecipeType.TailorInput) // tailoring is always two ingredients with cloth first
                         inputs = inputs.OrderBy(entry => entry.DisplayText);
@@ -337,13 +337,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         }
 
         /// <summary>Create a recipe item model.</summary>
-        /// <param name="id">The item id.</param>
         /// <param name="ingredient">The recipe ingredient model for the item.</param>
         /// <returns>The equivalent item entry model, or <c>null</c> for a category with no matching items.</returns>
-        private RecipeItemEntry? TryCreateItemEntry(string id, RecipeIngredientModel ingredient)
+        private RecipeItemEntry? TryCreateItemEntry(RecipeIngredientModel ingredient)
         {
             // from category
-            if (int.TryParse(id, out int category) && category < 0)
+            if (int.TryParse(ingredient.InputId, out int category) && category < 0)
             {
                 Item? input = this.GameHelper.GetObjectsByCategory(category).FirstOrDefault();
                 if (input == null)
@@ -373,8 +372,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             }
 
             // from item
+            if (ingredient.InputId != null)
             {
-                Item input = ItemRegistry.Create(id, allowNull: true);
+                Item input = ItemRegistry.Create(ingredient.InputId, allowNull: true);
 
                 if (input is SObject obj)
                 {
@@ -395,18 +395,22 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 }
             }
 
-            // other (e.g. context tags)
+            // from context tags
             // TODO: Implement showing context tags
+            if (ingredient.InputContextTags.Length > 0)
             {
                 //Item? input = this.GameHelper.GetObjectsByContextTagQuery(id).FirstOrDefault();
                 //if (input == null)
                 //    return null;
                 return this.CreateItemEntry(
-                    name: id,
+                    name: string.Join(", ", ingredient.InputContextTags),
                     minCount: ingredient.Count,
                     maxCount: ingredient.Count
                 );
             }
+
+            // invalid?
+            return null;
         }
 
         /// <summary>Create a recipe item model.</summary>

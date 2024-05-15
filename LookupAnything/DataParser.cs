@@ -414,17 +414,9 @@ namespace Pathoschild.Stardew.LookupAnything
                             continue;
 
                         // build key to represent required context tag or ID
-                        string? inputId = null;
-                        if (trigger.RequiredTags?.Count > 0)
-                            inputId = string.Join(",", trigger.RequiredTags);
-                        if (trigger.RequiredItemId != null)
-                        {
-                            if (inputId == null)
-                                inputId = trigger.RequiredItemId;
-                            else
-                                inputId += ",id_" + ItemRegistry.QualifyItemId(trigger.RequiredItemId);
-                        }
-                        if (inputId is null)
+                        string[] inputContextTags = trigger.RequiredTags?.ToArray() ?? Array.Empty<string>();
+                        string? inputId = trigger.RequiredItemId;
+                        if (inputId is null && inputContextTags.Length == 0)
                             continue;
 
                         // build output list
@@ -440,7 +432,7 @@ namespace Pathoschild.Stardew.LookupAnything
                             // add ingredients
                             List<RecipeIngredientModel> ingredients = new()
                             {
-                                new RecipeIngredientModel(inputId, trigger.RequiredCount)
+                                new RecipeIngredientModel(inputId, trigger.RequiredCount, inputContextTags)
                             };
                             ingredients.AddRange(additionalConsumedItems);
 
