@@ -2,7 +2,7 @@ using StardewModdingAPI;
 
 namespace Pathoschild.Stardew.Common.Integrations.ExtraMachineConfig
 {
-    /// <summary>Handles the logic for integrating with the Custom Bush mod.</summary>
+    /// <summary>Handles the logic for integrating with the Extra Machine Config mod.</summary>
     internal class ExtraMachineConfigIntegration : BaseIntegration<IExtraMachineConfigApi>
     {
         /*********
