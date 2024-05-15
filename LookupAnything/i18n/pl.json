@@ -327,6 +327,7 @@
     "item.recipes-for-ingredient.entry": "{{name}} (potrzeba {{count}})",
     "item.recipes-for-machine.multiple-items": "{{name}} x{{count}}",
     "item.recipes-for-machine.same-as-input": "[same as input]", // e.g. crystalarium produces same item that was put in // TODO
+    "item.recipes-for-machine.conditions": "[conditions: {{conditions}}]", // TODO
     "item.recipes-for-machine.too-complex": "Some machine rules are too dynamic to display.", // TODO
     "item.number-owned.summary": "masz takich {{count}}",
     "item.number-crafted.summary": "zrobiono takich {{count}}",

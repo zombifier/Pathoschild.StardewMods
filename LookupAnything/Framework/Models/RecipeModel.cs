@@ -65,8 +65,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /// <summary>The item quality that will be produced, if applicable.</summary>
         public int? Quality { get; }
 
-        /// <summary>Whether this recipe is only available if arbitrary conditions are met.</summary>
-        public bool HasCondition { get; }
+        /// <summary>The game state queries which indicate when this recipe is available, if any.</summary>
+        public string[] Conditions { get; }
 
 
         /*********
@@ -87,8 +87,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /// <param name="maxOutput">The maximum number of items output by the recipe.</param>
         /// <param name="quality">The item quality that will be produced, if applicable.</param>
         /// <param name="outputChance">The percentage chance of this recipe being produced (or <c>null</c> if the recipe is always used).</param>
-        /// <param name="hasCondition">Whether this recipe is only available if arbitrary conditions are met.</param>
-        public RecipeModel(string? key, RecipeType type, string displayType, IEnumerable<RecipeIngredientModel> ingredients, Func<Item?, Item?>? item, Func<bool> isKnown, string? machineId, Func<object, bool> isForMachine, IEnumerable<RecipeIngredientModel>? exceptIngredients = null, string? outputQualifiedItemId = null, int? minOutput = null, int? maxOutput = null, decimal? outputChance = null, int? quality = null, bool hasCondition = false)
+        /// <param name="conditions">The game state queries which indicate when this recipe is available, if any.</param>
+        public RecipeModel(string? key, RecipeType type, string displayType, IEnumerable<RecipeIngredientModel> ingredients, Func<Item?, Item?>? item, Func<bool> isKnown, string? machineId, Func<object, bool> isForMachine, IEnumerable<RecipeIngredientModel>? exceptIngredients = null, string? outputQualifiedItemId = null, int? minOutput = null, int? maxOutput = null, decimal? outputChance = null, int? quality = null, string[]? conditions = null)
         {
             // normalize values
             if (minOutput == null && maxOutput == null)
@@ -116,7 +116,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
             this.MaxOutput = maxOutput!.Value;
             this.OutputChance = outputChance is > 0 and < 100 ? outputChance.Value : 100;
             this.Quality = quality;
-            this.HasCondition = hasCondition;
+            this.Conditions = conditions ?? Array.Empty<string>();
         }
 
         /// <summary>Construct an instance.</summary>
@@ -173,7 +173,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
                 outputQualifiedItemId: other.OutputQualifiedItemId,
                 minOutput: other.MinOutput,
                 machineId: other.MachineId,
-                isForMachine: other.IsForMachine
+                isForMachine: other.IsForMachine,
+                conditions: other.Conditions
             )
         { }
 

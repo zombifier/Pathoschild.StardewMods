@@ -451,6 +451,25 @@ namespace Pathoschild.Stardew.LookupAnything
                                 formatItemId: id => id?.Replace("DROP_IN_ID", "0").Replace("DROP_IN_PRESERVE", "0").Replace("NEARBY_FLOWER_ID", "0")
                             );
 
+                            // get conditions
+                            string[]? conditions = null;
+                            {
+                                // extract raw conditions
+                                string? rawConditions = null;
+                                if (!string.IsNullOrWhiteSpace(trigger.Condition))
+                                    rawConditions = trigger.Condition;
+                                if (!string.IsNullOrWhiteSpace(outputItem.Condition))
+                                {
+                                    rawConditions = rawConditions != null
+                                        ? rawConditions + ", " + outputItem.Condition
+                                        : outputItem.Condition;
+                                }
+
+                                // parse
+                                if (rawConditions != null)
+                                    conditions = GameStateQuery.SplitRaw(rawConditions).Distinct().ToArray();
+                            }
+
                             // add to list
                             recipes.AddRange(
                                 from result in itemQueryResults
@@ -470,7 +489,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                     maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null, // TODO: Calculate this better
                                     quality: outputItem.Quality,
                                     outputChance: 100 / outputRule.OutputItem.Count / itemQueryResults.Count,
-                                    hasCondition: trigger.Condition != null || outputItem.Condition != null
+                                    conditions: conditions
                                 )
                             );
                         }

@@ -327,6 +327,7 @@
     "item.recipes-for-ingredient.entry": "{{name}} ({{count}}個必要)",
     "item.recipes-for-machine.multiple-items": "{{name}}が{{count}}個",
     "item.recipes-for-machine.same-as-input": "[same as input]", // e.g. crystalarium produces same item that was put in // TODO
+    "item.recipes-for-machine.conditions": "[conditions: {{conditions}}]", // TODO
     "item.recipes-for-machine.too-complex": "Some machine rules are too dynamic to display.", // TODO
     "item.number-owned.summary": "{{count}}個持っている",
     "item.number-crafted.summary": "{{count}}個作成した",

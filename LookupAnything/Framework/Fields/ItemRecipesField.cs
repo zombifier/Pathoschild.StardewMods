@@ -88,8 +88,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     Color textColor = entry.IsKnown ? Color.Black : Color.Gray;
 
                     // reset position for recipe output
+                    float recipeLeftMargin = position.X + firstRecipeLeftMargin;
                     curPos = new Vector2(
-                        position.X + firstRecipeLeftMargin,
+                        recipeLeftMargin,
                         curPos.Y + firstRecipeTopMargin
                     );
 
@@ -149,8 +150,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                             curPos.X += joinerSize.X + itemSpacer;
                         }
                     }
-
+                    curPos.X = recipeLeftMargin;
                     curPos.Y += lineHeight;
+
+                    // draw condition
+                    if (entry.Conditions != null)
+                        curPos.Y += this.DrawIconText(spriteBatch, font, curPos with { X = curPos.X + this.IconSize + this.IconMargin }, absoluteWrapWidth, I18n.Item_RecipesForMachine_Conditions(conditions: entry.Conditions), textColor).Y;
                 }
 
                 curPos.Y += lineHeight; // blank line between groups
@@ -198,7 +203,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                                 item: outputItem,
                                 sprite: recipe.SpecialOutput?.Sprite,
                                 hasInputAndOutput: false
-                            )
+                            ),
+                            conditions: recipe.Conditions.Length > 0
+                                ? string.Join(", ", recipe.Conditions.Select(HumanReadableConditionParser.Parse))
+                                : null
                         );
                     }
 
@@ -214,8 +222,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                             maxCount: recipe.MaxOutput,
                             chance: recipe.OutputChance,
                             quality: recipe.Quality,
-                            hasInputAndOutput: true,
-                            hasCondition: recipe.HasCondition
+                            hasInputAndOutput: true
                         );
                     }
                     else
@@ -228,8 +235,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                             maxCount: recipe.MaxOutput,
                             chance: recipe.OutputChance,
                             quality: recipe.Quality,
-                            hasInputAndOutput: true,
-                            hasCondition: recipe.HasCondition
+                            hasInputAndOutput: true
                         );
                     }
 
@@ -246,7 +252,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         type: recipe.DisplayType,
                         isKnown: recipe.IsKnown(),
                         inputs: inputs.ToArray(),
-                        output: output
+                        output: output,
+                        conditions: recipe.Conditions.Length > 0
+                            ? string.Join(", ", recipe.Conditions.Select(HumanReadableConditionParser.Parse))
+                            : null
                     );
                 })
 
@@ -414,12 +423,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             }
 
             // from context tags
-            // TODO: Implement showing context tags
             if (ingredient.InputContextTags.Length > 0)
             {
-                //Item? input = this.GameHelper.GetObjectsByContextTagQuery(id).FirstOrDefault();
-                //if (input == null)
-                //    return null;
                 return this.CreateItemEntry(
                     name: string.Join(", ", ingredient.InputContextTags.Select(HumanReadableContextTagParser.Parse)),
                     minCount: ingredient.Count,
@@ -440,8 +445,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="chance">The chance of creating an output item.</param>
         /// <param name="quality">The item quality that will be produced, if applicable.</param>
         /// <param name="hasInputAndOutput">Whether the item has both input and output ingredients.</param>
-        /// <param name="hasCondition">Whether this recipe is only available if arbitrary conditions are met.</param>
-        private RecipeItemEntry CreateItemEntry(string name, Item? item = null, SpriteInfo? sprite = null, int minCount = 1, int maxCount = 1, decimal chance = 100, int? quality = null, bool hasInputAndOutput = false, bool hasCondition = false)
+        private RecipeItemEntry CreateItemEntry(string name, Item? item = null, SpriteInfo? sprite = null, int minCount = 1, int maxCount = 1, decimal chance = 100, int? quality = null, bool hasInputAndOutput = false)
         {
             // get display text
             string text;
@@ -457,10 +461,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 // chance
                 if (chance is > 0 and < 100)
                     text += $" ({I18n.Generic_Percent(chance)})";
-
-                // has condition
-                if (hasCondition)
-                    text += " (conditional)";
 
                 // output suffix
                 if (hasInputAndOutput)
