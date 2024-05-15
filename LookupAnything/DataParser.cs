@@ -27,6 +27,13 @@ namespace Pathoschild.Stardew.LookupAnything
     internal class DataParser
     {
         /*********
+        ** Fields
+        *********/
+        /// <summary>The placeholder item ID for a recipe which can't be parsed due to its complexity.</summary>
+        public const string ComplexRecipeId = "__COMPLEX_RECIPE__";
+
+
+        /*********
         ** Public methods
         *********/
         /// <summary>Read parsed data about the Community Center bundles.</summary>
@@ -479,11 +486,11 @@ namespace Pathoschild.Stardew.LookupAnything
                             type: RecipeType.MachineInput,
                             displayType: ItemRegistry.GetDataOrErrorItem(machineId).DisplayName,
                             Array.Empty<RecipeIngredientModel>(),
-                            item: _ => ItemRegistry.Create("__ERROR_ITEM__"),
+                            item: _ => ItemRegistry.Create(DataParser.ComplexRecipeId),
                             isKnown: () => true,
                             machineId: machineId,
                             isForMachine: p => p is Item item && item.QualifiedItemId == machineId,
-                            outputQualifiedItemId: "__ERROR_ITEM__"
+                            outputQualifiedItemId: DataParser.ComplexRecipeId
                         )
                     );
                 }

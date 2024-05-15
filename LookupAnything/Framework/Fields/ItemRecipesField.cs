@@ -186,7 +186,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         : recipe.TryCreateItem(ingredient);
 
                     // handle error recipe
-                    if (recipe.OutputQualifiedItemId == "__ERROR_ITEM__")
+                    if (recipe.OutputQualifiedItemId == DataParser.ComplexRecipeId)
                     {
                         return new RecipeEntry(
                             name: recipe.Key,
@@ -203,17 +203,35 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     }
 
                     // get output model
-                    RecipeItemEntry output = this.CreateItemEntry(
-                        name: recipe.SpecialOutput?.DisplayText ?? outputItem?.DisplayName ?? string.Empty,
-                        item: outputItem,
-                        sprite: recipe.SpecialOutput?.Sprite,
-                        minCount: recipe.MinOutput,
-                        maxCount: recipe.MaxOutput,
-                        chance: recipe.OutputChance,
-                        quality: recipe.Quality,
-                        hasInputAndOutput: true,
-                        hasCondition: recipe.HasCondition
-                    );
+                    RecipeItemEntry output;
+                    if (ItemRegistry.GetDataOrErrorItem(recipe.OutputQualifiedItemId)?.ItemId == "DROP_IN")
+                    {
+                        output = this.CreateItemEntry(
+                            name: I18n.Item_RecipesForMachine_SameAsInput(),
+                            item: null,
+                            sprite: null,
+                            minCount: recipe.MinOutput,
+                            maxCount: recipe.MaxOutput,
+                            chance: recipe.OutputChance,
+                            quality: recipe.Quality,
+                            hasInputAndOutput: true,
+                            hasCondition: recipe.HasCondition
+                        );
+                    }
+                    else
+                    {
+                        output = this.CreateItemEntry(
+                            name: recipe.SpecialOutput?.DisplayText ?? outputItem?.DisplayName ?? string.Empty,
+                            item: outputItem,
+                            sprite: recipe.SpecialOutput?.Sprite,
+                            minCount: recipe.MinOutput,
+                            maxCount: recipe.MaxOutput,
+                            chance: recipe.OutputChance,
+                            quality: recipe.Quality,
+                            hasInputAndOutput: true,
+                            hasCondition: recipe.HasCondition
+                        );
+                    }
 
                     // get ingredient models
                     IEnumerable<RecipeItemEntry> inputs = recipe.Ingredients

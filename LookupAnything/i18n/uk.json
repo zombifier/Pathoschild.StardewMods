@@ -326,6 +326,7 @@
     "item.sells-to.shipping-box": "Ящик для продажу",
     "item.recipes-for-ingredient.entry": "{{name}} ({{count}} од.)",
     "item.recipes-for-machine.multiple-items": "{{name}} {{count}} од.",
+    "item.recipes-for-machine.same-as-input": "[same as input]", // e.g. crystalarium produces same item that was put in // TODO
     "item.recipes-for-machine.too-complex": "Some machine rules are too dynamic to display.", // TODO
     "item.number-owned.summary": "Ви маєте {{count}} од.",
     "item.number-crafted.summary": "Ви створили {{count}} од.",
