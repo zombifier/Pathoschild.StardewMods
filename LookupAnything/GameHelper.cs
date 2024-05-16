@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.Common.Integrations.CustomBush;
 using Pathoschild.Stardew.Common.Integrations.CustomFarmingRedux;
+using Pathoschild.Stardew.Common.Integrations.ExtraMachineConfig;
 using Pathoschild.Stardew.Common.Integrations.MultiFertilizer;
 using Pathoschild.Stardew.Common.Integrations.ProducerFrameworkMod;
 using Pathoschild.Stardew.Common.Items;
@@ -78,6 +79,9 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>The MultiFertilizer integration.</summary>
         public MultiFertilizerIntegration MultiFertilizer { get; }
 
+        /// <summary>The Extra Machine Config integration.</summary>
+        public ExtraMachineConfigIntegration ExtraMachineConfig { get; }
+
 
         /*********
         ** Public methods
@@ -94,10 +98,11 @@ namespace Pathoschild.Stardew.LookupAnything
             this.ModRegistry = modRegistry;
             this.WorldItemScanner = new WorldItemScanner(reflection);
 
-            this.CustomBush = new CustomBushIntegration(modRegistry, this.Monitor);
-            this.CustomFarmingRedux = new CustomFarmingReduxIntegration(modRegistry, this.Monitor);
+            this.CustomBush = new CustomBushIntegration(modRegistry, monitor);
+            this.CustomFarmingRedux = new CustomFarmingReduxIntegration(modRegistry, monitor);
             this.MultiFertilizer = new MultiFertilizerIntegration(modRegistry, monitor);
-            this.ProducerFrameworkMod = new ProducerFrameworkModIntegration(modRegistry, this.Monitor);
+            this.ProducerFrameworkMod = new ProducerFrameworkModIntegration(modRegistry, monitor);
+            this.ExtraMachineConfig = new ExtraMachineConfigIntegration(modRegistry, monitor);
 
             this.ResetCache(monitor);
         }
@@ -644,7 +649,7 @@ namespace Pathoschild.Stardew.LookupAnything
         private RecipeModel[] GetAllRecipes(IMonitor monitor)
         {
             // get vanilla recipes
-            List<RecipeModel> recipes = this.DataParser.GetRecipes(this.Metadata, monitor).ToList();
+            List<RecipeModel> recipes = this.DataParser.GetRecipes(this.Metadata, monitor, this.ExtraMachineConfig).ToList();
 
             // get recipes from Producer Framework Mod
             if (this.ProducerFrameworkMod.IsLoaded)

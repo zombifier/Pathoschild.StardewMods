@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pathoschild.Stardew.Common;
+using Pathoschild.Stardew.Common.Integrations.ExtraMachineConfig;
 using Pathoschild.Stardew.LookupAnything.Framework;
 using Pathoschild.Stardew.LookupAnything.Framework.Constants;
 using Pathoschild.Stardew.LookupAnything.Framework.Data;
@@ -369,7 +370,8 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Get the recipe ingredients.</summary>
         /// <param name="metadata">Provides metadata that's not available from the game data directly.</param>
         /// <param name="monitor">The monitor with which to log errors.</param>
-        public RecipeModel[] GetRecipes(Metadata metadata, IMonitor monitor)
+        /// <param name="extraMachineConfig">The Extra Machine Config mod's API.</param>
+        public RecipeModel[] GetRecipes(Metadata metadata, IMonitor monitor, ExtraMachineConfigIntegration extraMachineConfig)
         {
             List<RecipeModel> recipes = new List<RecipeModel>();
 
@@ -442,6 +444,16 @@ namespace Pathoschild.Stardew.LookupAnything
                                 new RecipeIngredientModel(inputId, trigger.RequiredCount, inputContextTags)
                             };
                             ingredients.AddRange(additionalConsumedItems);
+
+                            // if there are extra fuels added by the Extra Machine Config mod, add them here
+                            if (extraMachineConfig.IsLoaded)
+                            {
+                                foreach ((string extraItemId, int extraCount) in extraMachineConfig.ModApi.GetExtraRequirements(outputItem))
+                                    ingredients.Add(new RecipeIngredientModel(extraItemId, extraCount));
+
+                                foreach ((string extraContextTags, int extraCount) in extraMachineConfig.ModApi.GetExtraTagsRequirements(outputItem))
+                                    ingredients.Add(new RecipeIngredientModel(null, extraCount, extraContextTags.Split(",")));
+                            }
 
                             // add produced item
                             ItemQueryContext itemQueryContext = new();
