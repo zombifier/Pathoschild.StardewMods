@@ -175,14 +175,13 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 // if in progression mode, draw number of unknown recipes
                 if (this.ProgressionMode && unknownRecipesCount > 0)
                 {
-                    // reset position for unknown recipe count
+                    // reset position for unknown recipe count (aligned horizontally with other recipes)
                     curPos = new Vector2(
-                        // align horizontally with other recipes
                         position.X + firstRecipeLeftMargin + this.IconMargin + this.IconSize,
                         curPos.Y + firstRecipeTopMargin
                     );
 
-                    this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, I18n.Item_UnknownRecipe(unknownRecipesCount), Color.Gray);
+                    this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, I18n.Item_UnknownRecipes(unknownRecipesCount), Color.Gray);
                     curPos.Y += lineHeight;
                 }
 

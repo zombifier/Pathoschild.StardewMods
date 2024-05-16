@@ -322,8 +322,8 @@
     "item.needed-for.full-collection": "Logro de ''full collection'' (donar esto al museo)",
     "item.needed-for.gourmet-chef": "Logro de ''gourmet chef'' (cocina {{recipes}})",
     "item.needed-for.craft-master": "Logro de ''craft master'' (crea {{recipes}})",
-    "item.unknown-recipe": "{{count}} unknown recipes", // TODO
     "item.needed-for.quests": "Mision actual ({{quests}})",
+    "item.unknown-recipes": "{{count}} unknown recipes", // TODO
     "item.sells-to.shipping-box": "Caja de envío",
     "item.recipes-for-ingredient.entry": "{{name}} (necesita {{count}})",
     "item.recipes-for-machine.multiple-items": "{{name}} x {{count}}",

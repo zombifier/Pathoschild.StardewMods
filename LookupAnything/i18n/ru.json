@@ -322,8 +322,8 @@
     "item.needed-for.full-collection": "Достижение 'Полная коллекция' (Пожертвуйте музею)",
     "item.needed-for.gourmet-chef": "Достижение 'Шеф-повар' (приготовьте рецепт: {{recipes}})",
     "item.needed-for.craft-master": "Достижение 'Мастер' (создайте предмет: {{recipes}})",
-    "item.unknown-recipe": "{{count}} unknown recipes", // TODO
     "item.needed-for.quests": "current quests ({{quests}})", // TODO
+    "item.unknown-recipes": "{{count}} unknown recipes", // TODO
     "item.sells-to.shipping-box": "Отгрузочный ящик",
     "item.recipes-for-ingredient.entry": "{{name}} ({{count}} шт.)",
     "item.recipes-for-machine.multiple-items": "{{name}} x{{count}}",

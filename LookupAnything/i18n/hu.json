@@ -322,8 +322,8 @@
     "item.needed-for.full-collection": "teljes gyűjtemény teljesítmény (adományozz egyet a múzeumnak)",
     "item.needed-for.gourmet-chef": "ínyenc szakács teljesítmény (készíts még: {{recipes}})",
     "item.needed-for.craft-master": "kézműves mester teljesítmény (készíts még: {{recipes}})",
-    "item.unknown-recipe": "{{count}} unknown recipes", // TODO
     "item.needed-for.quests": "current quests ({{quests}})", // TODO
+    "item.unknown-recipes": "{{count}} unknown recipes", // TODO
     "item.sells-to.shipping-box": "szállítmányos láda",
     "item.recipes-for-ingredient.entry": "{{name}} (szükséges: {{count}})",
     "item.recipes-for-machine.multiple-items": "{{name}} x{{count}}",

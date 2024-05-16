@@ -750,30 +750,35 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
 
             // recipe achievements
             {
-                var recipes =
+                RecipeData[] missingRecipes =
                     (
                         from recipe in this.GameHelper.GetRecipesForIngredient(this.Target)
                         let item = recipe.TryCreateItem(this.Target)
-                        where item != null
+                        let timesCrafted = recipe.GetTimesCrafted(Game1.player)
+                        where item != null && timesCrafted <= 0
                         orderby item.DisplayName
-                        select new { recipe.Type, item.DisplayName, TimesCrafted = recipe.GetTimesCrafted(Game1.player), IsKnown = recipe.IsKnown() }
+                        select new RecipeData(recipe.Type, item.DisplayName, TimesCrafted: timesCrafted, IsKnown: recipe.IsKnown())
                     )
                     .ToArray();
 
                 // gourmet chef achievement (cook every recipe)
-                var uncookedRecipes = recipes.Where(recipe => recipe.Type == RecipeType.Cooking && recipe.TimesCrafted <= 0);
-                if (uncookedRecipes.Any())
                 {
-                    string uncookedRecipesText = this.GetNeededForRecipeText(uncookedRecipes);
-                    neededFor.Add(I18n.Item_NeededFor_GourmetChef(uncookedRecipesText));
+                    RecipeData[] missingCookingRecipes = missingRecipes.Where(recipe => recipe.Type == RecipeType.Cooking).ToArray();
+                    if (missingCookingRecipes.Length > 0)
+                    {
+                        string missingRecipesText = this.GetNeededForRecipeText(missingCookingRecipes);
+                        neededFor.Add(I18n.Item_NeededFor_GourmetChef(missingRecipesText));
+                    }
                 }
 
                 // craft master achievement (craft every item)
-                var uncraftedRecipes = recipes.Where(recipe => recipe.Type == RecipeType.Crafting && recipe.TimesCrafted <= 0);
-                if (uncraftedRecipes.Any())
                 {
-                    string uncraftedRecipesText = this.GetNeededForRecipeText(uncraftedRecipes);
-                    neededFor.Add(I18n.Item_NeededFor_CraftMaster(uncraftedRecipesText));
+                    RecipeData[] missingCraftingRecipes = missingRecipes.Where(recipe => recipe.Type == RecipeType.Crafting).ToArray();
+                    if (missingCraftingRecipes.Length > 0)
+                    {
+                        string missingRecipesText = this.GetNeededForRecipeText(missingCraftingRecipes);
+                        neededFor.Add(I18n.Item_NeededFor_CraftMaster(missingRecipesText));
+                    }
                 }
             }
 
@@ -793,32 +798,29 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 yield return new GenericField(I18n.Item_NeededFor(), string.Join(", ", neededFor));
         }
 
-        /// <summary>
-        /// Constructs a text representation of uncooked/uncrafted recipes.
-        /// If progression mode is enabled, includes the count of unknown recipes.
-        /// </summary>
-        /// <param name="unmadeRecipes">A list of uncooked/uncrafted recipes.</param>
-        private string GetNeededForRecipeText(IEnumerable<dynamic> unmadeRecipes)
+        /// <summary>Get a text representation for missing recipes. If progression mode is enabled, includes the count of unknown recipes.</summary>
+        /// <param name="missingRecipes">A list of recipes that haven't been cooked or crafted yet.</param>
+        private string GetNeededForRecipeText(RecipeData[] missingRecipes)
         {
             if (!this.ProgressionMode)
             {
                 // return all recipe names
-                string[] recipeNames = (from recipe in unmadeRecipes select (string)recipe.DisplayName).ToArray();
+                string[] recipeNames = (from recipe in missingRecipes select (string)recipe.DisplayName).ToArray();
                 return string.Join(", ", recipeNames);
             }
 
-            var knownUnmadeRecipes = unmadeRecipes.Where(recipe => recipe.IsKnown);
-            int unknownUnmadeRecipeCount = unmadeRecipes.Count() - knownUnmadeRecipes.Count();
+            RecipeData[] knownMissingRecipes = missingRecipes.Where(recipe => recipe.IsKnown).ToArray();
+            int unknownMissingRecipeCount = missingRecipes.Length - knownMissingRecipes.Length;
 
-            if (knownUnmadeRecipes.Any())
+            if (knownMissingRecipes.Any())
             {
                 // return learned recipe names + count of unlearned recipes
-                string[] knownRecipeNames = (from recipe in knownUnmadeRecipes select (string)recipe.DisplayName).ToArray();
-                return string.Join(", ", knownRecipeNames.Append(I18n.Item_UnknownRecipe(unknownUnmadeRecipeCount)));
+                string[] knownRecipeNames = (from recipe in knownMissingRecipes select (string)recipe.DisplayName).ToArray();
+                return string.Join(", ", knownRecipeNames.Append(I18n.Item_UnknownRecipes(unknownMissingRecipeCount)));
             }
 
             // return just the count of unlearned recipes
-            return I18n.Item_UnknownRecipe(unknownUnmadeRecipeCount);
+            return I18n.Item_UnknownRecipes(unknownMissingRecipeCount);
         }
 
         /// <summary>Get unfinished bundles which require this item.</summary>
@@ -982,5 +984,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 .Where(p => this.IsIngredientNeeded(bundle, p))
                 .Sum(p => p.Stack);
         }
+
+        /// <summary>The basic metadata for a recipe.</summary>
+        /// <param name="Type">The recipe type.</param>
+        /// <param name="DisplayName">The translated display name for the produced item, including metadata like the "(Recipe)" suffix.</param>
+        /// <param name="TimesCrafted">How many times the recipe was cooked or crafted by the player.</param>
+        /// <param name="IsKnown">Whether the player knows this recipe.</param>
+        public record RecipeData(RecipeType Type, string DisplayName, int TimesCrafted, bool IsKnown);
     }
 }

@@ -322,8 +322,8 @@
     "item.needed-for.full-collection": "conquista da Coleção Completa (doe um para o museu)",
     "item.needed-for.gourmet-chef": "conquista de Chefe Gourmet (cozinhe {{recipes}})",
     "item.needed-for.craft-master": "conquista de Mestre do Artesanato (crie {{recipes}})",
-    "item.unknown-recipe": "{{count}} unknown recipes", // TODO
     "item.needed-for.quests": "Missões atuais ({{quests}})",
+    "item.unknown-recipes": "{{count}} unknown recipes", // TODO
     "item.sells-to.shipping-box": "Caixa de envio",
     "item.recipes-for-ingredient.entry": "{{name}} (precisa de {{count}})",
     "item.recipes-for-machine.multiple-items": "{{name}} x {{count}}",

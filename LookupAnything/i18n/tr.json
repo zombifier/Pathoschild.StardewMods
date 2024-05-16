@@ -322,8 +322,8 @@
     "item.needed-for.full-collection": "tam koleksiyon başarısı (müze koleksiyonunu tamamla)",
     "item.needed-for.gourmet-chef": "gurme şef başarısı (pişir {{recipes}})",
     "item.needed-for.craft-master": "zanaat ustası başarısı (yap {{recipes}})",
-    "item.unknown-recipe": "{{count}} unknown recipes", // TODO
     "item.needed-for.quests": "şuanki görevler ({{quests}})",
+    "item.unknown-recipes": "{{count}} unknown recipes", // TODO
     "item.sells-to.shipping-box": "gönderi kutusu",
     "item.recipes-for-ingredient.entry": "{{name}} (lazım {{count}})",
     "item.recipes-for-machine.multiple-items": "{{name}} x{{count}}",
