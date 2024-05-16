@@ -370,7 +370,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Get the recipe ingredients.</summary>
         /// <param name="metadata">Provides metadata that's not available from the game data directly.</param>
         /// <param name="monitor">The monitor with which to log errors.</param>
-        /// <param name="extraMachineConfig">API integration with extra fuels added by the Extra Machine Config mod.</param>
+        /// <param name="extraMachineConfig">The Extra Machine Config mod's API.</param>
         public RecipeModel[] GetRecipes(Metadata metadata, IMonitor monitor, ExtraMachineConfigIntegration extraMachineConfig)
         {
             List<RecipeModel> recipes = new List<RecipeModel>();
@@ -448,21 +448,11 @@ namespace Pathoschild.Stardew.LookupAnything
                             // if there are extra fuels added by the Extra Machine Config mod, add them here
                             if (extraMachineConfig.IsLoaded)
                             {
-                                foreach (var extraFuelEntry in extraMachineConfig.ModApi.GetExtraRequirements(outputItem))
-                                {
-                                    ingredients.Add(new RecipeIngredientModel(
-                                                extraFuelEntry.Item1,
-                                                extraFuelEntry.Item2,
-                                                null));
-                                }
-                                foreach (var extraTagFuelEntry in extraMachineConfig.ModApi.GetExtraTagsRequirements(outputItem))
-                                {
-                                    ingredients.Add(new RecipeIngredientModel(
-                                                null,
-                                                extraTagFuelEntry.Item2,
-                                                extraTagFuelEntry.Item1.Split(","),
-                                                null));
-                                }
+                                foreach ((string extraItemId, int extraCount) in extraMachineConfig.ModApi.GetExtraRequirements(outputItem))
+                                    ingredients.Add(new RecipeIngredientModel(extraItemId, extraCount));
+
+                                foreach ((string extraContextTags, int extraCount) in extraMachineConfig.ModApi.GetExtraTagsRequirements(outputItem))
+                                    ingredients.Add(new RecipeIngredientModel(null, extraCount, extraContextTags.Split(",")));
                             }
 
                             // add produced item

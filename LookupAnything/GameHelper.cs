@@ -79,9 +79,8 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>The MultiFertilizer integration.</summary>
         public MultiFertilizerIntegration MultiFertilizer { get; }
 
-        /// <summary>The ExtraMachineConfig integration.</summary>
+        /// <summary>The Extra Machine Config integration.</summary>
         public ExtraMachineConfigIntegration ExtraMachineConfig { get; }
-
 
 
         /*********
@@ -99,10 +98,10 @@ namespace Pathoschild.Stardew.LookupAnything
             this.ModRegistry = modRegistry;
             this.WorldItemScanner = new WorldItemScanner(reflection);
 
-            this.CustomBush = new CustomBushIntegration(modRegistry, this.Monitor);
-            this.CustomFarmingRedux = new CustomFarmingReduxIntegration(modRegistry, this.Monitor);
+            this.CustomBush = new CustomBushIntegration(modRegistry, monitor);
+            this.CustomFarmingRedux = new CustomFarmingReduxIntegration(modRegistry, monitor);
             this.MultiFertilizer = new MultiFertilizerIntegration(modRegistry, monitor);
-            this.ProducerFrameworkMod = new ProducerFrameworkModIntegration(modRegistry, this.Monitor);
+            this.ProducerFrameworkMod = new ProducerFrameworkModIntegration(modRegistry, monitor);
             this.ExtraMachineConfig = new ExtraMachineConfigIntegration(modRegistry, monitor);
 
             this.ResetCache(monitor);
