@@ -7,6 +7,7 @@ using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.LookupAnything.Framework.Data;
 using Pathoschild.Stardew.LookupAnything.Framework.DebugFields;
 using Pathoschild.Stardew.LookupAnything.Framework.Fields;
+using Pathoschild.Stardew.LookupAnything.Framework.Models;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Buildings;
@@ -175,10 +176,24 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                         yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputReady(), hut.GetOutputChest()?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
                         break;
 
-                    // mill
+                    // Buildings with processing rules
                     default:
-                        if (building.buildingType.Value == "Mill")
+                        RecipeModel[] recipes =
+                            this.GameHelper.GetRecipesForBuilding(building)
+                            .ToArray();
+                        if (recipes.Length > 0)
                         {
+                            // TODO: integrate progression mode and field collapse?
+                            bool progressionMode = false;
+                            var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), building, recipes, progressionMode);
+
+                            // calculate count of recipes that will be shown, in case we're in progression mode and some are hidden
+                            int shownRecipesCount = recipes.Count(recipe => !progressionMode || recipe.IsKnown());
+                            //if (this.CollapseFieldsConfig.Enabled && shownRecipesCount >= this.CollapseFieldsConfig.ItemRecipes)
+                            //    field.CollapseByDefault(I18n.Generic_ShowXResults(count: shownRecipesCount));
+                            yield return field;
+
+                            // return items being processed
                             yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputProcessing(), building.GetBuildingChest("Input")?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
                             yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputReady(), building.GetBuildingChest("Output")?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
                         }

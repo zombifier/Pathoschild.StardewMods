@@ -429,6 +429,19 @@ namespace Pathoschild.Stardew.LookupAnything
                 .ToList();
         }
 
+        /// <summary>Get the recipes for a given building.</summary>
+        /// <param name="machine">The machine.</param>
+        public IEnumerable<RecipeModel> GetRecipesForBuilding(Building? building)
+        {
+            if (building == null)
+                return Enumerable.Empty<RecipeModel>();
+
+            // from cached recipes
+            return this.GetRecipes()
+                .Where(recipe => recipe.IsForMachine(building))
+                .ToList();
+        }
+
         /// <summary>Get the current quests which need an item.</summary>
         /// <param name="item">The item to check.</param>
         public IEnumerable<QuestModel> GetQuestsWhichNeedItem(SObject item)

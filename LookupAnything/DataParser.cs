@@ -12,6 +12,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Characters;
+using StardewValley.GameData;
 using StardewValley.GameData.Buildings;
 using StardewValley.GameData.FishPonds;
 using StardewValley.GameData.Locations;
@@ -527,26 +528,62 @@ namespace Pathoschild.Stardew.LookupAnything
                 }
             }
 
-            // building recipes
-            recipes.AddRange(
-                from entry in metadata.BuildingRecipes
-                let buildingData = Game1.buildingData.TryGetValue(entry.BuildingKey, out BuildingData data)
-                    ? data
-                    : null
-                select new RecipeModel(
-                    key: null,
-                    type: RecipeType.BuildingInput,
-                    displayType: TokenParser.ParseText(buildingData?.Name) ?? entry.BuildingKey,
-                    ingredients: entry.Ingredients.Select(p => new RecipeIngredientModel(p.Key, p.Value)),
-                    item: ingredient => this.CreateRecipeItem(ingredient, entry.Output),
-                    isKnown: () => true,
-                    outputQualifiedItemId: ItemRegistry.QualifyItemId(entry.Output) ?? entry.Output,
-                    minOutput: entry.OutputCount ?? 1,
-                    exceptIngredients: entry.ExceptIngredients?.Select(p => new RecipeIngredientModel(p, 1)),
-                    machineId: null,
-                    isForMachine: p => p is Building target && target.buildingType.Value == entry.BuildingKey
-                )
-            );
+            // building recipes from Data/Buildings
+            // TODO: Add support for checking conditions, game state queries, and item queries
+            foreach ((string entryKey, BuildingData buildingData) in Game1.content.Load<Dictionary<string, BuildingData>>("Data\\Buildings"))
+            {
+                string machineId = entryKey; // avoid referencing loop variable in closure
+
+                if (buildingData?.ItemConversions?.Count is not > 0)
+                    continue;
+
+                foreach (BuildingItemConversion? buildingItemConversion in buildingData.ItemConversions)
+                {
+                    if (buildingItemConversion is null || buildingItemConversion?.ProducedItems?.Count is not > 0)
+                        continue;
+
+                    RecipeIngredientModel[] ingredients = [new RecipeIngredientModel(null, buildingItemConversion.RequiredCount, buildingItemConversion.RequiredTags.ToArray())];
+                    foreach(GenericSpawnItemDataWithCondition? outputItem in buildingItemConversion.ProducedItems)
+                    {
+                        if (outputItem is null)
+                            continue;
+
+                        // add produced item
+                        ItemQueryContext itemQueryContext = new();
+                        IList<ItemQueryResult> itemQueryResults = ItemQueryResolver.TryResolve(
+                                outputItem,
+                                itemQueryContext
+                        );
+
+                        // get conditions
+                        string[]? conditions = !string.IsNullOrWhiteSpace(outputItem.Condition) ?
+                            GameStateQuery.SplitRaw(outputItem.Condition).Distinct().ToArray() :
+                            null;
+
+                        // add to list
+                        recipes.AddRange(
+                            from result in itemQueryResults
+                            select new RecipeModel(
+                                key: null,
+                                type: RecipeType.BuildingInput,
+                                displayType: TokenParser.ParseText(buildingData?.Name) ?? entryKey,
+                                ingredients,
+                                item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
+                                isKnown: () => true,
+                                machineId: null,
+                                isForMachine: p => p is Building target && target.buildingType.Value == entryKey,
+                                exceptIngredients: null,
+                                outputQualifiedItemId: result.Item.QualifiedItemId,
+                                minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,
+                                maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null, // TODO: Calculate this better
+                                quality: outputItem.Quality,
+                                outputChance: 100 / itemQueryResults.Count,
+                                conditions: conditions
+                            )
+                        );
+                    }
+                }
+            }
 
             return recipes.ToArray();
         }
