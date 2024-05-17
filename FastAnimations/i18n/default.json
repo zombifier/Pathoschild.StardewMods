@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Break geodes",
     "config.break-geodes.tooltip": "How fast the blacksmith breaks geodes for you. Default {{defaultValue}}x.",
 
+    "config.forging.name": "Foraging",
+    "config.forging.tooltip": "How fast you forge tool. Default {{defaultValue}}x.",
+
     "config.prize-machine.name": "Prize Machine",
     "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
 

@@ -146,6 +146,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
+                    name: I18n.Config_Forging_Name,
+                    tooltip: () => I18n.Config_Forging_Tooltip(defaultValue: defaultConfig.ForgingSpeed),
+                    get: config => config.ForgingSpeed,
+                    set: (config, value) => config.ForgingSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
                     name: I18n.Config_PrizeMachine_Name,
                     tooltip: () => I18n.Config_PrizeMachine_Tooltip(defaultValue: defaultConfig.PrizeMachineSpeed),
                     get: config => config.PrizeMachineSpeed,

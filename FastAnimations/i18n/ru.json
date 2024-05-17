@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Разбитие жеодов",
     "config.break-geodes.tooltip": "Как быстро кузнец ломает жеоды для вас. Значение по умолчанию {{defaultValue}}x.",
 
+    "config.forging.name": "Foraging",
+    "config.forging.tooltip": "How fast you forge tool. Default {{defaultValue}}x.",
+
     "config.prize-machine.name": "Prize Machine",
     "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
 

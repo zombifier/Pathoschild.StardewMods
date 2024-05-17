@@ -53,6 +53,9 @@
     "config.break-geodes.name": "ジオードの粉砕",
     "config.break-geodes.tooltip": "鍛冶屋がジオードを割ってくれる速度。標準は{{defaultValue}}x。",
 
+    "config.forging.name": "Foraging",
+    "config.forging.tooltip": "How fast you forge tool. Default {{defaultValue}}x.",
+
     "config.prize-machine.name": "Prize Machine",
     "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
 

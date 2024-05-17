@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Rompere geodi",
     "config.break-geodes.tooltip": "Velocità con cui il fabbro rompe i geodi per te. Predefinito {{defaultValue}}x.",
 
+    "config.forging.name": "Foraging",
+    "config.forging.tooltip": "How fast you forge tool. Default {{defaultValue}}x.",
+
     "config.prize-machine.name": "Prize Machine",
     "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
 
