@@ -53,6 +53,9 @@
     "config.break-geodes.name": "ทำลาย geodes",
     "config.break-geodes.tooltip": "ต้องการให้ช่างตีเหล็กทำลาย geodes ให้คุณเร็วแค่ไหน ค่าเริ่มต้นคือ {{defaultValue}}x",
 
+    "config.prize-machine.name": "Prize Machine",
+    "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
+
     "config.spin-wheel.name": "Spin Wheel",
     "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
 

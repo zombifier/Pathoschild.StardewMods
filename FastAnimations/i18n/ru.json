@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Разбитие жеодов",
     "config.break-geodes.tooltip": "Как быстро кузнец ломает жеоды для вас. Значение по умолчанию {{defaultValue}}x.",
 
+    "config.prize-machine.name": "Prize Machine",
+    "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
+
     "config.spin-wheel.name": "Spin Wheel",
     "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
 

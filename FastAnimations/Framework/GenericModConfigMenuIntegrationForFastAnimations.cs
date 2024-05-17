@@ -1,6 +1,7 @@
 using System;
 using Pathoschild.Stardew.Common.Integrations.GenericModConfigMenu;
 using StardewModdingAPI;
+using StardewValley.Menus;
 
 namespace Pathoschild.Stardew.FastAnimations.Framework
 {
@@ -143,6 +144,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     set: (config, value) => config.BreakGeodeSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
+                )
+                .AddNumberField(
+                    name: I18n.Config_PrizeMachine_Name,
+                    tooltip: () => I18n.Config_PrizeMachine_Tooltip(defaultValue: defaultConfig.PrizeMachineSpeed),
+                    get: config => config.PrizeMachineSpeed,
+                    (config, value) => config.PrizeMachineSpeed = value,
+                    minSpeed,
+                    maxSpeed
                 )
                 .AddNumberField(
                     name: I18n.Config_SpinWheel_Name,

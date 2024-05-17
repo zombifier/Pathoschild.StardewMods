@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Quebrar Geodos",
     "config.break-geodes.tooltip": "Quão rápido o ferreiro quebra geodos para você. Padrão {{defaultValue}}x.",
 
+    "config.prize-machine.name": "Prize Machine",
+    "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
+
     "config.spin-wheel.name": "Spin Wheel",
     "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
 

@@ -53,6 +53,9 @@
     "config.break-geodes.name": "敲晶球",
     "config.break-geodes.tooltip": "铁匠破开晶球的速度。默认{{defaultValue}}x。",
 
+    "config.prize-machine.name": "兑奖机",
+    "config.prize-machine.tooltip": "兑奖机兑奖的速度。默认{{defaultValue}}x.",
+
     "config.spin-wheel.name": "转轮盘",
     "config.spin-wheel.tooltip": "轮盘旋转的速度。默认{{defaultValue}}x.",
 

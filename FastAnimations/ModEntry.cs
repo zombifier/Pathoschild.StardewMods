@@ -153,6 +153,8 @@ namespace Pathoschild.Stardew.FastAnimations
             // world animations
             if (config.BreakGeodeSpeed > 1)
                 yield return new BreakingGeodeHandler(config.BreakGeodeSpeed);
+            if (config.PrizeMachineSpeed > 1)
+                yield return new PrizeMachineHandle(config.PrizeMachineSpeed, this.Helper);
             if (config.SpinWheelSpeed > 1)
                 yield return new SpinningWheelHandle(config.SpinWheelSpeed);
             if (config.CasinoSlotsSpeed > 1)
