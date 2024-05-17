@@ -1,18 +1,18 @@
 ﻿{
     /*********
-    ** Generic Mod Config Menu UI
-    *********/
+     ** Generic Mod Config Menu UI
+     *********/
     /****
-    ** 'General Options' section
-    ****/
+     ** 'General Options' section
+     ****/
     "config.general-options": "常规",
 
     "config.disable-eat-prompt.name": "禁用吃喝提示",
     "config.disable-eat-prompt.tooltip": "跳过吃喝时“是否要吃掉XX”的确认提示对话框。",
 
     /****
-    ** 'Player Animation Speeds' section
-    ****/
+     ** 'Player Animation Speeds' section
+     ****/
     "config.animation-speeds": "玩家动画速度",
 
     "config.eat-or-drink.name": "吃东西",
@@ -46,12 +46,15 @@
     "config.weapon.tooltip": "使用武器的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
 
     /****
-    ** 'World Animation Speeds' section
-    ****/
+     ** 'World Animation Speeds' section
+     ****/
     "config.world-speeds": "世界动画速度",
 
     "config.break-geodes.name": "敲晶球",
     "config.break-geodes.tooltip": "铁匠破开晶球的速度。默认{{defaultValue}}x。",
+
+    "config.spin-wheel.name": "转轮盘",
+    "config.spin-wheel.tooltip": "轮盘旋转的速度。默认{{defaultValue}}x.",
 
     "config.casino-slots.name": "赌场老虎机",
     "config.casino-slots.tooltip": "赌场老虎机的转速。默认{{defaultValue}}x。",
@@ -63,8 +66,8 @@
     "config.tree-fall.tooltip": "树被砍倒的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
 
     /****
-    ** 'UI Animation Speeds' section
-    ****/
+     ** 'UI Animation Speeds' section
+     ****/
     "config.ui-speeds": "UI动画速度",
 
     "config.title-menu.name": "标题菜单的转场效果",

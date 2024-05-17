@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Casser des géodes",
     "config.break-geodes.tooltip": "La vitesse à laquelle le forgeron casse les géodes pour vous. Valeur par défaut {{defaultValue}}x.",
 
+    "config.spin-wheel.name": "Spin Wheel",
+    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+
     "config.casino-slots.name": "Machines à sous du casino",
     "config.casino-slots.tooltip": "A quelle vitesse les machines à sous du casino tournent. Valeur par défaut {{defaultValue}}x.",
 

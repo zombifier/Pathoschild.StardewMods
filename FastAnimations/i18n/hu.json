@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Geódák törése",
     "config.break-geodes.tooltip": "Milyen gyorsan töri össze a kovács a geódákat neked. Alapból {{defaultValue}}x.",
 
+    "config.spin-wheel.name": "Spin Wheel",
+    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+
     "config.casino-slots.name": "Félkarú rabló",
     "config.casino-slots.tooltip": "Milyen gyorsan forognak a félkarú rabló paneljai. Alapból {{defaultValue}}x.",
 

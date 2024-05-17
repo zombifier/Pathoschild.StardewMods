@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Rompere geodi",
     "config.break-geodes.tooltip": "Velocità con cui il fabbro rompe i geodi per te. Predefinito {{defaultValue}}x.",
 
+    "config.spin-wheel.name": "Spin Wheel",
+    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+
     "config.casino-slots.name": "Slot del casinò",
     "config.casino-slots.tooltip": "Velocità di rotazione delle slot del casinò. Predefinito {{defaultValue}}x.",
 

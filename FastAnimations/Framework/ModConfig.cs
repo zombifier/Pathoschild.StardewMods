@@ -48,6 +48,9 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier for breaking geodes.</summary>
         public float BreakGeodeSpeed { get; set; } = 20;
 
+        /// <summary>The speed multiplier for spinning wheel.</summary>
+        public float SpinWheelSpeed { get; set; } = 8;
+
         /// <summary>The speed multiplier for the casino slots minigame.</summary>
         public float CasinoSlotsSpeed { get; set; } = 8;
 

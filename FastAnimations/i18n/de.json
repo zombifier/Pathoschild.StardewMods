@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Geoden brechen",
     "config.break-geodes.tooltip": "Wie schnell der Schmied Geoden für Sie bricht. Standardwert {{defaultValue}}x.",
 
+    "config.spin-wheel.name": "Spin Wheel",
+    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+
     "config.casino-slots.name": "Casino-Slots",
     "config.casino-slots.tooltip": "Wie schnell sich die Casino-Slots drehen. Standardwert {{defaultValue}}x.",
 

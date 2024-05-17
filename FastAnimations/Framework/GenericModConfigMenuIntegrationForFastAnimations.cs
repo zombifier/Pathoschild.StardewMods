@@ -145,6 +145,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
+                    name: I18n.Config_SpinWheel_Name,
+                    tooltip: () => I18n.Config_SpinWheel_Tooltip(defaultValue: defaultConfig.SpinWheelSpeed),
+                    get: config => config.SpinWheelSpeed,
+                    set: (config, value) => config.SpinWheelSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
                     name: I18n.Config_CasinoSlots_Name,
                     tooltip: () => I18n.Config_CasinoSlots_Tooltip(defaultValue: defaultConfig.CasinoSlotsSpeed),
                     get: config => config.CasinoSlotsSpeed,

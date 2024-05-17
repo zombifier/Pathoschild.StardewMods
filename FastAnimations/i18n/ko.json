@@ -53,6 +53,9 @@
     "config.break-geodes.name": "정동석 깨기",
     "config.break-geodes.tooltip": "대장장이가 정동석을 깨는 속도. 기본 값 {{defaultValue}}.",
 
+    "config.spin-wheel.name": "Spin Wheel",
+    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+
     "config.casino-slots.name": "카지노 슬롯",
     "config.casino-slots.tooltip": "카지노 슬롯이 회전하는 속도. 기본 값 {{defaultValue}}.",
 

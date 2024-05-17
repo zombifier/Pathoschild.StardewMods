@@ -101,7 +101,7 @@ namespace Pathoschild.Stardew.FastAnimations
         /// <param name="e">The event data.</param>
         private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
         {
-            if (Game1.eventUp || !this.Handlers.Any())
+            if ((Game1.eventUp && Game1.CurrentEvent.id != "festival_fall16") || !this.Handlers.Any())
                 return;
 
             int playerAnimationId = Game1.player.FarmerSprite.currentSingleAnimation;
@@ -153,6 +153,8 @@ namespace Pathoschild.Stardew.FastAnimations
             // world animations
             if (config.BreakGeodeSpeed > 1)
                 yield return new BreakingGeodeHandler(config.BreakGeodeSpeed);
+            if (config.SpinWheelSpeed > 1)
+                yield return new SpinningWheelHandle(config.SpinWheelSpeed);
             if (config.CasinoSlotsSpeed > 1)
                 yield return new CasinoSlotsHandler(config.CasinoSlotsSpeed);
             if (config.PamBusSpeed > 1)

@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Разбитие жеодов",
     "config.break-geodes.tooltip": "Как быстро кузнец ломает жеоды для вас. Значение по умолчанию {{defaultValue}}x.",
 
+    "config.spin-wheel.name": "Spin Wheel",
+    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+
     "config.casino-slots.name": "Слоты казино",
     "config.casino-slots.tooltip": "Как быстро вращаются слоты казино. Значение по умолчанию {{defaultValue}}x.",
 

@@ -53,6 +53,9 @@
     "config.break-geodes.name": "Romper geodas",
     "config.break-geodes.tooltip": "La rapidez con la que el herrero rompe las geodas para ti. Por defecto {{defaultValue}}x.",
 
+    "config.spin-wheel.name": "Spin Wheel",
+    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+
     "config.casino-slots.name": "Tragamonedas del casino",
     "config.casino-slots.tooltip": "La rapidez con la que giran las tragamonedas del casino. Por defecto {{defaultValue}}x.",
 
