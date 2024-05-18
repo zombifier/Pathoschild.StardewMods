@@ -399,8 +399,7 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             // machine recipes from Data/Machines
-            // TODO: Add support for checking conditions, game state queries, and item queries
-            foreach ((string entryKey, MachineData machineData) in Game1.content.Load<Dictionary<string, MachineData>>("Data\\Machines"))
+            foreach ((string entryKey, MachineData machineData) in DataLoader.Machines(Game1.content))
             {
                 string machineId = entryKey; // avoid referencing loop variable in closure
 
@@ -529,36 +528,32 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             // building recipes from Data/Buildings
-            // TODO: Add support for checking conditions, game state queries, and item queries
-            foreach ((string entryKey, BuildingData buildingData) in Game1.content.Load<Dictionary<string, BuildingData>>("Data\\Buildings"))
+            foreach ((string entryKey, BuildingData buildingData) in Game1.buildingData)
             {
-                string machineId = entryKey; // avoid referencing loop variable in closure
+                string buildingType = entryKey; // avoid referencing loop variable in closure
 
                 if (buildingData?.ItemConversions?.Count is not > 0)
                     continue;
 
-                foreach (BuildingItemConversion? buildingItemConversion in buildingData.ItemConversions)
+                foreach (BuildingItemConversion? rule in buildingData.ItemConversions)
                 {
-                    if (buildingItemConversion is null || buildingItemConversion?.ProducedItems?.Count is not > 0)
+                    if (rule?.ProducedItems?.Count is not > 0 || rule.RequiredTags?.Count is not > 0)
                         continue;
 
-                    RecipeIngredientModel[] ingredients = [new RecipeIngredientModel(null, buildingItemConversion.RequiredCount, buildingItemConversion.RequiredTags.ToArray())];
-                    foreach(GenericSpawnItemDataWithCondition? outputItem in buildingItemConversion.ProducedItems)
+                    RecipeIngredientModel[] ingredients = new[] { new RecipeIngredientModel(null, rule.RequiredCount, rule.RequiredTags.ToArray()) };
+
+                    foreach (GenericSpawnItemDataWithCondition? outputItem in rule.ProducedItems)
                     {
                         if (outputItem is null)
                             continue;
 
                         // add produced item
-                        ItemQueryContext itemQueryContext = new();
-                        IList<ItemQueryResult> itemQueryResults = ItemQueryResolver.TryResolve(
-                                outputItem,
-                                itemQueryContext
-                        );
+                        IList<ItemQueryResult> itemQueryResults = ItemQueryResolver.TryResolve(outputItem, new ItemQueryContext());
 
                         // get conditions
-                        string[]? conditions = !string.IsNullOrWhiteSpace(outputItem.Condition) ?
-                            GameStateQuery.SplitRaw(outputItem.Condition).Distinct().ToArray() :
-                            null;
+                        string[]? conditions = !string.IsNullOrWhiteSpace(outputItem.Condition)
+                            ? GameStateQuery.SplitRaw(outputItem.Condition).Distinct().ToArray()
+                            : null;
 
                         // add to list
                         recipes.AddRange(
@@ -566,12 +561,12 @@ namespace Pathoschild.Stardew.LookupAnything
                             select new RecipeModel(
                                 key: null,
                                 type: RecipeType.BuildingInput,
-                                displayType: TokenParser.ParseText(buildingData?.Name) ?? entryKey,
+                                displayType: TokenParser.ParseText(buildingData?.Name) ?? buildingType,
                                 ingredients,
                                 item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
                                 isKnown: () => true,
                                 machineId: null,
-                                isForMachine: p => p is Building target && target.buildingType.Value == entryKey,
+                                isForMachine: p => p is Building target && target.buildingType.Value == buildingType,
                                 exceptIngredients: null,
                                 outputQualifiedItemId: result.Item.QualifiedItemId,
                                 minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,

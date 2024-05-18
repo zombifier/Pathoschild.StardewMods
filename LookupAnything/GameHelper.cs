@@ -430,11 +430,11 @@ namespace Pathoschild.Stardew.LookupAnything
         }
 
         /// <summary>Get the recipes for a given building.</summary>
-        /// <param name="machine">The machine.</param>
+        /// <param name="building">The building.</param>
         public IEnumerable<RecipeModel> GetRecipesForBuilding(Building? building)
         {
             if (building == null)
-                return Enumerable.Empty<RecipeModel>();
+                return Array.Empty<RecipeModel>();
 
             // from cached recipes
             return this.GetRecipes()
