@@ -110,6 +110,14 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
                     set: (config, value) => config.CollapseLargeFields.Enabled = value
                 )
                 .AddNumberField(
+                    name: I18n.Config_CollapseFields_BuildingRecipes_Name,
+                    tooltip: I18n.Config_CollapseFields_Any_Desc,
+                    get: config => config.CollapseLargeFields.BuildingRecipes,
+                    set: (config, value) => config.CollapseLargeFields.BuildingRecipes = value,
+                    min: 1,
+                    max: 1000
+                )
+                .AddNumberField(
                     name: I18n.Config_CollapseFields_ItemRecipes_Name,
                     tooltip: I18n.Config_CollapseFields_Any_Desc,
                     get: config => config.CollapseLargeFields.ItemRecipes,
