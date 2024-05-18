@@ -195,8 +195,14 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                             yield return field;
 
                             // return items being processed
-                            yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputProcessing(), building.GetBuildingChest("Input")?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
-                            yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputReady(), building.GetBuildingChest("Output")?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
+                            if (MachineDataHelper.TryGetBuildingChestNames(building.GetData(), out ISet<string> inputChestIds, out ISet<string> outputChestIds))
+                            {
+                                IEnumerable<Item?> inputItems = MachineDataHelper.GetBuildingChests(building, inputChestIds).SelectMany(p => p.GetItemsForPlayer());
+                                IEnumerable<Item?> outputItems = MachineDataHelper.GetBuildingChests(building, outputChestIds).SelectMany(p => p.GetItemsForPlayer());
+
+                                yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputProcessing(), inputItems, showStackSize: true);
+                                yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputReady(), outputItems, showStackSize: true);
+                            }
                         }
                         break;
                 }

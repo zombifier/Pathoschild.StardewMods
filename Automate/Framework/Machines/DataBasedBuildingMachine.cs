@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Pathoschild.Stardew.Common;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.GameData.Buildings;
@@ -191,23 +192,11 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines
         [MemberNotNull(nameof(Data))]
         private void UpdateData()
         {
-            // reset data
+            this.Data = this.Machine.GetData();
             this.InputChests.Clear();
             this.OutputChests.Clear();
-            BuildingData? data = this.Data = this.Machine.GetData();
 
-            // cache data
-            if (data?.ItemConversions?.Count is > 0)
-            {
-                foreach (BuildingItemConversion? rule in data.ItemConversions)
-                {
-                    if (rule?.SourceChest is not null)
-                        this.InputChests.Add(rule.SourceChest);
-
-                    if (rule?.DestinationChest is not null)
-                        this.OutputChests.Add(rule.DestinationChest);
-                }
-            }
+            MachineDataHelper.GetBuildingChestNames(this.Data, this.InputChests, this.OutputChests);
         }
 
         /// <summary>Get an item and conversion rule which can be applied for the given input.</summary>
