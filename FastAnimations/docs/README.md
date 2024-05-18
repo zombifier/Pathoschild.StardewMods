@@ -51,8 +51,11 @@ Here's what you can change:
   :------------------- | :------ | :------------------
   `BreakGeodeSpeed`    | 20×     | How fast the blacksmith breaks geodes for you.
   `CasinoSlotsSpeed`   | 8×      | How fast the casino slots turn.
+  `ForgeSpeed`         | 8×      | How fast the [volcano forge](https://stardewvalleywiki.com/Forge) works.
   `PamBusSpeed`        | 6×      | How fast Pam drives her bus to and from the desert.
+  `PrizeTicketMachineSpeed` | 20× | How fast the prize ticket machine accepts a ticket and produces an item.
   `TreeFallingSpeed`   | 1×      | How fast trees fall after you chop them down.<br /><small>(Suggested value: 3×.)</small>
+  `WheelSpinSpeed`     | 16×     | How fast the [Stardew Valley Fair](https://stardewvalleywiki.com/Stardew_Valley_Fair) wheel spin minigame spins.
 
   UI animations:
 

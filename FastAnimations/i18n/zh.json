@@ -53,14 +53,23 @@
     "config.break-geodes.name": "敲晶球",
     "config.break-geodes.tooltip": "铁匠破开晶球的速度。默认{{defaultValue}}x。",
 
-    "config.casino-slots.name": "赌场老虎机",
-    "config.casino-slots.tooltip": "赌场老虎机的转速。默认{{defaultValue}}x。",
-
     "config.bus.name": "公交车",
     "config.bus.tooltip": "往返沙漠公交车的车速。默认{{defaultValue}}x。",
 
+    "config.casino-slots.name": "赌场老虎机",
+    "config.casino-slots.tooltip": "赌场老虎机的转速。默认{{defaultValue}}x。",
+
+    "config.forge.name": "锻造",
+    "config.forge.tooltip": "锻造的速度。默认{{defaultValue}}x.",
+
+    "config.prize-ticket-machine.name": "兑奖机",
+    "config.prize-ticket-machine.tooltip": "兑奖机兑奖的速度。默认{{defaultValue}}x.",
+
     "config.tree-fall.name": "树倒下",
     "config.tree-fall.tooltip": "树被砍倒的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
+
+    "config.wheel-spin.name": "转轮盘",
+    "config.wheel-spin.tooltip": "轮盘旋转的速度。默认{{defaultValue}}x.",
 
     /****
     ** 'UI Animation Speeds' section

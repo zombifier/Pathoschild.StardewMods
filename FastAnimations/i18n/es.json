@@ -53,14 +53,23 @@
     "config.break-geodes.name": "Romper geodas",
     "config.break-geodes.tooltip": "La rapidez con la que el herrero rompe las geodas para ti. Por defecto {{defaultValue}}x.",
 
-    "config.casino-slots.name": "Tragamonedas del casino",
-    "config.casino-slots.tooltip": "La rapidez con la que giran las tragamonedas del casino. Por defecto {{defaultValue}}x.",
-
     "config.bus.name": "Bus de Pam",
     "config.bus.tooltip": "Lo rápido que Pam conduce su autobús hacia y desde el desierto. Por defecto {{defaultValue}}x.",
 
+    "config.casino-slots.name": "Tragamonedas del casino",
+    "config.casino-slots.tooltip": "La rapidez con la que giran las tragamonedas del casino. Por defecto {{defaultValue}}x.",
+
+    "config.forge.name": "Forge", // TODO
+    "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.", // TODO
+
+    "config.prize-ticket-machine.name": "Prize ticket machine", // TODO
+    "config.prize-ticket-machine.tooltip": "How fast Lewis' prize ticket machine accepts a ticket and produces an item. Default {{defaultValue}}x.", // TODO
+
     "config.tree-fall.name": "Caída de árboles",
     "config.tree-fall.tooltip": "La rapidez con la que caen los árboles después de cortarlos. Por defecto {{defaultValue}}x, sugerencia {{suggestedValue}}x.",
+
+    "config.wheel-spin.name": "Wheel spin", // TODO
+    "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'UI Animation Speeds' section

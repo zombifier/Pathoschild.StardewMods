@@ -51,11 +51,20 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier for the casino slots minigame.</summary>
         public float CasinoSlotsSpeed { get; set; } = 8;
 
+        /// <summary>The speed multiplier for the volcano forge.</summary>
+        public float ForgeSpeed { get; set; } = 8;
+
         /// <summary>The speed multiplier when Pam's bus is driving to/from the desert.</summary>
         public float PamBusSpeed { get; set; } = 6;
 
+        /// <summary>The speed multiplier for Lewis' ticket prize machine.</summary>
+        public float PrizeTicketMachineSpeed { get; set; } = 20;
+
         /// <summary>The speed multiplier for falling trees.</summary>
         public float TreeFallSpeed { get; set; } = 1;
+
+        /// <summary>The speed multiplier for the Stardew Valley Fair wheel spin minigame.</summary>
+        public float WheelSpinSpeed { get; set; } = 16;
 
         /****
         ** UI animations
