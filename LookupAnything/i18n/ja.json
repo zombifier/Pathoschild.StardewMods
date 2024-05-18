@@ -1,4 +1,4 @@
-{
+﻿{
     /*********
     ** Generic translations
     *********/
@@ -135,6 +135,13 @@
     "location.islandWest.ocean": "ジンジャー島-西部(海)",
 
     "location.unknown-fish-area": "{{locationName}}(エリア{{id}})",
+
+    // context tags (e.g. for machine recipes)
+    // TODO
+    "context-tag.negate": "not {{tag}}",
+    "context-tag.bone": "any bone",
+    "context-tag.egg": "any egg",
+    "context-tag.large-egg": "any large egg",
 
 
     /*********
@@ -316,9 +323,13 @@
     "item.needed-for.gourmet-chef": "実績:グルメマスター ({{recipes}}を調理する)",
     "item.needed-for.craft-master": "実績:クラフトマスター ({{recipes}}を作成する)",
     "item.needed-for.quests": "進行中の依頼({{quests}})",
+    "item.unknown-recipes": "{{count}} unknown recipes", // TODO
     "item.sells-to.shipping-box": "出荷箱",
     "item.recipes-for-ingredient.entry": "{{name}} ({{count}}個必要)",
     "item.recipes-for-machine.multiple-items": "{{name}}が{{count}}個",
+    "item.recipes-for-machine.same-as-input": "[same as input]", // e.g. crystalarium produces same item that was put in // TODO
+    "item.recipes-for-machine.conditions": "[conditions: {{conditions}}]", // TODO
+    "item.recipes-for-machine.too-complex": "Some machine rules are too dynamic to display.", // TODO
     "item.number-owned.summary": "{{count}}個持っている",
     "item.number-crafted.summary": "{{count}}個作成した",
 
@@ -667,6 +678,17 @@
 
     "config.highlight-unrevealed-gift-tastes.name": "渡していない好みを強調",
     "config.highlight-unrevealed-gift-tastes.desc": "NPCのプロフィールで、渡していない好みを強調する。有効にすると渡していない好みは太字になる。",
+
+    // collapse fields
+    // TODO
+    "config.title.collapse-fields": "Collapse large fields",
+
+    "config.collapse-fields.enabled.name": "Enabled",
+    "config.collapse-fields.enabled.desc": "Whether to collapse large fields, so the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
+
+    "config.collapse-fields.npc-gift-tastes.name": "NPC lookup: gift tastes",
+    "config.collapse-fields.item-recipes.name": "Item lookup: recipes",
+    "config.collapse-fields.any.desc": "If the field contains this many values, the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
 
     // advanced options
     "config.title.advanced-options": "詳細オプション",
