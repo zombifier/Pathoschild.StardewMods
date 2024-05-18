@@ -175,11 +175,6 @@ You shouldn't change this file unless you know what you're doing.
         }
     ],
 
-    /*********
-    ** Building recipes (not available from game data)
-    *********/
-    "BuildingRecipes": [],
-
 
     /*********
     ** Added metadata for NPCs (including villagers, pets, farm animals, monsters, etc).
