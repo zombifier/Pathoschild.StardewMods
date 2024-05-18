@@ -700,8 +700,7 @@ namespace Pathoschild.Stardew.LookupAnything
                         minOutput: recipe.MinOutput,
                         maxOutput: recipe.MaxOutput,
                         outputChance: (decimal)recipe.OutputChance,
-                        machineId: recipe.MachineId,
-                        isForMachine: p => p is SObject obj && obj.HasTypeBigCraftable() && (obj.QualifiedItemId == recipe.MachineId || obj.ItemId == recipe.MachineId)
+                        machineId: ItemRegistry.ManuallyQualifyItemId(recipe.MachineId, ItemRegistry.type_bigCraftable)
                     ));
                 }
 
@@ -811,8 +810,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                 item: _ => output.getOne(),
                                 isKnown: () => Game1.player.HasTailoredThisItem(output),
                                 outputQualifiedItemId: ItemRegistry.QualifyItemId(recipe.CraftedItemId),
-                                machineId: null,
-                                isForMachine: _ => false
+                                machineId: null
                             );
                         }
                     }

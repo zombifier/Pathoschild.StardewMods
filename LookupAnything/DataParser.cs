@@ -10,7 +10,6 @@ using Pathoschild.Stardew.LookupAnything.Framework.Models;
 using Pathoschild.Stardew.LookupAnything.Framework.Models.FishData;
 using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Buildings;
 using StardewValley.Characters;
 using StardewValley.GameData;
 using StardewValley.GameData.Buildings;
@@ -401,7 +400,7 @@ namespace Pathoschild.Stardew.LookupAnything
             // machine recipes from Data/Machines
             foreach ((string entryKey, MachineData machineData) in DataLoader.Machines(Game1.content))
             {
-                string machineId = entryKey; // avoid referencing loop variable in closure
+                string qualifiedMachineId = entryKey; // avoid referencing loop variable in closure
 
                 if (machineData?.OutputRules?.Count is not > 0)
                     continue;
@@ -486,12 +485,11 @@ namespace Pathoschild.Stardew.LookupAnything
                                 select new RecipeModel(
                                     key: null,
                                     type: RecipeType.MachineInput,
-                                    displayType: ItemRegistry.GetDataOrErrorItem(machineId).DisplayName,
+                                    displayType: ItemRegistry.GetDataOrErrorItem(qualifiedMachineId).DisplayName,
                                     ingredients,
                                     item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
                                     isKnown: () => true,
-                                    machineId: machineId,
-                                    isForMachine: p => p is Item item && item.QualifiedItemId == machineId,
+                                    machineId: qualifiedMachineId,
                                     //exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id!.Value, 1)),
                                     exceptIngredients: null,
                                     outputQualifiedItemId: result.Item.QualifiedItemId,
@@ -513,12 +511,11 @@ namespace Pathoschild.Stardew.LookupAnything
                         new RecipeModel(
                             key: null,
                             type: RecipeType.MachineInput,
-                            displayType: ItemRegistry.GetDataOrErrorItem(machineId).DisplayName,
+                            displayType: ItemRegistry.GetDataOrErrorItem(qualifiedMachineId).DisplayName,
                             Array.Empty<RecipeIngredientModel>(),
                             item: _ => ItemRegistry.Create(DataParser.ComplexRecipeId),
                             isKnown: () => true,
-                            machineId: machineId,
-                            isForMachine: p => p is Item item && item.QualifiedItemId == machineId,
+                            machineId: qualifiedMachineId,
                             outputQualifiedItemId: DataParser.ComplexRecipeId
                         )
                     );
@@ -566,8 +563,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                 ingredients,
                                 item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
                                 isKnown: () => true,
-                                machineId: null,
-                                isForMachine: p => p is Building target && target.buildingType.Value == buildingType,
+                                machineId: buildingType,
                                 exceptIngredients: null,
                                 outputQualifiedItemId: result.Item.QualifiedItemId,
                                 minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,

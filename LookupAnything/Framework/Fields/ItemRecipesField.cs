@@ -45,7 +45,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="ingredient">The ingredient item.</param>
         /// <param name="recipes">The recipes to list.</param>
         /// <param name="progressionMode">Whether to hide recipes until the player discovers them.</param>
-        public ItemRecipesField(GameHelper gameHelper, string label, object ingredient, RecipeModel[] recipes, bool progressionMode)
+        public ItemRecipesField(GameHelper gameHelper, string label, Item? ingredient, RecipeModel[] recipes, bool progressionMode)
             : base(label, true)
         {
             this.GameHelper = gameHelper;
@@ -202,7 +202,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <summary>Build an optimized representation of the recipes to display.</summary>
         /// <param name="ingredient">The ingredient item.</param>
         /// <param name="rawRecipes">The raw recipes to list.</param>
-        private IEnumerable<RecipeByTypeGroup> BuildRecipeGroups(object ingredient, RecipeModel[] rawRecipes)
+        private IEnumerable<RecipeByTypeGroup> BuildRecipeGroups(Item? ingredient, RecipeModel[] rawRecipes)
         {
             /****
             ** build models for matching recipes
@@ -213,9 +213,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 .Select(recipe =>
                 {
                     // get output item
-                    Item? outputItem = recipe.IsForMachine(ingredient)
+                    Item? outputItem = ingredient is not null && recipe.IsForMachine(ingredient)
                         ? recipe.TryCreateItem(null)
-                        : recipe.TryCreateItem((Item)ingredient);
+                        : recipe.TryCreateItem(ingredient);
 
                     // handle error recipe
                     if (recipe.OutputQualifiedItemId == DataParser.ComplexRecipeId)
