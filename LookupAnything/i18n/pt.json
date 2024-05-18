@@ -685,8 +685,9 @@
     "config.collapse-fields.enabled.name": "Habilitado",
     "config.collapse-fields.enabled.desc": "Se for para minimizar campos longos, o menu de pesquisa substituirá a lista com o a palavra 'mostrar X valores' que pode ser clicada para expandir.",
 
-    "config.collapse-fields.npc-gift-tastes.name": "Pesquisa de NPC: preferências de presentes",
+    "config.collapse-fields.building-recipes.name": "Building lookup: recipes", // TODO
     "config.collapse-fields.item-recipes.name": "Pesquisa de Items: receitas",
+    "config.collapse-fields.npc-gift-tastes.name": "Pesquisa de NPC: preferências de presentes",
     "config.collapse-fields.any.desc": "Se o campo tiver essa quantidade de valores, o menu de pesquisa substituirá a lista com o a palavra 'mostrar X valores' que pode ser clicada para expandir.",
 
     // advanced options

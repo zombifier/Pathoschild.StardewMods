@@ -175,35 +175,6 @@ You shouldn't change this file unless you know what you're doing.
         }
     ],
 
-    /*********
-    ** Building recipes (not available from game data)
-    *********/
-    "BuildingRecipes": [
-        /* mill */
-        {
-            "BuildingKey": "Mill",
-            "Ingredients": {
-                "262": 1 // wheat
-            },
-            "Output": "246" // wheat flour
-        },
-        {
-            "BuildingKey": "Mill",
-            "Ingredients": {
-                "284": 1 // beet
-            },
-            "Output": "245", // sugar
-            "MaxOutput": 3
-        },
-        {
-            "BuildingKey": "Mill",
-            "Ingredients": {
-                "271": 1 // unmilled rice
-            },
-            "Output": "423" // rice
-        }
-    ],
-
 
     /*********
     ** Added metadata for NPCs (including villagers, pets, farm animals, monsters, etc).

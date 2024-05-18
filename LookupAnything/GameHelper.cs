@@ -429,6 +429,19 @@ namespace Pathoschild.Stardew.LookupAnything
                 .ToList();
         }
 
+        /// <summary>Get the recipes for a given building.</summary>
+        /// <param name="building">The building.</param>
+        public IEnumerable<RecipeModel> GetRecipesForBuilding(Building? building)
+        {
+            if (building == null)
+                return Array.Empty<RecipeModel>();
+
+            // from cached recipes
+            return this.GetRecipes()
+                .Where(recipe => recipe.IsForMachine(building))
+                .ToList();
+        }
+
         /// <summary>Get the current quests which need an item.</summary>
         /// <param name="item">The item to check.</param>
         public IEnumerable<QuestModel> GetQuestsWhichNeedItem(SObject item)
@@ -687,8 +700,7 @@ namespace Pathoschild.Stardew.LookupAnything
                         minOutput: recipe.MinOutput,
                         maxOutput: recipe.MaxOutput,
                         outputChance: (decimal)recipe.OutputChance,
-                        machineId: recipe.MachineId,
-                        isForMachine: p => p is SObject obj && obj.HasTypeBigCraftable() && (obj.QualifiedItemId == recipe.MachineId || obj.ItemId == recipe.MachineId)
+                        machineId: ItemRegistry.ManuallyQualifyItemId(recipe.MachineId, ItemRegistry.type_bigCraftable)
                     ));
                 }
 
@@ -798,8 +810,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                 item: _ => output.getOne(),
                                 isKnown: () => Game1.player.HasTailoredThisItem(output),
                                 outputQualifiedItemId: ItemRegistry.QualifyItemId(recipe.CraftedItemId),
-                                machineId: null,
-                                isForMachine: _ => false
+                                machineId: null
                             );
                         }
                     }

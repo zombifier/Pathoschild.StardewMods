@@ -10,8 +10,8 @@ using Pathoschild.Stardew.LookupAnything.Framework.Models;
 using Pathoschild.Stardew.LookupAnything.Framework.Models.FishData;
 using StardewModdingAPI;
 using StardewValley;
-using StardewValley.Buildings;
 using StardewValley.Characters;
+using StardewValley.GameData;
 using StardewValley.GameData.Buildings;
 using StardewValley.GameData.FishPonds;
 using StardewValley.GameData.Locations;
@@ -398,10 +398,9 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             // machine recipes from Data/Machines
-            // TODO: Add support for checking conditions, game state queries, and item queries
-            foreach ((string entryKey, MachineData machineData) in Game1.content.Load<Dictionary<string, MachineData>>("Data\\Machines"))
+            foreach ((string entryKey, MachineData machineData) in DataLoader.Machines(Game1.content))
             {
-                string machineId = entryKey; // avoid referencing loop variable in closure
+                string qualifiedMachineId = entryKey; // avoid referencing loop variable in closure
 
                 if (machineData?.OutputRules?.Count is not > 0)
                     continue;
@@ -422,10 +421,8 @@ namespace Pathoschild.Stardew.LookupAnything
                         if (trigger is null)
                             continue;
 
-                        // build key to represent required context tag or ID
-                        string[] inputContextTags = trigger.RequiredTags?.ToArray() ?? Array.Empty<string>();
-                        string? inputId = trigger.RequiredItemId;
-                        if (inputId is null && inputContextTags.Length == 0)
+                        // get ingredient
+                        if (!this.TryGetMostSpecificIngredientIds(trigger.RequiredItemId, trigger.RequiredTags, out string? inputId, out string[] inputContextTags))
                             continue;
 
                         // build output list
@@ -488,12 +485,11 @@ namespace Pathoschild.Stardew.LookupAnything
                                 select new RecipeModel(
                                     key: null,
                                     type: RecipeType.MachineInput,
-                                    displayType: ItemRegistry.GetDataOrErrorItem(machineId).DisplayName,
+                                    displayType: ItemRegistry.GetDataOrErrorItem(qualifiedMachineId).DisplayName,
                                     ingredients,
                                     item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
                                     isKnown: () => true,
-                                    machineId: machineId,
-                                    isForMachine: p => p is Item item && item.QualifiedItemId == machineId,
+                                    machineId: qualifiedMachineId,
                                     //exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id!.Value, 1)),
                                     exceptIngredients: null,
                                     outputQualifiedItemId: result.Item.QualifiedItemId,
@@ -515,38 +511,71 @@ namespace Pathoschild.Stardew.LookupAnything
                         new RecipeModel(
                             key: null,
                             type: RecipeType.MachineInput,
-                            displayType: ItemRegistry.GetDataOrErrorItem(machineId).DisplayName,
+                            displayType: ItemRegistry.GetDataOrErrorItem(qualifiedMachineId).DisplayName,
                             Array.Empty<RecipeIngredientModel>(),
                             item: _ => ItemRegistry.Create(DataParser.ComplexRecipeId),
                             isKnown: () => true,
-                            machineId: machineId,
-                            isForMachine: p => p is Item item && item.QualifiedItemId == machineId,
+                            machineId: qualifiedMachineId,
                             outputQualifiedItemId: DataParser.ComplexRecipeId
                         )
                     );
                 }
             }
 
-            // building recipes
-            recipes.AddRange(
-                from entry in metadata.BuildingRecipes
-                let buildingData = Game1.buildingData.TryGetValue(entry.BuildingKey, out BuildingData data)
-                    ? data
-                    : null
-                select new RecipeModel(
-                    key: null,
-                    type: RecipeType.BuildingInput,
-                    displayType: TokenParser.ParseText(buildingData?.Name) ?? entry.BuildingKey,
-                    ingredients: entry.Ingredients.Select(p => new RecipeIngredientModel(p.Key, p.Value)),
-                    item: ingredient => this.CreateRecipeItem(ingredient, entry.Output),
-                    isKnown: () => true,
-                    outputQualifiedItemId: ItemRegistry.QualifyItemId(entry.Output) ?? entry.Output,
-                    minOutput: entry.OutputCount ?? 1,
-                    exceptIngredients: entry.ExceptIngredients?.Select(p => new RecipeIngredientModel(p, 1)),
-                    machineId: null,
-                    isForMachine: p => p is Building target && target.buildingType.Value == entry.BuildingKey
-                )
-            );
+            // building recipes from Data/Buildings
+            foreach ((string entryKey, BuildingData buildingData) in Game1.buildingData)
+            {
+                string buildingType = entryKey; // avoid referencing loop variable in closure
+
+                if (buildingData?.ItemConversions?.Count is not > 0)
+                    continue;
+
+                foreach (BuildingItemConversion? rule in buildingData.ItemConversions)
+                {
+                    if (rule?.ProducedItems?.Count is not > 0 || rule.RequiredTags?.Count is not > 0)
+                        continue;
+
+                    if (!this.TryGetMostSpecificIngredientIds(null, rule.RequiredTags, out string? ingredientId, out string[] ingredientContextTags))
+                        continue;
+
+                    RecipeIngredientModel[] ingredients = new[] { new RecipeIngredientModel(ingredientId, rule.RequiredCount, ingredientContextTags) };
+
+                    foreach (GenericSpawnItemDataWithCondition? outputItem in rule.ProducedItems)
+                    {
+                        if (outputItem is null)
+                            continue;
+
+                        // add produced item
+                        IList<ItemQueryResult> itemQueryResults = ItemQueryResolver.TryResolve(outputItem, new ItemQueryContext());
+
+                        // get conditions
+                        string[]? conditions = !string.IsNullOrWhiteSpace(outputItem.Condition)
+                            ? GameStateQuery.SplitRaw(outputItem.Condition).Distinct().ToArray()
+                            : null;
+
+                        // add to list
+                        recipes.AddRange(
+                            from result in itemQueryResults
+                            select new RecipeModel(
+                                key: null,
+                                type: RecipeType.BuildingInput,
+                                displayType: TokenParser.ParseText(buildingData?.Name) ?? buildingType,
+                                ingredients,
+                                item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
+                                isKnown: () => true,
+                                machineId: buildingType,
+                                exceptIngredients: null,
+                                outputQualifiedItemId: result.Item.QualifiedItemId,
+                                minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,
+                                maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null, // TODO: Calculate this better
+                                quality: outputItem.Quality,
+                                outputChance: 100 / itemQueryResults.Count,
+                                conditions: conditions
+                            )
+                        );
+                    }
+                }
+            }
 
             return recipes.ToArray();
         }
@@ -595,6 +624,30 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             return output ?? ItemRegistry.Create(outputId);
+        }
+
+        /// <summary>Normalize raw ingredient ID and context tags from a machine recipe into the most specific item ID and context tags possible.</summary>
+        /// <param name="fromItemId">The ingredient's raw item ID from the machine data.</param>
+        /// <param name="fromContextTags">The ingredient's raw context tags from the machine data.</param>
+        /// <param name="itemId">The item ID matching the item, or <c>null</c> if the recipe is based on <paramref name="contextTags"/>.</param>
+        /// <param name="contextTags">The context tags matching the item, or an empty array if it's based on <paramref name="contextTags"/>.</param>
+        /// <returns>Returns whether an item ID or any context tags were specified.</returns>
+        private bool TryGetMostSpecificIngredientIds(string? fromItemId, List<string?>? fromContextTags, out string? itemId, out string[] contextTags)
+        {
+            // normalize values
+            contextTags = fromContextTags?.WhereNotNull().ToArray() ?? Array.Empty<string>();
+            itemId = !string.IsNullOrWhiteSpace(fromItemId)
+                ? fromItemId
+                : null;
+
+            // convert item ID tag to item ID
+            if (itemId is null && contextTags.Length == 1 && MachineDataHelper.TryGetUniqueItemFromContextTag(contextTags[0], out ParsedItemData? dataFromTag))
+            {
+                itemId = dataFromTag.QualifiedItemId;
+                contextTags = Array.Empty<string>();
+            }
+
+            return itemId != null || contextTags.Length > 0;
         }
     }
 }

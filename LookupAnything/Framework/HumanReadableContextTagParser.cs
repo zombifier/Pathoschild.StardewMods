@@ -1,5 +1,5 @@
-using System;
 using System.Diagnostics.CodeAnalysis;
+using Pathoschild.Stardew.Common;
 using StardewValley;
 using StardewValley.ItemTypeDefinitions;
 using Object = StardewValley.Object;
@@ -114,30 +114,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
         /// <remarks>This implementation is based on <see cref="Utility.getItemFromStandardTextDescription(string,Farmer,char)"/>.</remarks>
         private static bool TryParseItemId(string tag, [NotNullWhen(true)] out string? parsed)
         {
-            if (tag.StartsWith("id_"))
+            if (MachineDataHelper.TryGetUniqueItemFromContextTag(tag, out ParsedItemData? data))
             {
-                string rawIdentifier = tag[3..];
-                string? qualifiedId = null;
-
-                // extract qualified item ID
-                if (rawIdentifier.StartsWith('('))
-                    qualifiedId = rawIdentifier;
-                else
-                {
-                    string[] parts = rawIdentifier.Split('_', 2);
-
-                    foreach (IItemDataDefinition type in ItemRegistry.ItemTypes)
-                    {
-                        if (string.Equals(parts[0], type.StandardDescriptor, StringComparison.InvariantCultureIgnoreCase))
-                        {
-                            qualifiedId = type.Identifier + parts[1];
-                            break;
-                        }
-                    }
-                }
-
-                // get item name if valid
-                string? name = ItemRegistry.GetData(qualifiedId)?.DisplayName;
+                string? name = data.DisplayName;
                 if (!string.IsNullOrWhiteSpace(name))
                 {
                     parsed = name;
