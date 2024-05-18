@@ -37,6 +37,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         /// <summary>Provides subject entries.</summary>
         private readonly ISubjectRegistry Codex;
 
+        /// <summary>The configured minimum field values needed before they're auto-collapsed.</summary>
+        private readonly ModCollapseLargeFieldsConfig CollapseFieldsConfig;
+
 
         /*********
         ** Public methods
@@ -46,13 +49,15 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         /// <param name="gameHelper">Provides utility methods for interacting with the game code.</param>
         /// <param name="building">The lookup target.</param>
         /// <param name="sourceRectangle">The building's source rectangle in its spritesheet.</param>
-        public BuildingSubject(ISubjectRegistry codex, GameHelper gameHelper, Building building, Rectangle sourceRectangle)
+        /// <param name="collapseFieldsConfig">The configured minimum field values needed before they're auto-collapsed.</param>
+        public BuildingSubject(ISubjectRegistry codex, GameHelper gameHelper, Building building, Rectangle sourceRectangle, ModCollapseLargeFieldsConfig collapseFieldsConfig)
             : base(gameHelper, building.buildingType.Value, null, I18n.Type_Building())
         {
             // init
             this.Codex = codex;
             this.Target = building;
             this.SourceRectangle = sourceRectangle;
+            this.CollapseFieldsConfig = collapseFieldsConfig;
 
             // get name/description from data if available
             BuildingData? buildingData = building.GetData();
@@ -183,14 +188,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                             .ToArray();
                         if (recipes.Length > 0)
                         {
-                            // TODO: integrate progression mode and field collapse?
-                            bool progressionMode = false;
-                            var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), building, recipes, progressionMode);
-
-                            // calculate count of recipes that will be shown, in case we're in progression mode and some are hidden
-                            int shownRecipesCount = recipes.Count(recipe => !progressionMode || recipe.IsKnown());
-                            //if (this.CollapseFieldsConfig.Enabled && shownRecipesCount >= this.CollapseFieldsConfig.ItemRecipes)
-                            //    field.CollapseByDefault(I18n.Generic_ShowXResults(count: shownRecipesCount));
+                            // return recipes
+                            var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), building, recipes, progressionMode: false); // progression mode not applicable to buildings
+                            if (this.CollapseFieldsConfig.Enabled && recipes.Length >= this.CollapseFieldsConfig.BuildingRecipes)
+                                field.CollapseByDefault(I18n.Generic_ShowXResults(count: recipes.Length));
                             yield return field;
 
                             // return items being processed

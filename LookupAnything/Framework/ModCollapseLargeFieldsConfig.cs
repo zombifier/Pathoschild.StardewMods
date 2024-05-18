@@ -6,6 +6,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
         /// <summary>Whether to collapse large fields.</summary>
         public bool Enabled { get; set; } = true;
 
+        /// <summary>In a building lookup, the minimum recipes needed before the field is collapsed by default.</summary>
+        public int BuildingRecipes { get; set; } = 11;
+
         /// <summary>In an item lookup, the minimum recipes needed before the field is collapsed by default.</summary>
         public int ItemRecipes { get; set; } = 11;
 
