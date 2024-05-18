@@ -422,10 +422,8 @@ namespace Pathoschild.Stardew.LookupAnything
                         if (trigger is null)
                             continue;
 
-                        // build key to represent required context tag or ID
-                        string[] inputContextTags = trigger.RequiredTags?.ToArray() ?? Array.Empty<string>();
-                        string? inputId = trigger.RequiredItemId;
-                        if (inputId is null && inputContextTags.Length == 0)
+                        // get ingredient
+                        if (!this.TryGetMostSpecificIngredientIds(trigger.RequiredItemId, trigger.RequiredTags, out string? inputId, out string[] inputContextTags))
                             continue;
 
                         // build output list
@@ -540,7 +538,10 @@ namespace Pathoschild.Stardew.LookupAnything
                     if (rule?.ProducedItems?.Count is not > 0 || rule.RequiredTags?.Count is not > 0)
                         continue;
 
-                    RecipeIngredientModel[] ingredients = new[] { new RecipeIngredientModel(null, rule.RequiredCount, rule.RequiredTags.ToArray()) };
+                    if (!this.TryGetMostSpecificIngredientIds(null, rule.RequiredTags, out string? ingredientId, out string[] ingredientContextTags))
+                        continue;
+
+                    RecipeIngredientModel[] ingredients = new[] { new RecipeIngredientModel(ingredientId, rule.RequiredCount, ingredientContextTags) };
 
                     foreach (GenericSpawnItemDataWithCondition? outputItem in rule.ProducedItems)
                     {
@@ -627,6 +628,30 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             return output ?? ItemRegistry.Create(outputId);
+        }
+
+        /// <summary>Normalize raw ingredient ID and context tags from a machine recipe into the most specific item ID and context tags possible.</summary>
+        /// <param name="fromItemId">The ingredient's raw item ID from the machine data.</param>
+        /// <param name="fromContextTags">The ingredient's raw context tags from the machine data.</param>
+        /// <param name="itemId">The item ID matching the item, or <c>null</c> if the recipe is based on <paramref name="contextTags"/>.</param>
+        /// <param name="contextTags">The context tags matching the item, or an empty array if it's based on <paramref name="contextTags"/>.</param>
+        /// <returns>Returns whether an item ID or any context tags were specified.</returns>
+        private bool TryGetMostSpecificIngredientIds(string? fromItemId, List<string?>? fromContextTags, out string? itemId, out string[] contextTags)
+        {
+            // normalize values
+            contextTags = fromContextTags?.WhereNotNull().ToArray() ?? Array.Empty<string>();
+            itemId = !string.IsNullOrWhiteSpace(fromItemId)
+                ? fromItemId
+                : null;
+
+            // convert item ID tag to item ID
+            if (itemId is null && contextTags.Length == 1 && MachineDataHelper.TryGetUniqueItemFromContextTag(contextTags[0], out ParsedItemData? dataFromTag))
+            {
+                itemId = dataFromTag.QualifiedItemId;
+                contextTags = Array.Empty<string>();
+            }
+
+            return itemId != null || contextTags.Length > 0;
         }
     }
 }

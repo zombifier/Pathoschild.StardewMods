@@ -1,6 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.GameData.Buildings;
+using StardewValley.ItemTypeDefinitions;
 using StardewValley.Objects;
 
 namespace Pathoschild.Stardew.Common
@@ -55,6 +59,47 @@ namespace Pathoschild.Stardew.Common
                 if (chestNames.Contains(chest.Name))
                     yield return chest;
             }
+        }
+
+
+        /*********
+        ** Context tags
+        *********/
+        /// <summary>Get the item data matching a context tag, if the tag uniquely identifies one.</summary>
+        /// <param name="contextTag">The context tag to match.</param>
+        /// <param name="data">The item data, if found.</param>
+        /// <returns>Returns whether the <paramref name="data"/> was set to a unique item match.</returns>
+        public static bool TryGetUniqueItemFromContextTag(string contextTag, [NotNullWhen(true)] out ParsedItemData? data)
+        {
+            if (contextTag.StartsWith("id_"))
+            {
+                string rawIdentifier = contextTag[3..];
+                string? qualifiedId = null;
+
+                // extract qualified item ID
+                if (rawIdentifier.StartsWith('('))
+                    qualifiedId = rawIdentifier;
+                else
+                {
+                    string[] parts = rawIdentifier.Split('_', 2);
+
+                    foreach (IItemDataDefinition type in ItemRegistry.ItemTypes)
+                    {
+                        if (string.Equals(parts[0], type.StandardDescriptor, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            qualifiedId = type.Identifier + parts[1];
+                            break;
+                        }
+                    }
+                }
+
+                // get data if valid
+                data = ItemRegistry.GetData(qualifiedId);
+                return data != null;
+            }
+
+            data = null;
+            return false;
         }
     }
 }
