@@ -53,23 +53,23 @@
     "config.break-geodes.name": "Geódák törése",
     "config.break-geodes.tooltip": "Milyen gyorsan töri össze a kovács a geódákat neked. Alapból {{defaultValue}}x.",
 
-    "config.forging.name": "Foraging",
-    "config.forging.tooltip": "How fast you forge tool. Default {{defaultValue}}x.",
-
-    "config.prize-machine.name": "Prize Machine",
-    "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
-
-    "config.spin-wheel.name": "Spin Wheel",
-    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+    "config.bus.name": "Pam busza",
+    "config.bus.tooltip": "Milyen gyorsan vezeti Pam a buszt a sivatagba és a sivatagból. Alapból {{defaultValue}}x.",
 
     "config.casino-slots.name": "Félkarú rabló",
     "config.casino-slots.tooltip": "Milyen gyorsan forognak a félkarú rabló paneljai. Alapból {{defaultValue}}x.",
 
-    "config.bus.name": "Pam busza",
-    "config.bus.tooltip": "Milyen gyorsan vezeti Pam a buszt a sivatagba és a sivatagból. Alapból {{defaultValue}}x.",
+    "config.forge.name": "Forge", // TODO
+    "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.", // TODO
+
+    "config.prize-ticket-machine.name": "Prize ticket machine", // TODO
+    "config.prize-ticket-machine.tooltip": "How fast Lewis' prize ticket machine accepts a ticket and produces an item. Default {{defaultValue}}x.", // TODO
 
     "config.tree-fall.name": "Fa dőlése",
     "config.tree-fall.tooltip": "Milyen gyorsan dőlnek el a fák, miután kivágtad azokat. Alapból {{defaultValue}}x, ajánlott {{suggestedValue}}x.",
+
+    "config.wheel-spin.name": "Wheel spin", // TODO
+    "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'UI Animation Speeds' section

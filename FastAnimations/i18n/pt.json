@@ -53,23 +53,23 @@
     "config.break-geodes.name": "Quebrar Geodos",
     "config.break-geodes.tooltip": "Quão rápido o ferreiro quebra geodos para você. Padrão {{defaultValue}}x.",
 
-    "config.forging.name": "Foraging",
-    "config.forging.tooltip": "How fast you forge tool. Default {{defaultValue}}x.",
-
-    "config.prize-machine.name": "Prize Machine",
-    "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
-
-    "config.spin-wheel.name": "Spin Wheel",
-    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+    "config.bus.name": "Ônibus da Pam",
+    "config.bus.tooltip": "Quão rápido Pam dirige seu ônibus para o deserto. Padrão {{defaultValue}}x.",
 
     "config.casino-slots.name": "Caça-níquéis",
     "config.casino-slots.tooltip": "Quão rápido os slots do cassino giram. Padrão {{defaultValue}}x.",
 
-    "config.bus.name": "Ônibus da Pam",
-    "config.bus.tooltip": "Quão rápido Pam dirige seu ônibus para o deserto. Padrão {{defaultValue}}x.",
+    "config.forge.name": "Forge", // TODO
+    "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.", // TODO
+
+    "config.prize-ticket-machine.name": "Prize ticket machine", // TODO
+    "config.prize-ticket-machine.tooltip": "How fast Lewis' prize ticket machine accepts a ticket and produces an item. Default {{defaultValue}}x.", // TODO
 
     "config.tree-fall.name": "Queda de Árvores",
     "config.tree-fall.tooltip": "Quão rápido as árvores caem depois que você as corta. Padrão {{defaultValue}}x, sugerido {{suggestedValue}}x.",
+
+    "config.wheel-spin.name": "Wheel spin", // TODO
+    "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'UI Animation Speeds' section

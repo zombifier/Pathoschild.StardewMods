@@ -4,16 +4,16 @@ using StardewValley.Menus;
 
 namespace Pathoschild.Stardew.FastAnimations.Handlers
 {
-    /// <summary>Handles the wheel-spinning animation.</summary>
+    /// <summary>Handles the Stardew Valley Fair wheel spin minigame animation.</summary>
     /// <remarks>See game logic in <see cref="WheelSpinGame.update"/>.</remarks>
-    internal class SpinningWheelHandle : BaseAnimationHandler
+    internal class WheelSpinHandler : BaseAnimationHandler
     {
         /*********
         ** Public methods
         *********/
         /// <summary>Construct an instance.</summary>
         /// <param name="multiplier">The animation speed multiplier to apply.</param>
-        public SpinningWheelHandle(float multiplier)
+        public WheelSpinHandler(float multiplier)
             : base(multiplier) { }
 
         /// <summary>Get whether the animation is currently active.</summary>

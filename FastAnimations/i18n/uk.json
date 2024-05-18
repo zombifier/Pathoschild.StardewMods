@@ -53,23 +53,23 @@
     "config.break-geodes.name": "Розбиття жеод",
     "config.break-geodes.tooltip": "Як швидко коваль розбиває жеоди для вас. Типово: {{defaultValue}}x.",
 
-    "config.forging.name": "Foraging",
-    "config.forging.tooltip": "How fast you forge tool. Default {{defaultValue}}x.",
-
-    "config.prize-machine.name": "Prize Machine",
-    "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
-
-    "config.spin-wheel.name": "Spin Wheel",
-    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+    "config.bus.name": "Автобус Пем",
+    "config.bus.tooltip": "Як швидко Пем керує автобусом до та з пустелі. Типово: {{defaultValue}}x.",
 
     "config.casino-slots.name": "Слоти казино",
     "config.casino-slots.tooltip": "Як швидко слоти казино обертаються. Типово: {{defaultValue}}x.",
 
-    "config.bus.name": "Автобус Пем",
-    "config.bus.tooltip": "Як швидко Пем керує автобусом до та з пустелі. Типово: {{defaultValue}}x.",
+    "config.forge.name": "Forge", // TODO
+    "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.", // TODO
+
+    "config.prize-ticket-machine.name": "Prize ticket machine", // TODO
+    "config.prize-ticket-machine.tooltip": "How fast Lewis' prize ticket machine accepts a ticket and produces an item. Default {{defaultValue}}x.", // TODO
 
     "config.tree-fall.name": "Падіння дерев",
     "config.tree-fall.tooltip": "Як швидко падають дерева після їх рубки. Типово: {{defaultValue}}x. Рекомендується: {{suggestedValue}}x.",
+
+    "config.wheel-spin.name": "Wheel spin", // TODO
+    "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'UI Animation Speeds' section

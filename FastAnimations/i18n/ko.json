@@ -53,23 +53,23 @@
     "config.break-geodes.name": "정동석 깨기",
     "config.break-geodes.tooltip": "대장장이가 정동석을 깨는 속도. 기본 값 {{defaultValue}}.",
 
-    "config.forging.name": "Foraging",
-    "config.forging.tooltip": "How fast you forge tool. Default {{defaultValue}}x.",
-
-    "config.prize-machine.name": "Prize Machine",
-    "config.prize-machine.tooltip": "How fast the prize machine turn. Default {{defaultValue}}x.",
-
-    "config.spin-wheel.name": "Spin Wheel",
-    "config.spin-wheel.tooltip": "How fast the wheel spin. Default {{defaultValue}}x.",
+    "config.bus.name": "팸 버스",
+    "config.bus.tooltip": "팸이 사막을 오가는 버스를 운전하는 속도. 기본 값 {{defaultValue}}",
 
     "config.casino-slots.name": "카지노 슬롯",
     "config.casino-slots.tooltip": "카지노 슬롯이 회전하는 속도. 기본 값 {{defaultValue}}.",
 
-    "config.bus.name": "팸 버스",
-    "config.bus.tooltip": "팸이 사막을 오가는 버스를 운전하는 속도. 기본 값 {{defaultValue}}",
+    "config.forge.name": "Forge", // TODO
+    "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.", // TODO
+
+    "config.prize-ticket-machine.name": "Prize ticket machine", // TODO
+    "config.prize-ticket-machine.tooltip": "How fast Lewis' prize ticket machine accepts a ticket and produces an item. Default {{defaultValue}}x.", // TODO
 
     "config.tree-fall.name": "나무 쓰러짐",
     "config.tree-fall.tooltip": "나무를 자른 후 나무가 쓰러지는 속도. 기본 값 {{defaultValue}}, 권장 {{suggestedValue}}.",
+
+    "config.wheel-spin.name": "Wheel spin", // TODO
+    "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'UI Animation Speeds' section

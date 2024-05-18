@@ -1,7 +1,6 @@
 using System;
 using Pathoschild.Stardew.Common.Integrations.GenericModConfigMenu;
 using StardewModdingAPI;
-using StardewValley.Menus;
 
 namespace Pathoschild.Stardew.FastAnimations.Framework
 {
@@ -146,26 +145,10 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
-                    name: I18n.Config_Forging_Name,
-                    tooltip: () => I18n.Config_Forging_Tooltip(defaultValue: defaultConfig.ForgingSpeed),
-                    get: config => config.ForgingSpeed,
-                    set: (config, value) => config.ForgingSpeed = value,
-                    min: minSpeed,
-                    max: maxSpeed
-                )
-                .AddNumberField(
-                    name: I18n.Config_PrizeMachine_Name,
-                    tooltip: () => I18n.Config_PrizeMachine_Tooltip(defaultValue: defaultConfig.PrizeMachineSpeed),
-                    get: config => config.PrizeMachineSpeed,
-                    (config, value) => config.PrizeMachineSpeed = value,
-                    minSpeed,
-                    maxSpeed
-                )
-                .AddNumberField(
-                    name: I18n.Config_SpinWheel_Name,
-                    tooltip: () => I18n.Config_SpinWheel_Tooltip(defaultValue: defaultConfig.SpinWheelSpeed),
-                    get: config => config.SpinWheelSpeed,
-                    set: (config, value) => config.SpinWheelSpeed = value,
+                    name: I18n.Config_Bus_Name,
+                    tooltip: () => I18n.Config_Bus_Tooltip(defaultValue: defaultConfig.PamBusSpeed),
+                    get: config => config.PamBusSpeed,
+                    set: (config, value) => config.PamBusSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
                 )
@@ -178,18 +161,34 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
-                    name: I18n.Config_Bus_Name,
-                    tooltip: () => I18n.Config_Bus_Tooltip(defaultValue: defaultConfig.PamBusSpeed),
-                    get: config => config.PamBusSpeed,
-                    set: (config, value) => config.PamBusSpeed = value,
+                    name: I18n.Config_Forge_Name,
+                    tooltip: () => I18n.Config_Forge_Tooltip(defaultValue: defaultConfig.ForgeSpeed),
+                    get: config => config.ForgeSpeed,
+                    set: (config, value) => config.ForgeSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
+                )
+                .AddNumberField(
+                    name: I18n.Config_PrizeTicketMachine_Name,
+                    tooltip: () => I18n.Config_PrizeTicketMachine_Tooltip(defaultValue: defaultConfig.PrizeTicketMachineSpeed),
+                    get: config => config.PrizeTicketMachineSpeed,
+                    (config, value) => config.PrizeTicketMachineSpeed = value,
+                    minSpeed,
+                    maxSpeed
                 )
                 .AddNumberField(
                     name: I18n.Config_TreeFall_Name,
                     tooltip: () => I18n.Config_TreeFall_Tooltip(defaultValue: defaultConfig.TreeFallSpeed, suggestedValue: 3),
                     get: config => config.TreeFallSpeed,
                     set: (config, value) => config.TreeFallSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
+                    name: I18n.Config_WheelSpin_Name,
+                    tooltip: () => I18n.Config_WheelSpin_Tooltip(defaultValue: defaultConfig.WheelSpinSpeed),
+                    get: config => config.WheelSpinSpeed,
+                    set: (config, value) => config.WheelSpinSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
                 )
