@@ -2,7 +2,9 @@
 
 # Release notes
 ## Upcoming release
-* Improved translations. Thanks to burunduk (updated Ukrainian)!
+* Added support for forge, prize ticket machine, and Stardew Valley Fair wheel spin animations (thanks to weizinai!).
+* Animations are now also sped up during events and festivals.
+* Improved translations. Thanks to burunduk (updated Ukrainian) and weizinai (updated Chinese)!
 
 ## 1.11.10
 Released 21 April 2024 for SMAPI 4.0.0 or later.

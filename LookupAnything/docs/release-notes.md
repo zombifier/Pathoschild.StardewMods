@@ -3,7 +3,7 @@
 # Release notes
 ## Upcoming release
 * Added config options for the new collapsible fields.
-* Added support for machine recipes in `Data/Machines`, including custom recipes from other mods (thanks to collaboration with zombifier!).
+* Added support for machine recipes in `Data/Buildings` and `Data/Machines`, including custom recipes from other mods (thanks to collaboration with zombifier!).
 * Added support for machine changes from the Extra Machine Config mod (thanks to zombifier!).
 * Added quality star icons in recipe lists where relevant.
 * Added hint message when some machine rules are too dynamic to display.
@@ -12,7 +12,7 @@
 * Fixed keg and preserve jar lookups showing incorrect recipe items like "Error Item Jelly" (thanks to b3nk3lly!).
 * Fixed roe lookups showing incorrect caviar recipe (thanks to b3nk3lly!).
 * Fixed roe lookups showing recipes like 'Aged Aged Roe Roe'.
-* Improved translations. Thanks to burunduk (updated Ukrainian), nimbXnumb (updated Russian), ShanderB (updated Portuguese), and ykinsoul (updated Chinese)!
+* Improved translations. Thanks to burunduk (updated Ukrainian), MakinDay (updated Italian), mitekano23 (updated Japanese), nimbXnumb (updated Russian), ShanderB (updated Portuguese), and ykinsoul (updated Chinese)!
 
 ## 1.42.0
 Released 21 April 2024 for SMAPI 4.0.0 or later.
