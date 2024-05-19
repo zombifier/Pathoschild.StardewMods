@@ -14,6 +14,7 @@
     ** Section titles
     ****/
     "config.main-options": "Opções Principais",
+    "config.audio": "Audio", // TODO
     "config.controls": "Controles",
     "config.axe": "Recursos do Machado",
     "config.hoe": "Recursos da Enxada",
@@ -38,12 +39,6 @@
     "config.magnetic-radius.name": "Raio Magnético",
     "config.magnetic-radius.tooltip": "A quantidade de magnetismo do item (valores mais altos atraem itens de mais longe). Padrão {{defaultValue}}.",
 
-    "config.tractor-sounds.name": "Efeitos Sonoros",
-    "config.tractor-sounds.tooltip": "Quais efeitos sonoros reproduzir ao andar de trator. As mudanças podem não ter efeito total até você recarregar o salvamento. Padrão {{defaultValue}}.",
-    "config.tractor-sounds.value.None": "sem sons",
-    "config.tractor-sounds.value.Horse": "sons de cavalo",
-    "config.tractor-sounds.value.Tractor": "sons de trator",
-
     "config.build-price.name": "Preço de Construção",
     "config.build-price.tooltip": "O preço em ouro para comprar uma garagem de trator. Padrão {{defaultValue}}g.",
 
@@ -55,6 +50,20 @@
 
     "config.highlight-radius.name": "Destacar Raio (Debug)",
     "config.highlight-radius.tooltip": "Se deve destacar o raio do trator ao andar nele, para ajudar a visualizar a opção de distância.",
+
+
+    /****
+    ** Audio
+    ****/
+    "config.tractor-sounds.name": "Efeitos Sonoros",
+    "config.tractor-sounds.tooltip": "Quais efeitos sonoros reproduzir ao andar de trator. As mudanças podem não ter efeito total até você recarregar o salvamento. Padrão {{defaultValue}}.",
+    "config.tractor-sounds.value.None": "sem sons",
+    "config.tractor-sounds.value.Horse": "sons de cavalo",
+    "config.tractor-sounds.value.Tractor": "sons de trator",
+
+    // TODO
+    "config.tractor-volume.name": "Sound Effects Volume",
+    "config.tractor-volume.tooltip": "The volume level for the tractor sound effects. Default {{defaultValue}}%.",
 
 
     /****

@@ -86,7 +86,11 @@ namespace Pathoschild.Stardew.TractorMod
 
             // init
             I18n.Init(helper.Translation);
-            this.AudioManager = new AudioManager(this.Helper.DirectoryPath, isActive: () => this.Config.SoundEffects == TractorSoundType.Tractor);
+            this.AudioManager = new AudioManager(
+                directoryPath: this.Helper.DirectoryPath,
+                isActive: () => this.Config.SoundEffects == TractorSoundType.Tractor,
+                getVolume: () => this.Config.SoundEffectsVolume
+            );
             this.TextureManager = new(
                 directoryPath: this.Helper.DirectoryPath,
                 publicAssetBasePath: this.PublicAssetBasePath,
@@ -485,6 +489,8 @@ namespace Pathoschild.Stardew.TractorMod
 
             foreach (var pair in this.TractorManagerImpl.GetActiveValues())
                 this.UpdateConfigFor(pair.Value);
+
+            this.AudioManager.UpdateVolume();
         }
 
         /// <summary>Apply the mod configuration to a tractor manager instance.</summary>

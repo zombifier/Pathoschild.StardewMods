@@ -75,14 +75,6 @@ namespace Pathoschild.Stardew.TractorMod.Framework
                     min: 0,
                     max: 1000
                 )
-                .AddDropdown(
-                    name: I18n.Config_TractorSounds_Name,
-                    tooltip: () => I18n.Config_TractorSounds_Tooltip(defaultValue: I18n.GetByKey($"config.tractor-sounds.value.{defaultConfig.SoundEffects}")),
-                    formatAllowedValue: value => I18n.GetByKey($"config.tractor-sounds.value.{value}"),
-                    allowedValues: Enum.GetNames<TractorSoundType>(),
-                    get: config => config.SoundEffects.ToString(),
-                    set: (config, value) => config.SoundEffects = Enum.Parse<TractorSoundType>(value)
-                )
                 .AddNumberField(
                     name: I18n.Config_BuildPrice_Name,
                     tooltip: () => I18n.Config_BuildPrice_Tooltip(defaultValue: defaultConfig.BuildPrice),
@@ -108,6 +100,25 @@ namespace Pathoschild.Stardew.TractorMod.Framework
                     tooltip: I18n.Config_HighlightRadius_Tooltip,
                     get: config => config.HighlightRadius,
                     set: (config, value) => config.HighlightRadius = value
+                )
+
+                // audio
+                .AddSectionTitle(I18n.Config_Audio)
+                .AddDropdown(
+                    name: I18n.Config_TractorSounds_Name,
+                    tooltip: () => I18n.Config_TractorSounds_Tooltip(defaultValue: I18n.GetByKey($"config.tractor-sounds.value.{defaultConfig.SoundEffects}")),
+                    formatAllowedValue: value => I18n.GetByKey($"config.tractor-sounds.value.{value}"),
+                    allowedValues: Enum.GetNames<TractorSoundType>(),
+                    get: config => config.SoundEffects.ToString(),
+                    set: (config, value) => config.SoundEffects = Enum.Parse<TractorSoundType>(value)
+                )
+                .AddNumberField(
+                    name: I18n.Config_TractorVolume_Name,
+                    tooltip: () => I18n.Config_TractorVolume_Tooltip(defaultValue: defaultConfig.SoundEffectsVolume),
+                    get: config => config.SoundEffectsVolume,
+                    set: (config, value) => config.SoundEffectsVolume = value,
+                    min: 0,
+                    max: 100
                 )
 
                 // controls

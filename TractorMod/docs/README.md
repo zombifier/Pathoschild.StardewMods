@@ -110,6 +110,20 @@ Which sound effects to play while riding the tractor. The possible values are `N
 <tr>
 <td>
 
+`SoundEffectsVolume`
+
+</td>
+<td>
+
+The volume level for the tractor sound effects, as a value between 0 (silent) and 100 (full volume). Only applicable if
+`SoundEffects` is set to `Tractor`. Default 75.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
 `BuildPrice`
 
 </td>

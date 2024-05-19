@@ -14,6 +14,7 @@
     ** Section titles
     ****/
     "config.main-options": "Головні налаштування",
+    "config.audio": "Audio", // TODO
     "config.controls": "Елементи керування",
     "config.axe": "Особливості сокири",
     "config.hoe": "Особливості мотики",
@@ -38,12 +39,6 @@
     "config.magnetic-radius.name": "Радіус Магнетизму",
     "config.magnetic-radius.tooltip": "Величина магнетизму предмета (При більших значеннях предмети притягуються з більшої відстані). За замовчуванням: {{defaultValue}}.",
 
-    "config.tractor-sounds.name": "Звукові ефекти",
-    "config.tractor-sounds.tooltip": "Які звукові ефекти відтворювати під час їзди на тракторі. Зміни можуть не набути чинності до перезавантаження збереженої гри. За замовчуванням {{defaultValue}}.",
-    "config.tractor-sounds.value.None": "без звуків",
-    "config.tractor-sounds.value.Horse": "звуки коня",
-    "config.tractor-sounds.value.Tractor": "звуки трактора",
-
     "config.build-price.name": "Ціна побудови",
     "config.build-price.tooltip": "Золота ціна купівлі гаража трактора. За замовчуванням: {{defaultValue}} зол.",
 
@@ -55,6 +50,20 @@
 
     "config.highlight-radius.name": "Радіус виділення (налагодження)",
     "config.highlight-radius.tooltip": "Можливість виділення радіуса дії трактора під час їзди, щоб допомогти візуалізувати параметр відстані.",
+
+
+    /****
+    ** Audio
+    ****/
+    "config.tractor-sounds.name": "Звукові ефекти",
+    "config.tractor-sounds.tooltip": "Які звукові ефекти відтворювати під час їзди на тракторі. Зміни можуть не набути чинності до перезавантаження збереженої гри. За замовчуванням {{defaultValue}}.",
+    "config.tractor-sounds.value.None": "без звуків",
+    "config.tractor-sounds.value.Horse": "звуки коня",
+    "config.tractor-sounds.value.Tractor": "звуки трактора",
+
+    // TODO
+    "config.tractor-volume.name": "Sound Effects Volume",
+    "config.tractor-volume.tooltip": "The volume level for the tractor sound effects. Default {{defaultValue}}%.",
 
 
     /****

@@ -14,6 +14,7 @@
     ** Section titles
     ****/
     "config.main-options": "Options principales",
+    "config.audio": "Audio", // TODO
     "config.controls": "Contrôles",
     "config.axe": "Caractéristiques de la hache",
     "config.hoe": "Caractéristiques de la houe",
@@ -38,12 +39,6 @@
     "config.magnetic-radius.name": "Rayon magnétique",
     "config.magnetic-radius.tooltip": "Le taux de magnétisme des objets (les valeurs les plus élevées attirent les objets de plus loin). Valeur par défaut {{defaultValue}}.",
 
-    "config.tractor-sounds.name": "Effets sonores",
-    "config.tractor-sounds.tooltip": "Quel effet sonore jouer en conduisant le tracteur. Les modifications peuvent ne pas prendre effet tant que vous n'avez pas rechargé la sauvegarde. {{defaultValue}} par défaut.",
-    "config.tractor-sounds.value.None": "pas de bruit",
-    "config.tractor-sounds.value.Horse": "bruit de cheval",
-    "config.tractor-sounds.value.Tractor": "bruit de tracteur",
-
     "config.build-price.name": "Prix de construction",
     "config.build-price.tooltip": "Le prix pour acheter le hangar. Valeur par défaut {{defaultValue}}g.",
 
@@ -55,6 +50,20 @@
 
     "config.highlight-radius.name": "Rayon de surbrillance (Debug)",
     "config.highlight-radius.tooltip": "Possibilité de mettre en évidence le rayon du tracteur lorsqu'on en conduit un, pour aider à visualiser l'option de distance.",
+
+
+    /****
+    ** Audio
+    ****/
+    "config.tractor-sounds.name": "Effets sonores",
+    "config.tractor-sounds.tooltip": "Quel effet sonore jouer en conduisant le tracteur. Les modifications peuvent ne pas prendre effet tant que vous n'avez pas rechargé la sauvegarde. {{defaultValue}} par défaut.",
+    "config.tractor-sounds.value.None": "pas de bruit",
+    "config.tractor-sounds.value.Horse": "bruit de cheval",
+    "config.tractor-sounds.value.Tractor": "bruit de tracteur",
+
+    // TODO
+    "config.tractor-volume.name": "Sound Effects Volume",
+    "config.tractor-volume.tooltip": "The volume level for the tractor sound effects. Default {{defaultValue}}%.",
 
 
     /****
