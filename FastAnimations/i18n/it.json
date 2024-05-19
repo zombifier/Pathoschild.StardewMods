@@ -63,7 +63,7 @@
     "config.forge.tooltip": "Velocità di funzionamento della fucina del vulcano. Predefinito {{defaultValue}}x.",
 
     "config.prize-ticket-machine.name": "Macchina dei premi",
-    "config.prize-ticket-machine.tooltip": "Velocità con cui la macchina per biglietti premio di Lewis accetta un biglietto e produce un articolo. Predefinito {{defaultValue}}x.", // TODO
+    "config.prize-ticket-machine.tooltip": "Velocità con cui la macchina dei premi di Lewis accetta un biglietto e produce un articolo. Predefinito {{defaultValue}}x.",
 
     "config.tree-fall.name": "Caduta degli alberi",
     "config.tree-fall.tooltip": "Velocità con cui gli alberi cadono dopo essere stati abbattuti. Predefinito {{defaultValue}}x, valore suggerito {{suggestedValue}}x.",
