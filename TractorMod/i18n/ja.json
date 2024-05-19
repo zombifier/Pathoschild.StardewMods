@@ -156,6 +156,10 @@
     "config.dig-artifact-spots.name": "発掘品を掘り起こす",
     "config.dig-artifact-spots.tooltip": "発掘品を掘り起こす。",
 
+    // TODO
+    "config.dig-seed-spots.name": "Dig Seed Spots",
+    "config.dig-seed-spots.tooltip": "Whether to dig up seed spots.",
+
     "config.clear-tilled-dirt.name": "耕した土を戻す",
     "config.clear-tilled-dirt.tooltip": "耕した土をもとに戻す。",
 

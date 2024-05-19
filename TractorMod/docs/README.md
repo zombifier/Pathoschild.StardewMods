@@ -308,6 +308,7 @@ field              | default | effect
 `TillDirt`         | true    | Whether to till empty dirt.
 `ClearWeeds`       | true    | Whether to clear weeds.
 `DigArtifactSpots` | true    | Whether to dig artifact spots.
+`DigSeedSpots`     | true    | Whether to dig seed spots.
 `HarvestGinger`    | true    | Whether to harvest spawned ginger.
 
 </td>

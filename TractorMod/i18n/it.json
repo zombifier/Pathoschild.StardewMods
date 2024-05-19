@@ -156,6 +156,10 @@
     "config.dig-artifact-spots.name": "Scava nei punti dei manufatti",
     "config.dig-artifact-spots.tooltip": "Scegli se vuoi scavare nei punti dei manufatti.",
 
+    // TODO
+    "config.dig-seed-spots.name": "Dig Seed Spots",
+    "config.dig-seed-spots.tooltip": "Whether to dig up seed spots.",
+
     "config.clear-tilled-dirt.name": "Elimina terra dissodata",
     "config.clear-tilled-dirt.tooltip": "Scegli se vuoi eliminare la terra dissodata.",
 

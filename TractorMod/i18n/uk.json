@@ -156,6 +156,10 @@
     "config.dig-artifact-spots.name": "Викопувати артефакти",
     "config.dig-artifact-spots.tooltip": "Викопування артефактів.",
 
+    // TODO
+    "config.dig-seed-spots.name": "Dig Seed Spots",
+    "config.dig-seed-spots.tooltip": "Whether to dig up seed spots.",
+
     "config.clear-tilled-dirt.name": "Перекопати оброблений ґрунт",
     "config.clear-tilled-dirt.tooltip": "Переконування обробленого ґрунту.",
 

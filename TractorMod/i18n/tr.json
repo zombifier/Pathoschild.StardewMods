@@ -156,6 +156,10 @@
     "config.dig-artifact-spots.name": "Eser Noktalarını Kaz",
     "config.dig-artifact-spots.tooltip": "Eser noktalarının kazılıp kazılmayacağı.",
 
+    // TODO
+    "config.dig-seed-spots.name": "Dig Seed Spots",
+    "config.dig-seed-spots.tooltip": "Whether to dig up seed spots.",
+
     "config.clear-tilled-dirt.name": "İşlenmiş Toprağı Temizle",
     "config.clear-tilled-dirt.tooltip": "İşlenmiş toprağın temizlenip temizlenmeyeceği.",
 

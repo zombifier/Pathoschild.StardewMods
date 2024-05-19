@@ -226,6 +226,12 @@ namespace Pathoschild.Stardew.TractorMod.Framework
                     get: config => config.StandardAttachments.Hoe.DigArtifactSpots,
                     set: (config, value) => config.StandardAttachments.Hoe.DigArtifactSpots = value
                 )
+                .AddCheckbox(
+                    name: I18n.Config_DigSeedSpots_Name,
+                    tooltip: I18n.Config_DigSeedSpots_Tooltip,
+                    get: config => config.StandardAttachments.Hoe.DigSeedSpots,
+                    set: (config, value) => config.StandardAttachments.Hoe.DigSeedSpots = value
+                )
 
                 // pickaxe
                 .AddSectionTitle(I18n.Config_Pickaxe)

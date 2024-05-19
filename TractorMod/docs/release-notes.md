@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Added support for...
+  * digging seed spots (with a hoe);
   * harvesting tree moss (with a scythe);
   * planting blue grass starter.
 * Split 'harvest grass' option into non-blue and blue grass.

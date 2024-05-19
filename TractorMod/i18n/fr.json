@@ -156,6 +156,10 @@
     "config.dig-artifact-spots.name": "Creuser les emplacements d'artefact",
     "config.dig-artifact-spots.tooltip": "S'il faut déterrer les artefacts.",
 
+    // TODO
+    "config.dig-seed-spots.name": "Dig Seed Spots",
+    "config.dig-seed-spots.tooltip": "Whether to dig up seed spots.",
+
     "config.clear-tilled-dirt.name": "Déblayer terre labourée",
     "config.clear-tilled-dirt.tooltip": "S'il faut déblayer une terre labourée.",
 

@@ -156,6 +156,10 @@
     "config.dig-artifact-spots.name": "Artefakt-Spots ausgraben",
     "config.dig-artifact-spots.tooltip": "Ob Artefaktstellen ausgegraben werden sollen.",
 
+    // TODO
+    "config.dig-seed-spots.name": "Dig Seed Spots",
+    "config.dig-seed-spots.tooltip": "Whether to dig up seed spots.",
+
     "config.clear-tilled-dirt.name": "Entferne gepflügten Dreck",
     "config.clear-tilled-dirt.tooltip": "Ob gepflügter Dreck entfernt werden soll",
 
