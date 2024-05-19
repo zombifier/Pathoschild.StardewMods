@@ -6,8 +6,10 @@
   * harvesting tree moss (with a scythe);
   * planting blue grass starter.
 * Simplified tractor names to improve display in mods like NPC Map Locations.
-* Fixed 'harvest tree seeds' option missing in Generic Mod Config Menu UI.
-* Fixed 'harvest mine spawns' pickaxe option not working if 'clear placed objects' is also enabled.
+* Fixed tool options:
+  * Fixed axe 'chop free trees (saplings)' option affecting full-grown trees.
+  * Fixed pickaxe 'harvest mine spawns' option not working if 'clear placed objects' is also enabled.
+  * Fixed scythe 'harvest tree seeds' option missing in Generic Mod Config Menu UI.
 * Improved translations. Thanks to burunduk (updated Ukrainian), Lexith98 (updated Turkish), mc-kaishixiaxue (updated Chinese), and mitekano23 (updated Japanese)!
 
 **Note for mod authors:**
