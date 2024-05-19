@@ -325,7 +325,7 @@
     "item.sells-to.shipping-box": "Cassetta delle spedizioni",
     "item.recipes-for-ingredient.entry": "{{name}} ({{count}} necessari)",
     "item.recipes-for-machine.multiple-items": "{{name}} x{{count}}",
-    "item.recipes-for-machine.same-as-input": "[come da input]", // e.g. crystalarium produces same item that was put in
+    "item.recipes-for-machine.same-as-input": "[stesso oggetto]", // e.g. crystalarium produces same item that was put in
     "item.recipes-for-machine.conditions": "[condizioni: {{conditions}}]",
     "item.recipes-for-machine.too-complex": "Alcune regole della macchina sono troppo dinamiche per essere visualizzate.",
     "item.number-owned.summary": "Quantità posseduta: {{count}}",
