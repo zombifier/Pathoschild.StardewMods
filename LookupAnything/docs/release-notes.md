@@ -13,7 +13,7 @@
 * Fixed keg and preserve jar lookups showing incorrect recipe items like "Error Item Jelly" (thanks to b3nk3lly!).
 * Fixed roe lookups showing incorrect caviar recipe (thanks to b3nk3lly!).
 * Fixed roe lookups showing recipes like 'Aged Aged Roe Roe'.
-* Improved translations. Thanks to burunduk (updated Ukrainian), MakinDay (updated Italian), mitekano23 (updated Japanese), nimbXnumb (updated Russian), ShanderB (updated Portuguese), and ykinsoul (updated Chinese)!
+* Improved translations. Thanks to burunduk (updated Ukrainian), Caranud (updated French), MakinDay (updated Italian), mitekano23 (updated Japanese), nimbXnumb (updated Russian), ShanderB (updated Portuguese), and ykinsoul (updated Chinese)!
 
 ## 1.42.0
 Released 21 April 2024 for SMAPI 4.0.0 or later.
