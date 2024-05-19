@@ -9,6 +9,7 @@
 * Added hint message when some machine rules are too dynamic to display.
 * Re-added support for Producer Framework Mod machines (thanks to zombifier!).
 * The 'progression mode' option now hides recipes you haven't learned yet (thanks to b3nk3lly!).
+* Fixed repeating warning when looking up caged monsters at Spirit's Eve.
 * Fixed keg and preserve jar lookups showing incorrect recipe items like "Error Item Jelly" (thanks to b3nk3lly!).
 * Fixed roe lookups showing incorrect caviar recipe (thanks to b3nk3lly!).
 * Fixed roe lookups showing recipes like 'Aged Aged Roe Roe'.
