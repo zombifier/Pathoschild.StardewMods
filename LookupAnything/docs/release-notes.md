@@ -2,10 +2,10 @@
 
 # Release notes
 ## Upcoming release
-* Added config options for the new collapsible fields.
 * Added support for machine recipes in `Data/Buildings` and `Data/Machines`, including custom recipes from other mods (thanks to collaboration with zombifier!).
 * Added support for machine changes from the Extra Machine Config mod (thanks to zombifier!).
 * Added quality star icons in recipe lists where relevant.
+* Added config options for the new collapsible fields, and raised maximum number of items shown before they collapse by default.
 * Added hint message when some machine rules are too dynamic to display.
 * Re-added support for Producer Framework Mod machines (thanks to zombifier!).
 * The 'progression mode' option now hides recipes you haven't learned yet (thanks to b3nk3lly!).
