@@ -40,7 +40,7 @@ melee dagger | clear dead crops; break mine containers. | attack monsters; harve
 melee sword | clear dead crops; break mine containers. | attack monsters; harvest grass.
 milk pail  | collect milk from farm animals. | —
 pickaxe    | break rocks; clear tilled dirt; clear dead crops; harvest spawned mine items. | break paths/flooring; break placed objects.
-scythe     | harvest crops, flowers, bushes, fruit trees, forage, tree seeds, and spawned mine items; clear weeds and dead crops. | collect machine output.
+scythe     | harvest crops, flowers, bushes, fruit trees, forage, tree moss & seeds, and spawned mine items; clear weeds and dead crops. | collect machine output.
 seeds      | plant seeds in dirt. | —
 shears     | shear wool from farm animals. | —
 slingshot  | — | shoot one projectile/tile/second in the aimed direction.
@@ -390,6 +390,8 @@ field               | default | effect
 `HarvestFlowers`    | true    | Whether to harvest flowers.
 `HarvestForage`     | true    | Whether to harvest forage.
 `HarvestFruitTrees` | true    | Whether to harvest fruits on fruit trees.
+`HarvestTreeMoss`   | true    | Whether to harvest moss on trees.
+`HarvestTreeSeeds`  | true    | Whether to harvest seeds from trees.
 `HarvestMachines`   | false   | Whether to collect machine output.
 `HarvestGrass`      | true    | Whether to cut tall grass. If you have free silo space, this gives you hay as usual.
 `ClearDeadCrops`    | true    | Whether to clear dead crops.

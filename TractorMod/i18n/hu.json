@@ -101,6 +101,14 @@
     "config.harvest-fruit-trees.name": "Gyümölcsfák betakarítása",
     "config.harvest-fruit-trees.tooltip": "A gyümölcsfa termések betakarítása.",
 
+    // TODO
+    "config.harvest-tree-moss.name": "Harvest Tree Moss",
+    "config.harvest-tree-moss.tooltip": "Whether to collect moss from trees.",
+
+    // TODO
+    "config.harvest-tree-seeds.name": "Harvest Tree Seeds",
+    "config.harvest-tree-seeds.tooltip": "Whether to collect seeds from trees.",
+
 
     /****
     ** Crops/forage/grass (Növények/erdő/fű)

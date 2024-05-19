@@ -101,6 +101,14 @@
     "config.harvest-fruit-trees.name": "과일 수확",
     "config.harvest-fruit-trees.tooltip": "낫으로 과일을 수확 할 수 있습니다.",
 
+    // TODO
+    "config.harvest-tree-moss.name": "Harvest Tree Moss",
+    "config.harvest-tree-moss.tooltip": "Whether to collect moss from trees.",
+
+    // TODO
+    "config.harvest-tree-seeds.name": "Harvest Tree Seeds",
+    "config.harvest-tree-seeds.tooltip": "Whether to collect seeds from trees.",
+
 
     /****
     ** Crops/forage/grass

@@ -311,6 +311,18 @@ namespace Pathoschild.Stardew.TractorMod.Framework
                     set: (config, value) => config.StandardAttachments.Scythe.HarvestFruitTrees = value
                 )
                 .AddCheckbox(
+                    name: I18n.Config_HarvestTreeMoss_Name,
+                    tooltip: I18n.Config_HarvestTreeMoss_Tooltip,
+                    get: config => config.StandardAttachments.Scythe.HarvestTreeMoss,
+                    set: (config, value) => config.StandardAttachments.Scythe.HarvestTreeMoss = value
+                )
+                .AddCheckbox(
+                    name: I18n.Config_HarvestTreeSeeds_Name,
+                    tooltip: I18n.Config_HarvestTreeSeeds_Tooltip,
+                    get: config => config.StandardAttachments.Scythe.HarvestTreeSeeds,
+                    set: (config, value) => config.StandardAttachments.Scythe.HarvestTreeSeeds = value
+                )
+                .AddCheckbox(
                     name: I18n.Config_HarvestMachines_Name,
                     tooltip: I18n.Config_HarvestMachines_Tooltip,
                     get: config => config.StandardAttachments.Scythe.HarvestMachines,
