@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Added support for planting blue grass starter.
 * Simplified tractor names to improve display in mods like NPC Map Locations.
 * Improved translations. Thanks to burunduk (updated Ukrainian), Lexith98 (updated Turkish), mc-kaishixiaxue (updated Chinese), and mitekano23 (updated Japanese)!
 
