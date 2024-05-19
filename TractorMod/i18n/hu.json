@@ -131,8 +131,11 @@
     "config.harvest-forage.name": "Takarmány betakarítása",
     "config.harvest-forage.tooltip": "A takarmány betakarítása.",
 
-    "config.harvest-grass.name": "Fűnyírás",
-    "config.harvest-grass.tooltip": "Ha van szabad hely a silóban, akkor a szokásos módon szénát ad.",
+    "config.harvest-blue-grass.name": "Fűnyírás (Kék)",
+    "config.harvest-blue-grass.tooltip": "Ha van szabad hely a silóban, akkor a szokásos módon szénát ad a kék fű.",
+
+    "config.harvest-non-blue-grass.name": "Fűnyírás (Nem Kék)",
+    "config.harvest-non-blue-grass.tooltip": "Ha van szabad hely a silóban, akkor a szokásos módon szénát ad a nem kék fű.",
 
 
     /****

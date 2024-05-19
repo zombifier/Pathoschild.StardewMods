@@ -130,8 +130,11 @@
     "config.harvest-forage.name": "Yiyecekleri Hasat Et",
     "config.harvest-forage.tooltip": "Yiyeceklerin hasat edilip edilmeyeceği.",
 
-    "config.harvest-grass.name": "Otları Hasat Et",
-    "config.harvest-grass.tooltip": "Otların kesilip kesilmeyeceği. Boş silo alanınız varsa, bu size her zamanki gibi saman verir.",
+    "config.harvest-blue-grass.name": "Mavi Otları Hasat Et",
+    "config.harvest-blue-grass.tooltip": "Mavi otların kesilip kesilmeyeceği. Boş silo alanınız varsa, bu size her zamanki gibi saman verir.",
+
+    "config.harvest-non-blue-grass.name": "Mavi Olmayan Otları Hasat Et",
+    "config.harvest-non-blue-grass.tooltip": "Mavi olmayan otların kesilip kesilmeyeceği. Boş silo alanınız varsa, bu size her zamanki gibi saman verir.",
 
 
     /****

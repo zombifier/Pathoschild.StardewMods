@@ -131,8 +131,11 @@
     "config.harvest-forage.name": "Cosechar forraje",
     "config.harvest-forage.tooltip": "Si se cosechan los forrajes.",
 
-    "config.harvest-grass.name": "Cosechar hierba",
-    "config.harvest-grass.tooltip": "Si se corta la hierba. Si tiene espacio libre en el silo, esto le da heno como de costumbre.",
+    "config.harvest-blue-grass.name": "Cosechar hierba (Azul)",
+    "config.harvest-blue-grass.tooltip": "Si se corta la hierba azul. Si tiene espacio libre en el silo, esto le da heno como de costumbre.",
+
+    "config.harvest-non-blue-grass.name": "Cosechar hierba (No Azul)",
+    "config.harvest-non-blue-grass.tooltip": "Si se corta la hierba no azul. Si tiene espacio libre en el silo, esto le da heno como de costumbre.",
 
 
     /****

@@ -130,8 +130,11 @@
     "config.harvest-forage.name": "Збирати корми",
     "config.harvest-forage.tooltip": "Збір кормів.",
 
-    "config.harvest-grass.name": "Косити траву",
-    "config.harvest-grass.tooltip": "Косіння трави. Якщо у вас є вільне місце в силосній вежі, ви збираєте сіно, як і в звичайній грі.",
+    "config.harvest-blue-grass.name": "Косити синю траву",
+    "config.harvest-blue-grass.tooltip": "Косіння синьої трави. Якщо у вас є вільне місце в силосній вежі, ви збираєте сіно, як і в звичайній грі.",
+
+    "config.harvest-non-blue-grass.name": "Косити не синю траву",
+    "config.harvest-non-blue-grass.tooltip": "Косіння не синьої трави. Якщо у вас є вільне місце в силосній вежі, ви збираєте сіно, як і в звичайній грі.",
 
 
     /****

@@ -329,10 +329,16 @@ namespace Pathoschild.Stardew.TractorMod.Framework
                     set: (config, value) => config.StandardAttachments.Scythe.HarvestMachines = value
                 )
                 .AddCheckbox(
-                    name: I18n.Config_HarvestGrass_Name,
-                    tooltip: I18n.Config_HarvestGrass_Tooltip,
-                    get: config => config.StandardAttachments.Scythe.HarvestGrass,
-                    set: (config, value) => config.StandardAttachments.Scythe.HarvestGrass = value
+                    name: I18n.Config_HarvestBlueGrass_Name,
+                    tooltip: I18n.Config_HarvestBlueGrass_Tooltip,
+                    get: config => config.StandardAttachments.Scythe.HarvestBlueGrass,
+                    set: (config, value) => config.StandardAttachments.Scythe.HarvestBlueGrass = value
+                )
+                .AddCheckbox(
+                    name: I18n.Config_HarvestNonBlueGrass_Name,
+                    tooltip: I18n.Config_HarvestNonBlueGrass_Tooltip,
+                    get: config => config.StandardAttachments.Scythe.HarvestNonBlueGrass,
+                    set: (config, value) => config.StandardAttachments.Scythe.HarvestNonBlueGrass = value
                 )
                 .AddCheckbox(
                     name: I18n.Config_ClearDeadCrops_Name,

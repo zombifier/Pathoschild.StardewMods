@@ -130,8 +130,11 @@
     "config.harvest-forage.name": "Raccogli foraggio",
     "config.harvest-forage.tooltip": "Scegli se vuoi raccogliere il foraggio.",
 
-    "config.harvest-grass.name": "Raccogli erba",
-    "config.harvest-grass.tooltip": "Scegli se vuoi tagliare l'erba. Se hai spazio libero nel silo, ti dà fieno come al solito.",
+    "config.harvest-blue-grass.name": "Raccogli erba (Blu)",
+    "config.harvest-blue-grass.tooltip": "Scegli se vuoi tagliare l'erba blu. Se hai spazio libero nel silo, ti dà fieno come al solito.",
+
+    "config.harvest-non-blue-grass.name": "Raccogli erba (Non Blu)",
+    "config.harvest-non-blue-grass.tooltip": "Scegli se vuoi tagliare l'erba non blu. Se hai spazio libero nel silo, ti dà fieno come al solito.",
 
 
     /****

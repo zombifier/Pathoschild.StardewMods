@@ -135,8 +135,11 @@
     "config.harvest-forage.name": "Harvest Forage",
     "config.harvest-forage.tooltip": "Whether to harvest forage.",
 
-    "config.harvest-grass.name": "Harvest Grass",
-    "config.harvest-grass.tooltip": "Whether to cut grass. If you have free silo space, this gives you hay as usual.",
+    "config.harvest-blue-grass.name": "Harvest Grass (Blue)",
+    "config.harvest-blue-grass.tooltip": "Whether to cut blue grass. If you have free silo space, this gives you hay as usual.",
+
+    "config.harvest-non-blue-grass.name": "Harvest Grass (Not Blue)",
+    "config.harvest-non-blue-grass.tooltip": "Whether to cut non-blue grass. If you have free silo space, this gives you hay as usual.",
 
 
     /****

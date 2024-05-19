@@ -393,7 +393,8 @@ field               | default | effect
 `HarvestTreeMoss`   | true    | Whether to harvest moss on trees.
 `HarvestTreeSeeds`  | true    | Whether to harvest seeds from trees.
 `HarvestMachines`   | false   | Whether to collect machine output.
-`HarvestGrass`      | true    | Whether to cut tall grass. If you have free silo space, this gives you hay as usual.
+`HarvestNonBlueGrass` | true  | Whether to cut non-blue tall grass. If you have free silo space, this gives you hay as usual.
+`HarvestBlueGrass`  | true    | Whether to cut blue grass. If you have free silo space, this gives you hay as usual.
 `ClearDeadCrops`    | true    | Whether to clear dead crops.
 `ClearWeeds`        | true    | Whether to clear weeds.
 

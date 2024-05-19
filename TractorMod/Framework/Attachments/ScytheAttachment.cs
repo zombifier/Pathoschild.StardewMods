@@ -88,7 +88,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework.Attachments
                 return true;
 
             // grass
-            if (this.Config.HarvestGrass && this.TryHarvestGrass(tileFeature as Grass, location, tile, player, tool))
+            if (tileFeature is Grass grass && this.ShouldHarvest(grass) && this.TryHarvestGrass(grass, location, tile, player, tool))
                 return true;
 
             // tree
@@ -137,6 +137,17 @@ namespace Pathoschild.Stardew.TractorMod.Framework.Attachments
 
             // crop
             return this.Config.HarvestCrops;
+        }
+
+        /// <summary>Get whether a grass should be harvested.</summary>
+        /// <param name="grass">The grass to check.</param>
+        private bool ShouldHarvest(Grass grass)
+        {
+            return grass.grassType.Value switch
+            {
+                Grass.blueGrass => this.Config.HarvestBlueGrass,
+                _ => this.Config.HarvestNonBlueGrass
+            };
         }
 
         /// <summary>Get whether a crop counts as a flower.</summary>

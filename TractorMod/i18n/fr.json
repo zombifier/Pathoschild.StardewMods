@@ -130,8 +130,11 @@
     "config.harvest-forage.name": "Récolte du fourrage",
     "config.harvest-forage.tooltip": "S'il faut récolter le fourrage.",
 
-    "config.harvest-grass.name": "Récolte de l'herbe",
-    "config.harvest-grass.tooltip": "S'il faut couper l'herbe. Si vous avez de l'espace libre dans le silo, cela vous donne du foin comme d'habitude.",
+    "config.harvest-blue-grass.name": "Récolte de l'herbe (Bleue)",
+    "config.harvest-blue-grass.tooltip": "S'il faut couper l'herbe bleue. Si vous avez de l'espace libre dans le silo, cela vous donne du foin comme d'habitude.",
+
+    "config.harvest-non-blue-grass.name": "Récolte de l'herbe (Non Bleue)",
+    "config.harvest-non-blue-grass.tooltip": "S'il faut couper l'herbe non bleue. Si vous avez de l'espace libre dans le silo, cela vous donne du foin comme d'habitude.",
 
 
     /****

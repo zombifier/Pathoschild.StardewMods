@@ -130,8 +130,11 @@
     "config.harvest-forage.name": "收获采集品",
     "config.harvest-forage.tooltip": "是否收获采集品。",
 
-    "config.harvest-grass.name": "收获草",
-    "config.harvest-grass.tooltip": "是否清除草，如果有筒仓，通常会给干草。",
+    "config.harvest-blue-grass.name": "收获蓝色草",
+    "config.harvest-blue-grass.tooltip": "是否清除蓝色草，如果有筒仓，通常会给干草。",
+
+    "config.harvest-non-blue-grass.name": "收获非蓝色草",
+    "config.harvest-non-blue-grass.tooltip": "是否清除非蓝色草，如果有筒仓，通常会给干草。",
 
 
     /****

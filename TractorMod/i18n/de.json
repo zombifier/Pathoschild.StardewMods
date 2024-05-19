@@ -130,8 +130,11 @@
     "config.harvest-forage.name": "Ernten von Viehfutter",
     "config.harvest-forage.tooltip": "Ob Viehfutter geerntet werden soll.",
 
-    "config.harvest-grass.name": "Gras mähen",
-    "config.harvest-grass.tooltip": "Ob Gras gemäht werden soll. Wenn freier Siloraum existiert, wird daraus wie üblich Heu. ",
+    "config.harvest-blue-grass.name": "Gras mähen (Blau)",
+    "config.harvest-blue-grass.tooltip": "Ob blaues Gras gemäht werden soll. Wenn freier Siloraum existiert, wird daraus wie üblich Heu.",
+
+    "config.harvest-non-blue-grass.name": "Gras mähen (Nicht Blau)",
+    "config.harvest-non-blue-grass.tooltip": "Ob nicht blaues Gras gemäht werden soll. Wenn freier Siloraum existiert, wird daraus wie üblich Heu.",
 
 
     /****

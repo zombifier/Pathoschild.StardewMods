@@ -131,8 +131,11 @@
     "config.harvest-forage.name": "Собираемые предметы",
     "config.harvest-forage.tooltip": "Будет собирать дикие растения, морские раковины и т.д. ",
 
-    "config.harvest-grass.name": "Покос травы",
-    "config.harvest-grass.tooltip": "Будет скашивать траву. Если у вас есть свободное место в силосной башне, то будет собирать сено.",
+    "config.harvest-blue-grass.name": "Покос синей травы",
+    "config.harvest-blue-grass.tooltip": "Будет скашивать синюю траву. Если у вас есть свободное место в силосной башне, то будет собирать сено.",
+
+    "config.harvest-non-blue-grass.name": "Покос не синей травы",
+    "config.harvest-non-blue-grass.tooltip": "Будет скашивать не синюю траву. Если у вас есть свободное место в силосной башне, то будет собирать сено.",
 
 
     /****

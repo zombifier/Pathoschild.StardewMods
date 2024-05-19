@@ -130,8 +130,11 @@
     "config.harvest-forage.name": "เก็บเกี่ยวอาหารสัตว์",
     "config.harvest-forage.tooltip": "รวมถึงเป็นการเก็บเกี่ยวอาหารสัตว์",
 
-    "config.harvest-grass.name": "เก็บเกี่ยวหญ้า",
-    "config.harvest-grass.tooltip": "รวมถึงตัดหญ้า หากคุณมีพื้นที่ไซโลว่าง สิ่งนี้จะช่วยให้คุณมีหญ้าแห้งได้ตามปกติ",
+    "config.harvest-blue-grass.name": "เก็บเกี่ยวหญ้า (สีน้ำเงิน)",
+    "config.harvest-blue-grass.tooltip": "รวมถึงตัดหญ้าสีน้ำเงิน หากคุณมีพื้นที่ไซโลว่าง สิ่งนี้จะช่วยให้คุณมีหญ้าแห้งได้ตามปกติ",
+
+    "config.harvest-non-blue-grass.name": "เก็บเกี่ยวหญ้า (ไม่ใช่สีน้ำเงิน)",
+    "config.harvest-non-blue-grass.tooltip": "รวมถึงตัดหญ้าที่ไม่ใช่สีน้ำเงิน หากคุณมีพื้นที่ไซโลว่าง สิ่งนี้จะช่วยให้คุณมีหญ้าแห้งได้ตามปกติ",
 
 
     /****

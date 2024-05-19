@@ -131,8 +131,11 @@
     "config.harvest-forage.name": "건초 수확",
     "config.harvest-forage.tooltip": "낫으로 건초를 수확 할 수 있습니다.",
 
-    "config.harvest-grass.name": "잔디 제거",
-    "config.harvest-grass.tooltip": "낫으로 잔디를 제거 할 수 있습니다.",
+    "config.harvest-blue-grass.name": "파란 잔디 제거",
+    "config.harvest-blue-grass.tooltip": "낫으로 파란 잔디를 제거할 수 있습니다.",
+
+    "config.harvest-non-blue-grass.name": "파란색이 아닌 잔디 제거",
+    "config.harvest-non-blue-grass.tooltip": "낫으로 파란색이 아닌 잔디를 제거할 수 있습니다.",
 
 
     /****

@@ -130,8 +130,11 @@
     "config.harvest-forage.name": "採取アイテムの回収",
     "config.harvest-forage.tooltip": "採取アイテムを回収する。",
 
-    "config.harvest-grass.name": "牧草の収穫",
-    "config.harvest-grass.tooltip": "牧草を収穫する。サイロに空きがあれば、干し草を入手可能。",
+    "config.harvest-blue-grass.name": "青い牧草の収穫",
+    "config.harvest-blue-grass.tooltip": "青い牧草を収穫する。サイロに空きがあれば、干し草を入手可能。",
+
+    "config.harvest-non-blue-grass.name": "青くない牧草の収穫",
+    "config.harvest-non-blue-grass.tooltip": "青くない牧草を収穫する。サイロに空きがあれば、干し草を入手可能。",
 
 
     /****

@@ -130,8 +130,11 @@
     "config.harvest-forage.name": "Colher Forragem",
     "config.harvest-forage.tooltip": "Se deve colher forragem.",
 
-    "config.harvest-grass.name": "Colher Grama",
-    "config.harvest-grass.tooltip": "Se deve cortar grama. Se você tiver espaço livre no silo, isso lhe dará feno como de costume.",
+    "config.harvest-blue-grass.name": "Colher Grama (Azul)",
+    "config.harvest-blue-grass.tooltip": "Se deve cortar grama azul. Se você tiver espaço livre no silo, isso lhe dará feno como de costume.",
+
+    "config.harvest-non-blue-grass.name": "Colher Grama (Não Azul)",
+    "config.harvest-non-blue-grass.tooltip": "Se deve cortar grama não azul. Se você tiver espaço livre no silo, isso lhe dará feno como de costume.",
 
 
     /****
