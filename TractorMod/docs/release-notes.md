@@ -7,6 +7,7 @@
   * harvesting tree moss (with a scythe);
   * planting blue grass starter.
 * Added volume level option for tractor sound effects, and lowered default volume by 25%.
+* Added warning in config UI when Questable Tractor is installed to avoid confusion.
 * Split 'harvest grass' option into non-blue and blue grass.
 * Simplified tractor names to improve display in mods like NPC Map Locations.
 * Fixed tool options:
