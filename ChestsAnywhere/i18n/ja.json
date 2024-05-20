@@ -1,4 +1,4 @@
-{
+﻿{
     /**********
     ** Chest UI
     **********/
@@ -49,7 +49,6 @@
     ** Generic Mod Config Menu UI
     **********/
     // general options
-
     "config.title.general-options": "一般オプション",
     "config.show-hover-tooltips.name": "ホバーツールチップを表示",
     "config.show-hover-tooltips.desc": "箱をポイントしたときに、ツールチップに箱名を表示する。",

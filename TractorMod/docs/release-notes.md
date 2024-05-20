@@ -16,7 +16,7 @@
   * Fixed scythe 'harvest tree seeds' option missing in Generic Mod Config Menu UI.
 * Fixed tractor sounds continuing to play during a cutscene if you were riding a tractor when it started.
 * Fixed errors in some cases when using a tool on the tractor that was never used manually in the current session.
-* Improved translations. Thanks to burunduk (updated Ukrainian), Lexith98 (updated Turkish), mc-kaishixiaxue (updated Chinese), and mitekano23 (updated Japanese)!
+* Improved translations. Thanks to burunduk (updated Ukrainian), Lexith98 (updated Turkish), MakinDay (updated Italian), mc-kaishixiaxue (updated Chinese), and mitekano23 (updated Japanese)!
 
 **Note for mod authors:**
 * Tractor Mod now sets tractor names to `Tractor` instead of `tractor/<horse id>`, for better compatibility with mods
