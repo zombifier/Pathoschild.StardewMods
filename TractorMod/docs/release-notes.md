@@ -13,6 +13,7 @@
   * Fixed axe 'chop free trees (saplings)' option affecting full-grown trees.
   * Fixed pickaxe 'harvest mine spawns' option not working if 'clear placed objects' is also enabled.
   * Fixed scythe 'harvest tree seeds' option missing in Generic Mod Config Menu UI.
+* Fixed errors in some cases when using a tool on the tractor that was never used manually in the current session.
 * Improved translations. Thanks to burunduk (updated Ukrainian), Lexith98 (updated Turkish), mc-kaishixiaxue (updated Chinese), and mitekano23 (updated Japanese)!
 
 **Note for mod authors:**
