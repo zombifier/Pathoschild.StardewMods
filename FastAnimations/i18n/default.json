@@ -45,6 +45,9 @@
     "config.weapon.name": "Swing weapon",
     "config.weapon.tooltip": "How fast you swing your weapons. Default {{defaultValue}}x, suggested {{suggestedValue}}x.",
 
+    "config.read-book.name": "Read book",
+    "config.read-book.tooltip": "How fast you read book. Default {{defaultValue}}x.",
+
     /****
     ** 'World Animation Speeds' section
     ****/

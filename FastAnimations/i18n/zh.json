@@ -45,6 +45,9 @@
     "config.weapon.name": "武器",
     "config.weapon.tooltip": "使用武器的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
 
+    "config.read-book.name": "读书",
+    "config.read-book.tooltip": "读书的速度。默认{{defaultValue}}x.",
+
     /****
     ** 'World Animation Speeds' section
     ****/

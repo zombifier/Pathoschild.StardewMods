@@ -149,6 +149,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new ToolSwingHandler(config.ToolSwingSpeed);
             if (config.WeaponSwingSpeed > 1)
                 yield return new WeaponSwingHandler(config.WeaponSwingSpeed);
+            if (config.ReadBookSpeed > 1)
+                yield return new ReadBookHandler(config.ReadBookSpeed);
 
             // world animations
             if (config.BreakGeodeSpeed > 1)
