@@ -149,6 +149,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new ToolSwingHandler(config.ToolSwingSpeed);
             if (config.WeaponSwingSpeed > 1)
                 yield return new WeaponSwingHandler(config.WeaponSwingSpeed);
+            if (config.UseTotemSpeed > 1)
+                yield return new UseTotemHandler(config.UseTotemSpeed);
 
             // world animations
             if (config.BreakGeodeSpeed > 1)

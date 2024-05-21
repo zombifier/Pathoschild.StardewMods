@@ -45,6 +45,9 @@
     "config.weapon.name": "武器",
     "config.weapon.tooltip": "使用武器的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
 
+    "config.totem.name": "图腾",
+    "config.totem.tooltip": "使用图腾的速度。默认{{defaultValue}}x.",
+
     /****
     ** 'World Animation Speeds' section
     ****/

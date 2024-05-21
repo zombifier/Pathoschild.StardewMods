@@ -45,6 +45,9 @@
     "config.weapon.name": "Fegyverek lengetése",
     "config.weapon.tooltip": "Milyen gyorsan lengeted fegyvereid. Alapból {{defaultValue}}x, ajánlott {{suggestedValue}}x.",
 
+    "config.totem.name": "Using Totem", // TODO
+    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
+
     /****
     ** 'World Animation Speeds' section
     ****/

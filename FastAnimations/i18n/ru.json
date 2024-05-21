@@ -45,6 +45,9 @@
     "config.weapon.name": "Размахивание оружием",
     "config.weapon.tooltip": "Как быстро вы размахиваете своим оружием. По умолчанию {{defaultValue}}x, рекомендуется {{suggestedValue}}x.",
 
+    "config.totem.name": "Using Totem", // TODO
+    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
+
     /****
     ** 'World Animation Speeds' section
     ****/

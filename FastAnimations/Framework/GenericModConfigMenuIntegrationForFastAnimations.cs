@@ -134,6 +134,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     min: minSpeed,
                     max: maxSpeed
                 )
+                .AddNumberField(
+                    name: I18n.Config_Totem_Name,
+                    tooltip: () => I18n.Config_Totem_Tooltip(defaultValue: defaultConfig.UseTotemSpeed),
+                    get: config => config.UseTotemSpeed,
+                    set: (config, value) => config.UseTotemSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
 
                 .AddSectionTitle(I18n.Config_WorldSpeeds)
                 .AddNumberField(

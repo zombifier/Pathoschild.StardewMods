@@ -45,6 +45,9 @@
     "config.weapon.name": "Swing weapon",
     "config.weapon.tooltip": "How fast you swing your weapons. Default {{defaultValue}}x, suggested {{suggestedValue}}x.",
 
+    "config.totem.name": "Using Totem",
+    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.",
+
     /****
     ** 'World Animation Speeds' section
     ****/

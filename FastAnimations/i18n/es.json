@@ -45,6 +45,9 @@
     "config.weapon.name": "Girar armas",
     "config.weapon.tooltip": "La rapidez con la que se mueven las armas. Por defecto {{defaultValue}}x, sugerencia {{suggestedValue}}x.",
 
+    "config.totem.name": "Using Totem", // TODO
+    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
+
     /****
     ** 'World Animation Speeds' section
     ****/

@@ -45,6 +45,9 @@
     "config.weapon.name": "Waffen schwingen",
     "config.weapon.tooltip": "Wie schnell Sie Ihre Waffen schwingen. Standardwert {{defaultValue}}x, vorgeschlagen {{suggestedValue}}x.",
 
+    "config.totem.name": "Using Totem", // TODO
+    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
+
     /****
     ** 'World Animation Speeds' section
     ****/
