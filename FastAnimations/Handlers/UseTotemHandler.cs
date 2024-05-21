@@ -101,7 +101,6 @@ internal class UseTotemHandler : BaseAnimationHandler
     {
         var currentAnimation = player.FarmerSprite.currentAnimation;
 
-        return currentAnimation.Count >= 1 &&
-               currentAnimation[0].frame == 57 && currentAnimation[0].milliseconds == 2000;
+        return currentAnimation is [{ frame: 57, milliseconds: 2000 }, ..];
     }
 }
