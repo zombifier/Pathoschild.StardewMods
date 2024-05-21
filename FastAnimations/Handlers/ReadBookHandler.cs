@@ -68,7 +68,6 @@ internal class ReadBookHandler : BaseAnimationHandler
     {
         List<FarmerSprite.AnimationFrame>? currentAnimation = player.FarmerSprite.CurrentAnimation;
 
-        return currentAnimation.Count >= 1 &&
-               currentAnimation[0].frame == 57 && currentAnimation[0].milliseconds == 1000;
+        return currentAnimation is [{ frame: 57, milliseconds: 1000 }, ..];
     }
 }
