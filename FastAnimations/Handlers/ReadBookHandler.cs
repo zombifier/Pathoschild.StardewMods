@@ -12,6 +12,7 @@ internal class ReadBookHandler : BaseAnimationHandler
     /*********
      ** Field
      *********/
+    /// <summary>Whether the read-book animation is End.</summary>
     private bool IsReadingBookEnd;
 
     /*********
@@ -29,6 +30,7 @@ internal class ReadBookHandler : BaseAnimationHandler
     {
         var player = Game1.player;
 
+        // Handler remaining pause time after the end of the animation
         if (this.IsReadingBookEnd)
         {
             this.IsReadingBookEnd = false;
@@ -61,6 +63,7 @@ internal class ReadBookHandler : BaseAnimationHandler
      ** Private methods
      *********/
     /// <summary>Check whether the current player's animation is the animation of reading book.</summary>
+    /// <remarks>Derived from <see cref="SObject.readBook"/>.</remarks>
     private bool IsReadingBook(Farmer player)
     {
         List<FarmerSprite.AnimationFrame>? currentAnimation = player.FarmerSprite.CurrentAnimation;
