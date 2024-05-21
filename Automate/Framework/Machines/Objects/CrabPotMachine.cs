@@ -76,6 +76,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Objects
             // get bait
             if (input.TryGetIngredient(p => p.Sample.TypeDefinitionId == ItemRegistry.type_object && p.Sample.Category == SObject.baitCategory, 1, out IConsumable? bait))
             {
+                this.Machine.owner.Value = Game1.player.UniqueMultiplayerID;
                 this.Machine.bait.Value = (SObject)bait.Take()!;
                 this.Machine.lidFlapping = true;
                 this.Machine.lidFlapTimer = CrabPot.lidFlapTimerInterval;
