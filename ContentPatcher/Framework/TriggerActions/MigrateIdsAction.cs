@@ -222,7 +222,7 @@ namespace ContentPatcher.Framework.TriggerActions
                         return false;
                     }
 
-                    mapQualifiedIds[data.QualifiedItemId] = data;
+                    mapQualifiedIds[oldId] = data;
 
                     if (data.TypeIdentifier == ItemRegistry.type_object)
                         mapLocalObjectIds[data.LocalItemId] = data;
