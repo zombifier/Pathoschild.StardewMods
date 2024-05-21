@@ -6,6 +6,7 @@
 * Fixed support for custom trash cans outside the town map.
 * Fixed trash can tracking for pre-1.6 town map mods.
 * Fixed machines grabbing incubated eggs before they hatch.
+* Fixed bushes in pots being collected twice.
 * Improved translations. Thanks to burunduk (updated Ukrainian), CaranudLapin (updated French), Curotar (updated Russian), and Nana-Nord (updated Spanish)!
 
 ## 2.0.7
