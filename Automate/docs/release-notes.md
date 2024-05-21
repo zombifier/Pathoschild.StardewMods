@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Added support for custom building rules in the game's new `Data/Buildings` asset.
+* Opening a chest will now pause any connected machines, to reduce the chance that items are lost due to inventory edit conflicts.
 * Fixed support for custom trash cans outside the town map.
 * Fixed trash can tracking for pre-1.6 town map mods.
 * Fixed machines grabbing incubated eggs before they hatch.
