@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Pathoschild.Stardew.FastAnimations.Framework;
@@ -12,12 +13,6 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers;
 internal class HoldUpItemHandler : BaseAnimationHandler
 {
     /*********
-     ** Fields
-     *********/
-    /// <summary>Whether item-holdup animation is end.</summary>
-    private bool IsHoldingUpItemEnd;
-
-    /*********
      ** Public methods
      *********/
     /// <summary>Construct an instance.</summary>
@@ -30,16 +25,7 @@ internal class HoldUpItemHandler : BaseAnimationHandler
     /// <param name="playerAnimationID">The player's current animation ID.</param>
     public override bool IsEnabled(int playerAnimationID)
     {
-        var player = Game1.player;
-
-        // Handler remaining pause time after the end of the animation
-        if (this.IsHoldingUpItemEnd)
-        {
-            this.IsHoldingUpItemEnd = false;
-            player.forceCanMove();
-        }
-
-        return this.IsHoldingUpItem(player);
+        return Game1.player.FarmerSprite.currentAnimation is [{ frame: 57, milliseconds: 0 }, { frame: 57, milliseconds: 2500 }, { milliseconds: 500 }, ..];
     }
 
     /// <summary>Perform any logic needed on update while the animation is active.</summary>
@@ -62,11 +48,13 @@ internal class HoldUpItemHandler : BaseAnimationHandler
                     if (done)
                         location.TemporarySprites.Remove(sprite);
                 }
-
-                this.IsHoldingUpItemEnd = !this.IsHoldingUpItem(player);
             },
-            () => !this.IsHoldingUpItem(player)
+            () => !this.IsEnabled(playerAnimationID)
         );
+
+        // reduce freeze time
+        int reduceTimersBy = (int)(BaseAnimationHandler.MillisecondsPerFrame * this.Multiplier);
+        Game1.player.freezePause = Math.Max(0, Game1.player.freezePause - reduceTimersBy);
     }
 
     /*********
@@ -107,14 +95,5 @@ internal class HoldUpItemHandler : BaseAnimationHandler
                 }
             }
         }
-    }
-
-    /// <summary>Check whether the player's current animation is the animation of holding up item.</summary>
-    /// <remarks>Derived from <see cref="Farmer.showHoldingItem"/>.</remarks>
-    private bool IsHoldingUpItem(Farmer player)
-    {
-        List<FarmerSprite.AnimationFrame>? currentAnimation = player.FarmerSprite.CurrentAnimation;
-
-        return currentAnimation is [{ frame: 57, milliseconds: 0 }, { frame: 57, milliseconds: 2500 }, { milliseconds: 500 }, ..];
     }
 }
