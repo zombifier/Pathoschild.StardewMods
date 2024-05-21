@@ -71,6 +71,9 @@
     "config.wheel-spin.name": "まつりのルーレット",
     "config.wheel-spin.tooltip": "スターデューバレーまつりのルーレットの演出速度。標準は{{defaultValue}}x。",
 
+    "config.fishing-treasure.name": "Fishing treasure", // TODO
+    "config.fishing-treasure.tooltip": "How fast the fishing treasure open. Default {{defaultValue}}x.", // TODO
+
     /****
     ** 'UI Animation Speeds' section
     ****/

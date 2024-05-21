@@ -71,6 +71,9 @@
     "config.wheel-spin.name": "Giro della ruota",
     "config.wheel-spin.tooltip": "La velocità con cui gira la ruota della Fiera di Stardew Valley. Predefinito {{defaultValue}}x.",
 
+    "config.fishing-treasure.name": "Fishing treasure", // TODO
+    "config.fishing-treasure.tooltip": "How fast the fishing treasure open. Default {{defaultValue}}x.", // TODO
+
     /****
     ** 'UI Animation Speeds' section
     ****/

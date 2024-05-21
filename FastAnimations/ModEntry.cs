@@ -165,6 +165,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new PamBusHandler(config.PamBusSpeed);
             if (config.TreeFallSpeed > 1)
                 yield return new TreeFallingHandler(config.TreeFallSpeed);
+            if (config.FishingTreasureSpeed > 1)
+                yield return new FishingTreasureHandler(config.FishingTreasureSpeed);
 
             // UI animations
             if (config.TitleMenuTransitionSpeed > 1)

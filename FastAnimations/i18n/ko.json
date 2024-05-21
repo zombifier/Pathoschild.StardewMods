@@ -71,6 +71,9 @@
     "config.wheel-spin.name": "Wheel spin", // TODO
     "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
 
+    "config.fishing-treasure.name": "Fishing treasure", // TODO
+    "config.fishing-treasure.tooltip": "How fast the fishing treasure open. Default {{defaultValue}}x.", // TODO
+
     /****
     ** 'UI Animation Speeds' section
     ****/
