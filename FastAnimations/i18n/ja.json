@@ -71,6 +71,9 @@
     "config.wheel-spin.name": "まつりのルーレット",
     "config.wheel-spin.tooltip": "スターデューバレーまつりのルーレットの演出速度。標準は{{defaultValue}}x。",
 
+    "config.chest-open.name": "Chest open", // TODO
+    "config.chest-open.tooltip": "How fast the chest open. Default {{defaultValue}}x.", // TODO
+
     /****
     ** 'UI Animation Speeds' section
     ****/
