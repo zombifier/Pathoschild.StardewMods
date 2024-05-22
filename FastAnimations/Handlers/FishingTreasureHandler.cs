@@ -14,8 +14,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         /*********
         ** Public methods
         *********/
-        /// <summary>Construct an instance.</summary>
-        /// <param name="multiplier">The animation speed multiplier to apply.</param>
+        /// <inheritdoc />
         public FishingTreasureHandler(float multiplier)
             : base(multiplier) { }
 

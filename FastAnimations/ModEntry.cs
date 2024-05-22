@@ -29,8 +29,7 @@ namespace Pathoschild.Stardew.FastAnimations
         /*********
         ** Public methods
         *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-        /// <param name="helper">Provides methods for interacting with the mod directory, such as read/writing a config file or custom JSON files.</param>
+        /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
             I18n.Init(helper.Translation);
@@ -53,7 +52,7 @@ namespace Pathoschild.Stardew.FastAnimations
         /****
         ** Events
         ****/
-        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched" />
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event data.</param>
         private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
@@ -78,7 +77,7 @@ namespace Pathoschild.Stardew.FastAnimations
             ).Register();
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded"/>
+        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded" />
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event data.</param>
         private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
@@ -88,7 +87,7 @@ namespace Pathoschild.Stardew.FastAnimations
                 handler.OnNewLocation(Game1.currentLocation);
         }
 
-        /// <inheritdoc cref="IPlayerEvents.Warped"/>
+        /// <inheritdoc cref="IPlayerEvents.Warped" />
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event data.</param>
         private void OnWarped(object? sender, WarpedEventArgs e)
@@ -100,7 +99,7 @@ namespace Pathoschild.Stardew.FastAnimations
                 handler.OnNewLocation(e.NewLocation);
         }
 
-        /// <inheritdoc cref="IWorldEvents.ObjectListChanged"/>
+        /// <inheritdoc cref="IWorldEvents.ObjectListChanged" />
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event data.</param>
         private void OnObjectListChanged(object? sender, ObjectListChangedEventArgs e)
@@ -112,7 +111,7 @@ namespace Pathoschild.Stardew.FastAnimations
             }
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked"/>
+        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked" />
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event data.</param>
         private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)

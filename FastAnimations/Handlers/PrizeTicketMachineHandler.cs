@@ -28,8 +28,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
             this.Reflection = reflection;
         }
 
-        /// <summary>Get whether the animation is currently active.</summary>
-        /// <param name="playerAnimationID">The player's current animation ID.</param>
+        /// <inheritdoc />
         public override bool IsEnabled(int playerAnimationID)
         {
             return
@@ -40,8 +39,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
                 );
         }
 
-        /// <summary>Perform any logic needed on update while the animation is active.</summary>
-        /// <param name="playerAnimationID">The player's current animation ID.</param>
+        /// <inheritdoc />
         public override void Update(int playerAnimationID)
         {
             PrizeTicketMenu menu = (PrizeTicketMenu)Game1.activeClickableMenu;
