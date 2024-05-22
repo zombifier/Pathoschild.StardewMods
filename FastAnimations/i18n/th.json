@@ -48,6 +48,9 @@
     "config.tool.name": "เครื่องมือที่แกว่ง",
     "config.tool.tooltip": "ต้องการใช้เครื่องมือที่แกว่งให้มันเร็วแค่ไหน (ยกเว้นอาวุธและคันเบ็ด) ค่าเริ่มต้นคือ {{defaultValue}}x, ขอแนะนำ {{defaultValue}}x",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "อาวุธที่แกว่ง",
     "config.weapon.tooltip": "ต้องการใช้อาวุธที่แกว่งให้มันเร็วแค่ไหน ค่าเริ่มต้นคือ {{defaultValue}}x, ขอแนะนำ {{defaultValue}}x",
 

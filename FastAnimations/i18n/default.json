@@ -48,6 +48,9 @@
     "config.tool.name": "Swing tool",
     "config.tool.tooltip": "How fast you swing your tools (except weapons & fishing rod). Default {{defaultValue}}x, suggested {{suggestedValue}}x.",
 
+    "config.use-totem.name": "Use totem",
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.",
+
     "config.weapon.name": "Swing weapon",
     "config.weapon.tooltip": "How fast you swing your weapons. Default {{defaultValue}}x, suggested {{suggestedValue}}x.",
 

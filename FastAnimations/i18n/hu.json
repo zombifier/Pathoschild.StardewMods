@@ -48,6 +48,9 @@
     "config.tool.name": "Eszközök lengetése",
     "config.tool.tooltip": "Milyen gyorsan lengeted eszközeid (kivéve fegyverek és horgászbot). Alapból {{defaultValue}}x, ajánlott {{suggestedValue}}x.",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "Fegyverek lengetése",
     "config.weapon.tooltip": "Milyen gyorsan lengeted fegyvereid. Alapból {{defaultValue}}x, ajánlott {{suggestedValue}}x.",
 

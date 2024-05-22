@@ -48,6 +48,9 @@
     "config.tool.name": "工具",
     "config.tool.tooltip": "使用工具（除去武器和鱼竿）的速度，比如斧、喷壶、镰刀等。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
 
+    "config.use-totem.name": "图腾",
+    "config.use-totem.tooltip": "使用图腾的速度。默认{{defaultValue}}x.",
+
     "config.weapon.name": "武器",
     "config.weapon.tooltip": "使用武器的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
 

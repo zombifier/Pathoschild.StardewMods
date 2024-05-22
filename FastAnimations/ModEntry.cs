@@ -175,6 +175,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new SlingshotHandler(config.UseSlingshotSpeed);
             if (config.ToolSwingSpeed > 1)
                 yield return new ToolSwingHandler(config.ToolSwingSpeed);
+            if (config.UseTotemSpeed > 1)
+                yield return new UseTotemHandler(config.UseTotemSpeed);
             if (config.WeaponSwingSpeed > 1)
                 yield return new WeaponSwingHandler(config.WeaponSwingSpeed);
 

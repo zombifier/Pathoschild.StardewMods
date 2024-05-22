@@ -48,6 +48,9 @@
     "config.tool.name": "Utilisation des outils",
     "config.tool.tooltip": "La vitesse à laquelle vous balancez vos outils (sauf les armes et la canne à pêche). Valeur par défaut {{defaultValue}}x, valeur suggérée {{suggestedValue}}x.",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "Utilisation des armes",
     "config.weapon.tooltip": "La vitesse à laquelle vous balancez vos armes. Valeur par défaut {{defaultValue}}x, valeur suggérée {{suggestedValue}}x.",
 

@@ -48,6 +48,9 @@
     "config.tool.name": "Werkzeug schwingen",
     "config.tool.tooltip": "Wie schnell Sie Ihre Werkzeuge schwingen (außer Waffen und Angelrute). Standardwert {{defaultValue}}x, vorgeschlagen {{suggestedValue}}x.",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "Waffen schwingen",
     "config.weapon.tooltip": "Wie schnell Sie Ihre Waffen schwingen. Standardwert {{defaultValue}}x, vorgeschlagen {{suggestedValue}}x.",
 

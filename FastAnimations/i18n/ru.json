@@ -48,6 +48,9 @@
     "config.tool.name": "Размахивание инструментами",
     "config.tool.tooltip": "Как быстро вы размахиваете своим оружием. По умолчанию {{defaultValue}}x, рекомендуется {{suggestedValue}}x.",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "Размахивание оружием",
     "config.weapon.tooltip": "Как быстро вы размахиваете своим оружием. По умолчанию {{defaultValue}}x, рекомендуется {{suggestedValue}}x.",
 
