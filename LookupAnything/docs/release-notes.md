@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.43.0
+Released 22 May 2024 for SMAPI 4.0.0 or later.
+
 * Added support for machine recipes in `Data/Buildings` and `Data/Machines`, including custom recipes from other mods (thanks to collaboration with zombifier!).
 * Added support for machine changes from the Extra Machine Config mod (thanks to zombifier!).
 * Added quality star icons in recipe lists where relevant.

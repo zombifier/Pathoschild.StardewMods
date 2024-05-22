@@ -65,7 +65,7 @@ Now that you have access to the API, you can parse token strings.
    var tokenString = api.ParseTokenString(
       manifest: this.ModManifest,
       rawValue: rawTokenString,
-      formatVersion: new SemanticVersion("2.0.0")
+      formatVersion: new SemanticVersion("2.1.0")
    );
    ```
 3. Get the parsed string from the `Value` property. For example:
@@ -81,7 +81,7 @@ required dependencies in your mod's `manifest.json`.
 var tokenString = api.ParseTokenString(
    manifest: this.ModManifest,
    rawValue: rawTokenString,
-   formatVersion: new SemanticVersion("2.0.0"),
+   formatVersion: new SemanticVersion("2.1.0"),
    assumeModIds: new[] { "spacechase0.JsonAssets" }
 );
 ```

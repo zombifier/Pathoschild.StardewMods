@@ -90,7 +90,7 @@ These changes only apply when you set the `Format` version in your `content.json
 version or higher. See [release notes](release-notes.md) for a full list of changes.
 
 ## 2.1
-Upcoming release.
+Released 22 May 2024.
 
 * `"Action": "Load"` patches now apply to localized asset names _only_ if they have localized forms in the base game
   folder.

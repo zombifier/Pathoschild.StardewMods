@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 2.1.0
+Released 22 May 2024 for SMAPI 4.0.0 or later.
+
 * Added support for custom building rules in the game's new `Data/Buildings` asset.
 * Opening a chest will now pause any connected machines, to reduce the chance that items are lost due to inventory edit conflicts.
 * Fixed support for custom trash cans outside the town map.
