@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.43.1
+Released 22 May 2024 for SMAPI 4.0.0 or later.
+
 * Fixed machine lookup error when Producer Framework Mod overrides some machines.
 
 ## 1.43.0
