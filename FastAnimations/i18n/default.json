@@ -62,6 +62,9 @@
     "config.forge.name": "Forge",
     "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.",
 
+    "config.open-chest.name": "Open chest",
+    "config.open-chest.tooltip": "How fast you open chests. Default {{defaultValue}}x.",
+
     "config.prize-ticket-machine.name": "Prize ticket machine",
     "config.prize-ticket-machine.tooltip": "How fast Lewis' prize ticket machine accepts a ticket and produces an item. Default {{defaultValue}}x.",
 

@@ -62,6 +62,9 @@
     "config.forge.name": "锻造",
     "config.forge.tooltip": "锻造的速度。默认{{defaultValue}}x.",
 
+    "config.open-chest.name": "宝箱打开",
+    "config.open-chest.tooltip": "宝箱打开的速度。默认{{defaultValue}}x.",
+
     "config.prize-ticket-machine.name": "兑奖机",
     "config.prize-ticket-machine.tooltip": "兑奖机兑奖的速度。默认{{defaultValue}}x.",
 

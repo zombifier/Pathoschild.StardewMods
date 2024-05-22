@@ -22,6 +22,9 @@ namespace Pathoschild.Stardew.FastAnimations
         /// <summary>The animation handlers which skip or accelerate specific animations.</summary>
         private IAnimationHandler[] Handlers = null!; // set in Entry
 
+        /// <summary>The <see cref="Handlers"/> filtered to those which need to be updated when the object list changes.</summary>
+        private IAnimationHandlerWithObjectList[] HandlersWithObjectList = null!; // set in Entry
+
 
         /*********
         ** Public methods
@@ -40,6 +43,7 @@ namespace Pathoschild.Stardew.FastAnimations
             helper.Events.GameLoop.SaveLoaded += this.OnSaveLoaded;
             helper.Events.GameLoop.UpdateTicked += this.OnUpdateTicked;
             helper.Events.Player.Warped += this.OnWarped;
+            helper.Events.World.ObjectListChanged += this.OnObjectListChanged;
         }
 
 
@@ -96,6 +100,18 @@ namespace Pathoschild.Stardew.FastAnimations
                 handler.OnNewLocation(e.NewLocation);
         }
 
+        /// <inheritdoc cref="IWorldEvents.ObjectListChanged"/>
+        /// <param name="sender">The event sender.</param>
+        /// <param name="e">The event data.</param>
+        private void OnObjectListChanged(object? sender, ObjectListChangedEventArgs e)
+        {
+            if (e.IsCurrentLocation)
+            {
+                foreach (IAnimationHandlerWithObjectList handler in this.HandlersWithObjectList)
+                    handler.OnObjectListChanged(e);
+            }
+        }
+
         /// <inheritdoc cref="IGameLoopEvents.UpdateTicked"/>
         /// <param name="sender">The event sender.</param>
         /// <param name="e">The event data.</param>
@@ -123,6 +139,14 @@ namespace Pathoschild.Stardew.FastAnimations
         private void UpdateConfig()
         {
             this.Handlers = this.GetHandlers(this.Config).ToArray();
+            this.HandlersWithObjectList = this.Handlers.OfType<IAnimationHandlerWithObjectList>().ToArray();
+
+            GameLocation location = Game1.currentLocation;
+            if (location != null)
+            {
+                foreach (IAnimationHandler handler in this.Handlers)
+                    handler.OnNewLocation(location);
+            }
         }
 
         /// <summary>Get the enabled animation handlers.</summary>
@@ -155,6 +179,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new BreakingGeodeHandler(config.BreakGeodeSpeed);
             if (config.ForgeSpeed > 1)
                 yield return new ForgeHandler(config.ForgeSpeed, this.Helper.Reflection);
+            if (config.OpenChestSpeed > 1)
+                yield return new OpenChestHandler(config.OpenChestSpeed);
             if (config.PrizeTicketMachineSpeed > 1)
                 yield return new PrizeTicketMachineHandler(config.PrizeTicketMachineSpeed, this.Helper.Reflection);
             if (config.WheelSpinSpeed > 1)

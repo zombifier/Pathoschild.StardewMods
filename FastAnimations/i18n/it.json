@@ -62,6 +62,9 @@
     "config.forge.name": "Forgia",
     "config.forge.tooltip": "Velocità di funzionamento della fucina del vulcano. Predefinito {{defaultValue}}x.",
 
+    "config.open-chest.name": "Open chest", // TODO
+    "config.open-chest.tooltip": "How fast you open chests. Default {{defaultValue}}x.", // TODO
+
     "config.prize-ticket-machine.name": "Macchina dei premi",
     "config.prize-ticket-machine.tooltip": "Velocità con cui la macchina dei premi di Lewis accetta un biglietto e produce un articolo. Predefinito {{defaultValue}}x.",
 
