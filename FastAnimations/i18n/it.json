@@ -24,6 +24,9 @@
     "config.harvest.name": "Raccolta",
     "config.harvest.tooltip": "Velocità di raccolta dei raccolti e del foraggio a mano. Predefinito {{defaultValue}}x.",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.horse-flute.name": "Suonare il flauto equino",
     "config.horse-flute.tooltip": "Quanto veloce suoni il flauto equino. Predefinito {{defaultValue}}x.",
 

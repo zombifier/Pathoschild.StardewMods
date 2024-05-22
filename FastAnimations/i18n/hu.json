@@ -27,6 +27,9 @@
     "config.horse-flute.name": "Lófuvola sebessége",
     "config.horse-flute.tooltip": "Milyen gyorsan játszol a lófuvolán. Alapból {{defaultValue}}x.",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.milk.name": "Fejés",
     "config.milk.tooltip": "Milyen gyorsan használod a tejesvödröt. Alapból {{defaultValue}}x.",
 

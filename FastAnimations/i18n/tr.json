@@ -24,6 +24,9 @@
     "config.harvest.name": "Hasat",
     "config.harvest.tooltip": "Mahsulleri ve yemleri elle ne kadar hızlı hasat ettiğiniz. Varsayılan {{defaultValue}}x.",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.horse-flute.name": "At Flütü Çalmak",
     "config.horse-flute.tooltip": "At flütünü ne kadar hızlı çalabildiğiniz. Varsayılan {{defaultValue}}x.",
 

@@ -24,6 +24,9 @@
     "config.harvest.name": "Сбор урожая",
     "config.harvest.tooltip": "Как быстро вы собираете урожай и корм вручную. Значение по умолчанию {{defaultValue}}x.",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.horse-flute.name": "Игра на лошадиной дудочке",
     "config.horse-flute.tooltip": "Как быстро вы играете на лошадиной дудочке. Значение по умолчанию {{defaultValue}}x.",
 

@@ -159,6 +159,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new FishingHandler(config.FishingSpeed);
             if (config.HarvestSpeed > 1)
                 yield return new HarvestHandler(config.HarvestSpeed);
+            if (config.HoldUpItemSpeed > 1)
+                yield return new HoldUpItemHandler(config.HoldUpItemSpeed);
             if (config.HorseFluteSpeed > 1)
                 yield return new HorseFluteHandler(config.HorseFluteSpeed);
             if (config.MilkSpeed > 1)

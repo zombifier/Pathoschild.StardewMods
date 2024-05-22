@@ -24,6 +24,9 @@
     "config.harvest.name": "Збір",
     "config.harvest.tooltip": "Як швидко ви можете збирати культури та косити рукою. Типово: {{defaultValue}}x.",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.horse-flute.name": "Гра на флейті коня",
     "config.horse-flute.tooltip": "Як швидко ви граєте на флейті коня. Типово: {{defaultValue}}x.",
 
