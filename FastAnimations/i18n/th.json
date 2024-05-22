@@ -36,6 +36,9 @@
     "config.mount.name": "ขึ้น/ลงจากหลังม้า",
     "config.mount.tooltip": "ต้องการขึ้นหรือลงจากม้าให้มันเร็วแค่ไหน (รวมถึงการขึ้นหรือการขี่แบบกำหนดเองเช่น ม็อดรถแทรกเตอร์) ค่าเริ่มต้นคือ {{defaultValue}}x",
 
+    "config.read-book.name": "Read book", // TODO
+    "config.read-book.tooltip": "How fast you read books. Default {{defaultValue}}x.", // TODO
+
     "config.shear.name": "เครื่องมือที่ตัด",
     "config.shear.tooltip": "ต้องการใช้เครื่องที่ตัดให้มันเร็วแค่ไหน ค่าเริ่มต้นคือ {{defaultValue}}x",
 

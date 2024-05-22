@@ -36,6 +36,9 @@
     "config.mount.name": "上下马",
     "config.mount.tooltip": "上/下马的速度，这里的马包括魔改后的马，比如拖拉机。默认{{defaultValue}}x。",
 
+    "config.read-book.name": "读书",
+    "config.read-book.tooltip": "读书的速度。默认{{defaultValue}}x.",
+
     "config.shear.name": "剪毛",
     "config.shear.tooltip": "使用剪刀的速度。默认{{defaultValue}}x。",
 

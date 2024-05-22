@@ -36,6 +36,9 @@
     "config.mount.name": "Залезание/слезание",
     "config.mount.tooltip": "Как быстро вы залазите/слазите на/с лошадей (включая пользовательских маунтов, таких как Tractor Mod). Значение по умолчанию  {{defaultValue}}x.",
 
+    "config.read-book.name": "Read book", // TODO
+    "config.read-book.tooltip": "How fast you read books. Default {{defaultValue}}x.", // TODO
+
     "config.shear.name": "Ножницы",
     "config.shear.tooltip": "Как быстро вы используете ножницы. Значение по умолчанию {{defaultValue}}x.",
 

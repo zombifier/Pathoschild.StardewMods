@@ -36,6 +36,9 @@
     "config.mount.name": "Mount/dismount",
     "config.mount.tooltip": "How fast you mount/dismount horses (including custom mounts like Tractor Mod). Default {{defaultValue}}x.",
 
+    "config.read-book.name": "Read book",
+    "config.read-book.tooltip": "How fast you read books. Default {{defaultValue}}x.",
+
     "config.shear.name": "Shear",
     "config.shear.tooltip": "How fast you use the shears. Default {{defaultValue}}x.",
 

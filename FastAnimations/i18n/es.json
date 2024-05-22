@@ -36,6 +36,9 @@
     "config.mount.name": "Montar/Desmontar",
     "config.mount.tooltip": "La rapidez con la que se montan/desmontan los caballos (incluidas las monturas personalizadas como el Tractor Mod). Por defecto {{defaultValue}}x.",
 
+    "config.read-book.name": "Read book", // TODO
+    "config.read-book.tooltip": "How fast you read books. Default {{defaultValue}}x.", // TODO
+
     "config.shear.name": "Esquilar",
     "config.shear.tooltip": "La rapidez con la que se utilizan las tijeras de esquilar. Por defecto {{defaultValue}}x.",
 

@@ -36,6 +36,9 @@
     "config.mount.name": "Monter/déscendre",
     "config.mount.tooltip": "La vitesse à laquelle vous montez/désencdez des chevaux (y compris les montures personnalisées comme le Tractor Mod). Valeur par défaut {{defaultValue}}x.",
 
+    "config.read-book.name": "Read book", // TODO
+    "config.read-book.tooltip": "How fast you read books. Default {{defaultValue}}x.", // TODO
+
     "config.shear.name": "Ciseaux",
     "config.shear.tooltip": "La vitesse à laquelle vous utilisez les ciseaux. Valeur par défaut {{defaultValue}}x.",
 
