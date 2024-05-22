@@ -671,7 +671,8 @@ namespace Pathoschild.Stardew.LookupAnything
                 foreach (ProducerFrameworkRecipe recipe in this.ProducerFrameworkMod.GetRecipes())
                 {
                     // remove vanilla recipes overridden by a PFM one
-                    recipes.RemoveAll(r => r.Type == RecipeType.MachineInput && r.MachineId == recipe.MachineId && recipe.InputId != null && r.Ingredients[0].InputId == recipe.InputId);
+                    if (recipe.InputId != null)
+                        recipes.RemoveAll(other => other.Type == RecipeType.MachineInput && other.MachineId == recipe.MachineId && other.Ingredients.Length > 0 && other.Ingredients[0].InputId == recipe.InputId);
 
                     // get machine
                     var machine = ItemRegistry.Create<SObject>(recipe.MachineId, allowNull: true);
