@@ -54,6 +54,9 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier for the volcano forge.</summary>
         public float ForgeSpeed { get; set; } = 8;
 
+        /// <summary>The speed multiplier for opening a chest.</summary>
+        public float OpenChestSpeed { get; set; } = 4;
+
         /// <summary>The speed multiplier when Pam's bus is driving to/from the desert.</summary>
         public float PamBusSpeed { get; set; } = 6;
 
@@ -65,9 +68,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
 
         /// <summary>The speed multiplier for the Stardew Valley Fair wheel spin minigame.</summary>
         public float WheelSpinSpeed { get; set; } = 16;
-
-        /// <summary>The speed multiplier for opening chest.</summary>
-        public float OpenChestSpeed { get; set; } = 4;
 
         /****
         ** UI animations

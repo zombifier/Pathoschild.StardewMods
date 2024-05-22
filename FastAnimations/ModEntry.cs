@@ -155,6 +155,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new BreakingGeodeHandler(config.BreakGeodeSpeed);
             if (config.ForgeSpeed > 1)
                 yield return new ForgeHandler(config.ForgeSpeed, this.Helper.Reflection);
+            if (config.OpenChestSpeed > 1)
+                yield return new OpenChestHandler(config.OpenChestSpeed);
             if (config.PrizeTicketMachineSpeed > 1)
                 yield return new PrizeTicketMachineHandler(config.PrizeTicketMachineSpeed, this.Helper.Reflection);
             if (config.WheelSpinSpeed > 1)
@@ -165,8 +167,6 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new PamBusHandler(config.PamBusSpeed);
             if (config.TreeFallSpeed > 1)
                 yield return new TreeFallingHandler(config.TreeFallSpeed);
-            if (config.OpenChestSpeed > 1)
-                yield return new OpenChestHandler(config.OpenChestSpeed);
 
             // UI animations
             if (config.TitleMenuTransitionSpeed > 1)

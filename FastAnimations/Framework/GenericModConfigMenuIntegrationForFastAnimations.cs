@@ -169,6 +169,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
+                    name: I18n.Config_OpenChest_Name,
+                    tooltip: () => I18n.Config_OpenChest_Tooltip(defaultValue: defaultConfig.OpenChestSpeed),
+                    get: config => config.OpenChestSpeed,
+                    set: (config, value) => config.OpenChestSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
                     name: I18n.Config_PrizeTicketMachine_Name,
                     tooltip: () => I18n.Config_PrizeTicketMachine_Tooltip(defaultValue: defaultConfig.PrizeTicketMachineSpeed),
                     get: config => config.PrizeTicketMachineSpeed,
@@ -189,14 +197,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     tooltip: () => I18n.Config_WheelSpin_Tooltip(defaultValue: defaultConfig.WheelSpinSpeed),
                     get: config => config.WheelSpinSpeed,
                     set: (config, value) => config.WheelSpinSpeed = value,
-                    min: minSpeed,
-                    max: maxSpeed
-                )
-                .AddNumberField(
-                    name: I18n.Config_ChestOpen_Name,
-                    tooltip: () => I18n.Config_ChestOpen_Tooltip(defaultValue: defaultConfig.OpenChestSpeed),
-                    get: config => config.OpenChestSpeed,
-                    set: (config, value) => config.OpenChestSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
                 )

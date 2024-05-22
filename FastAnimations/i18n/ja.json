@@ -62,6 +62,9 @@
     "config.forge.name": "鍛造",
     "config.forge.tooltip": "武器や道具を鍛造するときの速度。標準は{{defaultValue}}x。",
 
+    "config.open-chest.name": "Open chest", // TODO
+    "config.open-chest.tooltip": "How fast you open chests. Default {{defaultValue}}x.", // TODO
+
     "config.prize-ticket-machine.name": "賞品マシーン",
     "config.prize-ticket-machine.tooltip": "賞品マシーンの演出速度。標準は{{defaultValue}}x。",
 
@@ -70,9 +73,6 @@
 
     "config.wheel-spin.name": "まつりのルーレット",
     "config.wheel-spin.tooltip": "スターデューバレーまつりのルーレットの演出速度。標準は{{defaultValue}}x。",
-
-    "config.chest-open.name": "Chest open", // TODO
-    "config.chest-open.tooltip": "How fast the chest open. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'UI Animation Speeds' section
