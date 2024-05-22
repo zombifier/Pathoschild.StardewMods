@@ -42,11 +42,11 @@
     "config.tool.name": "Oscillazione strumenti",
     "config.tool.tooltip": "Velocità di oscillazione degli strumenti (eccetto armi e canna da pesca). Predefinito {{defaultValue}}x, valore suggerito {{suggestedValue}}x.",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "Oscillazione arma",
     "config.weapon.tooltip": "Velocità di brandeggio delle armi. Predefinito {{defaultValue}}x, valore suggerito {{suggestedValue}}x.",
-
-    "config.totem.name": "Using Totem", // TODO
-    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

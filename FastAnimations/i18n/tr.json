@@ -42,11 +42,11 @@
     "config.tool.name": "Sallama aracı",
     "config.tool.tooltip": "Aletlerinizi ne kadar hızlı salladığınız (silahlar ve olta hariç). Varsayılan {{defaultValue}}x, önerilen {{suggestedValue}}x.",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "Silah sallama",
     "config.weapon.tooltip": "Silahlarınızı ne kadar hızlı salladığınız. Varsayılan {{defaultValue}}x, önerilen {{suggestedValue}}x.",
-
-    "config.totem.name": "Using Totem", // TODO
-    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

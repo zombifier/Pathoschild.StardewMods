@@ -42,11 +42,11 @@
     "config.tool.name": "도구 스윙",
     "config.tool.tooltip": "도구를 휘두르는 속도(무기 및 낚싯대 제외). 기본 값 {{defaultValue}}, 권장 {{suggestedValue}}.",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "무기 스윙",
     "config.weapon.tooltip": "무기를 휘두르는 속도. 기본 값 {{defaultValue}}, 권장 {{suggestedValue}}.",
-
-    "config.totem.name": "Using Totem", // TODO
-    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

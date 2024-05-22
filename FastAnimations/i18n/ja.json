@@ -42,11 +42,11 @@
     "config.tool.name": "どうぐ全般",
     "config.tool.tooltip": "武器と釣り竿を除くどうぐを振る速さ。標準は{{defaultValue}}x、推奨は{{suggestedValue}}x。",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "武器",
     "config.weapon.tooltip": "武器を振る速さ。標準は{{defaultValue}}x、推奨は{{suggestedValue}}x。",
-
-    "config.totem.name": "Using Totem", // TODO
-    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

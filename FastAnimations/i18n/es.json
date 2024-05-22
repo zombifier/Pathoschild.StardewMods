@@ -42,11 +42,11 @@
     "config.tool.name": "Girar herramientas",
     "config.tool.tooltip": "La rapidez con la que se giran las herramientas (excepto las armas y la caña de pescar). Por defecto {{defaultValue}}x, sugerencia {{suggestedValue}}x.",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "Girar armas",
     "config.weapon.tooltip": "La rapidez con la que se mueven las armas. Por defecto {{defaultValue}}x, sugerencia {{suggestedValue}}x.",
-
-    "config.totem.name": "Using Totem", // TODO
-    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

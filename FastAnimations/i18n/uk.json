@@ -42,11 +42,11 @@
     "config.tool.name": "Розмахування інструментом",
     "config.tool.tooltip": "Як швидко ви розмахуєте своїми інструментами (За винятком зброї та вудки). Типово: {{defaultValue}}x. Рекомендується: {{suggestedValue}}x.",
 
+    "config.use-totem.name": "Use totem", // TODO
+    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+
     "config.weapon.name": "Розмахування зброєю",
     "config.weapon.tooltip": "Як швидко ви розмахуєте зброєю. Типово: {{defaultValue}}x. Рекомендується: {{suggestedValue}}x.",
-
-    "config.totem.name": "Using Totem", // TODO
-    "config.totem.tooltip": "How fast you using totem. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section
