@@ -24,6 +24,9 @@
     "config.harvest.name": "Ernten",
     "config.harvest.tooltip": "Wie schnell Sie Getreide und Futter von Hand ernten. Standardwert {{defaultValue}}x.",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.horse-flute.name": "Pferde-Flöte spielen",
     "config.horse-flute.tooltip": "Wie schnell Sie die Pferde-Flöte spielen. Standardwert {{defaultValue}}x.",
 
@@ -44,9 +47,6 @@
 
     "config.weapon.name": "Waffen schwingen",
     "config.weapon.tooltip": "Wie schnell Sie Ihre Waffen schwingen. Standardwert {{defaultValue}}x, vorgeschlagen {{suggestedValue}}x.",
-
-    "config.holdup-item.name": "Hold up item", // TODO
-    "config.holdup-item.tooltip": "How fast you hold up item. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

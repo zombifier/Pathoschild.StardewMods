@@ -1,97 +1,110 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Pathoschild.Stardew.FastAnimations.Framework;
 using StardewValley;
+using StardewValley.ItemTypeDefinitions;
 using StardewValley.Objects;
 
-namespace Pathoschild.Stardew.FastAnimations.Handlers;
-
-/// <summary>Handles the item-holdup animation.</summary>
-/// <remarks>See game logic in <see cref="Farmer.holdUpItemThenMessage"/>.</remarks>
-internal class HoldUpItemHandler : BaseAnimationHandler
+namespace Pathoschild.Stardew.FastAnimations.Handlers
 {
-    /*********
-     ** Public methods
-     *********/
-    /// <summary>Construct an instance.</summary>
-    /// <param name="multiplier">The animation speed multiplier to apply.</param>
-    public HoldUpItemHandler(float multiplier) : base(multiplier)
+    /// <summary>Handles the hold-up-item animation.</summary>
+    /// <remarks>See game logic in <see cref="Farmer.holdUpItemThenMessage"/>.</remarks>
+    internal class HoldUpItemHandler : BaseAnimationHandler
     {
-    }
+        /*********
+        ** Public methods
+        *********/
+        /// <summary>Construct an instance.</summary>
+        /// <param name="multiplier">The animation speed multiplier to apply.</param>
+        public HoldUpItemHandler(float multiplier)
+            : base(multiplier) { }
 
-    /// <summary>Get whether the animation is currently active.</summary>
-    /// <param name="playerAnimationID">The player's current animation ID.</param>
-    public override bool IsEnabled(int playerAnimationID)
-    {
-        return Game1.player.FarmerSprite.currentAnimation is [{ frame: 57, milliseconds: 0 }, { frame: 57, milliseconds: 2500 }, { milliseconds: 500 }, ..];
-    }
-
-    /// <summary>Perform any logic needed on update while the animation is active.</summary>
-    /// <param name="playerAnimationID">The player's current animation ID.</param>
-    public override void Update(int playerAnimationID)
-    {
-        var player = Game1.player;
-        var location = Game1.currentLocation;
-
-        this.ApplySkips(
-            () =>
-            {
-                // player animation
-                player.Update(Game1.currentGameTime, location);
-
-                // animation of item thrown in the air
-                foreach (var sprite in this.GetTemporarySprites(player).ToArray())
-                {
-                    bool done = sprite.update(Game1.currentGameTime);
-                    if (done)
-                        location.TemporarySprites.Remove(sprite);
-                }
-            },
-            () => !this.IsEnabled(playerAnimationID)
-        );
-
-        // reduce freeze time
-        int reduceTimersBy = (int)(BaseAnimationHandler.MillisecondsPerFrame * this.Multiplier);
-        Game1.player.freezePause = Math.Max(0, Game1.player.freezePause - reduceTimersBy);
-    }
-
-    /*********
-     ** Private methods
-     *********/
-    /// <summary>Get the temporary animated sprites added as part of the item-holdup animation.</summary>
-    /// <param name="player">The player being animated.</param>
-    /// <remarks>Derived from <see cref="Farmer.showHoldingItem"/>.</remarks>
-    private IEnumerable<TemporaryAnimatedSprite> GetTemporarySprites(Farmer player)
-    {
-        // get hold up item
-        Item? holdingItem = player.mostRecentlyGrabbedItem;
-
-        foreach (TemporaryAnimatedSprite sprite in player.currentLocation.TemporarySprites)
+        /// <summary>Get whether the animation is currently active.</summary>
+        /// <param name="playerAnimationID">The player's current animation ID.</param>
+        public override bool IsEnabled(int playerAnimationID)
         {
-            switch (holdingItem)
+            Farmer player = Game1.player;
+            if (player.mostRecentlyGrabbedItem is null)
+                return false;
+
+            List<FarmerSprite.AnimationFrame>? animation = player.FarmerSprite?.currentAnimation;
+            return
+                animation?.Count == 3
+                && animation[0] is { frame: 57, milliseconds: 0 }
+                && animation[1] is { frame: 57, milliseconds: 2500 }
+                && animation[2] is { milliseconds: 500 };
+        }
+
+        /// <summary>Perform any logic needed on update while the animation is active.</summary>
+        /// <param name="playerAnimationID">The player's current animation ID.</param>
+        public override void Update(int playerAnimationID)
+        {
+            Farmer player = Game1.player;
+            GameLocation location = Game1.currentLocation;
+
+            this.ApplySkips(
+                run: () =>
+                {
+                    // player animation
+                    player.Update(Game1.currentGameTime, location);
+
+                    // animation of item thrown in the air
+                    foreach (TemporaryAnimatedSprite sprite in this.GetTemporarySprites(player).ToArray())
+                    {
+                        bool done = sprite.update(Game1.currentGameTime);
+                        if (done)
+                            location.TemporarySprites.Remove(sprite);
+                    }
+                },
+                until: () => !this.IsEnabled(playerAnimationID)
+            );
+
+            // reduce freeze time
+            int reduceTimersBy = (int)(BaseAnimationHandler.MillisecondsPerFrame * this.Multiplier);
+            player.freezePause = Math.Max(0, player.freezePause - reduceTimersBy);
+        }
+
+
+        /*********
+        ** Private methods
+        *********/
+        /// <summary>Get the temporary animated sprites added as part of the item-hold-up animation.</summary>
+        /// <param name="player">The player being animated.</param>
+        /// <remarks>Derived from <see cref="Farmer.showHoldingItem"/>.</remarks>
+        private IEnumerable<TemporaryAnimatedSprite> GetTemporarySprites(Farmer player)
+        {
+            // get hold up item
+            Item? holdingItem = player.mostRecentlyGrabbedItem;
+
+            foreach (TemporaryAnimatedSprite sprite in player.currentLocation.TemporarySprites)
             {
-                case null:
+                switch (holdingItem)
                 {
-                    if (sprite.textureName == "LooseSprites\\Cursors" && sprite.sourceRect == new Microsoft.Xna.Framework.Rectangle(420, 489, 25, 18))
-                        yield return sprite;
-                    break;
-                }
-                case SpecialItem specialItem:
-                {
-                    if (sprite.textureName == "LooseSprites\\Cursors" &&
-                        (sprite.sourceRect == new Rectangle(Game1.player.MaxItems == 36 ? 268 : 257, 1436, Game1.player.MaxItems == 36 ? 11 : 9, 13) ||
-                         sprite.sourceRect == new Rectangle(129 + 16 * specialItem.which.Value, 320, 16, 16)))
-                        yield return sprite;
-                    break;
-                }
-                default:
-                {
-                    var data = ItemRegistry.GetDataOrErrorItem(holdingItem.QualifiedItemId);
-                    if (sprite.textureName == data.TextureName && sprite.sourceRect == data.GetSourceRect())
-                        yield return sprite;
-                    break;
+                    case null:
+                        if (sprite.textureName == "LooseSprites\\Cursors" && sprite.sourceRect == new Rectangle(420, 489, 25, 18))
+                            yield return sprite;
+                        break;
+
+                    case SpecialItem specialItem:
+                        if (
+                            sprite.textureName == "LooseSprites\\Cursors"
+                            && (
+                                sprite.sourceRect == new Rectangle(Game1.player.MaxItems == 36 ? 268 : 257, 1436, Game1.player.MaxItems == 36 ? 11 : 9, 13)
+                                || sprite.sourceRect == new Rectangle(129 + 16 * specialItem.which.Value, 320, 16, 16)
+                            )
+                        )
+                            yield return sprite;
+                        break;
+
+                    default:
+                        {
+                            ParsedItemData data = ItemRegistry.GetDataOrErrorItem(holdingItem.QualifiedItemId);
+                            if (sprite.textureName == data.TextureName && sprite.sourceRect == data.GetSourceRect())
+                                yield return sprite;
+                            break;
+                        }
                 }
             }
         }

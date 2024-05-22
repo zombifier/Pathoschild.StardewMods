@@ -24,6 +24,9 @@
     "config.harvest.name": "수확",
     "config.harvest.tooltip": "손으로 작물과 채집물을 수확하는 속도. 기본 값 {{defaultValue}}.",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.horse-flute.name": "말 피리 연주",
     "config.horse-flute.tooltip": "말 피리를 연주하는 속도. 기본 값 {{defaultValue}}x.",
 
@@ -44,9 +47,6 @@
 
     "config.weapon.name": "무기 스윙",
     "config.weapon.tooltip": "무기를 휘두르는 속도. 기본 값 {{defaultValue}}, 권장 {{suggestedValue}}.",
-
-    "config.holdup-item.name": "Hold up item", // TODO
-    "config.holdup-item.tooltip": "How fast you hold up item. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

@@ -21,6 +21,9 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier for harvesting crops or forage.</summary>
         public float HarvestSpeed { get; set; } = 3;
 
+        /// <summary>The speed multiplier for holding up an item.</summary>
+        public float HoldUpItemSpeed { get; set; } = 5;
+
         /// <summary>The speed multiplier for playing the horse flute.</summary>
         public float HorseFluteSpeed { get; set; } = 6;
 
@@ -41,9 +44,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
 
         /// <summary>The speed multiplier for using weapons.</summary>
         public float WeaponSwingSpeed { get; set; } = 1;
-
-        /// <summary>The speed multiplier for holding up item.</summary>
-        public float ItemHoldUpSpeed { get; set; } = 4;
 
         /****
         ** World animations

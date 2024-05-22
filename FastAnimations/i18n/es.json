@@ -24,6 +24,9 @@
     "config.harvest.name": "Cosechar",
     "config.harvest.tooltip": "La rapidez con la que se recogen los cultivos y el forraje a mano. Por defecto {{defaultValue}}x.",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.horse-flute.name": "Play Horse Flute", // TODO
     "config.horse-flute.tooltip": "How fast you play the horse flute. Default {{defaultValue}}x.", // TODO
 
@@ -44,9 +47,6 @@
 
     "config.weapon.name": "Girar armas",
     "config.weapon.tooltip": "La rapidez con la que se mueven las armas. Por defecto {{defaultValue}}x, sugerencia {{suggestedValue}}x.",
-
-    "config.holdup-item.name": "Hold up item", // TODO
-    "config.holdup-item.tooltip": "How fast you hold up item. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

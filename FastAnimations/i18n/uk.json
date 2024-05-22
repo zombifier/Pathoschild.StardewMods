@@ -24,6 +24,9 @@
     "config.harvest.name": "Збір",
     "config.harvest.tooltip": "Як швидко ви можете збирати культури та косити рукою. Типово: {{defaultValue}}x.",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.horse-flute.name": "Гра на флейті коня",
     "config.horse-flute.tooltip": "Як швидко ви граєте на флейті коня. Типово: {{defaultValue}}x.",
 
@@ -44,9 +47,6 @@
 
     "config.weapon.name": "Розмахування зброєю",
     "config.weapon.tooltip": "Як швидко ви розмахуєте зброєю. Типово: {{defaultValue}}x. Рекомендується: {{suggestedValue}}x.",
-
-    "config.holdup-item.name": "Hold up item", // TODO
-    "config.holdup-item.tooltip": "How fast you hold up item. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

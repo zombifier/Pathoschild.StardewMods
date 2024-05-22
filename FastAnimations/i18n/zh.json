@@ -24,6 +24,9 @@
     "config.harvest.name": "采集",
     "config.harvest.tooltip": "采集作物或觅食的速度。默认{{defaultValue}}x。",
 
+    "config.hold-up-item.name": "举起物品",
+    "config.hold-up-item.tooltip": "举起物品的速度。默认{{defaultValue}}x.",
+
     "config.horse-flute.name": "马笛",
     "config.horse-flute.tooltip": "演奏马笛的速度。默认{{defaultValue}}x。",
 
@@ -44,9 +47,6 @@
 
     "config.weapon.name": "武器",
     "config.weapon.tooltip": "使用武器的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
-
-    "config.holdup-item.name": "举起物品",
-    "config.holdup-item.tooltip": "举起物品的速度。默认{{defaultValue}}x.",
 
     /****
     ** 'World Animation Speeds' section

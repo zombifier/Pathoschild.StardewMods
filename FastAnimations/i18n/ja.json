@@ -24,6 +24,9 @@
     "config.harvest.name": "収穫",
     "config.harvest.tooltip": "手作業で作物や飼料を収穫する速さ。標準は{{defaultValue}}x。",
 
+    "config.hold-up-item.name": "Hold up item", // TODO
+    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+
     "config.horse-flute.name": "馬のフルート",
     "config.horse-flute.tooltip": "馬のフルートを吹く速さ。標準は{{defaultValue}}x。",
 
@@ -44,9 +47,6 @@
 
     "config.weapon.name": "武器",
     "config.weapon.tooltip": "武器を振る速さ。標準は{{defaultValue}}x、推奨は{{suggestedValue}}x。",
-
-    "config.holdup-item.name": "Hold up item", // TODO
-    "config.holdup-item.tooltip": "How fast you hold up item. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

@@ -79,6 +79,22 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
+                    name: I18n.Config_HoldUpItem_Name,
+                    tooltip: () => I18n.Config_HoldUpItem_Tooltip(defaultValue: defaultConfig.HoldUpItemSpeed),
+                    get: config => config.HoldUpItemSpeed,
+                    set: (config, value) => config.HoldUpItemSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
+                    name: I18n.Config_HorseFlute_Name,
+                    tooltip: () => I18n.Config_HorseFlute_Tooltip(defaultValue: defaultConfig.HorseFluteSpeed),
+                    get: config => config.HorseFluteSpeed,
+                    set: (config, value) => config.HorseFluteSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
                     name: I18n.Config_Milk_Name,
                     tooltip: () => I18n.Config_Milk_Tooltip(defaultValue: defaultConfig.MilkSpeed),
                     get: config => config.MilkSpeed,
@@ -91,14 +107,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     tooltip: () => I18n.Config_Mount_Tooltip(defaultValue: defaultConfig.MountOrDismountSpeed),
                     get: config => config.MountOrDismountSpeed,
                     set: (config, value) => config.MountOrDismountSpeed = value,
-                    min: minSpeed,
-                    max: maxSpeed
-                )
-                .AddNumberField(
-                    name: I18n.Config_HorseFlute_Name,
-                    tooltip: () => I18n.Config_HorseFlute_Tooltip(defaultValue: defaultConfig.HorseFluteSpeed),
-                    get: config => config.HorseFluteSpeed,
-                    set: (config, value) => config.HorseFluteSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
                 )
@@ -131,14 +139,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     tooltip: () => I18n.Config_Weapon_Tooltip(defaultValue: defaultConfig.WeaponSwingSpeed, suggestedValue: 4),
                     get: config => config.WeaponSwingSpeed,
                     set: (config, value) => config.WeaponSwingSpeed = value,
-                    min: minSpeed,
-                    max: maxSpeed
-                )
-                .AddNumberField(
-                    name : I18n.Config_HoldupItem_Name,
-                    tooltip: () => I18n.Config_HoldupItem_Tooltip(defaultValue: defaultConfig.ItemHoldUpSpeed),
-                    get: config => config.ItemHoldUpSpeed,
-                    set: (config, value) => config.ItemHoldUpSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
                 )
