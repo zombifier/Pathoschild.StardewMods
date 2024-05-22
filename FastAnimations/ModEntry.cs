@@ -170,10 +170,10 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new ReadBookHandler(config.ReadBookSpeed);
             if (config.ShearSpeed > 1)
                 yield return new ShearingHandler(config.ShearSpeed);
-            if (config.UseSlingshotSpeed > 1)
-                yield return new SlingshotHandler(config.UseSlingshotSpeed);
             if (config.ToolSwingSpeed > 1)
                 yield return new ToolSwingHandler(config.ToolSwingSpeed);
+            if (config.UseSlingshotSpeed > 1)
+                yield return new SlingshotHandler(config.UseSlingshotSpeed);
             if (config.UseTotemSpeed > 1)
                 yield return new UseTotemHandler(config.UseTotemSpeed);
             if (config.WeaponSwingSpeed > 1)
@@ -182,22 +182,22 @@ namespace Pathoschild.Stardew.FastAnimations
             // world animations
             if (config.BreakGeodeSpeed > 1)
                 yield return new BreakingGeodeHandler(config.BreakGeodeSpeed);
+            if (config.CasinoSlotsSpeed > 1)
+                yield return new CasinoSlotsHandler(config.CasinoSlotsSpeed);
             if (config.FishingTreasureSpeed > 1)
                 yield return new FishingTreasureHandler(config.FishingTreasureSpeed);
             if (config.ForgeSpeed > 1)
                 yield return new ForgeHandler(config.ForgeSpeed, this.Helper.Reflection);
             if (config.OpenChestSpeed > 1)
                 yield return new OpenChestHandler(config.OpenChestSpeed);
-            if (config.PrizeTicketMachineSpeed > 1)
-                yield return new PrizeTicketMachineHandler(config.PrizeTicketMachineSpeed, this.Helper.Reflection);
-            if (config.WheelSpinSpeed > 1)
-                yield return new WheelSpinHandler(config.WheelSpinSpeed);
-            if (config.CasinoSlotsSpeed > 1)
-                yield return new CasinoSlotsHandler(config.CasinoSlotsSpeed);
             if (config.PamBusSpeed > 1)
                 yield return new PamBusHandler(config.PamBusSpeed);
+            if (config.PrizeTicketMachineSpeed > 1)
+                yield return new PrizeTicketMachineHandler(config.PrizeTicketMachineSpeed, this.Helper.Reflection);
             if (config.TreeFallSpeed > 1)
                 yield return new TreeFallingHandler(config.TreeFallSpeed);
+            if (config.WheelSpinSpeed > 1)
+                yield return new WheelSpinHandler(config.WheelSpinSpeed);
 
             // UI animations
             if (config.TitleMenuTransitionSpeed > 1)
