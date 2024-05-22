@@ -103,6 +103,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
+                    name: I18n.Config_ReadBook_Name,
+                    tooltip: () => I18n.Config_ReadBook_Tooltip(defaultValue: defaultConfig.ReadBookSpeed),
+                    get: config => config.ReadBookSpeed,
+                    set: (config, value) => config.ReadBookSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
                     name: I18n.Config_Shear_Name,
                     tooltip: () => I18n.Config_Shear_Tooltip(defaultValue: defaultConfig.ShearSpeed),
                     get: config => config.ShearSpeed,
@@ -131,14 +139,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     tooltip: () => I18n.Config_Weapon_Tooltip(defaultValue: defaultConfig.WeaponSwingSpeed, suggestedValue: 4),
                     get: config => config.WeaponSwingSpeed,
                     set: (config, value) => config.WeaponSwingSpeed = value,
-                    min: minSpeed,
-                    max: maxSpeed
-                )
-                .AddNumberField(
-                    name : I18n.Config_ReadBook_Name,
-                    tooltip: () => I18n.Config_ReadBook_Tooltip(defaultValue: defaultConfig.ReadBookSpeed),
-                    get: config => config.ReadBookSpeed,
-                    set: (config, value) => config.ReadBookSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
                 )

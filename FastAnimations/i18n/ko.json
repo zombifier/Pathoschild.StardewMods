@@ -33,6 +33,9 @@
     "config.mount.name": "말 타기/말 내리기",
     "config.mount.tooltip": "말 타기/내리는 속도(트랙터 모드와 같은 사용자 지정 탈것 포함). 기본 값 {{defaultValue}}.",
 
+    "config.read-book.name": "Read book", // TODO
+    "config.read-book.tooltip": "How fast you read books. Default {{defaultValue}}x.", // TODO
+
     "config.shear.name": "가위",
     "config.shear.tooltip": "가위를 사용하는 속도. 기본 값 {{defaultValue}}.",
 
@@ -44,9 +47,6 @@
 
     "config.weapon.name": "무기 스윙",
     "config.weapon.tooltip": "무기를 휘두르는 속도. 기본 값 {{defaultValue}}, 권장 {{suggestedValue}}.",
-
-    "config.read-book.name": "Read book", // TODO
-    "config.read-book.tooltip": "How fast you read book. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

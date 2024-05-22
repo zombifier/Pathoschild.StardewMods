@@ -30,6 +30,9 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier for mounting or dismounting the horse.</summary>
         public float MountOrDismountSpeed { get; set; } = 2;
 
+        /// <summary>The speed multiplier for reading a book.</summary>
+        public float ReadBookSpeed { get; set; } = 2;
+
         /// <summary>The speed multiplier for shearing.</summary>
         public float ShearSpeed { get; set; } = 5;
 
@@ -41,9 +44,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
 
         /// <summary>The speed multiplier for using weapons.</summary>
         public float WeaponSwingSpeed { get; set; } = 1;
-
-        /// <summary>The speed multiplier for reading book.</summary>
-        public float ReadBookSpeed { get; set; } = 4;
 
         /****
         ** World animations

@@ -33,6 +33,9 @@
     "config.mount.name": "Montar/desmontar",
     "config.mount.tooltip": "Quão rápido você monta/desmonta cavalos (Incluindo montarias customizadas como Tractor Mod). Padrão {{defaultValue}}x.",
 
+    "config.read-book.name": "Read book", // TODO
+    "config.read-book.tooltip": "How fast you read books. Default {{defaultValue}}x.", // TODO
+
     "config.shear.name": "Tosquiar",
     "config.shear.tooltip": "Quão rápido você usa as tesouras. Padrão {{defaultValue}}x.",
 
@@ -44,9 +47,6 @@
 
     "config.weapon.name": "Usar Armas",
     "config.weapon.tooltip": "Quão rápido você usa armas. Padrão {{defaultValue}}x, sugerido {{suggestedValue}}x.",
-
-    "config.read-book.name": "Read book", // TODO
-    "config.read-book.tooltip": "How fast you read book. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'World Animation Speeds' section

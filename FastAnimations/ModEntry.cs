@@ -141,6 +141,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new MilkingHandler(config.MilkSpeed);
             if (config.MountOrDismountSpeed > 1)
                 yield return new MountHorseHandler(config.MountOrDismountSpeed);
+            if (config.ReadBookSpeed > 1)
+                yield return new ReadBookHandler(config.ReadBookSpeed);
             if (config.ShearSpeed > 1)
                 yield return new ShearingHandler(config.ShearSpeed);
             if (config.UseSlingshotSpeed > 1)
@@ -149,8 +151,6 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new ToolSwingHandler(config.ToolSwingSpeed);
             if (config.WeaponSwingSpeed > 1)
                 yield return new WeaponSwingHandler(config.WeaponSwingSpeed);
-            if (config.ReadBookSpeed > 1)
-                yield return new ReadBookHandler(config.ReadBookSpeed);
 
             // world animations
             if (config.BreakGeodeSpeed > 1)
