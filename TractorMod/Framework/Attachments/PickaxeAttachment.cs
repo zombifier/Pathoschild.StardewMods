@@ -79,11 +79,12 @@ namespace Pathoschild.Stardew.TractorMod.Framework.Attachments
                 return this.UseToolOnTile(tool, tile, player, location);
 
             // break objects
-            if (this.Config.ClearObjects && tileObj != null)
+            bool isMineSpawn = location is MineShaft && tileObj?.IsSpawnedObject == true;
+            if (this.Config.ClearObjects && tileObj != null && !isMineSpawn)
                 return this.UseToolOnTile(tool, tile, player, location);
 
             // break mine containers
-            if (this.Config.BreakMineContainers && this.TryBreakContainer(tile, tileObj, tool))
+            if (this.Config.BreakMineContainers && this.TryBreakContainer(tile, tileObj, player, tool))
                 return true;
 
             // clear weeds
@@ -115,7 +116,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework.Attachments
             }
 
             // harvest spawned mine objects
-            if (this.Config.HarvestMineSpawns && location is MineShaft && tileObj?.IsSpawnedObject == true && this.CheckTileAction(location, tile, player))
+            if (this.Config.HarvestMineSpawns && isMineSpawn && this.CheckTileAction(location, tile, player))
             {
                 this.CancelAnimation(player, FarmerSprite.harvestItemDown, FarmerSprite.harvestItemLeft, FarmerSprite.harvestItemRight, FarmerSprite.harvestItemUp);
                 return true;

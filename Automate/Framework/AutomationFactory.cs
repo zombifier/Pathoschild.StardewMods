@@ -70,10 +70,6 @@ namespace Pathoschild.Stardew.Automate.Framework
                 }
             }
 
-            // indoor pot
-            if (obj is IndoorPot indoorPot && BushMachine.CanAutomate(indoorPot.bush.Value))
-                return new BushMachine(indoorPot, tile, location);
-
             // tapper
             if (obj.IsTapper())
             {
@@ -97,7 +93,7 @@ namespace Pathoschild.Stardew.Automate.Framework
 
             // machine in Data/Machines
             if (obj.GetMachineData() != null)
-                return new DataBasedMachine(obj, location, tile, () => this.Config().MinMinutesForFairyDust);
+                return new DataBasedObjectMachine(obj, location, tile, () => this.Config().MinMinutesForFairyDust);
 
             // connector
             if (this.IsConnector(obj))
@@ -169,11 +165,8 @@ namespace Pathoschild.Stardew.Automate.Framework
                     return new ShippingBinMachine(bin, location);
 
                 default:
-                    switch (building.buildingType.Value)
-                    {
-                        case "Mill":
-                            return new MillMachine(building, location);
-                    }
+                    if (DataBasedBuildingMachine.CanAutomate(building))
+                        return new DataBasedBuildingMachine(building, location);
                     break;
             }
 
@@ -196,15 +189,12 @@ namespace Pathoschild.Stardew.Automate.Framework
                 return new ShippingBinMachine(Game1.getFarm(), new Rectangle(farm.shippingBinPosition.X, farm.shippingBinPosition.Y, 2, 1));
 
             // garbage can
-            if (location is Town town)
+            string action = location.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
+            if (!string.IsNullOrWhiteSpace(action))
             {
-                string action = town.doesTileHaveProperty((int)tile.X, (int)tile.Y, "Action", "Buildings");
-                if (!string.IsNullOrWhiteSpace(action))
-                {
-                    string[] fields = ArgUtility.SplitBySpace(action);
-                    if (string.Equals(fields[0], "Garbage", StringComparison.OrdinalIgnoreCase) && ArgUtility.HasIndex(fields, 1))
-                        return new TrashCanMachine(town, tile, fields[1]);
-                }
+                string[] fields = ArgUtility.SplitBySpace(action);
+                if (string.Equals(fields[0], "Garbage", StringComparison.OrdinalIgnoreCase) && ArgUtility.HasIndex(fields, 1))
+                    return new TrashCanMachine(location, tile, fields[1]);
             }
 
             // fridge

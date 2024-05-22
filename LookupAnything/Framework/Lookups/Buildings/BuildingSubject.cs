@@ -7,6 +7,7 @@ using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.LookupAnything.Framework.Data;
 using Pathoschild.Stardew.LookupAnything.Framework.DebugFields;
 using Pathoschild.Stardew.LookupAnything.Framework.Fields;
+using Pathoschild.Stardew.LookupAnything.Framework.Models;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Buildings;
@@ -36,6 +37,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         /// <summary>Provides subject entries.</summary>
         private readonly ISubjectRegistry Codex;
 
+        /// <summary>The configured minimum field values needed before they're auto-collapsed.</summary>
+        private readonly ModCollapseLargeFieldsConfig CollapseFieldsConfig;
+
 
         /*********
         ** Public methods
@@ -45,13 +49,15 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         /// <param name="gameHelper">Provides utility methods for interacting with the game code.</param>
         /// <param name="building">The lookup target.</param>
         /// <param name="sourceRectangle">The building's source rectangle in its spritesheet.</param>
-        public BuildingSubject(ISubjectRegistry codex, GameHelper gameHelper, Building building, Rectangle sourceRectangle)
+        /// <param name="collapseFieldsConfig">The configured minimum field values needed before they're auto-collapsed.</param>
+        public BuildingSubject(ISubjectRegistry codex, GameHelper gameHelper, Building building, Rectangle sourceRectangle, ModCollapseLargeFieldsConfig collapseFieldsConfig)
             : base(gameHelper, building.buildingType.Value, null, I18n.Type_Building())
         {
             // init
             this.Codex = codex;
             this.Target = building;
             this.SourceRectangle = sourceRectangle;
+            this.CollapseFieldsConfig = collapseFieldsConfig;
 
             // get name/description from data if available
             BuildingData? buildingData = building.GetData();
@@ -175,12 +181,28 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                         yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputReady(), hut.GetOutputChest()?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
                         break;
 
-                    // mill
+                    // Buildings with processing rules
                     default:
-                        if (building.buildingType.Value == "Mill")
+                        RecipeModel[] recipes =
+                            this.GameHelper.GetRecipesForBuilding(building)
+                            .ToArray();
+                        if (recipes.Length > 0)
                         {
-                            yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputProcessing(), building.GetBuildingChest("Input")?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
-                            yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputReady(), building.GetBuildingChest("Output")?.GetItemsForPlayer(Game1.player.UniqueMultiplayerID), showStackSize: true);
+                            // return recipes
+                            var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), null, recipes, progressionMode: false); // progression mode not applicable to buildings
+                            if (this.CollapseFieldsConfig.Enabled && recipes.Length >= this.CollapseFieldsConfig.BuildingRecipes)
+                                field.CollapseByDefault(I18n.Generic_ShowXResults(count: recipes.Length));
+                            yield return field;
+
+                            // return items being processed
+                            if (MachineDataHelper.TryGetBuildingChestNames(building.GetData(), out ISet<string> inputChestIds, out ISet<string> outputChestIds))
+                            {
+                                IEnumerable<Item?> inputItems = MachineDataHelper.GetBuildingChests(building, inputChestIds).SelectMany(p => p.GetItemsForPlayer());
+                                IEnumerable<Item?> outputItems = MachineDataHelper.GetBuildingChests(building, outputChestIds).SelectMany(p => p.GetItemsForPlayer());
+
+                                yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputProcessing(), inputItems, showStackSize: true);
+                                yield return new ItemIconListField(this.GameHelper, I18n.Building_OutputReady(), outputItems, showStackSize: true);
+                            }
                         }
                         break;
                 }

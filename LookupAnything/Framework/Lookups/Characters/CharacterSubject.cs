@@ -48,6 +48,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
         /// <summary>Which gift taste levels to show.</summary>
         private readonly ModGiftTasteConfig ShowGiftTastes;
 
+        /// <summary>The configured minimum field values needed before they're auto-collapsed.</summary>
+        private readonly ModCollapseLargeFieldsConfig CollapseFieldsConfig;
+
         /// <summary>Whether to look up the original entity when the game spawns a temporary copy.</summary>
         private readonly bool EnableTargetRedirection;
 
@@ -63,6 +66,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
         /// <summary>Whether the NPC is a magma sprite monster.</summary>
         private readonly bool IsMagmaSprite;
 
+        /// <summary>Whether to disable portraits for this NPC, even if they'd normally be used.</summary>
+        private readonly bool DisablePortraits;
+
 
         /*********
         ** Public methods
@@ -76,16 +82,18 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
         /// <param name="progressionMode">Whether to only show content once the player discovers it.</param>
         /// <param name="highlightUnrevealedGiftTastes">Whether to highlight item gift tastes which haven't been revealed in the NPC profile.</param>
         /// <param name="showGiftTastes">Which gift taste levels to show.</param>
+        /// <param name="collapseFieldsConfig">The configured minimum field values needed before they're auto-collapsed.</param>
         /// <param name="enableTargetRedirection">Whether to look up the original entity when the game spawns a temporary copy.</param>
         /// <param name="showUnownedGifts">Whether to show gift tastes that the player doesn't own somewhere in the world.</param>
         /// <remarks>Reverse engineered from <see cref="NPC"/>.</remarks>
-        public CharacterSubject(ISubjectRegistry codex, GameHelper gameHelper, NPC npc, SubjectType type, Metadata metadata, bool progressionMode, bool highlightUnrevealedGiftTastes, ModGiftTasteConfig showGiftTastes, bool enableTargetRedirection, bool showUnownedGifts)
+        public CharacterSubject(ISubjectRegistry codex, GameHelper gameHelper, NPC npc, SubjectType type, Metadata metadata, bool progressionMode, bool highlightUnrevealedGiftTastes, ModGiftTasteConfig showGiftTastes, ModCollapseLargeFieldsConfig collapseFieldsConfig, bool enableTargetRedirection, bool showUnownedGifts)
             : base(gameHelper)
         {
             this.Codex = codex;
             this.ProgressionMode = progressionMode;
             this.HighlightUnrevealedGiftTastes = highlightUnrevealedGiftTastes;
             this.ShowGiftTastes = showGiftTastes;
+            this.CollapseFieldsConfig = collapseFieldsConfig;
             this.EnableTargetRedirection = enableTargetRedirection;
             this.ShowUnownedGifts = showUnownedGifts;
 
@@ -107,6 +115,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             }
             else
                 this.IsGourmand = type == SubjectType.Villager && npc.Name == "Gourmand" && npc.currentLocation.Name == nameof(IslandFarmCave);
+
+            this.DisablePortraits = CharacterSubject.ShouldDisablePortraits(npc, this.IsGourmand);
         }
 
         /// <summary>Get the data to display for this subject.</summary>
@@ -168,7 +178,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             }
 
             // use character portrait (most villager NPCs)
-            if (npc.IsVillager && npc.Portrait != null && !this.IsGourmand) // Gourmand uses Professor Snail's portraits
+            if (npc.IsVillager && !this.DisablePortraits)
             {
                 spriteBatch.DrawSprite(npc.Portrait, new Rectangle(0, 0, NPC.portrait_width, NPC.portrait_height), position.X, position.Y, new Point(NPC.portrait_width, NPC.portrait_height), Color.White, size.X / NPC.portrait_width);
                 return true;
@@ -405,7 +415,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
         private ICustomField GetGiftTasteField(string label, IDictionary<GiftTaste, GiftTasteModel[]> giftTastes, IDictionary<string, bool> ownedItemsCache, GiftTaste taste)
         {
             var field = new CharacterGiftTastesField(label, giftTastes, taste, onlyRevealed: this.ProgressionMode, highlightUnrevealed: this.HighlightUnrevealedGiftTastes, onlyOwned: !this.ShowUnownedGifts, ownedItemsCache);
-            if (giftTastes.TryGetValue(taste, out GiftTasteModel[]? tastes) && tastes.Length > 30)
+            if (this.CollapseFieldsConfig.Enabled && giftTastes.TryGetValue(taste, out GiftTasteModel[]? tastes) && tastes.Length >= this.CollapseFieldsConfig.NpcGiftTastes)
                 field.CollapseByDefault(I18n.Generic_ShowXResults(tastes.Length));
             return field;
         }
@@ -440,6 +450,24 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
                 default:
                     return npc.GetType().Name;
             }
+        }
+
+        /// <summary>Get whether to disable portraits for an NPC, even if they'd normally be shown.</summary>
+        /// <param name="npc">The NPC to check.</param>
+        /// <param name="isGourmand">Whether the NPC is Gourmand in the Fern Islands farm cave.</param>
+        /// <remarks>Most code should use the cached <see cref="DisablePortraits"/> instead.</remarks>
+        private static bool ShouldDisablePortraits(NPC npc, bool isGourmand)
+        {
+            // at the Spirit's Eve festival, the monsters are spawned as villagers
+            if (Game1.CurrentEvent?.id is "festival_fall27" && npc.Name is "Mummy" or "Stone Golem" or "Wilderness Golem")
+                return true;
+
+            // Gourmand uses Professor Snail's portraits
+            if (isGourmand)
+                return true;
+
+            // if the portraits fail to load, this will log the warning once instead of failing on every draw loop
+            return npc.Portrait is null;
         }
 
         /// <summary>Get how much an NPC likes receiving each item as a gift.</summary>

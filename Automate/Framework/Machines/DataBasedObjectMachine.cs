@@ -9,7 +9,7 @@ using SObject = StardewValley.Object;
 namespace Pathoschild.Stardew.Automate.Framework.Machines
 {
     /// <summary>An object that accepts input and provides output based on the rules in <see cref="DataLoader.Machines"/>.</summary>
-    internal class DataBasedMachine : GenericObjectMachine<SObject>
+    internal class DataBasedObjectMachine : GenericObjectMachine<SObject>
     {
         /*********
         ** Fields
@@ -26,10 +26,21 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines
         /// <param name="location">The location containing the machine.</param>
         /// <param name="tile">The tile covered by the machine.</param>
         /// <param name="minMinutesForFairyDust">The minimum machine processing time in minutes for which to apply fairy dust.</param>
-        public DataBasedMachine(SObject machine, GameLocation location, Vector2 tile, Func<int> minMinutesForFairyDust)
-            : base(machine, location, tile, DataBasedMachine.GetMachineId(machine.Name))
+        public DataBasedObjectMachine(SObject machine, GameLocation location, Vector2 tile, Func<int> minMinutesForFairyDust)
+            : base(machine, location, tile, BaseMachine.GetDefaultMachineId(machine.Name))
         {
             this.MinMinutesForFairyDust = minMinutesForFairyDust;
+        }
+
+        /// <inheritdoc />
+        public override MachineState GetState()
+        {
+            MachineState state = this.GetGenericState();
+
+            if (state == MachineState.Done && this.Machine.GetMachineData()?.IsIncubator is true)
+                state = MachineState.Processing; // don't grab incubating egg before it hatches
+
+            return state;
         }
 
         /// <inheritdoc />
@@ -66,6 +77,9 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines
             SObject machine = this.Machine;
             MachineData? machineData = machine.GetMachineData();
 
+            if (machineData?.IsIncubator is true)
+                return null; // don't grab incubating egg before it hatches
+
             // recalculate output if needed (e.g. bee house honey)
             if (machine.lastOutputRuleId.Value != null && machineData != null)
             {
@@ -84,13 +98,6 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines
 
             // get output
             return this.GetTracked(this.Machine.heldObject.Value, onEmpty: this.OnOutputCollected);
-        }
-
-        /// <summary>Get a machine ID for a machine item.</summary>
-        /// <param name="name">The machine's internal item.</param>
-        public static string GetMachineId(string name)
-        {
-            return new string(name.Where(char.IsLetterOrDigit).ToArray());
         }
 
 

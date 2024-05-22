@@ -1,6 +1,19 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 2.1.0
+Released 22 May 2024 for SMAPI 4.0.0 or later.
+
+* Added support for custom building rules in the game's new `Data/Buildings` asset.
+* Opening a chest will now pause any connected machines, to reduce the chance that items are lost due to inventory edit conflicts.
+* Fixed support for custom trash cans outside the town map.
+* Fixed trash can tracking for pre-1.6 town map mods.
+* Fixed machines grabbing incubated eggs before they hatch.
+* Fixed Art o' Crabbing book's bonus not applied to automated crab pots.
+* Fixed crab pots not always applying the player's professions and bonuses.
+* Fixed bushes in pots being collected twice.
+* Improved translations. Thanks to burunduk (updated Ukrainian), CaranudLapin (updated French), Curotar (updated Russian), and Nana-Nord (updated Spanish)!
+
 ## 2.0.7
 Released 15 April 2024 for SMAPI 4.0.0 or later.
 

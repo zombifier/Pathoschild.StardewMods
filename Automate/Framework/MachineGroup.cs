@@ -88,9 +88,13 @@ namespace Pathoschild.Stardew.Automate.Framework
         public void Automate()
         {
             IStorage storage = this.StorageManager;
-            double curTime = Game1.currentGameTime.TotalGameTime.TotalMilliseconds;
+
+            // if a chest is locked (e.g. player has it open), pause machines to avoid losing items in update collisions
+            if (storage.HasLockedContainers())
+                return;
 
             // clear expired timers
+            double curTime = Game1.currentGameTime.TotalGameTime.TotalMilliseconds;
             if (this.MachinePauseExpiries.Count > 0)
             {
                 IMachine[] expired = this.MachinePauseExpiries.Where(p => curTime >= p.Value).Select(p => p.Key).ToArray();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Pathoschild.Stardew.LookupAnything.Framework.Constants;
@@ -13,6 +14,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         /*********
         ** Public methods
         *********/
+        /// <summary>The mod configuration.</summary>
+        private readonly Func<ModConfig> Config;
+
         /// <summary>Provides subject entries.</summary>
         private readonly ISubjectRegistry Codex;
 
@@ -23,10 +27,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         /// <summary>Construct an instance.</summary>
         /// <param name="reflection">Simplifies access to private game code.</param>
         /// <param name="gameHelper">Provides utility methods for interacting with the game code.</param>
+        /// <param name="config">The mod configuration.</param>
         /// <param name="codex">Provides subject entries.</param>
-        public BuildingLookupProvider(IReflectionHelper reflection, GameHelper gameHelper, ISubjectRegistry codex)
+        public BuildingLookupProvider(IReflectionHelper reflection, GameHelper gameHelper, Func<ModConfig> config, ISubjectRegistry codex)
             : base(reflection, gameHelper)
         {
+            this.Config = config;
             this.Codex = codex;
         }
 
@@ -49,7 +55,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         /// <param name="building">The entity to look up.</param>
         private ISubject BuildSubject(Building building)
         {
-            return new BuildingSubject(this.Codex, this.GameHelper, building, building.getSourceRectForMenu() ?? building.getSourceRect());
+            return new BuildingSubject(this.Codex, this.GameHelper, building, building.getSourceRectForMenu() ?? building.getSourceRect(), this.Config().CollapseLargeFields);
         }
     }
 }

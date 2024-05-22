@@ -23,6 +23,9 @@ namespace Pathoschild.Stardew.TractorMod.Framework
         /// <summary>Which sound effects to play while riding the tractor.</summary>
         public TractorSoundType SoundEffects { get; set; } = TractorSoundType.Tractor;
 
+        /// <summary>The volume level for the tractor sound effects, as a value between 0 (silent) and 100 (full volume). Only applicable if <see cref="SoundEffects"/> is set to <see cref="TractorSoundType.Tractor"/>.</summary>
+        internal int SoundEffectsVolume { get; set; } = 100; // = 75; // TODO: re-enable volume option when Stardew Valley 1.6.9 is released.
+
         /// <summary>The magnetic radius when riding the tractor.</summary>
         public int MagneticRadius { get; set; } = 384;
 

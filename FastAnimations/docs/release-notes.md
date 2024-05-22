@@ -1,6 +1,13 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.12.0
+Released 22 May 2024 for SMAPI 4.0.0 or later.
+
+* Added support for book, chest, fishing treasure, forge, hold-up-item, prize ticket machine, Stardew Valley Fair wheel spin, and totem animations (thanks to weizinai!).
+* Animations are now also sped up during events and festivals.
+* Improved translations. Thanks to burunduk (updated Ukrainian), MakinDay (updated Italian), mitekano23 (updated Japanese), and weizinai (updated Chinese)!
+
 ## 1.11.10
 Released 21 April 2024 for SMAPI 4.0.0 or later.
 
