@@ -91,7 +91,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
                         if (
                             sprite.textureName == "LooseSprites\\Cursors"
                             && (
-                                sprite.sourceRect == new Rectangle(Game1.player.MaxItems == 36 ? 268 : 257, 1436, Game1.player.MaxItems == 36 ? 11 : 9, 13)
+                                sprite.sourceRect == new Rectangle(Game1.player.MaxItems == Farmer.maxInventorySpace ? 268 : 257, 1436, Game1.player.MaxItems == Farmer.maxInventorySpace ? 11 : 9, 13)
                                 || sprite.sourceRect == new Rectangle(129 + 16 * specialItem.which.Value, 320, 16, 16)
                             )
                         )
