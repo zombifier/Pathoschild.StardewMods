@@ -59,6 +59,9 @@
     "config.casino-slots.name": "赌场老虎机",
     "config.casino-slots.tooltip": "赌场老虎机的转速。默认{{defaultValue}}x。",
 
+    "config.fishing-treasure.name": "钓鱼宝箱",
+    "config.fishing-treasure.tooltip": "钓鱼宝箱打开的速度。默认{{defaultValue}}x.",
+
     "config.forge.name": "锻造",
     "config.forge.tooltip": "锻造的速度。默认{{defaultValue}}x.",
 
@@ -70,9 +73,6 @@
 
     "config.wheel-spin.name": "转轮盘",
     "config.wheel-spin.tooltip": "轮盘旋转的速度。默认{{defaultValue}}x.",
-
-    "config.fishing-treasure.name": "钓鱼宝箱",
-    "config.fishing-treasure.tooltip": "钓鱼宝箱打开的速度。默认{{defaultValue}}x.",
 
     /****
     ** 'UI Animation Speeds' section

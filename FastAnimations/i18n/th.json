@@ -59,6 +59,9 @@
     "config.casino-slots.name": "สล็อตคาสิโน",
     "config.casino-slots.tooltip": "ต้องการให้สล็อตคาสิโนหมุนเร็วแค่ไหน ค่าเริ่มต้นคือ {{defaultValue}}x",
 
+    "config.fishing-treasure.name": "Fishing treasure chest", // TODO
+    "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.", // TODO
+
     "config.forge.name": "Forge", // TODO
     "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.", // TODO
 
@@ -70,9 +73,6 @@
 
     "config.wheel-spin.name": "Wheel spin", // TODO
     "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
-
-    "config.fishing-treasure.name": "Fishing treasure", // TODO
-    "config.fishing-treasure.tooltip": "How fast the fishing treasure open. Default {{defaultValue}}x.", // TODO
 
     /****
     ** 'UI Animation Speeds' section
