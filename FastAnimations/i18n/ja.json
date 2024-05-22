@@ -68,6 +68,9 @@
     "config.casino-slots.name": "カジノスロット",
     "config.casino-slots.tooltip": "カジノスロットの回転速度。標準は{{defaultValue}}x。",
 
+    "config.fishing-treasure.name": "Fishing treasure chest", // TODO
+    "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.", // TODO
+
     "config.forge.name": "鍛造",
     "config.forge.tooltip": "武器や道具を鍛造するときの速度。標準は{{defaultValue}}x。",
 

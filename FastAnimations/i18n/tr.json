@@ -68,6 +68,9 @@
     "config.casino-slots.name": "Kumarhane slotları",
     "config.casino-slots.tooltip": "Kumarhane slotlarının ne kadar hızlı döndüğü. Varsayılan {{defaultValue}}x.",
 
+    "config.fishing-treasure.name": "Fishing treasure chest", // TODO
+    "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.", // TODO
+
     "config.forge.name": "Forge", // TODO
     "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.", // TODO
 

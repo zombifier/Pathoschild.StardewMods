@@ -68,6 +68,9 @@
     "config.casino-slots.name": "카지노 슬롯",
     "config.casino-slots.tooltip": "카지노 슬롯이 회전하는 속도. 기본 값 {{defaultValue}}.",
 
+    "config.fishing-treasure.name": "Fishing treasure chest", // TODO
+    "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.", // TODO
+
     "config.forge.name": "Forge", // TODO
     "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.", // TODO
 

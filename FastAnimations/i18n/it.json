@@ -68,6 +68,9 @@
     "config.casino-slots.name": "Slot del casinò",
     "config.casino-slots.tooltip": "Velocità di rotazione delle slot del casinò. Predefinito {{defaultValue}}x.",
 
+    "config.fishing-treasure.name": "Fishing treasure chest", // TODO
+    "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.", // TODO
+
     "config.forge.name": "Forgia",
     "config.forge.tooltip": "Velocità di funzionamento della fucina del vulcano. Predefinito {{defaultValue}}x.",
 

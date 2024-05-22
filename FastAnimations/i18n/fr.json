@@ -68,6 +68,9 @@
     "config.casino-slots.name": "Machines à sous du casino",
     "config.casino-slots.tooltip": "A quelle vitesse les machines à sous du casino tournent. Valeur par défaut {{defaultValue}}x.",
 
+    "config.fishing-treasure.name": "Fishing treasure chest", // TODO
+    "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.", // TODO
+
     "config.forge.name": "Forge", // TODO
     "config.forge.tooltip": "How fast the volcano forge works. Default {{defaultValue}}x.", // TODO
 
