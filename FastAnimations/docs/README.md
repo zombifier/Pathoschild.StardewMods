@@ -37,12 +37,15 @@ Here's what you can change:
   `EatAndDrinkSpeed`   | 10×     | How fast you eat and drink.
   `FishingSpeed`       | 1×      | How fast you cast and reel when fishing (doesn't affect the minigame).<br /><small>(Suggested value: 2×.)</small>
   `HarvestSpeed`       | 3×      | How fast you harvest crops and forage by hand.
+  `HoldUpItemSpeed`    | 5×      | How fast you hold up an item (e.g. your first geode).
   `HorseFluteSpeed`    | 6×      | How fast you play the [horse flute](https://stardewvalleywiki.com/Horse_Flute).
   `MilkSpeed`          | 5×      | How fast you use the milk pail.
   `MountOrDismountSpeed` | 2×    | How fast you mount/dismount horses (including custom mounts like Tractor Mod).
+  `ReadBookSpeed`      | 2×      | How fast you read books.
   `ShearSpeed`         | 5×      | How fast you use the shears.
   `SlingshotSpeed`     | 1×      | How fast you use slingshots.<br /><small>(Suggested value: 1.1×.)</small>
   `ToolSwingSpeed`     | 1×      | How fast you swing your tools (except weapons & fishing rod).<br /><small>(Suggested value: 2×.)</small>
+  `UseTotemSpeed`      | 4×      | How fast you use totems.
   `WeaponSwingSpeed`   | 1×      | How fast you swing your melee weapons.<br /><small>(Suggested value: 4×.)</small>
 
   World animations:
@@ -51,7 +54,9 @@ Here's what you can change:
   :------------------- | :------ | :------------------
   `BreakGeodeSpeed`    | 20×     | How fast the blacksmith breaks geodes for you.
   `CasinoSlotsSpeed`   | 8×      | How fast the casino slots turn.
+  `FishingTreasureSpeed` | 4×    | How fast you open fishing treasure chests.
   `ForgeSpeed`         | 8×      | How fast the [volcano forge](https://stardewvalleywiki.com/Forge) works.
+  `OpenChestSpeed`     | 4×      | How fast you open chests.
   `PamBusSpeed`        | 6×      | How fast Pam drives her bus to and from the desert.
   `PrizeTicketMachineSpeed` | 20× | How fast the prize ticket machine accepts a ticket and produces an item.
   `TreeFallingSpeed`   | 1×      | How fast trees fall after you chop them down.<br /><small>(Suggested value: 3×.)</small>

@@ -14,6 +14,7 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 * Added [token string API for C# mods](token-strings-api.md) (thanks to spacechase0!).
 * Editing content pack settings through Generic Mod Config Menu now force-updates all patches to apply the config changes.
 * Fixed some mod edits not applying correctly for non-English players.
+* Fixed `MigrateIds` action not applied correctly for some items (thanks to Digus!).
 
 **Update notes for mod authors:**  
 * Content Patcher 2.1 changes how `"Action": "Load"` patches are applied for non-English players. See the

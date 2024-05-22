@@ -2,7 +2,7 @@
 
 # Release notes
 ## Upcoming release
-* Added support for forge, prize ticket machine, and Stardew Valley Fair wheel spin animations (thanks to weizinai!).
+* Added support for book, chest, fishing treasure, forge, hold-up-item, prize ticket machine, Stardew Valley Fair wheel spin, and totem animations (thanks to weizinai!).
 * Animations are now also sped up during events and festivals.
 * Improved translations. Thanks to burunduk (updated Ukrainian), MakinDay (updated Italian), mitekano23 (updated Japanese), and weizinai (updated Chinese)!
 
