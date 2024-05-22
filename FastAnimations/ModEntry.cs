@@ -140,6 +140,13 @@ namespace Pathoschild.Stardew.FastAnimations
         {
             this.Handlers = this.GetHandlers(this.Config).ToArray();
             this.HandlersWithObjectList = this.Handlers.OfType<IAnimationHandlerWithObjectList>().ToArray();
+
+            GameLocation location = Game1.currentLocation;
+            if (location != null)
+            {
+                foreach (IAnimationHandler handler in this.Handlers)
+                    handler.OnNewLocation(location);
+            }
         }
 
         /// <summary>Get the enabled animation handlers.</summary>
