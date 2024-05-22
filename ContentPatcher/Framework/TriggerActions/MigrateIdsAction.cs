@@ -192,8 +192,8 @@ namespace ContentPatcher.Framework.TriggerActions
             foreach ((string oldId, string newId) in mapRawIds)
             {
                 // get new data
-                ItemMetadata data = ItemRegistry.ResolveMetadata(newId);
-                if (data is null)
+                ItemMetadata newData = ItemRegistry.ResolveMetadata(newId);
+                if (newData is null)
                 {
                     error = $"the new item ID \"{newId}\" doesn't match an existing item";
                     return false;
@@ -204,10 +204,13 @@ namespace ContentPatcher.Framework.TriggerActions
                 {
                     foreach (string id in oldIds)
                     {
-                        mapQualifiedIds[id] = data;
+                        mapQualifiedIds[id] = newData;
 
-                        if (data.TypeIdentifier == ItemRegistry.type_object)
-                            mapLocalObjectIds[data.LocalItemId] = data;
+                        if (newData.TypeIdentifier == ItemRegistry.type_object)
+                        {
+                            string localId = ItemRegistry.ManuallyQualifyItemId(id, "", true);
+                            mapLocalObjectIds[localId] = newData;
+                        }
                     }
                     continue;
                 }
@@ -222,10 +225,13 @@ namespace ContentPatcher.Framework.TriggerActions
                         return false;
                     }
 
-                    mapQualifiedIds[oldId] = data;
+                    mapQualifiedIds[oldId] = newData;
 
-                    if (data.TypeIdentifier == ItemRegistry.type_object)
-                        mapLocalObjectIds[data.LocalItemId] = data;
+                    if (newData.TypeIdentifier == ItemRegistry.type_object)
+                    {
+                        string oldLocalId = ItemRegistry.ManuallyQualifyItemId(oldId, "", true);
+                        mapLocalObjectIds[oldLocalId] = newData;
+                    }
                 }
             }
 
