@@ -4,6 +4,8 @@ using StardewValley.Menus;
 
 namespace Pathoschild.Stardew.FastAnimations.Handlers
 {
+    /// <summary>Handles the dialogue-type animation.</summary>
+    /// <remarks>See game logic in <see cref="DialogueBox.update"/>.</remarks>
     internal class TypeDialogueHandler : BaseAnimationHandler
     {
         /// <inheritdoc />
