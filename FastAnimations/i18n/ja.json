@@ -77,6 +77,9 @@
     "config.open-chest.name": "箱を開く",
     "config.open-chest.tooltip": "箱を開ける速さ。標準は{{defaultValue}}x。",
 
+    "config.open-dialogue-box.name": "Open dialogue box", // TODO
+    "config.open-dialogue-box.tooltip": "How fast dialogue boxes open. Default {{defaultValue}}x.", // TODO
+
     "config.prize-ticket-machine.name": "賞品マシーン",
     "config.prize-ticket-machine.tooltip": "賞品マシーンの演出速度。標準は{{defaultValue}}x。",
 

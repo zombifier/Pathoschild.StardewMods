@@ -209,6 +209,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
+                    name: I18n.Config_OpenDialogueBox_Name,
+                    tooltip: () => I18n.Config_OpenDialogueBox_Tooltip(defaultValue: defaultConfig.OpenDialogueBoxSpeed),
+                    get: config => config.OpenDialogueBoxSpeed,
+                    set: (config, value) => config.OpenDialogueBoxSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
                     name: I18n.Config_PrizeTicketMachine_Name,
                     tooltip: () => I18n.Config_PrizeTicketMachine_Tooltip(defaultValue: defaultConfig.PrizeTicketMachineSpeed),
                     get: config => config.PrizeTicketMachineSpeed,

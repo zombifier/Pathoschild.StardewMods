@@ -69,6 +69,9 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier for opening a chest.</summary>
         public float OpenChestSpeed { get; set; } = 4;
 
+        /// <summary>The speed multiplier for opening a dialogue box.</summary>
+        public float OpenDialogueBoxSpeed { get; set; } = 4;
+
         /// <summary>The speed multiplier when Pam's bus is driving to/from the desert.</summary>
         public float PamBusSpeed { get; set; } = 6;
 

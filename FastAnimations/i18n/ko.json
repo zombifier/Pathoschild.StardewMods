@@ -77,6 +77,9 @@
     "config.open-chest.name": "상자 열기",
     "config.open-chest.tooltip": "상자 여는 속도. 기본 값 {{defaultValue}}x.",
 
+    "config.open-dialogue-box.name": "Open dialogue box", // TODO
+    "config.open-dialogue-box.tooltip": "How fast dialogue boxes open. Default {{defaultValue}}x.", // TODO
+
     "config.prize-ticket-machine.name": "경품 기계",
     "config.prize-ticket-machine.tooltip": "루이스의 경품 기계 사용 시 경품 얻는 속도. 기본 값 {{defaultValue}}x.",
 
