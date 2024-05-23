@@ -80,6 +80,9 @@
     "config.prize-ticket-machine.name": "兑奖机",
     "config.prize-ticket-machine.tooltip": "兑奖机兑奖的速度。默认{{defaultValue}}x.",
 
+    "config.tailoring.name": "裁缝",
+    "config.tailoring.tooltip": "裁缝的速度。默认{{defaultValue}}x.",
+
     "config.tree-fall.name": "树倒下",
     "config.tree-fall.tooltip": "树被砍倒的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
 

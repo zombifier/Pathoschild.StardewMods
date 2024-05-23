@@ -217,6 +217,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     maxSpeed
                 )
                 .AddNumberField(
+                    name: I18n.Config_Tailoring_Name,
+                    tooltip: () => I18n.Config_Tailoring_Tooltip(defaultValue: defaultConfig.TailoringSpeed),
+                    get: config => config.TailoringSpeed,
+                    set: (config, value) => config.TailoringSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
                     name: I18n.Config_TreeFall_Name,
                     tooltip: () => I18n.Config_TreeFall_Tooltip(defaultValue: defaultConfig.TreeFallSpeed, suggestedValue: 3),
                     get: config => config.TreeFallSpeed,
