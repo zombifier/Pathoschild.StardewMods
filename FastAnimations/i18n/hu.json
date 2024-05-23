@@ -68,6 +68,9 @@
     "config.casino-slots.name": "Félkarú rabló",
     "config.casino-slots.tooltip": "Milyen gyorsan forognak a félkarú rabló paneljai. Alapból {{defaultValue}}x.",
 
+    "config.fade.name": "Fade",
+    "config.fade.tooltip": "How fast the screen fade to black. Default {{defaultValue}}x.",
+
     "config.fishing-treasure.name": "Fishing treasure chest", // TODO
     "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.", // TODO
 

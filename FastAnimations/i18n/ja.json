@@ -68,6 +68,9 @@
     "config.casino-slots.name": "カジノスロット",
     "config.casino-slots.tooltip": "カジノスロットの回転速度。標準は{{defaultValue}}x。",
 
+    "config.fade.name": "Fade",
+    "config.fade.tooltip": "How fast the screen fade to black. Default {{defaultValue}}x.",
+
     "config.fishing-treasure.name": "釣りの宝箱",
     "config.fishing-treasure.tooltip": "釣りの宝箱を開ける速さ。標準は{{defaultValue}}x。",
 
