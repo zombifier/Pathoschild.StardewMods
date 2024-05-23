@@ -441,7 +441,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 if (input is not null)
                 {
                     return this.CreateItemEntry(
-                        name: input.DisplayName ?? string.Empty,
+                        name: (input.DisplayName ?? string.Empty)
+                        + (ingredient.InputContextTags.Length > 0 ? $" ({string.Join(", ", ingredient.InputContextTags.Select(HumanReadableContextTagParser.Parse))})" : string.Empty),
                         item: input,
                         minCount: ingredient.Count,
                         maxCount: ingredient.Count
