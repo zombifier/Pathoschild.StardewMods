@@ -55,14 +55,16 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
             // item fields
             bool matchesId =
                 (this.InputId != null || this.InputContextTags.Length > 0)
-                &&
-                (this.InputId == null
-                || this.InputId == item.Category.ToString()
-                || this.InputId == item.ItemId
-                || this.InputId == item.QualifiedItemId)
-                &&
-                (this.InputContextTags.Length == 0
-                || ItemContextTagManager.DoAllTagsMatch(this.InputContextTags, item.GetContextTags()));
+                && (
+                    this.InputId == null
+                    || this.InputId == item.Category.ToString()
+                    || this.InputId == item.ItemId
+                    || this.InputId == item.QualifiedItemId
+                )
+                && (
+                    this.InputContextTags.Length == 0
+                    || ItemContextTagManager.DoAllTagsMatch(this.InputContextTags, item.GetContextTags())
+                );
             if (!matchesId)
                 return false;
 
