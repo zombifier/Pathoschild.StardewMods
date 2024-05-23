@@ -83,6 +83,9 @@
     "config.tree-fall.name": "树倒下",
     "config.tree-fall.tooltip": "树被砍倒的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
 
+    "config.type-dialogue.name": "对话速度",
+    "config.type-dialogue.tooltip": "对话的速度。默认{{defaultValue}}x",
+
     "config.wheel-spin.name": "转轮盘",
     "config.wheel-spin.tooltip": "轮盘旋转的速度。默认{{defaultValue}}x.",
 

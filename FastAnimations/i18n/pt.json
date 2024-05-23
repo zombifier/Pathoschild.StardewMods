@@ -83,6 +83,9 @@
     "config.tree-fall.name": "Queda de Árvores",
     "config.tree-fall.tooltip": "Quão rápido as árvores caem depois que você as corta. Padrão {{defaultValue}}x, sugerido {{suggestedValue}}x.",
 
+    "config.type-dialogue.name": "Type Dialogue", // TODO
+    "config.type-dialogue.tooltip": "How fast the box type dialogue. Default {{defaultValue}}x", // TODO
+
     "config.wheel-spin.name": "Wheel spin", // TODO
     "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
 

@@ -83,6 +83,9 @@
     "config.tree-fall.name": "Caduta degli alberi",
     "config.tree-fall.tooltip": "Velocità con cui gli alberi cadono dopo essere stati abbattuti. Predefinito {{defaultValue}}x, valore suggerito {{suggestedValue}}x.",
 
+    "config.type-dialogue.name": "Type Dialogue", // TODO
+    "config.type-dialogue.tooltip": "How fast the box type dialogue. Default {{defaultValue}}x", // TODO
+
     "config.wheel-spin.name": "Giro della ruota",
     "config.wheel-spin.tooltip": "La velocità con cui gira la ruota della Fiera di Stardew Valley. Predefinito {{defaultValue}}x.",
 

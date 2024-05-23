@@ -83,6 +83,9 @@
     "config.tree-fall.name": "Fa dőlése",
     "config.tree-fall.tooltip": "Milyen gyorsan dőlnek el a fák, miután kivágtad azokat. Alapból {{defaultValue}}x, ajánlott {{suggestedValue}}x.",
 
+    "config.type-dialogue.name": "Type Dialogue", // TODO
+    "config.type-dialogue.tooltip": "How fast the box type dialogue. Default {{defaultValue}}x", // TODO
+
     "config.wheel-spin.name": "Wheel spin", // TODO
     "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
 
