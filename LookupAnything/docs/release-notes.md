@@ -1,6 +1,10 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed item lookups showing unrelated custom recipes in some cases (thanks to zombifier!).
+* Improved translations. Thanks to DARKS0UND (updated Korean)!
+
 ## 1.43.1
 Released 22 May 2024 for SMAPI 4.0.0 or later.
 
