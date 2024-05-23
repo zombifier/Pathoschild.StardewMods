@@ -68,6 +68,9 @@
     "config.casino-slots.name": "赌场老虎机",
     "config.casino-slots.tooltip": "赌场老虎机的转速。默认{{defaultValue}}x。",
 
+    "config.event.name": "事件",
+    "config.event.tooltip": "事件的速度。默认{{defaultValue}}x.",
+
     "config.fishing-treasure.name": "钓鱼宝箱",
     "config.fishing-treasure.tooltip": "钓鱼宝箱打开的速度。默认{{defaultValue}}x.",
 

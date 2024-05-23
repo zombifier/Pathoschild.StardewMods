@@ -68,6 +68,9 @@
     "config.casino-slots.name": "Slot del casinò",
     "config.casino-slots.tooltip": "Velocità di rotazione delle slot del casinò. Predefinito {{defaultValue}}x.",
 
+    "config.event.name": "event", // TODO
+    "config.event.tooltip": "How fast the event runs. Default {{defaultValue}}x.", // TODO
+
     "config.fishing-treasure.name": "Fishing treasure chest", // TODO
     "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.", // TODO
 

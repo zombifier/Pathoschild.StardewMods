@@ -184,6 +184,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new BreakingGeodeHandler(config.BreakGeodeSpeed);
             if (config.CasinoSlotsSpeed > 1)
                 yield return new CasinoSlotsHandler(config.CasinoSlotsSpeed);
+            if (config.EventSpeed > 1)
+                yield return new EventHandler(config.EventSpeed);
             if (config.FishingTreasureSpeed > 1)
                 yield return new FishingTreasureHandler(config.FishingTreasureSpeed);
             if (config.ForgeSpeed > 1)

@@ -60,6 +60,9 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier for the casino slots minigame.</summary>
         public float CasinoSlotsSpeed { get; set; } = 8;
 
+        /// <summary>The speed multiplier for the event runs.</summary>
+        public float EventSpeed { get; set; } = 4;
+
         /// <summary>The speed multiplier for opening a fishing treasure chest.</summary>
         public float FishingTreasureSpeed { get; set; } = 4;
 
