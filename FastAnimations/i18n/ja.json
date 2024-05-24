@@ -24,8 +24,8 @@
     "config.harvest.name": "収穫",
     "config.harvest.tooltip": "手作業で作物や飼料を収穫する速さ。標準は{{defaultValue}}x。",
 
-    "config.hold-up-item.name": "Hold up item", // TODO
-    "config.hold-up-item.tooltip": "How fast you hold up an item. Default {{defaultValue}}x.", // TODO
+    "config.hold-up-item.name": "アイテムの持ち上げ",
+    "config.hold-up-item.tooltip": "アイテムを持ち上げる速さ。標準は{{defaultValue}}x。",
 
     "config.horse-flute.name": "馬のフルート",
     "config.horse-flute.tooltip": "馬のフルートを吹く速さ。標準は{{defaultValue}}x。",
@@ -36,8 +36,8 @@
     "config.mount.name": "乗降",
     "config.mount.tooltip": "馬への乗り降りの速さ。(Tractor Modのようなカスタムマウントを含む）。標準は{{defaultValue}}x。",
 
-    "config.read-book.name": "Read book", // TODO
-    "config.read-book.tooltip": "How fast you read books. Default {{defaultValue}}x.", // TODO
+    "config.read-book.name": "読書",
+    "config.read-book.tooltip": "本を読む速さ。標準は{{defaultValue}}x。",
 
     "config.shear.name": "大ハサミ",
     "config.shear.tooltip": "大ハサミを使う速さ。標準は{{defaultValue}}x。",
@@ -48,8 +48,8 @@
     "config.tool.name": "どうぐ全般",
     "config.tool.tooltip": "武器と釣り竿を除くどうぐを振る速さ。標準は{{defaultValue}}x、推奨は{{suggestedValue}}x。",
 
-    "config.use-totem.name": "Use totem", // TODO
-    "config.use-totem.tooltip": "How fast you use a totem. Default {{defaultValue}}x.", // TODO
+    "config.use-totem.name": "トーテム",
+    "config.use-totem.tooltip": "トーテムを使う速さ。標準は{{defaultValue}}x。",
 
     "config.weapon.name": "武器",
     "config.weapon.tooltip": "武器を振る速さ。標準は{{defaultValue}}x、推奨は{{suggestedValue}}x。",
@@ -68,14 +68,14 @@
     "config.casino-slots.name": "カジノスロット",
     "config.casino-slots.tooltip": "カジノスロットの回転速度。標準は{{defaultValue}}x。",
 
-    "config.fishing-treasure.name": "Fishing treasure chest", // TODO
-    "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.", // TODO
+    "config.fishing-treasure.name": "釣りの宝箱",
+    "config.fishing-treasure.tooltip": "釣りの宝箱を開ける速さ。標準は{{defaultValue}}x。",
 
     "config.forge.name": "鍛造",
     "config.forge.tooltip": "武器や道具を鍛造するときの速度。標準は{{defaultValue}}x。",
 
-    "config.open-chest.name": "Open chest", // TODO
-    "config.open-chest.tooltip": "How fast you open chests. Default {{defaultValue}}x.", // TODO
+    "config.open-chest.name": "箱を開く",
+    "config.open-chest.tooltip": "箱を開ける速さ。標準は{{defaultValue}}x。",
 
     "config.prize-ticket-machine.name": "賞品マシーン",
     "config.prize-ticket-machine.tooltip": "賞品マシーンの演出速度。標準は{{defaultValue}}x。",
