@@ -420,9 +420,12 @@ namespace ContentPatcher.Framework
                 .GetPatches(baseAssetName)
                 .Where(patch =>
                     patch.IsReady
-                    && (patch.TargetLocale is null
-                        ? !skipLocalizedAssetByDefault
-                        : string.Equals(patch.TargetLocale, assetName.LocaleCode, StringComparison.InvariantCultureIgnoreCase)
+                    && (
+                        patch.PredatesTargetLocale
+                        || (patch.TargetLocale is not null
+                            ? string.Equals(patch.TargetLocale, assetName.LocaleCode, StringComparison.InvariantCultureIgnoreCase)
+                            : !skipLocalizedAssetByDefault
+                        )
                     )
                 )
                 .OfType<LoadPatch>();
