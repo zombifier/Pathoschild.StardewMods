@@ -6,7 +6,7 @@ namespace ContentPatcher.Framework.Migrations
 {
     /// <summary>Migrates patches to format version 2.1.</summary>
     [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Named for clarity.")]
-    internal partial class Migration_2_1 : BaseRuntimeMigration
+    internal partial class Migration_2_1 : BaseMigration
     {
         /*********
         ** Public methods
