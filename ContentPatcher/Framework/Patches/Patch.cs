@@ -118,6 +118,9 @@ namespace ContentPatcher.Framework.Patches
         public bool IsApplied { get; set; }
 
         /// <inheritdoc />
+        public bool PredatesTargetLocale { get; }
+
+        /// <inheritdoc />
         public int LastChangedTick { get; protected set; }
 
 
@@ -267,6 +270,7 @@ namespace ContentPatcher.Framework.Patches
             if (fromAsset != null)
                 this.ManuallyUpdatedTokens.Add(fromAsset);
 
+            this.PredatesTargetLocale = migrator.Version.IsOlderThan("2.1.0");
             this.LastChangedTick = Game1.ticks;
         }
 
