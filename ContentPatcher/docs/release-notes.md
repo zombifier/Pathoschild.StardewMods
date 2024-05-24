@@ -9,7 +9,9 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 
 -->
-## Upcoming release
+## 2.1.1
+Released 23 May 2024 for SMAPI 4.0.0 or later.
+
 * The localization changes in Content Patcher 2.1 now only apply to newer content packs, to avoid breaking content packs which depend on the old behavior.
 
 ## 2.1.0
