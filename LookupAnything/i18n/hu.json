@@ -98,31 +98,19 @@
     "data.item.box.description": "Törd szét, hogy különböző tárgyakhoz juss.",
 
     // location names
-    "location.backwoods": "hátsó erdő",
-    "location.beach": "tengerpart",
     "location.beach.east-pier": "tengerpart (keleti móló)",
     "location.bugLand": "mutáns rovar odú",
-    "location.busStop": "buszmegálló",
-    "location.desert": "sivatag",
     "location.desert.topPond": "desert (north pond)", // TODO
-    "location.farm": "farm",
     "location.farmCave": "farmbarlang",
     "location.farmHouse": "parasztház",
-    "location.forest": "erdő",
     "location.forest.island-tip": "erdei folyó (nagy sziget déli csücske)",
     "location.forest.lake": "erdei tó",
     "location.forest.river": "erdei folyó",
-    "location.mountain": "hegy",
-    "location.railroad": "vasút",
-    "location.sewer": "szennyvízcsatorna",
     "location.submarine": "Éjszakai Piac tengeralattjáró",
-    "location.town": "város",
     "location.town.northmost-bridge": "város (legészakibb híd)",
-    "location.tunnel": "buszalagút",
     "location.undergroundMine": "bányák",
     "location.undergroundMine.level": "bánya {{level}}. szintje",
     "location.witchSwamp": "boszorkány mocsár",
-    "location.woods": "titkos erdő",
 
     "location.caldera": "Ginger Island caldera", // TODO
     "location.islandEast": "Ginger Island east", // TODO

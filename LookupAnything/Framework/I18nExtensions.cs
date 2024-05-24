@@ -7,7 +7,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Netcode;
 using Pathoschild.Stardew.LookupAnything.Framework.Constants;
-using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.GameData.WildTrees;
@@ -88,31 +87,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
         {
             foreach (Season season in seasons)
                 yield return I18n.GetSeasonName(season);
-        }
-
-        /// <summary>The overridden translations for location names.</summary>
-        public static class LocationOverrides
-        {
-            /// <summary>The translated name for a location, or the internal name if no translation is available.</summary>
-            public static string LocationName(string locationName)
-            {
-                return I18n.Translations!.Get($"location.{locationName}").Default(locationName);
-            }
-
-            /// <summary>The translated name for a fishing area.</summary>
-            public static string AreaName(string locationName, string id)
-            {
-                // mine level
-                if (string.Equals(locationName, "UndergroundMine", StringComparison.OrdinalIgnoreCase))
-                    return I18n.Location_UndergroundMine_Level(level: id);
-
-                // dynamic area override
-                Translation areaTranslation = I18n.Translations!.Get(int.TryParse(id, out int _)
-                    ? $"location.{locationName}.fish-area-{id}"
-                    : $"location.{locationName}.{id}");
-                return areaTranslation
-                    .Default(I18n.Location_UnknownFishArea(locationName: I18n.LocationOverrides.LocationName(locationName), id: id));
-            }
         }
 
         /// <summary>Get a human-readable representation of a value.</summary>

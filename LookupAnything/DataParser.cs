@@ -159,22 +159,23 @@ namespace Pathoschild.Stardew.LookupAnything
 
             // parse location data
             var locations = new List<FishSpawnLocationData>();
-            foreach ((string locationName, LocationData value) in DataLoader.Locations(Game1.content))
+            foreach ((string locationId, LocationData data) in DataLoader.Locations(Game1.content))
             {
-                if (metadata.IgnoreFishingLocations.Contains(locationName))
+                if (metadata.IgnoreFishingLocations.Contains(locationId))
                     continue; // ignore event data
 
                 List<FishSpawnLocationData> curLocations = new List<FishSpawnLocationData>();
-
-                foreach (SpawnFishData fish in value.Fish)
+                foreach (SpawnFishData fish in data.Fish)
                 {
                     ParsedItemData? fishItem = ItemRegistry.GetData(fish.ItemId);
                     if (fishItem?.ObjectType != "Fish" || fishItem.ItemId != fishID)
                         continue;
 
+                    string displayName = this.GetLocationDisplayName(locationId, data, fish.FishAreaId);
+
                     if (fish.Season.HasValue)
                     {
-                        curLocations.Add(new FishSpawnLocationData(locationName, fish.FishAreaId, new[] { fish.Season.Value.ToString() }));
+                        curLocations.Add(new FishSpawnLocationData(displayName, locationId, fish.FishAreaId, new[] { fish.Season.Value.ToString() }));
                     }
                     else if (fish.Condition != null)
                     {
@@ -188,19 +189,23 @@ namespace Pathoschild.Stardew.LookupAnything
                                 if (!condition.Negated && condition.Query.Any(word => word.Equals(season, StringComparison.OrdinalIgnoreCase)))
                                     seasons.Add(season);
                             }
-                            curLocations.Add(new FishSpawnLocationData(locationName, fish.FishAreaId, seasons.ToArray()));
+                            curLocations.Add(new FishSpawnLocationData(displayName, locationId, fish.FishAreaId, seasons.ToArray()));
                         }
                     }
                     else
-                        curLocations.Add(new FishSpawnLocationData(locationName, fish.FishAreaId, new[] { "spring", "summer", "fall", "winter" }));
+                        curLocations.Add(new FishSpawnLocationData(displayName, locationId, fish.FishAreaId, new[] { "spring", "summer", "fall", "winter" }));
                 }
 
                 // combine seasons for same area
-                locations.AddRange(
-                    from areaGroup in curLocations.GroupBy(p => p.Area)
-                    let seasons = areaGroup.SelectMany(p => p.Seasons).Distinct().ToArray()
-                    select new FishSpawnLocationData(locationName, areaGroup.Key, seasons)
-                );
+                if (curLocations.Count > 0)
+                {
+                    locations.AddRange(
+                        from areaGroup in curLocations.GroupBy(p => p.Area)
+                        let seasons = areaGroup.SelectMany(p => p.Seasons).Distinct().ToArray()
+                        let displayName = this.GetLocationDisplayName(locationId, data, areaGroup.Key)
+                        select new FishSpawnLocationData(displayName, locationId, areaGroup.Key, seasons)
+                    );
+                }
             }
 
             // parse fish data
@@ -584,46 +589,55 @@ namespace Pathoschild.Stardew.LookupAnything
         /*********
         ** Private methods
         *********/
-        /// <summary>Create a custom recipe output.</summary>
-        /// <param name="ingredient">The input ingredient.</param>
-        /// <param name="outputId">The output item ID.</param>
-        private Item CreateRecipeItem(Item? ingredient, string outputId)
+        /// <summary>Get the translated display name for a location and optional fish area.</summary>
+        /// <param name="id">The location's internal name.</param>
+        /// <param name="data">The location data.</param>
+        /// <param name="fishAreaId">The fish area ID within the location, if applicable.</param>
+        private string GetLocationDisplayName(string id, LocationData data, string? fishAreaId)
         {
-            outputId = ItemRegistry.QualifyItemId(outputId);
+            // skip: no area set
+            if (string.IsNullOrWhiteSpace(fishAreaId))
+                return this.GetLocationDisplayName(id, data);
 
-            Item? output = null;
-            if (ingredient is SObject fromObj)
+            // special case: mine level
+            if (string.Equals(id, "UndergroundMine", StringComparison.OrdinalIgnoreCase))
+                return I18n.Location_UndergroundMine_Level(level: id);
+
+            // else build from data
+            string locationName = this.GetLocationDisplayName(id, data);
+            string? areaName = I18n
+                .GetByKey($"location.{id}.{fishAreaId}", new { locationName })
+                .UsePlaceholder(false);
+            return !string.IsNullOrWhiteSpace(areaName)
+                ? areaName
+                : I18n.Location_UnknownFishArea(locationName, fishAreaId);
+        }
+
+        /// <summary>Get the translated display name for a location.</summary>
+        /// <param name="id">The location's internal name.</param>
+        /// <param name="data">The location data.</param>
+        private string GetLocationDisplayName(string id, LocationData data)
+        {
+            // from predefined translations
             {
-                switch (outputId)
-                {
-                    case "(O)342":
-                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredPickle(fromObj);
-                        break;
-
-                    case "(O)344":
-                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJelly(fromObj);
-                        break;
-
-                    case "(O)348":
-                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredWine(fromObj);
-                        break;
-
-                    case "(O)350":
-                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredJuice(fromObj);
-                        break;
-
-                    case "(O)445": // caviar
-                        if (fromObj.preservedParentSheetIndex.Value is not "698")
-                            break; // not a caviar item
-                        if (fromObj.ItemId is ("698" or "447"))
-                            break; // avoid broken items like "Aged Aged Roe Roe"
-
-                        output = ItemRegistry.GetObjectTypeDefinition().CreateFlavoredAgedRoe(fromObj);
-                        break;
-                }
+                string name = I18n.GetByKey($"location.{id}").UsePlaceholder(false);
+                if (!string.IsNullOrWhiteSpace(name))
+                    return name;
             }
 
-            return output ?? ItemRegistry.Create(outputId);
+            // from location data
+            {
+                string dataKey = id;
+                if (string.Equals(id, "Farm", StringComparison.OrdinalIgnoreCase))
+                    dataKey = "Farm_Standard";
+
+                string name = TokenParser.ParseText(data.DisplayName);
+                if (!string.IsNullOrWhiteSpace(name))
+                    return name;
+            }
+
+            // else default to ID
+            return id;
         }
 
         /// <summary>Normalize raw ingredient ID and context tags from a machine recipe into the most specific item ID and context tags possible.</summary>

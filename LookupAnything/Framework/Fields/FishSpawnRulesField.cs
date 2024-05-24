@@ -91,7 +91,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 // locations
                 yield return this.GetCondition(
                     label: I18n.Item_FishSpawnRules_Locations(
-                        locations: string.Join(", ", spawnRules.Locations.Select(p => p.LocationDisplayName).OrderBy(p => p))
+                        locations: string.Join(", ", spawnRules.Locations.Select(p => p.DisplayName).OrderBy(p => p))
                     ),
                     isMet: spawnRules.MatchesLocation(Game1.currentLocation.Name)
                 );
@@ -102,7 +102,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     (
                         from location in spawnRules.Locations
                         from season in location.Seasons
-                        select new { Season = season, LocationName = location.LocationDisplayName }
+                        select new { Season = season, LocationName = location.DisplayName }
                     )
                     .GroupBy(p => p.Season, p => p.LocationName)
                     .ToDictionary(p => p.Key, p => p.ToArray());
@@ -119,7 +119,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     }
                 }
 
-                bool hasMatch = spawnRules.Locations.Any(p => p.LocationName == Game1.currentLocation.Name && p.Seasons.Contains(Game1.currentSeason));
+                bool hasMatch = spawnRules.Locations.Any(p => p.LocationId == Game1.currentLocation.Name && p.Seasons.Contains(Game1.currentSeason));
                 yield return this.GetCondition(summary, hasMatch);
             }
         }

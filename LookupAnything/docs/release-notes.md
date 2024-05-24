@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Added readable text in recipes for 'preserve sheet index' context tags.
+* Fixed location display names not used when possible.
 * Fixed item lookups showing unrelated custom recipes in some cases (thanks to zombifier!).
 * Improved translations. Thanks to DARKS0UND (updated Korean)!
 
