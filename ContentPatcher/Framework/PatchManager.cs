@@ -444,7 +444,11 @@ namespace ContentPatcher.Framework
                 .Where(patch =>
                     patch.Type == patchType
                     && patch.IsReady
-                    && (patch.TargetLocale is null || string.Equals(patch.TargetLocale, request.Name.LocaleCode, StringComparison.InvariantCultureIgnoreCase))
+                    && (
+                        patch.PredatesTargetLocale
+                        || patch.TargetLocale is null
+                        || string.Equals(patch.TargetLocale, request.Name.LocaleCode, StringComparison.InvariantCultureIgnoreCase)
+                    )
                 );
         }
 

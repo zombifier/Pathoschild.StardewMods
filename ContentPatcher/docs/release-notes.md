@@ -9,6 +9,9 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 
 -->
+## Upcoming release
+* Fixed some older content packs broken in Content Patcher 2.1.0+.
+
 ## 2.1.1
 Released 23 May 2024 for SMAPI 4.0.0 or later.
 
