@@ -98,31 +98,19 @@
     "data.item.box.description": "Çeşitli eşyalar elde etmek için parçala.",
 
     // location names
-    "location.backwoods": "Kömürözü Ormanı",
-    "location.beach": "Sahil",
     "location.beach.east-pier": "Sahil (doğu iskelesi)",
     "location.bugLand": "Mutant böcek yuvası",
-    "location.busStop": "Otobüs Durağı",
-    "location.desert": "Çöl",
     "location.desert.topPond": "desert (north pond)", // TODO
-    "location.farm": "Çiftlik",
     "location.farmCave": "Çiftlik Mağarası",
     "location.farmHouse": "Çiftlik Evi",
-    "location.forest": "Orman",
     "location.forest.island-tip": "Orman Nehri (büyük adanın güney ucu)",
     "location.forest.lake": "Orman Göleti",
     "location.forest.river": "Orman Nehri",
-    "location.mountain": "Dağ",
-    "location.railroad": "Demiryolu",
-    "location.sewer": "Kanalizasyon",
     "location.submarine": "Akşam Pazarı Denizaltısı",
-    "location.town": "Kasaba",
     "location.town.northmost-bridge": "Kasaba (en kuzeydeki köprü)",
-    "location.tunnel": "Otobüs Tüneli",
     "location.undergroundMine": "Maden",
     "location.undergroundMine.level": "Maden seviyesi {{level}}",
     "location.witchSwamp": "Cadı'nın Bataklığı",
-    "location.woods": "Gizli Orman",
 
     "location.caldera": "Zencefil Adası krateri",
     "location.islandEast": "Zencefil Adası doğu",
@@ -142,6 +130,7 @@
     "context-tag.bone": "any bone",
     "context-tag.egg": "any egg",
     "context-tag.large-egg": "any large egg",
+    "context-tag.preserved-item": "preserved {{name}}",
 
 
     /*********

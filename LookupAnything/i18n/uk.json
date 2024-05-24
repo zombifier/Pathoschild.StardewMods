@@ -98,31 +98,19 @@
     "data.item.box.description": "Розбийте, щоб отримати різні речі.",
 
     // location names
-    "location.backwoods": "Задні ліси",
-    "location.beach": "Пляж",
     "location.beach.east-pier": "Пляж (східний пірс)",
     "location.bugLand": "Лігво жуків-мутантів",
-    "location.busStop": "Автобусна зупинка",
-    "location.desert": "Пустеля",
     "location.desert.topPond": "пустеля (північний ставок)",
-    "location.farm": "Ферма",
     "location.farmCave": "Печера ферми",
     "location.farmHouse": "Будинок ферми",
-    "location.forest": "Ліс",
     "location.forest.island-tip": "Лісова річка (південна частина великого острова)",
     "location.forest.lake": "Лісове озеро",
     "location.forest.river": "Лісова річка",
-    "location.mountain": "Гори",
-    "location.railroad": "Залізниця",
-    "location.sewer": "Каналізація",
     "location.submarine": "Підводний човен Нічного ринку",
-    "location.town": "Місто",
     "location.town.northmost-bridge": "Місто (найпівнічніший міст)",
-    "location.tunnel": "Автобусний тунель",
     "location.undergroundMine": "Шахта",
     "location.undergroundMine.level": "{{level}} рівень шахти",
     "location.witchSwamp": "Болото відьми",
-    "location.woods": "Таємний ліс",
 
     "location.caldera": "Жерло вулкана Імбирного острова",
     "location.islandEast": "Східна частина Імбирного острова",
@@ -142,6 +130,7 @@
     "context-tag.bone": "any bone",
     "context-tag.egg": "any egg",
     "context-tag.large-egg": "any large egg",
+    "context-tag.preserved-item": "preserved {{name}}",
 
 
     /*********

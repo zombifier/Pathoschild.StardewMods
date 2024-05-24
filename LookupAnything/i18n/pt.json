@@ -98,31 +98,19 @@
     "data.item.box.description": "Quebre para receber itens diversos.",
 
     // location names
-    "location.backwoods": "Bosque",
-    "location.beach": "Praia",
     "location.beach.east-pier": "Praia (cais mais ao leste)",
     "location.bugLand": "Covil dos Insetos Mutantes",
-    "location.busStop": "Parada de ônibus",
-    "location.desert": "Deserto",
     "location.desert.topPond": "Deserto (lagoa do norte)",
-    "location.farm": "Fazenda",
     "location.farmCave": "Caverna",
     "location.farmHouse": "Casa da Fazenda",
-    "location.forest": "Floresta Cinzaseiva",
     "location.forest.island-tip": "Rio da Floresta Cinzaseiva (ponta sul da ilha grande)",
     "location.forest.lake": "Lagoa da Floresta Cinzaseiva",
     "location.forest.river": "Rio da Floresta Cinzaseiva",
-    "location.mountain": "Montanha",
-    "location.railroad": "Ferrovia",
-    "location.sewer": "Esgotos",
     "location.submarine": "Submarino de Pesca do Mercado Noturno",
-    "location.town": "Cidade",
     "location.town.northmost-bridge": "Cidade (ponte mais ao norte)",
-    "location.tunnel": "Túnel do ônibus",
     "location.undergroundMine": "Minas",
     "location.undergroundMine.level": "Mina nível {{level}}",
     "location.witchSwamp": "Pântano da bruxa",
-    "location.woods": "Bosque Secreto",
 
     "location.caldera": "Caverna do Vulcão",
     "location.islandEast": "Ilha Gengibre Leste",
@@ -142,6 +130,7 @@
     "context-tag.bone": "any bone",
     "context-tag.egg": "any egg",
     "context-tag.large-egg": "any large egg",
+    "context-tag.preserved-item": "preserved {{name}}",
 
 
     /*********

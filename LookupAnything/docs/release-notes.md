@@ -1,6 +1,14 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.43.2
+Released 23 May 2024 for SMAPI 4.0.0 or later.
+
+* Added readable text in recipes for 'preserve sheet index' context tags.
+* Fixed location display names not used when possible.
+* Fixed item lookups showing unrelated custom recipes in some cases (thanks to zombifier!).
+* Improved translations. Thanks to DARKS0UND (updated Korean)!
+
 ## 1.43.1
 Released 22 May 2024 for SMAPI 4.0.0 or later.
 

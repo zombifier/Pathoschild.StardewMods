@@ -97,31 +97,19 @@
     "data.item.box.description": "Rompila per ottenere diversi materiali.",
 
     // location names
-    "location.backwoods": "campagna",
-    "location.beach": "spiaggia",
     "location.beach.east-pier": "spiaggia (molo orientale)",
     "location.bugLand": "tana dell'insetto mutante",
-    "location.busStop": "fermata dell'autobus",
-    "location.desert": "deserto",
     "location.desert.topPond": "deserto (stagno a nord)",
-    "location.farm": "fattoria",
     "location.farmCave": "grotta nella fattoria",
     "location.farmHouse": "casale",
-    "location.forest": "foresta",
     "location.forest.island-tip": "fiume nella foresta (punta Sud dell'isola maggiore)",
     "location.forest.lake": "laghetto nella foresta",
     "location.forest.river": "fiume nella foresta",
-    "location.mountain": "montagna",
-    "location.railroad": "ferrovia",
-    "location.sewer": "fogne",
     "location.submarine": "sottomarino",
-    "location.town": "paese",
     "location.town.northmost-bridge": "paese (ponte Nord)",
-    "location.tunnel": "tunnel dell'autobus",
     "location.undergroundMine": "miniera",
     "location.undergroundMine.level": "miniera livello {{level}}",
     "location.witchSwamp": "palude della strega",
-    "location.woods": "boschi segreti",
 
     "location.caldera": "Caldera dell'Isola Zenzero",
     "location.islandEast": "Zona est dell'Isola Zenzero",
@@ -140,6 +128,7 @@
     "context-tag.bone": "qualsiasi osso",
     "context-tag.egg": "qualsiasi uovo",
     "context-tag.large-egg": "qualsiasi uovo grande",
+    "context-tag.preserved-item": "preserved {{name}}", // TODO
 
 
     /*********

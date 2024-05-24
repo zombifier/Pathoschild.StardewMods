@@ -98,31 +98,19 @@
     "data.item.box.description": "壊すと色々なアイテムが手に入る",
 
     // location names
-    "location.backwoods": "裏の森",
-    "location.beach": "ビーチ",
     "location.beach.east-pier": "ビーチ (東の桟橋)",
     "location.bugLand": "ミュータントバグのすみか",
-    "location.busStop": "バス停",
-    "location.desert": "カリコ砂漠",
     "location.desert.topPond": "砂漠の池",
-    "location.farm": "農場",
     "location.farmCave": "農場の洞窟",
     "location.farmHouse": "自宅",
-    "location.forest": "シンダーサップの森",
     "location.forest.island-tip": "森の川 (南の小島の南端)",
     "location.forest.lake": "森の池",
     "location.forest.river": "森の川",
-    "location.mountain": "山の湖",
-    "location.railroad": "線路",
-    "location.sewer": "下水道",
     "location.submarine": "夜の市 潜水艦",
-    "location.town": "ペリカンタウン",
     "location.town.northmost-bridge": "ペリカンタウン (北端の橋)",
-    "location.tunnel": "トンネル",
     "location.undergroundMine": "鉱山",
     "location.undergroundMine.level": "鉱山{{level}}階",
     "location.witchSwamp": "魔女の沼",
-    "location.woods": "秘密の森",
 
     "location.caldera": "火山のカルデラ",
     "location.islandEast": "ジンジャー島-東部",
@@ -141,6 +129,7 @@
     "context-tag.bone": "骨系",
     "context-tag.egg": "タマゴ系",
     "context-tag.large-egg": "大きなタマゴ系",
+    "context-tag.preserved-item": "preserved {{name}}", // TODO
 
 
     /*********

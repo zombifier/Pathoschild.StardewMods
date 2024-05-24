@@ -98,31 +98,19 @@
     "data.item.box.description": "打碎之后可以获得各种物品。",
 
     // location names
-    "location.backwoods": "边远森林",
-    "location.beach": "海滩",
     "location.beach.east-pier": "海滩（码头东侧）",
     "location.bugLand": "突变虫穴",
-    "location.busStop": "巴士站",
-    "location.desert": "沙漠",
     "location.desert.topPond": "沙漠池塘",
-    "location.farm": "农场",
     "location.farmCave": "农场洞穴",
     "location.farmHouse": "农舍",
-    "location.forest": "煤矿森林",
     "location.forest.island-tip": "煤矿森林（河流小岛南端）",
     "location.forest.lake": "煤矿森林（湖泊）",
     "location.forest.river": "煤矿森林（河流）",
-    "location.mountain": "深山",
-    "location.railroad": "铁路",
-    "location.sewer": "下水道",
     "location.submarine": "夜市潜艇",
-    "location.town": "鹈鹕镇",
     "location.town.northmost-bridge": "鹈鹕镇（北部桥区）",
-    "location.tunnel": "巴士隧道",
     "location.undergroundMine": "矿井",
     "location.undergroundMine.level": "矿井层数：{{level}}",
     "location.witchSwamp": "女巫的沼泽",
-    "location.woods": "秘密森林",
 
     "location.caldera": "姜岛火山口",
     "location.islandEast": "姜岛东部",
@@ -141,6 +129,7 @@
     "context-tag.bone": "骨头（任意）",
     "context-tag.egg": "鸡蛋（任意）",
     "context-tag.large-egg": "大鸡蛋（任意）",
+    "context-tag.preserved-item": "preserved {{name}}", // TODO
 
 
     /*********

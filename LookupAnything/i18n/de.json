@@ -98,31 +98,19 @@
     "data.item.box.description": "Zerschlage sie um verschiedenes Gut zu erhalten.",
 
     // location names
-    "location.backwoods": "Unentdeckter Wald",
-    "location.beach": "Strand",
     "location.beach.east-pier": "Strand (östliches Pier)",
     "location.bugLand": "Mutantenkäferhöhle",
-    "location.busStop": "Bushaltestelle",
-    "location.desert": "Wüste",
     "location.desert.topPond": "Wüste (nördlicher Teich)",
-    "location.farm": "Bauernhof",
     "location.farmCave": "Bauernhof-Höhle",
     "location.farmHouse": "Bauernhaus",
-    "location.forest": "Wald",
     "location.forest.island-tip": "Waldfluss (Südspitze der großen Insel)",
     "location.forest.lake": "Waldteich",
     "location.forest.river": "Waldfluss",
-    "location.mountain": "Berge",
-    "location.railroad": "Eisenbahn",
-    "location.sewer": "Kanalisation",
     "location.submarine": "Nachtmarkt Tiefsee-U-Boot",
-    "location.town": "Stadt",
     "location.town.northmost-bridge": "Stadt (Nord-östliche Brücke)",
-    "location.tunnel": "Bus Tunnel",
     "location.undergroundMine": "Mine",
     "location.undergroundMine.level": "Minenebene {{level}}",
     "location.witchSwamp": "Hexensumpf",
-    "location.woods": "Geheime Wälder",
 
     "location.caldera": "Feuerberg",
     "location.islandEast": "Insel Ost",
@@ -142,6 +130,7 @@
     "context-tag.bone": "any bone",
     "context-tag.egg": "any egg",
     "context-tag.large-egg": "any large egg",
+    "context-tag.preserved-item": "preserved {{name}}",
 
 
     /*********

@@ -98,31 +98,19 @@
     "data.item.box.description": "Разбейте, чтобы получить разные вещи.",
 
     // location names
-    "location.backwoods": "глушь",
-    "location.beach": "пляж",
     "location.beach.east-pier": "пляж (восточный пирс)",
     "location.bugLand": "логово жуков-мутантов",
-    "location.busStop": "автобусная остановка",
-    "location.desert": "пустыня",
     "location.desert.topPond": "пустыня (северный пруд)",
-    "location.farm": "ферма",
     "location.farmCave": "пещера на ферме",
     "location.farmHouse": "дом на ферме",
-    "location.forest": "лес",
     "location.forest.island-tip": "лесная река (южная часть большого острова)",
     "location.forest.lake": "лесное озеро",
     "location.forest.river": "лесная река",
-    "location.mountain": "горы",
-    "location.railroad": "железная дорога",
-    "location.sewer": "канализация",
     "location.submarine": "ночной Рынок на подводной лодке",
-    "location.town": "город",
     "location.town.northmost-bridge": "город (самый северный мост)",
-    "location.tunnel": "туннель рядом с автобусом",
     "location.undergroundMine": "шахты",
     "location.undergroundMine.level": "уровень шахты {{level}}",
     "location.witchSwamp": "болото ведьмы",
-    "location.woods": "тайный лес",
 
     "location.caldera": "Имбирный остров - Кратер",
     "location.islandEast": "Имбирный остров - Восток",
@@ -142,6 +130,7 @@
     "context-tag.bone": "any bone",
     "context-tag.egg": "any egg",
     "context-tag.large-egg": "any large egg",
+    "context-tag.preserved-item": "preserved {{name}}",
 
 
     /*********
