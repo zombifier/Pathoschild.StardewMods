@@ -141,6 +141,7 @@
     "context-tag.bone": "骨头（任意）",
     "context-tag.egg": "鸡蛋（任意）",
     "context-tag.large-egg": "大鸡蛋（任意）",
+    "context-tag.preserved-item": "preserved {{name}}", // TODO
 
 
     /*********

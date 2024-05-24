@@ -29,6 +29,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
             if (
                 HumanReadableContextTagParser.TryParseCategory(actualTag, out string? parsed)
                 || HumanReadableContextTagParser.TryParseItemId(actualTag, out parsed)
+                || HumanReadableContextTagParser.TryParsePreservedItemId(actualTag, out parsed)
                 || HumanReadableContextTagParser.TryParseSpecial(actualTag, out parsed)
             )
             {
@@ -111,7 +112,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
         /// <param name="tag">The context tag.</param>
         /// <param name="parsed">The human-readable form.</param>
         /// <returns>Returns whether it was parsed successfully.</returns>
-        /// <remarks>This implementation is based on <see cref="Utility.getItemFromStandardTextDescription(string,Farmer,char)"/>.</remarks>
         private static bool TryParseItemId(string tag, [NotNullWhen(true)] out string? parsed)
         {
             if (MachineDataHelper.TryGetUniqueItemFromContextTag(tag, out ParsedItemData? data))
@@ -128,11 +128,31 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
             return false;
         }
 
+        /// <summary>Parse a context tag which refers to a preserved item ID, if applicable.</summary>
+        /// <param name="tag">The context tag.</param>
+        /// <param name="parsed">The human-readable form.</param>
+        /// <returns>Returns whether it was parsed successfully.</returns>
+        private static bool TryParsePreservedItemId(string tag, [NotNullWhen(true)] out string? parsed)
+        {
+            if (tag.StartsWith("preserve_sheet_index_"))
+            {
+                ParsedItemData? data = ItemRegistry.GetData(tag[21..]);
+                string? name = data?.DisplayName;
+                if (!string.IsNullOrWhiteSpace(name))
+                {
+                    parsed = I18n.ContextTag_PreservedItem(name);
+                    return true;
+                }
+            }
+
+            parsed = null;
+            return false;
+        }
+
         /// <summary>Parse a hardcoded context tag, if applicable.</summary>
         /// <param name="tag">The context tag.</param>
         /// <param name="parsed">The human-readable form.</param>
         /// <returns>Returns whether it was parsed successfully.</returns>
-        /// <remarks>This implementation is based on <see cref="Utility.getItemFromStandardTextDescription(string,Farmer,char)"/>.</remarks>
         private static bool TryParseSpecial(string tag, [NotNullWhen(true)] out string? parsed)
         {
             parsed = tag switch

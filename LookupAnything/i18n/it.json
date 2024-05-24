@@ -140,6 +140,7 @@
     "context-tag.bone": "qualsiasi osso",
     "context-tag.egg": "qualsiasi uovo",
     "context-tag.large-egg": "qualsiasi uovo grande",
+    "context-tag.preserved-item": "preserved {{name}}", // TODO
 
 
     /*********

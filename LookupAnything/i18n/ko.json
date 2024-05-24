@@ -141,6 +141,7 @@
     "context-tag.bone": "뼈 (아무거나)",
     "context-tag.egg": "알 (아무거나)",
     "context-tag.large-egg": "큰 알 (아무거나)",
+    "context-tag.preserved-item": "preserved {{name}}", // TODO
 
 
     /*********

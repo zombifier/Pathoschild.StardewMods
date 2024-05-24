@@ -141,6 +141,7 @@
     "context-tag.bone": "骨系",
     "context-tag.egg": "タマゴ系",
     "context-tag.large-egg": "大きなタマゴ系",
+    "context-tag.preserved-item": "preserved {{name}}", // TODO
 
 
     /*********
