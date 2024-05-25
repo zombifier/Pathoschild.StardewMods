@@ -32,7 +32,10 @@ namespace Pathoschild.Stardew.TractorMod.Framework
         /// <summary>The gold price to buy a tractor garage.</summary>
         public int BuildPrice { get; set; } = 150000;
 
-        /// <summary>The materials needed to to buy the garage.</summary>
+        /// <summary>Whether you must provide the build materials in the <see cref="BuildMaterials"/> field to build a tractor garage.</summary>
+        public bool RequireBuildMaterials { get; set; } = true;
+
+        /// <summary>The materials needed to buy the garage.</summary>
         public Dictionary<string, int> BuildMaterials { get; set; } = new()
         {
             [Object.ironBarQID] = 20,

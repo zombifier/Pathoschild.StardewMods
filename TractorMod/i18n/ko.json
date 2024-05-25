@@ -49,6 +49,10 @@
     "config.build-price.name": "트렉터 건설 가격",
     "config.build-price.tooltip": "트랙터 차고를 건설하기 위한 가격. (기본 {{defaultValue}}골드)",
 
+    // TODO
+    "config.require-build-materials.name": "Require Build Materials",
+    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+
     "config.can-summon-without-garage.name": "차고 없이 소환 가능",
     "config.can-summon-without-garage.tooltip": "차고를 먼저 짓지 않고 임시 트랙터를 소환 할 수 있습니다.",
 

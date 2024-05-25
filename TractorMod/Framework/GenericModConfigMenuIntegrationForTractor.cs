@@ -87,6 +87,12 @@ namespace Pathoschild.Stardew.TractorMod.Framework
                     max: 1_000_000
                 )
                 .AddCheckbox(
+                    name: I18n.Config_RequireBuildMaterials_Name,
+                    tooltip: I18n.Config_RequireBuildMaterials_Tooltip,
+                    get: config => config.RequireBuildMaterials,
+                    set: (config, value) => config.RequireBuildMaterials = value
+                )
+                .AddCheckbox(
                     name: I18n.Config_CanSummonWithoutGarage_Name,
                     tooltip: I18n.Config_CanSummonWithoutGarage_Tooltip,
                     get: config => config.CanSummonWithoutGarage,

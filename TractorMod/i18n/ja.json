@@ -48,6 +48,10 @@
     "config.build-price.name": "販売価格",
     "config.build-price.tooltip": "トラクターガレージの購入費。標準は{{defaultValue}}gです。",
 
+    // TODO
+    "config.require-build-materials.name": "Require Build Materials",
+    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+
     "config.can-summon-without-garage.name": "ガレージなしで使用する",
     "config.can-summon-without-garage.tooltip": "ガレージなしでトラクターを呼び出す。",
 

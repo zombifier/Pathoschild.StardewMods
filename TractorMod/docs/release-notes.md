@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Added volume level option for tractor sound effects.
+* Added option to disable build material requirement.
 * Lowered default tractor volume by 25%.
 
 ## 4.18.0

@@ -49,6 +49,10 @@
     "config.build-price.name": "Prix de construction",
     "config.build-price.tooltip": "Le prix pour acheter le hangar. Valeur par défaut {{defaultValue}}g.",
 
+    // TODO
+    "config.require-build-materials.name": "Require Build Materials",
+    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+
     "config.can-summon-without-garage.name": "Peut invoquer sans garage",
     "config.can-summon-without-garage.tooltip": "Vous pouvez convoquer un tracteur temporaire sans construire le hangar au préalable.",
 

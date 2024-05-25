@@ -49,6 +49,10 @@
     "config.build-price.name": "Preço de Construção",
     "config.build-price.tooltip": "O preço em ouro para comprar uma garagem de trator. Padrão {{defaultValue}}g.",
 
+    // TODO
+    "config.require-build-materials.name": "Require Build Materials",
+    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+
     "config.can-summon-without-garage.name": "Pode Invocar Sem Garagem",
     "config.can-summon-without-garage.tooltip": "Se você pode invocar um trator temporário sem construir uma garagem primeiro.",
 

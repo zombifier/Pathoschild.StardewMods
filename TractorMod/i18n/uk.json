@@ -49,6 +49,10 @@
     "config.build-price.name": "Ціна побудови",
     "config.build-price.tooltip": "Золота ціна купівлі гаража трактора. За замовчуванням: {{defaultValue}} зол.",
 
+    // TODO
+    "config.require-build-materials.name": "Require Build Materials",
+    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+
     "config.can-summon-without-garage.name": "Можна викликати без гаража",
     "config.can-summon-without-garage.tooltip": "Можливість викликати тимчасовий трактор, не будуючи спочатку гараж.",
 

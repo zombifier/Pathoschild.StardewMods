@@ -49,6 +49,10 @@
     "config.build-price.name": "Építési ár",
     "config.build-price.tooltip": "Egy traktor garázs megvásárlásának az ára. Alapértelmezett {{defaultValue}}g.",
 
+    // TODO
+    "config.require-build-materials.name": "Require Build Materials",
+    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+
     "config.can-summon-without-garage.name": "Megidézhető garázs nélkül",
     "config.can-summon-without-garage.tooltip": "Megidézhető egy ideiglenes traktor anélkül, hogy előbb garázs épülne.",
 
