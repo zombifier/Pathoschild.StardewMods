@@ -1,10 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-<!--
 ## Upcoming release
-* Added volume level option for tractor sound effects, and lowered default volume by 25%.
--->
+* Added volume level option for tractor sound effects.
+* Lowered default tractor volume by 25%.
 
 ## 4.18.0
 Released 22 May 2024 for SMAPI 4.0.0 or later.

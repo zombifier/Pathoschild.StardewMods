@@ -115,8 +115,6 @@ namespace Pathoschild.Stardew.TractorMod.Framework
                     get: config => config.SoundEffects.ToString(),
                     set: (config, value) => config.SoundEffects = Enum.Parse<TractorSoundType>(value)
                 )
-                /*
-                 TODO: re-enable volume option when Stardew Valley 1.6.9 is released.
                 .AddNumberField(
                     name: I18n.Config_TractorVolume_Name,
                     tooltip: () => I18n.Config_TractorVolume_Tooltip(defaultValue: defaultConfig.SoundEffectsVolume),
@@ -125,7 +123,6 @@ namespace Pathoschild.Stardew.TractorMod.Framework
                     min: 0,
                     max: 100
                 )
-                */
 
                 // controls
                 .AddSectionTitle(I18n.Config_Controls)
