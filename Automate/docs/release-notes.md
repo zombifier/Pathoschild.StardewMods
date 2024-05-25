@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 2.2.0
+Released 24 May 2024 for SMAPI 4.0.0 or later.
+
 * Added support for custom tree drops from the new `Data/WildTrees` asset.
 * Fixed maple trees no longer outputting hazelnuts.
 * Fixed silos and feed hoppers outside the farm not being automated.
