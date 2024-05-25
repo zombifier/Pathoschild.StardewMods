@@ -51,6 +51,10 @@
     "config.build-price.name": "Build Price",
     "config.build-price.tooltip": "The gold price to buy a tractor garage. Default {{defaultValue}}g.",
 
+    // TODO
+    "config.require-build-materials.name": "Require Build Materials",
+    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+
     "config.can-summon-without-garage.name": "Can Summon Without Garage",
     "config.can-summon-without-garage.tooltip": "Whether you can summon a temporary tractor without building a garage first.",
 

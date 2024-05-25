@@ -263,13 +263,15 @@ namespace Pathoschild.Stardew.TractorMod
 
                         Builder = Game1.builder_robin,
                         BuildCost = this.Config.BuildPrice,
-                        BuildMaterials = this.Config.BuildMaterials
-                            .Select(p => new BuildingMaterial
-                            {
-                                ItemId = p.Key,
-                                Amount = p.Value
-                            })
-                            .ToList(),
+                        BuildMaterials = this.Config.RequireBuildMaterials
+                            ? this.Config.BuildMaterials
+                                .Select(p => new BuildingMaterial
+                                {
+                                    ItemId = p.Key,
+                                    Amount = p.Value
+                                })
+                                .ToList()
+                            : new(),
                         BuildDays = 2,
 
                         Size = new Point(4, 2),

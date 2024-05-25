@@ -156,8 +156,8 @@ namespace Pathoschild.Stardew.TractorMod.Framework
             this.StopImmediately();
 
             this.ActiveSound = Game1.soundBank.GetCue(id);
-            this.ActiveSound.Volume = this.GetVolume() / 100f;
             this.ActiveSound.Play();
+            this.ActiveSound.Volume = this.GetVolume() / 100f; // note: need to set volume after sound starts playing, or it'll be ignored
         }
 
         /// <summary>Immediately stop all tractor audio effects.</summary>

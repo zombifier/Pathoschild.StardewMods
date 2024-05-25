@@ -49,6 +49,10 @@
     "config.build-price.name": "Yapı Fiyatı",
     "config.build-price.tooltip": "Traktör garajı satın almak için altın fiyatı. Varsayılan {{defaultValue}}g.",
 
+    // TODO
+    "config.require-build-materials.name": "Require Build Materials",
+    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+
     "config.can-summon-without-garage.name": "Garajsız Çağırabilir",
     "config.can-summon-without-garage.tooltip": "İlk önce bir garaj inşa etmeden geçici bir traktör çağırıp çağıramadığınız.",
 

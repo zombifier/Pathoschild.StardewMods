@@ -49,6 +49,10 @@
     "config.build-price.name": "ราคาสร้าง",
     "config.build-price.tooltip": "ราคาทองโรงรถรถแทรกเตอร์ ค่าเริ่มต้น {{defaultValue}}g.",
 
+    // TODO
+    "config.require-build-materials.name": "Require Build Materials",
+    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+
     "config.can-summon-without-garage.name": "เรียกได้โดยไม่ต้องใช้โรงรถ",
     "config.can-summon-without-garage.tooltip": "ไม่ว่าคุณจะเรียกรถแทรกเตอร์ชั่วคราวโดยไม่ต้องสร้างโรงรถก่อน",
 

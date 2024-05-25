@@ -24,7 +24,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework
         public TractorSoundType SoundEffects { get; set; } = TractorSoundType.Tractor;
 
         /// <summary>The volume level for the tractor sound effects, as a value between 0 (silent) and 100 (full volume). Only applicable if <see cref="SoundEffects"/> is set to <see cref="TractorSoundType.Tractor"/>.</summary>
-        internal int SoundEffectsVolume { get; set; } = 100; // = 75; // TODO: re-enable volume option when Stardew Valley 1.6.9 is released.
+        public int SoundEffectsVolume { get; set; } = 75;
 
         /// <summary>The magnetic radius when riding the tractor.</summary>
         public int MagneticRadius { get; set; } = 384;
@@ -32,7 +32,10 @@ namespace Pathoschild.Stardew.TractorMod.Framework
         /// <summary>The gold price to buy a tractor garage.</summary>
         public int BuildPrice { get; set; } = 150000;
 
-        /// <summary>The materials needed to to buy the garage.</summary>
+        /// <summary>Whether you must provide the build materials in the <see cref="BuildMaterials"/> field to build a tractor garage.</summary>
+        public bool RequireBuildMaterials { get; set; } = true;
+
+        /// <summary>The materials needed to buy the garage.</summary>
         public Dictionary<string, int> BuildMaterials { get; set; } = new()
         {
             [Object.ironBarQID] = 20,
