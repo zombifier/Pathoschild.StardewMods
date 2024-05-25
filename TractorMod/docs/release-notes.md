@@ -1,13 +1,16 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 4.19.0
+Released 24 May 2024 for SMAPI 4.0.0 or later.
+
 * Added volume level option for tractor sound effects.
 * Added option to disable build material requirement.
 * Lowered default tractor volume by 25%.
 
 ## 4.18.0
 Released 22 May 2024 for SMAPI 4.0.0 or later.
+
 * Added support for...
   * digging seed spots (with a hoe);
   * harvesting tree moss (with a scythe);
