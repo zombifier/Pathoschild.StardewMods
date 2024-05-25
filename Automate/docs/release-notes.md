@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Workbenches are no longer connectors by default, to avoid confusion.
+
 ## 2.2.0
 Released 24 May 2024 for SMAPI 4.0.0 or later.
 
