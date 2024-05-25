@@ -29,6 +29,9 @@ namespace Pathoschild.Stardew.Automate.Framework
         /// <summary>Encapsulates monitoring and logging.</summary>
         private readonly IMonitor Monitor;
 
+        /// <summary>Simplifies access to private code.</summary>
+        private readonly IReflectionHelper Reflection;
+
         /// <summary>Whether the Better Junimos mod is installed.</summary>
         private readonly bool IsBetterJunimosLoaded;
 
@@ -39,11 +42,13 @@ namespace Pathoschild.Stardew.Automate.Framework
         /// <summary>Construct an instance.</summary>
         /// <param name="config">The mod configuration.</param>
         /// <param name="monitor">Encapsulates monitoring and logging.</param>
+        /// <param name="reflection">Simplifies access to private code.</param>
         /// <param name="isBetterJunimosLoaded">Whether the Better Junimos mod is installed.</param>
-        public AutomationFactory(Func<ModConfig> config, IMonitor monitor, bool isBetterJunimosLoaded)
+        public AutomationFactory(Func<ModConfig> config, IMonitor monitor, IReflectionHelper reflection, bool isBetterJunimosLoaded)
         {
             this.Config = config;
             this.Monitor = monitor;
+            this.Reflection = reflection;
             this.IsBetterJunimosLoaded = isBetterJunimosLoaded;
         }
 
@@ -118,8 +123,8 @@ namespace Pathoschild.Stardew.Automate.Framework
                 case FruitTree fruitTree:
                     return new FruitTreeMachine(fruitTree, location, tile);
 
-                case Tree tree when TreeMachine.CanAutomate(tree, location) && tree.growthStage.Value >= Tree.treeStage: // avoid accidental machine links due to seeds spreading automatically
-                    return new TreeMachine(tree, location, tile, this.Config().CollectTreeMoss);
+                case Tree tree when TreeMachine.CanAutomate(tree) && tree.growthStage.Value >= Tree.treeStage: // avoid accidental machine links due to seeds spreading automatically
+                    return new TreeMachine(tree, location, tile, this.Config().CollectTreeMoss, this.Reflection);
             }
 
             // connector

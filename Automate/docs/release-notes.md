@@ -2,6 +2,8 @@
 
 # Release notes
 ## Upcoming release
+* Added support for custom tree drops from the new `Data/WildTrees` asset.
+* Fixed maple trees no longer outputting hazelnuts.
 * Fixed silos and feed hoppers outside the farm not being automated.
 
 ## 2.1.0
