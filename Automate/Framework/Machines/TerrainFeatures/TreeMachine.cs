@@ -176,8 +176,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
                             if (drop is null)
                                 continue;
 
-                            Item? seed = this.TryGetDrop.Invoke<Item?>(drop, Game1.random, Game1.player,
-                                nameof(data.SeedDropItems));
+                            Item? seed = this.TryGetDrop.Invoke<Item?>(drop, Game1.random, Game1.player, nameof(data.SeedDropItems), null, null);
                             if (seed is null)
                                 continue;
 

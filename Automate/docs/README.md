@@ -150,8 +150,7 @@ together. For example, here are wooden paths used as connectors:
 
 > ![](screenshots/connectors.png)
 
-Workbenches are the only connectors by default. You can edit the `config.json` to add connectors
-(see _[configure](#configure)_ below).
+You can [edit the mod settings](#configure) to add connectors.
 
 ### Junimo chests
 Every machine and chest connected to a [Junimo chest](https://stardewvalleywiki.com/Junimo_Chest)

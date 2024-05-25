@@ -1,6 +1,12 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 2.2.1
+Released 24 May 2024 for SMAPI 4.0.0 or later.
+
+* Workbenches are no longer connectors by default, to avoid confusion.
+* Fixed error automating some trees in 2.2.0.
+
 ## 2.2.0
 Released 24 May 2024 for SMAPI 4.0.0 or later.
 
