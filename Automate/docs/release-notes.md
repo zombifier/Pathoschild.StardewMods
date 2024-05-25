@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed silos and feed hoppers outside the farm not being automated.
+
 ## 2.1.0
 Released 22 May 2024 for SMAPI 4.0.0 or later.
 
