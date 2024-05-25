@@ -244,13 +244,14 @@ processed items.
 
 </dd>
 
-<dt>Advanced pipeline with Super Hopper</dt>
+<dt>Advanced pipeline with Filtered Chest Hopper</dt>
 <dd>
 
-[Super Hopper](https://www.nexusmods.com/stardewvalley/mods/9418) is a mod which lets hoppers
-transfer items from the chest above them to the one below. These are ignored by Automate, so you
-can use them to create a chain of machine groups. That lets you support any number of input items
-without sending unprocessed items to the shipping bin or wrong machine.
+[Filtered Chest Hopper](https://www.nexusmods.com/stardewvalley/mods/21730) is a mod which lets you
+transfer items from the chest above them to the one below, with optional item filtering rules.
+
+These are ignored by Automate, so you create a chain of machine groups. That lets you support any
+number of input items without sending unprocessed items to the shipping bin or wrong machine.
 
 The trick is:
 
@@ -259,34 +260,35 @@ The trick is:
    receives items processed by the connected machines). [Use Chests Anywhere to set the chests'
    automation options](#Configure) to "_never put items in this chest_" and "_never take items from
    this chest_" respectively.
-3. Add a super hopper below the 'output chest' of one group, and the 'input chest' of the next.
+3. Add a filtered chest hopper below the 'output chest' of one group, and the 'input chest' of the
+   next.
 
-Here's the same example using super hoppers:
+Here's the same example using filtered chest hoppers:
 ```
-                   1. milk turned into cheese
-                   ────────────────────────────────────────────────────>
-                 ┌──────────┐┌──────────┐┌──────────┐┌──────────┐┌──────────┐
-                 │  input   ││  cheese  ││  cheese  ││  cheese  ││  output  │  │
-                 │  chest   ││  press   ││  press   ││  press   ││  chest   │  │
-                 └──────────┘└──────────┘└──────────┘└──────────┘└──────────┘  │
-                                                                 ┌──────────┐  │ 2.
-                                                                 │  super   │  │ Super Hopper
-                                                                 │  hopper  │  │ transfers item
-                                                                 └──────────┘  │ to next group
-                 ┌──────────┐┌──────────┐┌──────────┐┌──────────┐┌──────────┐  │
-               │ │  output  ││   cask   ││   cask   ││   cask   ││  input   │  v
-               │ │  chest   ││          ││          ││          ││  chest   │
-4.             │ └──────────┘└──────────┘└──────────┘└──────────┘└──────────┘
-Super Hopper   │ ┌──────────┐  <────────────────────────────────────────────
-transfers item │ │  super   │               3. cheese aged to iridum quality
-to next group  │ │  hopper  │
-               │ └──────────┘
-               │ ┌──────────┐┌──────────┐┌──────────┐┌──────────┐┌──────────┐
-               v │  input   ││ mini     ││ mini     ││ mini     ││ mini     │
-                 │  chest   ││ ship bin ││ ship bin ││ ship bin ││ ship bin │
-                 └──────────┘└──────────┘└──────────┘└──────────┘└──────────┘
-                   ────────────────────────────────────────────────────>
-                   5. item shipped
+                    1. milk turned into cheese
+                    ────────────────────────────────────────────────────>
+                  ┌──────────┐┌──────────┐┌──────────┐┌──────────┐┌──────────┐
+                  │  input   ││  cheese  ││  cheese  ││  cheese  ││  output  │  │
+                  │  chest   ││  press   ││  press   ││  press   ││  chest   │  │
+                  └──────────┘└──────────┘└──────────┘└──────────┘└──────────┘  │
+                                                                  ┌──────────┐  │ 2.
+                                                                  │ filtered │  │ Filtered Chest Hopper
+                                                                  │  hopper  │  │ transfers item
+                                                                  └──────────┘  │ to next group
+                  ┌──────────┐┌──────────┐┌──────────┐┌──────────┐┌──────────┐  │
+                │ │  output  ││   cask   ││   cask   ││   cask   ││  input   │  v
+                │ │  chest   ││          ││          ││          ││  chest   │
+4.              │ └──────────┘└──────────┘└──────────┘└──────────┘└──────────┘
+Filtered Hopper │ ┌──────────┐  <────────────────────────────────────────────
+transfers item  │ │ filtered │               3. cheese aged to iridum quality
+to next group   │ │  hopper  │
+                │ └──────────┘
+                │ ┌──────────┐┌──────────┐┌──────────┐┌──────────┐┌──────────┐
+                v │  input   ││ mini     ││ mini     ││ mini     ││ mini     │
+                  │  chest   ││ ship bin ││ ship bin ││ ship bin ││ ship bin │
+                  └──────────┘└──────────┘└──────────┘└──────────┘└──────────┘
+                    ────────────────────────────────────────────────────>
+                    5. item shipped
 ```
 
 </dd>
@@ -335,13 +337,17 @@ keep it installed and use the overlay, their mod just won't automate anything.
 
 Pairs well with...
 
-* [Better Junimos﻿](https://www.nexusmods.com/stardewvalley/mods/2221) adds more crop automation
-  (like replanting) and other improvements. Automate will automaticall ignore seeds/fertilizer in
-  Junimo huts if it's installed.
-* [Deluxe Grabber Redux﻿](https://www.nexusmods.com/stardewvalley/mods/7920) makes auto-grabbers
-  collect nearby animal products, forage, crops, and indoor pot crops too.
+* [Better Junimos﻿](https://smapi.io/mods/#Better_Junimos) adds more crop automation (like
+  replanting) and other improvements. Automate will automaticall ignore seeds/fertilizer in Junimo
+  huts if it's installed.
+* [Deluxe Grabber Redux﻿](https://smapi.io/mods/#Deluxe_Grabber_Redux) makes auto-grabbers collect
+  nearby animal products, forage, crops, and indoor pot crops too.
+* [Filtered Chest Hoppers](https://www.nexusmods.com/stardewvalley/mods/21730) enables advanced
+  [machine pipelines](#machine-pipelines).
 * [Non-Destructive NPCs﻿](https://www.nexusmods.com/stardewvalley/mods/5176) prevents NPCs from
   destroying chests and machines.
+* [Workbench Helper](https://www.nexusmods.com/stardewvalley/mods/21294) lets you chain chests to
+  workbenches for manual crafting.
 
 ## Troubleshooting
 ### In-game overlay
@@ -368,19 +374,11 @@ tested with up to [630 machines in one group](https://community.playstarbound.co
 (which worked fine). The most I've seen is [21,134 automated machines in one save](https://smapi.io/log/24Q970ju).
 
 ### Does Automate support custom machines?
-Yes, but some custom machines need a separate mod which tells Automate how they work:
-
-* For Custom Farming Redux machines, install [CFAutomate](https://www.nexusmods.com/stardewvalley/mods/991?tab=files) 
-  from its optional downloads.
-* For Producer Framework Mod machines (including PPJA Artisan Valley), install [PFMAutomate](https://www.nexusmods.com/stardewvalley/mods/5038).
-
-(For mod authors: you can [use the Automate API](https://github.com/Pathoschild/StardewMods/blob/develop/Automate/technical.md#extensibility-for-modders)
-to add custom machines to Automate.)
+Yes! Most custom machines will work out of the box with Automate. For machines added through
+Producer Framework Mod, install install [PFMAutomate](https://www.nexusmods.com/stardewvalley/mods/5038).
 
 ### How do I use path connectors?
-Path connectors aren't enabled by default. See the "Enable path connectors (config.json)" download
-on [the mod page's Files tab](https://www.nexusmods.com/stardewvalley/mods/1063/?tab=files) which
-enables some for you, or see [_connectors_ above](#connectors) for more info.
+Path connectors aren't enabled by default. You can [enable them in the settings](#configure).
 
 ### In multiplayer, who gets XP and whose professions apply?
 A few machines give XP, update player stats, or check player skills based on the player who uses
@@ -406,15 +404,7 @@ and fish ponds.</small>
 Yep; see _[in-game settings](#in-game-settings)_.
 
 ### Can I disable the shipping bin automation?
-Yep, you can disable it using [per-machine settings](#per-machine-settings). More specifically,
-replace the `"MachineOverrides": {}` line in to your `config.json` file with this:
-```js
-"MachineOverrides": {
-    "ShippingBin": {
-        "Enabled": false
-    }
-}
-```
+Yep, you can disable it using [per-machine settings](#per-machine-settings).
 
 ### Why did my chests/machines disappear?
 Some common reasons:
