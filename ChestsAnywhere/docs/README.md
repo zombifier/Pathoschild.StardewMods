@@ -42,7 +42,7 @@ cursor over a field for details.
 > ![](screenshots/generic-config-menu.png)
 
 ## Compatibility
-Chests Anywhere is compatible with Stardew Valley 1.5.6+ on Linux/Mac/Windows, both single-player and
+Chests Anywhere is compatible with Stardew Valley 1.6+ on Linux/macOS/Windows, both single-player and
 multiplayer.
 
 Multiplayer notes:

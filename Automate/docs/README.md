@@ -329,7 +329,7 @@ This adds two options for Automate:
 (To configure chest automation from another mod, see the [technical documentation](technical.md#can-i-change-in-game-settings-without-chests-anywhere).)
 
 ## Compatibility
-Automate is compatible with Stardew Valley 1.5.6+ on Linux/Mac/Windows, both single-player and
+Automate is compatible with Stardew Valley 1.6+ on Linux/macOS/Windows, both single-player and
 multiplayer. In multiplayer mode, only the main player can automate machines; other players can
 keep it installed and use the overlay, their mod just won't automate anything.
 

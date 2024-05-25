@@ -16,7 +16,7 @@ cursor over a field for details.
 > ![](screenshots/generic-config-menu.png)
 
 ## Compatibility
-Skip Intro is compatible with Stardew Valley 1.5.6+ on Linux/Mac/Windows, both single-player and
+Skip Intro is compatible with Stardew Valley 1.6+ on Linux/macOS/Windows, both single-player and
 multiplayer. There are no known issues in multiplayer (even if other players don't have it installed).
 
 ## See also

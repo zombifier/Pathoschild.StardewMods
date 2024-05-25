@@ -82,7 +82,7 @@ to configure the mod. Hover the cursor over a field for details, or see the next
 
 ## FAQs
 ### Compatibility
-This is compatible with Stardew Valley 1.5.6+ on Linux/Mac/Windows, both single-player and
+This is compatible with Stardew Valley 1.6+ on Linux/macOS/Windows, both single-player and
 multiplayer. It can't be combined with other mods that replace the same farm.
 
 The farm map will recolor automatically if you have one of these installed:
