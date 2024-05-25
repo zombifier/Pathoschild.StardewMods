@@ -13,10 +13,9 @@ automatically pull raw items from the chest and push processed items into it.
   * [Machine priority](#machine-priority)
   * [Machine pipelines](#machine-pipelines)
 * [Configure](#configure)
-  * [In-game mod settings](#in-game-mod-settings)
-  * [In-game chest settings](#in-game-chest-settings)
+  * [Mod settings](#mod-settings)
   * [Per-machine settings](#per-machine-settings)
-  * [config.json](#configjson)
+  * [In-game chest settings](#in-game-chest-settings)
 * [Compatibility](#compatibility)
 * [Troubleshooting](#troubleshooting)
   * [In-game overlay](#in-game-overlay)
@@ -294,17 +293,24 @@ to next group  │ │  hopper  │
 </dl>
 
 ## Configure
-### In-game mod settings
-If you have [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098) installed,
-you can click the cog button (⚙) on the title screen or the "mod options" button at the bottom of
-the in-game menu to configure the mod. Hover the cursor over a field for details, or see the next
-section.
+### Mod settings
+If you install [Generic Mod Config Menu][], you can click the cog button (⚙) on the title screen
+or the "mod options" button at the bottom of the in-game menu to configure the mod. Hover the
+cursor over a field for details.
 
-![](screenshots/generic-config-menu.png)
+> ![](screenshots/generic-config-menu.png)
+
+### Per-machine settings
+You can also configure individual machine types through [Generic Mod Config Menu][]. This works for
+all machines, including those added by other mods.
+
+For example, you can uncheck 'Enabled' under _Shipping Bin settings_ if you don't want Automate to
+move items into shipping bins:
+
+> ![](screenshots/generic-config-menu-machines.png)
 
 ### In-game chest settings
-Installing [Chests Anywhere](https://www.nexusmods.com/stardewvalley/mods/518) lets you set
-per-chest options directly in-game:
+Installing [Chests Anywhere][] lets you set per-chest options directly in-game:
 > ![](screenshots/chests-anywhere-config.png)
 
 This adds two options for Automate:
@@ -321,145 +327,6 @@ This adds two options for Automate:
   * _Never take items from this chest._
 
 (To configure chest automation from another mod, see the [technical documentation](technical.md#can-i-change-in-game-settings-without-chests-anywhere).)
-
-### Per-machine settings
-_This is advanced; most players won't need to configure Automate to this extent._
-
-You can set some options for individual machine types by [editing the `config.json`](#configure),
-and adding an entry to the `MachineOverrides` field. If a machine isn't listed in that field, it'll
-use the default values defined in `assets/data.json`. This works for all automated machines,
-including those added by other mods.
-
-Each entry in `MachineOverrides` is identified by the internal machine type ID (_not_ the machine
-name you see in-game). You can [run the `automate summary` command](#console-commands) to see a list
-of machines being automated; the names shown in the list are the machine type IDs.
-
-
-For example:
-```js
-"MachineOverrides": {
-    "ShippingBin": {
-        "Enabled": true,
-        "Priority": -1
-    },
-    "Tapper": {
-        "Enabled": true,
-        "Priority": 0
-    },
-}
-```
-
-Available options for each machine:
-
-field | purpose
------ | -------
-`Enabled` | Whether the machine type should be automated (default `true`).
-`Priority` | The order in which this machine should be processed relative to other machines (default `0`). Higher values are processed first for both input and output.
-
-### config.json
-The mod creates a `config.json` file in its mod folder the first time you run it. You can open that
-file in a text editor to configure the mod.
-
-These are the available settings:
-
-<table>
-<tr>
-  <th>setting</th>
-  <th>what it affects</th>
-</tr>
-<tr>
-<tr>
-  <td><code>Enabled</code></td>
-  <td>
-
-Whether Automate features are enabled. If this is `false`, no machines will be automated and the overlay won't appear.
-
-  </td>
-</tr>
-<tr>
-  <td><code>AutomationInterval</code></td>
-  <td>
-
-The number of update ticks between each automation cycle (one second is ≈60 ticks). Default `60`.
-
-  </td>
-</tr>
-<tr>
-  <td><code>Controls</code></td>
-  <td>
-
-The configured controller, keyboard, and mouse buttons (see [key bindings](https://stardewvalleywiki.com/Modding:Key_bindings)).
-The default value is `U` to toggle the automation overlay.
-
-You can separate bindings with commas (like `U, LeftShoulder` for either one), and set multi-key
-bindings with plus signs (like `LeftShift + U`).
-
-  </td>
-</tr>
-<tr>
-  <td><code>ConnectorNames</code></td>
-  <td>
-
-A list of placed item names to treat as [connectors](#connectors) which connect adjacent machines
-together. You must specify the exact _English_ names for any in-game items to use. For example:
-
-```js
-"ConnectorNames": [
-   "Wood Path",
-   "Crystal Path"
-]
-```
-
-Contains `Workbench` by default.
-
-  </td>
-</tr>
-<tr>
-  <td><code>MachineOverrides</code></td>
-  <td>
-
-The configuration to override for specific machine IDs. See [_per-machine settings_](#per-machine-settings)
-for more info.
-
-  </td>
-</tr>
-<tr>
-  <td><code>CollectTreeMoss</code></td>
-  <td>
-
-Whether to collect moss on trees. Default true.
-
-For example, you may want to disable this to keep moss on trees to boost the quality of mushrooms
-from [mushroom logs](https://stardewvalleywiki.com/Mushroom_Log).
-
-  </td>
-</tr>
-<tr>
-  <td><code>JunimoHutBehaviorForGems</code><br /><code>JunimoHutBehaviorForFertilizer</code><br /><code>JunimoHutBehaviorForSeeds</code></td>
-  <td>
-
-How [Junimo huts](https://stardewvalleywiki.com/Junimo_Hut) should automate the given item types.
-
-The possible values are:
-
-value | result
------ | ------
-`Ignore` | Ignore items of this type, so they're not transferred either way.
-`MoveIntoChests` | Move any items of this type from the Junimo Hut into connected chests.
-`MoveIntoHut` | Move any items of this type from connected chests into the Junimo Hut.
-`AutoDetect` | <p>Apply the default logic based on the installed mods.</p><p>For gems, this is equivalent to `Ignore` (so you can add gems manually to change the color of Junimos).</p><p>For fertilizer and seeds, this is equivalent to `Ignore` if [Better Junimos](https://www.nexusmods.com/stardewvalley/mods/2221) is installed (so you can replant seeds/fertilizer), else `MoveIntoChests`.</p>
-  </td>
-</tr>
-<tr>
-  <td><code>WarnForMissingBridgeMod</code></td>
-  <td>
-
-Whether to log a warning if you install a custom-machine mod that requires a separate compatibility
-patch which isn't installed.
-
-  </td>
-</tr>
-</table>
 
 ## Compatibility
 Automate is compatible with Stardew Valley 1.5.6+ on Linux/Mac/Windows, both single-player and
@@ -574,3 +441,6 @@ other changes. For more info, see the [technical documentation](technical.md).
 * [Technical documentation](technical.md)
 * [Release notes](release-notes.md)
 * [Nexus mod](https://www.nexusmods.com/stardewvalley/mods/1063)
+
+[Chests Anywhere]: https://www.nexusmods.com/stardewvalley/mods/518
+[Generic Mod Config Menu]: https://www.nexusmods.com/stardewvalley/mods/5098
