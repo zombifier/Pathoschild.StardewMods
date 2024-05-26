@@ -397,9 +397,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                     .ToArray();
 
                 // display requirements
-                string itemList = string.Join(", ", requiredItems);
                 string result = requiredItems.Length > 1
-                    ? I18n.Building_FishPond_Quests_IncompleteRandom(newPopulation, itemList)
+                    ? I18n.Building_FishPond_Quests_IncompleteRandom(newPopulation, I18n.List(requiredItems))
                     : I18n.Building_FishPond_Quests_IncompleteOne(newPopulation, requiredItems[0]);
 
                 // show next quest

@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Added translation for list value separator (like the `, ` in `A, B, C`).
 * Improved translations. Thanks to mitekano23 (updated Japanese!).
 
 ## 1.43.2

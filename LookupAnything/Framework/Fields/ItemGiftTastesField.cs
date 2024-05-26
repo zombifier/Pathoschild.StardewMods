@@ -56,7 +56,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     GiftTasteModel entry = visibleEntries[i];
 
                     yield return new FormattedText(
-                        text: entry.Villager.displayName + (i != last ? ", " : ""),
+                        text: entry.Villager.displayName + (i != last ? I18n.Generic_ListSeparator() : ""),
                         bold: highlightUnrevealed && !entry.IsRevealed
                     );
                 }

@@ -232,7 +232,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                                 hasInputAndOutput: false
                             ),
                             conditions: recipe.Conditions.Length > 0
-                                ? string.Join(", ", recipe.Conditions.Select(HumanReadableConditionParser.Parse))
+                                ? I18n.List(recipe.Conditions.Select(HumanReadableConditionParser.Parse))
                                 : null
                         );
                     }
@@ -281,7 +281,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         inputs: inputs.ToArray(),
                         output: output,
                         conditions: recipe.Conditions.Length > 0
-                            ? string.Join(", ", recipe.Conditions.Select(HumanReadableConditionParser.Parse))
+                            ? I18n.List(recipe.Conditions.Select(HumanReadableConditionParser.Parse))
                             : null
                     );
                 })
@@ -442,7 +442,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 {
                     string name = input.DisplayName ?? input.ItemId;
                     if (ingredient.InputContextTags.Length > 0) // if the item has both item ID and context tags, show tags to disambiguate
-                        name += $" ({string.Join(", ", ingredient.InputContextTags.Select(HumanReadableContextTagParser.Parse))})";
+                        name += $" ({I18n.List(ingredient.InputContextTags.Select(HumanReadableContextTagParser.Parse))})";
 
                     return this.CreateItemEntry(
                         name: name,
@@ -457,7 +457,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             if (ingredient.InputContextTags.Length > 0)
             {
                 return this.CreateItemEntry(
-                    name: string.Join(", ", ingredient.InputContextTags.Select(HumanReadableContextTagParser.Parse)),
+                    name: I18n.List(ingredient.InputContextTags.Select(HumanReadableContextTagParser.Parse)),
                     minCount: ingredient.Count,
                     maxCount: ingredient.Count
                 );

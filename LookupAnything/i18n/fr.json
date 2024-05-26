@@ -9,6 +9,7 @@
 
     // generic values
     "generic.unknown": "inconnu",
+    "generic.list-separator": ", ", // text between listed values (like ", " in "A, B, C")
 
     // generic field values
     "generic.percent": "{{percent}}%",

@@ -212,7 +212,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                         orderby name
                         select name
                     );
-                    yield return new GenericField(I18n.Item_SellsTo(), string.Join(", ", buyers));
+                    yield return new GenericField(I18n.Item_SellsTo(), I18n.List(buyers));
                 }
 
                 // clothing
@@ -542,7 +542,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 }
 
                 // seasons
-                summary.Add(I18n.Crop_Summary_Seasons(seasons: string.Join(", ", I18n.GetSeasonNames(data.Seasons))));
+                summary.Add(I18n.Crop_Summary_Seasons(seasons: I18n.List(I18n.GetSeasonNames(data.Seasons))));
 
                 // drops
                 if (data.CropData is not null)
@@ -583,7 +583,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                     .OrderBy(p => p)
                     .ToArray();
 
-                yield return new GenericField(I18n.Crop_Fertilized(), string.Join(", ", appliedFertilizers));
+                yield return new GenericField(I18n.Crop_Fertilized(), I18n.List(appliedFertilizers));
             }
         }
 
@@ -729,7 +729,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                     )
                     .ToArray();
                 if (missingBundles.Any())
-                    neededFor.Add(I18n.Item_NeededFor_CommunityCenter(bundles: string.Join(", ", missingBundles)));
+                    neededFor.Add(I18n.Item_NeededFor_CommunityCenter(bundles: I18n.List(missingBundles)));
             }
 
             // polyculture achievement (ship 15 crops)
@@ -790,12 +790,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                     .OrderBy(p => p)
                     .ToArray();
                 if (quests.Any())
-                    neededFor.Add(I18n.Item_NeededFor_Quests(quests: string.Join(", ", quests)));
+                    neededFor.Add(I18n.Item_NeededFor_Quests(quests: I18n.List(quests)));
             }
 
             // yield
             if (neededFor.Any())
-                yield return new GenericField(I18n.Item_NeededFor(), string.Join(", ", neededFor));
+                yield return new GenericField(I18n.Item_NeededFor(), I18n.List(neededFor));
         }
 
         /// <summary>Get a text representation for missing recipes. If progression mode is enabled, includes the count of unknown recipes.</summary>
@@ -806,7 +806,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             {
                 // return all recipe names
                 string[] recipeNames = (from recipe in missingRecipes select (string)recipe.DisplayName).ToArray();
-                return string.Join(", ", recipeNames);
+                return I18n.List(recipeNames);
             }
 
             RecipeData[] knownMissingRecipes = missingRecipes.Where(recipe => recipe.IsKnown).ToArray();
@@ -816,7 +816,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             {
                 // return learned recipe names + count of unlearned recipes
                 string[] knownRecipeNames = (from recipe in knownMissingRecipes select (string)recipe.DisplayName).ToArray();
-                return string.Join(", ", knownRecipeNames.Append(I18n.Item_UnknownRecipes(unknownMissingRecipeCount)));
+                return I18n.List(knownRecipeNames.Append(I18n.Item_UnknownRecipes(unknownMissingRecipeCount)));
             }
 
             // return just the count of unlearned recipes

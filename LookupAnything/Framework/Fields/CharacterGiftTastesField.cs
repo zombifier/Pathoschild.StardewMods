@@ -89,7 +89,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     }
 
                     string text = i != last
-                        ? entry.Item.DisplayName + ", "
+                        ? entry.Item.DisplayName + I18n.Generic_ListSeparator()
                         : entry.Item.DisplayName;
                     bool bold = highlightUnrevealed && !entry.IsRevealed;
 

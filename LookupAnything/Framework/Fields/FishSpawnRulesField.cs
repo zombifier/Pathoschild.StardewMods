@@ -64,7 +64,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             {
                 yield return this.GetCondition(
                     label: I18n.Item_FishSpawnRules_Time(
-                        times: string.Join(", ", spawnRules.TimesOfDay.Select(p => I18n.Generic_Range(gameHelper.FormatMilitaryTime(p.MinTime), gameHelper.FormatMilitaryTime(p.MaxTime)).ToString()))
+                        times: I18n.List(
+                            spawnRules.TimesOfDay.Select(p => I18n.Generic_Range(gameHelper.FormatMilitaryTime(p.MinTime), gameHelper.FormatMilitaryTime(p.MaxTime)).ToString())
+                        )
                     ),
                     isMet: spawnRules.TimesOfDay.Any(p => Game1.timeOfDay >= p.MinTime && Game1.timeOfDay <= p.MaxTime)
                 );
@@ -82,7 +84,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 {
                     yield return this.GetCondition(
                         label: I18n.Item_FishSpawnRules_SeasonList(
-                            seasons: string.Join(", ", firstLocation.Seasons.Select(gameHelper.TranslateSeason))
+                            seasons: I18n.List(
+                                firstLocation.Seasons.Select(gameHelper.TranslateSeason)
+                            )
                         ),
                         isMet: firstLocation.Seasons.Contains(Game1.currentSeason)
                     );
@@ -91,7 +95,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 // locations
                 yield return this.GetCondition(
                     label: I18n.Item_FishSpawnRules_Locations(
-                        locations: string.Join(", ", spawnRules.Locations.Select(p => p.DisplayName).OrderBy(p => p))
+                        locations: I18n.List(
+                            spawnRules.Locations.Select(p => p.DisplayName).OrderBy(p => p)
+                        )
                     ),
                     isMet: spawnRules.MatchesLocation(Game1.currentLocation.Name)
                 );
@@ -113,7 +119,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     if (locationsBySeason.TryGetValue(season, out string[]? locationNames))
                     {
                         summary.Add(new FormattedText(
-                            text: Environment.NewLine + I18n.Item_FishSpawnRules_LocationsBySeason_SeasonLocations(season: gameHelper.TranslateSeason(season), locations: string.Join(", ", locationNames)),
+                            text: Environment.NewLine + I18n.Item_FishSpawnRules_LocationsBySeason_SeasonLocations(season: gameHelper.TranslateSeason(season), locations: I18n.List(locationNames)),
                             color: season == Game1.currentSeason ? Color.Black : Color.Gray
                         ));
                     }

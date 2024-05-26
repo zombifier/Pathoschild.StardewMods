@@ -22,6 +22,13 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
         /*********
         ** Public methods
         *********/
+        /// <summary>Get a separated list of values (like "A, B, C") using the separator for the current language.</summary>
+        /// <param name="values">The values to list.</param>
+        public static string List(IEnumerable<object> values)
+        {
+            return string.Join(I18n.Generic_ListSeparator(), values);
+        }
+
         /// <summary>Get a translation for an enum value.</summary>
         /// <param name="stage">The tree growth stage.</param>
         public static string For(WildTreeGrowthStage stage)
@@ -146,7 +153,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
                             parts.Add(I18n.Generic_Hours(span.Hours));
                         if (span.Minutes > 0)
                             parts.Add(I18n.Generic_Minutes(span.Minutes));
-                        return string.Join(", ", parts);
+                        return I18n.List(parts);
                     }
                 case Vector2 vector:
                     return $"({vector.X}, {vector.Y})";
@@ -186,7 +193,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
                 case IEnumerable array when value is not string:
                     {
                         string[] values = (from val in array.Cast<object>() select I18n.Stringify(val) ?? "<null>").ToArray()!;
-                        return "(" + string.Join(", ", values) + ")";
+                        return "(" + I18n.List(values) + ")";
                     }
 
                 default:
