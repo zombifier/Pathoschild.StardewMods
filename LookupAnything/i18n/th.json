@@ -556,7 +556,7 @@
 
     // values
     "puzzle.solution.solved": "แก้ได้แล้ว!",
-    "puzzle.solution.hidden": "เฉลยถูกซ่อนอยู่ในโหมด progression",
+    "puzzle.solution.hidden": "เฉลยถูกซ่อนอยู่ตามการตั้งค่าของคุณ",
 
 
     /*********
@@ -662,10 +662,21 @@
     *********/
     // main options
     "config.title.main-options": "ตัวเลือกหลัก",
-    "config.progression-mode.name": "โหมดความก้าวหน้า",
-    "config.progression-mode.desc": "ซ่อนเนื้อหาบางส่วน (เช่น รสนิยมของขวัญและการแก้ปัญหาปริศนา) จนกว่าคุณจะค้นพบในเกมหรือไม่",
     "config.force-full-screen.name": "บังคับเต็มหน้าจอ",
     "config.force-full-screen.desc": "เมนูควรเป็นแบบเต็มหน้าจอเสมอ แทนที่จะอยู่กึ่งกลางหน้าต่าง สิ่งนี้มีประโยชน์อย่างยิ่งเมื่อดูฟิลด์การขุดข้อมูล",
+
+    // progression mode
+    // TODO
+    "config.title.progression": "โหมดความก้าวหน้า",
+
+    "config.progression.show-unknown-gift-tastes.name": "Show unknown gift tastes",
+    "config.progression.show-unknown-gift-tastes.desc": "Whether to show gift tastes you haven't learned about in-game yet (e.g. from dialogue text or experimenting).",
+
+    "config.progression.show-unknown-recipes.name": "Show unknown recipes",
+    "config.progression.show-unknown-recipes.desc": "Whether to show recipes you haven't learned in-game yet.",
+
+    "config.progression.show-puzzle-solutions.name": "Show puzzle solutions",
+    "config.progression.show-puzzle-solutions.desc": "Whether to show puzzle solutions.",
 
     // gift tastes
     // TODO

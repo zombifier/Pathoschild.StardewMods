@@ -555,7 +555,7 @@
 
     // values
     "puzzle.solution.solved": "谜题已解决！",
-    "puzzle.solution.hidden": "在进度模式下谜题解决方法不可见",
+    "puzzle.solution.hidden": "谜题解决方法根据您的设置隐藏",
 
 
     /*********
@@ -661,10 +661,21 @@
     *********/
     // main options
     "config.title.main-options": "常规",
-    "config.progression-mode.name": "进度模式",
-    "config.progression-mode.desc": "是否隐藏某些内容(如礼物品位和谜题解决方法)，直到你在游戏中发现它",
     "config.force-full-screen.name": "强制全屏",
     "config.force-full-screen.desc": "是否全屏显示查询结果窗口，这对查看数据挖掘字段时非常有用",
+
+    // progression mode
+    // TODO
+    "config.title.progression": "进度模式",
+
+    "config.progression.show-unknown-gift-tastes.name": "Show unknown gift tastes",
+    "config.progression.show-unknown-gift-tastes.desc": "Whether to show gift tastes you haven't learned about in-game yet (e.g. from dialogue text or experimenting).",
+
+    "config.progression.show-unknown-recipes.name": "Show unknown recipes",
+    "config.progression.show-unknown-recipes.desc": "Whether to show recipes you haven't learned in-game yet.",
+
+    "config.progression.show-puzzle-solutions.name": "Show puzzle solutions",
+    "config.progression.show-puzzle-solutions.desc": "Whether to show puzzle solutions.",
 
     // gift tastes
     "config.title.gift-tastes": "礼物品位",

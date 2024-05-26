@@ -554,7 +554,7 @@
 
     // values
     "puzzle.solution.solved": "Acertijo resuelto!",
-    "puzzle.solution.hidden": "Las soluciones del acertijo están ocultas en modo progresión.",
+    "puzzle.solution.hidden": "Las soluciones del acertijo están ocultas según su configuración.",
 
 
     /*********
@@ -661,10 +661,21 @@
     *********/
     // main options
     "config.title.main-options": "Opciones principales",
-    "config.progression-mode.name": "Modo de progresión",
-    "config.progression-mode.desc": "Si se ocultan algunos contenidos (por ejemplo, los gustos de los regalos y las soluciones de los rompecabezas) hasta que los descubras en el juego.",
     "config.force-full-screen.name": "Forzar pantalla completa",
     "config.force-full-screen.desc": "Si el menú debe estar siempre a pantalla completa, en lugar de centrado en la ventana. Esto es útil principalmente cuando se visualizan campos de minería de datos.",
+
+    // progression mode
+    // TODO
+    "config.title.progression": "Modo de progresión",
+
+    "config.progression.show-unknown-gift-tastes.name": "Show unknown gift tastes",
+    "config.progression.show-unknown-gift-tastes.desc": "Whether to show gift tastes you haven't learned about in-game yet (e.g. from dialogue text or experimenting).",
+
+    "config.progression.show-unknown-recipes.name": "Show unknown recipes",
+    "config.progression.show-unknown-recipes.desc": "Whether to show recipes you haven't learned in-game yet.",
+
+    "config.progression.show-puzzle-solutions.name": "Show puzzle solutions",
+    "config.progression.show-puzzle-solutions.desc": "Whether to show puzzle solutions.",
 
     // gift tastes
     "config.title.gift-tastes": "Gusto por los regalos",

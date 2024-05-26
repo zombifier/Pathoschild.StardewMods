@@ -554,7 +554,7 @@
 
     // values
     "puzzle.solution.solved": "パズルが解けました！",
-    "puzzle.solution.hidden": "パズルの解答はプログレッションモードで隠されています。",
+    "puzzle.solution.hidden": "パズルの解答は設定により隠されています。",
 
 
     /*********
@@ -660,10 +660,21 @@
     *********/
     // main options
     "config.title.main-options": "メインオプション",
-    "config.progression-mode.name": "プログレッションモード",
-    "config.progression-mode.desc": "特定の要素（例：贈り物の好みやパズルの解答）をゲーム内で発見するまで隠す。",
     "config.force-full-screen.name": "フルスクリーン表示",
     "config.force-full-screen.desc": "メニューを画面中央ではなく、フルスクリーンで表示。これは主に、データマイニングのフィールドを表示するときに便利です。",
+
+    // progression mode
+    // TODO
+    "config.title.progression": "プログレッションモード",
+
+    "config.progression.show-unknown-gift-tastes.name": "Show unknown gift tastes",
+    "config.progression.show-unknown-gift-tastes.desc": "Whether to show gift tastes you haven't learned about in-game yet (e.g. from dialogue text or experimenting).",
+
+    "config.progression.show-unknown-recipes.name": "Show unknown recipes",
+    "config.progression.show-unknown-recipes.desc": "Whether to show recipes you haven't learned in-game yet.",
+
+    "config.progression.show-puzzle-solutions.name": "Show puzzle solutions",
+    "config.progression.show-puzzle-solutions.desc": "Whether to show puzzle solutions.",
 
     // gift tastes
     "config.title.gift-tastes": "贈り物の好み",

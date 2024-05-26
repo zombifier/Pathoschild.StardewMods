@@ -554,7 +554,7 @@
 
     // values
     "puzzle.solution.solved": "Складанку розв'язано!",
-    "puzzle.solution.hidden": "Розв'язки складанок приховані в режимі прогресу.",
+    "puzzle.solution.hidden": "Розв'язки складанок приховані відповідно до ваших налаштувань.",
 
 
     /*********
@@ -660,10 +660,21 @@
     *********/
     // main options
     "config.title.main-options": "Основні налаштування",
-    "config.progression-mode.name": "Режим прогресу",
-    "config.progression-mode.desc": "Приховування деякого вмісту (Наприклад, улюблені подарунки і рішення головоломок), доки ви не знайдете їх в грі.",
     "config.force-full-screen.name": "Примусово на весь екран",
     "config.force-full-screen.desc": "Меню завжди буде повноекранним, а не центрованим у вікні. Це в основному корисно під час перегляду даних.",
+
+    // progression mode
+    // TODO
+    "config.title.progression": "Режим прогресу",
+
+    "config.progression.show-unknown-gift-tastes.name": "Show unknown gift tastes",
+    "config.progression.show-unknown-gift-tastes.desc": "Whether to show gift tastes you haven't learned about in-game yet (e.g. from dialogue text or experimenting).",
+
+    "config.progression.show-unknown-recipes.name": "Show unknown recipes",
+    "config.progression.show-unknown-recipes.desc": "Whether to show recipes you haven't learned in-game yet.",
+
+    "config.progression.show-puzzle-solutions.name": "Show puzzle solutions",
+    "config.progression.show-puzzle-solutions.desc": "Whether to show puzzle solutions.",
 
     // gift tastes
     "config.title.gift-tastes": "Вподобання",

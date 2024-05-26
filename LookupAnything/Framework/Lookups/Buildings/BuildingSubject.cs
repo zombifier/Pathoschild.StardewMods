@@ -189,7 +189,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                         if (recipes.Length > 0)
                         {
                             // return recipes
-                            var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), null, recipes, progressionMode: false); // progression mode not applicable to buildings
+                            var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), null, recipes, showUnknownRecipes: true); // building recipes don't need to be learned
                             if (this.CollapseFieldsConfig.Enabled && recipes.Length >= this.CollapseFieldsConfig.BuildingRecipes)
                                 field.CollapseByDefault(I18n.Generic_ShowXResults(count: recipes.Length));
                             yield return field;

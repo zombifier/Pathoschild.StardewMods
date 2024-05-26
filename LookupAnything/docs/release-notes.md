@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Split 'progression mode' into multiple options.
 * Added human-readable text for keg recipe conditions.
 * Added translation for list value separator (like the `, ` in `A, B, C`).
 * Improved translations. Thanks to mitekano23 (updated Japanese!).

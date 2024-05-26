@@ -334,7 +334,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             return new ItemSubject(
                 codex: this.Codex,
                 gameHelper: this.GameHelper,
-                progressionMode: config.ProgressionMode,
+                showUnknownGiftTastes: config.ShowUnknownGiftTastes,
+                showUnknownRecipes: config.ShowUnknownRecipes,
                 highlightUnrevealedGiftTastes: config.HighlightUnrevealedGiftTastes,
                 showGiftTastes: config.ShowGiftTastes,
                 collapseFieldsConfig: config.CollapseLargeFields,
@@ -365,7 +366,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             return new ItemSubject(
                 codex: this.Codex,
                 gameHelper: this.GameHelper,
-                progressionMode: config.ProgressionMode,
+                showUnknownGiftTastes: config.ShowUnknownGiftTastes,
+                showUnknownRecipes: config.ShowUnknownRecipes,
                 highlightUnrevealedGiftTastes: config.HighlightUnrevealedGiftTastes,
                 showGiftTastes: config.ShowGiftTastes,
                 collapseFieldsConfig: config.CollapseLargeFields,

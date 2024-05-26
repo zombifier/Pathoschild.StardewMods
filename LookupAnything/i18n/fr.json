@@ -556,7 +556,7 @@
 
     // values
     "puzzle.solution.solved": "Puzzle résolu!",
-    "puzzle.solution.hidden": "Les solutions de puzzle sont cachées en mode progression.",
+    "puzzle.solution.hidden": "Les solutions de puzzle sont cachées selon vos paramètres.",
 
 
     /*********
@@ -662,10 +662,21 @@
     *********/
     // main options
     "config.title.main-options": "Options principales",
-    "config.progression-mode.name": "Mode de progression",
-    "config.progression-mode.desc": "Possibilité de cacher certains contenus (par exemple, les goûts des cadeaux et les solutions des énigmes) jusqu'à ce que vous les découvriez dans le jeu.",
     "config.force-full-screen.name": "Forcer le plein écran",
     "config.force-full-screen.desc": "Si le menu doit toujours être en plein écran, au lieu d'être centré dans la fenêtre. Ceci est principalement utile lors de l'affichage des champs d'exploration de données.",
+
+    // progression mode
+    // TODO
+    "config.title.progression": "Mode de progression",
+
+    "config.progression.show-unknown-gift-tastes.name": "Show unknown gift tastes",
+    "config.progression.show-unknown-gift-tastes.desc": "Whether to show gift tastes you haven't learned about in-game yet (e.g. from dialogue text or experimenting).",
+
+    "config.progression.show-unknown-recipes.name": "Show unknown recipes",
+    "config.progression.show-unknown-recipes.desc": "Whether to show recipes you haven't learned in-game yet.",
+
+    "config.progression.show-puzzle-solutions.name": "Show puzzle solutions",
+    "config.progression.show-puzzle-solutions.desc": "Whether to show puzzle solutions.",
 
     // gift tastes
     "config.title.gift-tastes": "Goûts en matière de cadeaux",

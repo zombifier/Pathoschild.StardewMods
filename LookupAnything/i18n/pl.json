@@ -556,7 +556,7 @@
 
     // values
     "puzzle.solution.solved": "Zagadka rozwiązana!",
-    "puzzle.solution.hidden": "Rozwiązania zagadek są ukryte w trybie progresji.",
+    "puzzle.solution.hidden": "Rozwiązania zagadek są ukryte zgodnie z twoimi ustawieniami.",
 
 
     /*********
@@ -662,10 +662,21 @@
     *********/
     // main options
     "config.title.main-options": "Opcje główne",
-    "config.progression-mode.name": "Tryb progresji",
-    "config.progression-mode.desc": "Czy ukryć niektóre treści (np. upodobania prezentowe i rozwiązania zagadek), dopóki nie odkryjesz ich w grze.",
     "config.force-full-screen.name": "Wymuś pełny ekran",
     "config.force-full-screen.desc": "Czy interfejs podglądu powinien być zawsze pełnoekranowy, a nie wyśrodkowany w oknie. Jest to przydatne głównie podczas przeglądania pól data miningu.",
+
+    // progression mode
+    // TODO
+    "config.title.progression": "Tryb progresji",
+
+    "config.progression.show-unknown-gift-tastes.name": "Show unknown gift tastes",
+    "config.progression.show-unknown-gift-tastes.desc": "Whether to show gift tastes you haven't learned about in-game yet (e.g. from dialogue text or experimenting).",
+
+    "config.progression.show-unknown-recipes.name": "Show unknown recipes",
+    "config.progression.show-unknown-recipes.desc": "Whether to show recipes you haven't learned in-game yet.",
+
+    "config.progression.show-puzzle-solutions.name": "Show puzzle solutions",
+    "config.progression.show-puzzle-solutions.desc": "Whether to show puzzle solutions.",
 
     // gift tastes
     // TODO

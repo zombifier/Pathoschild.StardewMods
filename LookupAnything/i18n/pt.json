@@ -554,7 +554,7 @@
 
     // values
     "puzzle.solution.solved": "Quebra-cabeça resolvido!",
-    "puzzle.solution.hidden": "As soluções do quebra-cabeça estão escondidas no modo de progressão.",
+    "puzzle.solution.hidden": "As soluções do quebra-cabeça estão escondidas conforme suas configurações.",
 
 
     /*********
@@ -660,10 +660,21 @@
     *********/
     // main options
     "config.title.main-options": "Opções principais",
-    "config.progression-mode.name": "Modo de progressão",
-    "config.progression-mode.desc": "Se deve ocultar algum conteúdo (ex. presentes amados e soluções de quebra-cabeças) até que você tenha descoberto dentro do jogo.",
     "config.force-full-screen.name": "Forçar tela cheia",
     "config.force-full-screen.desc": "Se o menu deve estar sempre em tela cheia, em vez de centralizado na janela. Isso é útil principalmente ao visualizar campos de mineração de dados.",
+
+    // progression mode
+    // TODO
+    "config.title.progression": "Modo de progressão",
+
+    "config.progression.show-unknown-gift-tastes.name": "Show unknown gift tastes",
+    "config.progression.show-unknown-gift-tastes.desc": "Whether to show gift tastes you haven't learned about in-game yet (e.g. from dialogue text or experimenting).",
+
+    "config.progression.show-unknown-recipes.name": "Show unknown recipes",
+    "config.progression.show-unknown-recipes.desc": "Whether to show recipes you haven't learned in-game yet.",
+
+    "config.progression.show-puzzle-solutions.name": "Show puzzle solutions",
+    "config.progression.show-puzzle-solutions.desc": "Whether to show puzzle solutions.",
 
     // gift tastes
     "config.title.gift-tastes": "Preferências de presentes",
