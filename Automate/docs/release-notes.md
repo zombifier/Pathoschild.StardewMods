@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* If a machine crashes when checking input, it's now paused for 30 seconds and no longer blocks running other machines in the group.
+
 ## 2.2.1
 Released 24 May 2024 for SMAPI 4.0.0 or later.
 
