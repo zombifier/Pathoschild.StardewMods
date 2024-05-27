@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Fixed open-chest animation for farmhands.
+* Improved translations. Thanks to DARKS0UND (updated Korean) and mitekano23 (updated Japanese)!
 
 ## 1.12.0
 Released 22 May 2024 for SMAPI 4.0.0 or later.
