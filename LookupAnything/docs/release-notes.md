@@ -1,10 +1,12 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.44.0
+Released 27 May 2024 for SMAPI 4.0.0 or later.
+
 * Split 'progression mode' into multiple options.
 * Added human-readable text for keg recipe conditions.
-* Added translation for list value separator (like the `, ` in `A, B, C`).
+* The list value separator (like the `, ` in `A, B, C`) is now translatable for non-English players.
 * Fixed fish area display names in data not shown in Lookup Anything.
 * Fixed some Custom Bush lookups showing game tokens like `LocalizedText`.
 * Improved translations. Thanks to mitekano23 (updated Japanese!).
