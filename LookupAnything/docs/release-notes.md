@@ -6,6 +6,7 @@
 * Added human-readable text for keg recipe conditions.
 * Added translation for list value separator (like the `, ` in `A, B, C`).
 * Fixed fish area display names in data not shown in Lookup Anything.
+* Fixed some Custom Bush lookups showing game tokens like `LocalizedText`.
 * Improved translations. Thanks to mitekano23 (updated Japanese!).
 
 ## 1.43.2

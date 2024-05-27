@@ -9,6 +9,7 @@ using Pathoschild.Stardew.LookupAnything.Framework.Fields;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.TerrainFeatures;
+using StardewValley.TokenizableStrings;
 
 namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
 {
@@ -34,7 +35,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             this.Target = bush;
 
             if (this.TryGetCustomBush(bush, out ICustomBush? customBush))
-                this.Initialize(customBush.DisplayName, customBush.Description, I18n.Type_Bush());
+                this.Initialize(TokenParser.ParseText(customBush.DisplayName), TokenParser.ParseText(customBush.Description), I18n.Type_Bush());
             else if (this.IsBerryBush(bush))
                 this.Initialize(I18n.Bush_Name_Berry(), I18n.Bush_Description_Berry(), I18n.Type_Bush());
             else if (this.IsTeaBush(bush))
