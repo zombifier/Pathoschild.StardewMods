@@ -173,6 +173,7 @@ namespace Pathoschild.Stardew.SkipIntro
             Game1.currentSong ??= Game1.soundBank.GetCue("MainTheme");
 
             // skip button transition
+            menu.buttonsToShow = TitleMenu.numberOfButtons;
             if (Constants.TargetPlatform == GamePlatform.Android)
             {
                 while (menu.isTransitioningButtons)

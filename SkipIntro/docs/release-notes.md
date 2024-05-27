@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed _tok!_ sound when skipping to title screen.
+
 ## 1.9.17
 Released 22 May 2024 for SMAPI 4.0.0 or later.
 
