@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed open-chest animation for farmhands.
+
 ## 1.12.0
 Released 22 May 2024 for SMAPI 4.0.0 or later.
 

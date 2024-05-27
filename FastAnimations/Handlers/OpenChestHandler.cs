@@ -74,7 +74,9 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         /// <param name="chest">The chest to check.</param>
         private bool IsOpening(Chest? chest)
         {
-            return chest?.frameCounter.Value > -1;
+            // Don't fast-forward the decrement to zero, since a farmhand will need to get the
+            // mutex at that point.
+            return chest?.frameCounter.Value > 0;
         }
 
         /// <summary>Update the cached list of chests in the current location.</summary>
