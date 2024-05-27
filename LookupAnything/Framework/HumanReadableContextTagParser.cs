@@ -34,7 +34,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
             )
             {
                 return negate
-                    ? I18n.ContextTag_Negate(tag: parsed)
+                    ? I18n.ConditionOrContextTag_Negate(value: parsed)
                     : parsed;
             }
 

@@ -189,7 +189,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                         if (recipes.Length > 0)
                         {
                             // return recipes
-                            var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), null, recipes, progressionMode: false); // progression mode not applicable to buildings
+                            var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), null, recipes, showUnknownRecipes: true); // building recipes don't need to be learned
                             if (this.CollapseFieldsConfig.Enabled && recipes.Length >= this.CollapseFieldsConfig.BuildingRecipes)
                                 field.CollapseByDefault(I18n.Generic_ShowXResults(count: recipes.Length));
                             yield return field;
@@ -397,9 +397,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                     .ToArray();
 
                 // display requirements
-                string itemList = string.Join(", ", requiredItems);
                 string result = requiredItems.Length > 1
-                    ? I18n.Building_FishPond_Quests_IncompleteRandom(newPopulation, itemList)
+                    ? I18n.Building_FishPond_Quests_IncompleteRandom(newPopulation, I18n.List(requiredItems))
                     : I18n.Building_FishPond_Quests_IncompleteOne(newPopulation, requiredItems[0]);
 
                 // show next quest

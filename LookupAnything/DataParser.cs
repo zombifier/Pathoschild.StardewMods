@@ -595,22 +595,30 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <param name="fishAreaId">The fish area ID within the location, if applicable.</param>
         private string GetLocationDisplayName(string id, LocationData data, string? fishAreaId)
         {
-            // skip: no area set
-            if (string.IsNullOrWhiteSpace(fishAreaId))
-                return this.GetLocationDisplayName(id, data);
+            // special cases
+            {
+                // skip: no area set
+                if (string.IsNullOrWhiteSpace(fishAreaId))
+                    return this.GetLocationDisplayName(id, data);
 
-            // special case: mine level
-            if (string.Equals(id, "UndergroundMine", StringComparison.OrdinalIgnoreCase))
-                return I18n.Location_UndergroundMine_Level(level: id);
+                // special case: mine level
+                if (string.Equals(id, "UndergroundMine", StringComparison.OrdinalIgnoreCase))
+                    return I18n.Location_UndergroundMine_Level(level: id);
+            }
 
-            // else build from data
+            // get base data
             string locationName = this.GetLocationDisplayName(id, data);
-            string? areaName = I18n
-                .GetByKey($"location.{id}.{fishAreaId}", new { locationName })
-                .UsePlaceholder(false);
-            return !string.IsNullOrWhiteSpace(areaName)
-                ? areaName
-                : I18n.Location_UnknownFishArea(locationName, fishAreaId);
+            string areaName = TokenParser.ParseText(data.FishAreas?.GetValueOrDefault(fishAreaId)?.DisplayName);
+
+            // build translation
+            string displayName = I18n.GetByKey($"location.{id}.{fishAreaId}", new { locationName }).UsePlaceholder(false); // predefined translation
+            if (string.IsNullOrWhiteSpace(displayName))
+            {
+                displayName = !string.IsNullOrWhiteSpace(areaName)
+                    ? I18n.Location_FishArea(locationName: locationName, areaName: areaName)
+                    : I18n.Location_UnknownFishArea(locationName: locationName, id: fishAreaId);
+            }
+            return displayName;
         }
 
         /// <summary>Get the translated display name for a location.</summary>

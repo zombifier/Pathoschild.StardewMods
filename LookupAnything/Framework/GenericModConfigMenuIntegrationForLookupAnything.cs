@@ -44,16 +44,31 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
                 // main options
                 .AddSectionTitle(I18n.Config_Title_MainOptions)
                 .AddCheckbox(
-                    name: I18n.Config_ProgressionMode_Name,
-                    tooltip: I18n.Config_ProgressionMode_Desc,
-                    get: config => config.ProgressionMode,
-                    set: (config, value) => config.ProgressionMode = value
-                )
-                .AddCheckbox(
                     name: I18n.Config_ForceFullScreen_Name,
                     tooltip: I18n.Config_ForceFullScreen_Desc,
                     get: config => config.ForceFullScreen,
                     set: (config, value) => config.ForceFullScreen = value
+                )
+
+                // progression mode
+                .AddSectionTitle(I18n.Config_Title_Progression)
+                .AddCheckbox(
+                    name: I18n.Config_Progression_ShowUnknownGiftTastes_Name,
+                    tooltip: I18n.Config_Progression_ShowUnknownGiftTastes_Desc,
+                    get: config => config.ShowUnknownGiftTastes,
+                    set: (config, value) => config.ShowUnknownGiftTastes = value
+                )
+                .AddCheckbox(
+                    name: I18n.Config_Progression_ShowUnknownRecipes_Name,
+                    tooltip: I18n.Config_Progression_ShowUnknownRecipes_Desc,
+                    get: config => config.ShowUnknownRecipes,
+                    set: (config, value) => config.ShowUnknownRecipes = value
+                )
+                .AddCheckbox(
+                    name: I18n.Config_Progression_ShowPuzzleSolutions_Name,
+                    tooltip: I18n.Config_Progression_ShowPuzzleSolutions_Desc,
+                    get: config => config.ShowPuzzleSolutions,
+                    set: (config, value) => config.ShowPuzzleSolutions = value
                 )
 
                 // gift tastes
