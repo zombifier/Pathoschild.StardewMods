@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "Imbirowa Wyspa zachód (staw)",
     "location.islandWest.ocean": "Imbirowa Wyspa zachód (ocean)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (obszar połowowy {{id}})",
 
 

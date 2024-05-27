@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "Имбирный остров - Запад (пруд)",
     "location.islandWest.ocean": "Имбирный остров - Запад (океан)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (рыболовный район {{id}})",
 
 

@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "เกาะขิงฝั่งตะวันตก (ทะเลสาบ)",
     "location.islandWest.ocean": "เกาะขิงฝั่งตะวันตก (ทะเล)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (จุดตกปลา {{id}})",
 
 

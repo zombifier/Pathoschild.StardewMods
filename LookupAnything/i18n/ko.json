@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "진저섬 서쪽 (연못)",
     "location.islandWest.ocean": "진저섬 서쪽 (바다)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (낚시 장소 {{id}})",
 
 

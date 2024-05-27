@@ -125,6 +125,7 @@
     "location.islandWest.freshwater": "Île Gingembre - Est (étang)",
     "location.islandWest.ocean": "Île Gingembre - Est (océan)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (secteur de pêche {{id}})",
 
 

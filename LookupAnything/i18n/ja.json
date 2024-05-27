@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "ジンジャーアイランド-西部（池）",
     "location.islandWest.ocean": "ジンジャーアイランド-西部（海）",
 
+    "location.fish-area": "{{locationName}}（{{areaName}}）",
     "location.unknown-fish-area": "{{locationName}}(エリア{{id}}）",
 
 

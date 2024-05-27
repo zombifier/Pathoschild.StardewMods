@@ -122,6 +122,7 @@
     "location.islandWest.freshwater": "Zona ovest dell'Isola Zenzero (stagno)",
     "location.islandWest.ocean": "Zona ovest dell'Isola Zenzero (oceano)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (area di pesca {{id}})",
 
 

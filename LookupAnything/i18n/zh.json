@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "姜岛西部（淡水）",
     "location.islandWest.ocean": "姜岛西部（海洋）",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}}（钓鱼区 {{id}}）",
 
 

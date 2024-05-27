@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "Ilha Gengibre Lagoa Oeste",
     "location.islandWest.ocean": "Ilha Gengibre Oceano Oeste",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (área de pesca {{id}})",
 
 

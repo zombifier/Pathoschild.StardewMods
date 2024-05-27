@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "Zencefil Adası batı (gölet)",
     "location.islandWest.ocean": "Zencefil Adası batı (okyanus)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (balıkçılık alanı {{id}})",
 
 

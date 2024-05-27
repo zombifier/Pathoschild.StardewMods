@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "Ginger Island west (pond)", // TODO
     "location.islandWest.ocean": "Ginger Island west (ocean)", // TODO
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (Horgászhely: {{id}})",
 
 

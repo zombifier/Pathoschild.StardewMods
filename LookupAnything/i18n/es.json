@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "Oeste de la isla Jengibre (Estanque)",
     "location.islandWest.ocean": "Oeste de la isla Jengibre (Oceano)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (zona de pesca {{id}})",
 
 

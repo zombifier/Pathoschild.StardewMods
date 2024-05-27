@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "Ginger Island West (pond)",
     "location.islandWest.ocean": "Ginger Island West (ocean)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (fishing area {{id}})",
 
 

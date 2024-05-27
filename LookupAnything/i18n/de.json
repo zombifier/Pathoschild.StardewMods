@@ -123,6 +123,7 @@
     "location.islandWest.freshwater": "Insel West (Teich)",
     "location.islandWest.ocean": "Insel West (Meer)",
 
+    "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (Angelgebiet {{id}})",
 
 
