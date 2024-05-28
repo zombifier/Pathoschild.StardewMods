@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed search UI not listing dried items, pickled forage, smoked fish, and specific bait.
+
 ## 1.44.0
 Released 27 May 2024 for SMAPI 4.0.0 or later.
 
