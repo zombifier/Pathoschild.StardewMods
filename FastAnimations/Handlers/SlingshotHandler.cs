@@ -34,7 +34,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         {
             return
                 Game1.player.UsingTool
-                && Game1.player.CurrentTool is Slingshot;
+                && Game1.player.CurrentTool is Slingshot { pullStartTime: > SlingshotHandler.MillisecondsPerSkip }; // don't decrement past zero, which will disable firing
         }
 
         /// <inheritdoc />

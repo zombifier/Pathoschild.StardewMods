@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed slingshot not firing when sped up in 'hold and release' mode.
+
 ## 1.12.1
 Released 27 May 2024 for SMAPI 4.0.0 or later.
 
