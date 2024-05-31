@@ -9,6 +9,9 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 
 -->
+## Upcoming release
+* Fixed the `HavingChild` and `Pregnant` tokens not accounting for the new `SpouseAdopts` field in `Data/Characters`.
+
 ## 2.1.2
 Released 23 May 2024 for SMAPI 4.0.0 or later.
 
