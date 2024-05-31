@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed the community center fish tank being accessible through Chests Anywhere.
+
 ## 1.23.4
 Released 22 May 2024 for SMAPI 4.0.0 or later.
 
