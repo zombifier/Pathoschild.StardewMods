@@ -59,6 +59,9 @@ namespace ContentPatcher.Framework.Conditions
         /// <summary>An event ID the player saw.</summary>
         HasSeenEvent,
 
+        /// <summary>A location internal name which the player has previously visited.</summary>
+        HasVisitedLocation,
+
         /// <summary>The player's daily luck.</summary>
         DailyLuck,
 

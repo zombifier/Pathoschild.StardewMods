@@ -10,6 +10,8 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 -->
 ## Upcoming release
+* Added new tokens:
+  * [`HasVisitedLocation`](author-guide/tokens.md#HasVisitedLocation) for the locations a player has visited before.
 * Fixed the `HavingChild` and `Pregnant` tokens not accounting for the new `SpouseAdopts` field in `Data/Characters`.
 
 ## 2.1.2

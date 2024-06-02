@@ -70,7 +70,8 @@ namespace ContentPatcher
             new Migration_1_29(),
             new Migration_1_30(),
             new Migration_2_0(),
-            new Migration_2_1()
+            new Migration_2_1(),
+            new Migration_2_2()
         };
 
         /// <summary>The special validation logic to apply to assets affected by patches.</summary>

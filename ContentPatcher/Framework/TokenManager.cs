@@ -140,7 +140,7 @@ namespace ContentPatcher.Framework
 
                 // special case: language change implies i18n change
                 if (changedTokens.Contains(nameof(ConditionType.Language)))
-                    changedTokens.Add(ConditionType.I18n.ToString());
+                    changedTokens.Add(nameof(ConditionType.I18n));
 
                 changedGlobalTokens = changedTokens.Lock();
             }
@@ -222,6 +222,7 @@ namespace ContentPatcher.Framework
                 new PerPlayerValueProvider(ConditionType.HasReadLetter, player => player.mailReceived, save),
                 new PerPlayerValueProvider(ConditionType.HasSeenEvent, player => player.eventsSeen, save),
                 new PerPlayerValueProvider(ConditionType.HasActiveQuest, player => player.questLog.Select(p => p.id.Value), save),
+                new PerPlayerValueProvider(ConditionType.HasVisitedLocation, player => player.locationsVisited, save),
                 new ConditionTypeValueProvider(ConditionType.HasWalletItem, save.GetWalletItems, NeedsSave, allowedValues: Enum.GetNames(typeof(WalletItem))),
                 new PerPlayerValueProvider(ConditionType.IsMainPlayer, player => player.IsMainPlayer.ToString(), save),
                 new PerPlayerValueProvider(ConditionType.IsOutdoors, player => save.GetCurrentLocation(player)?.IsOutdoors.ToString(), save),

@@ -403,6 +403,20 @@ You can use [Debug Mode](https://www.nexusmods.com/stardewvalley/mods/679) to se
 <td><a href="#HasSeenEvent">#</a></td>
 </tr>
 
+<tr valign="top" id="HasVisitedLocation">
+<td>HasVisitedLocation</td>
+<td>
+
+The location internal names which the [current or specified player](#target-player) have previously
+visited, matching IDs in the `Data/Locations` file.
+
+You can use [Debug Mode](https://www.nexusmods.com/stardewvalley/mods/679) to see location names
+in-game.
+
+</td>
+<td><a href="#HasVisitedLocation">#</a></td>
+</tr>
+
 <tr valign="top" id="HasWalletItem">
 <td>HasWalletItem</td>
 <td>
