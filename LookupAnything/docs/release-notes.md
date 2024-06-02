@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Raw conditions and context tags are now formatted like _context tag "tag"_ and _query "query"_ to reduce confusion.
 * Fixed search UI not listing dried items, pickled forage, smoked fish, and specific bait.
 
 ## 1.44.0
