@@ -11,6 +11,7 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 -->
 ## Upcoming release
 * Added new tokens:
+  * [`FarmMapAsset`](author-guide/tokens.md#FarmMapAsset) for the farm type's map asset name relative to the game's `Content/Maps` folder (like `Farm_Combat` for the wilderness farm).
   * [`HasVisitedLocation`](author-guide/tokens.md#HasVisitedLocation) for the locations a player has visited before.
 * Fixed the `HavingChild` and `Pregnant` tokens not accounting for the new `SpouseAdopts` field in `Data/Characters`.
 

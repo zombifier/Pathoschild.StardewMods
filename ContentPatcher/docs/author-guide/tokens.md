@@ -689,6 +689,31 @@ The [farm cave](https://stardewvalleywiki.com/The_Cave) type. Possible values: `
 <td><a href="#FarmCave">#</a></td>
 </tr>
 
+<tr valign="top" id="FarmMapAsset">
+<td>FarmMapAsset</td>
+<td>
+
+The farm type's map asset name relative to the game's `Content/Maps` folder.
+
+This is usually one of:
+
+farm type    | value
+------------ | -----
+Standard     | `Farm`
+Beach        | `Farm_Island`
+Forest       | `Farm_Foraging`
+Four Corners | `Farm_FourCorners`
+Hill-top     | `Farm_Mining`
+Meadowlands  | `Farm_Ranching`
+Riverland    | `Farm_Fishing`
+Wilderness   | `Farm_Combat`
+_custom type_  | The `MapName` value in `Data/AdditionalFarms`.
+_invalid type_ | `Farm`
+
+</td>
+<td><a href="#FarmMapAsset">#</a></td>
+</tr>
+
 <tr valign="top" id="FarmName">
 <td>FarmName</td>
 <td>The name of the current farm.</td>

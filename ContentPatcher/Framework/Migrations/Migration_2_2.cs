@@ -16,6 +16,7 @@ namespace ContentPatcher.Framework.Migrations
             : base(new SemanticVersion(2, 2, 0))
         {
             this.AddedTokens = new(
+                nameof(ConditionType.FarmMapAsset),
                 nameof(ConditionType.HasVisitedLocation)
             );
         }

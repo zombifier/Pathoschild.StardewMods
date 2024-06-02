@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using ContentPatcher.Framework.Conditions;
 using ContentPatcher.Framework.Constants;
@@ -8,9 +9,11 @@ using Netcode;
 using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.Common.Utilities;
 using StardewModdingAPI;
+using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Characters;
+using StardewValley.GameData;
 using StardewValley.Locations;
 using StardewValley.Network;
 
@@ -576,6 +579,34 @@ namespace ContentPatcher.Framework
             }
 
             return FarmType.Standard.ToString();
+        }
+
+        /// <summary>Get the farm's asset name relative to the game's <c>Content/Maps</c> folder.</summary>
+        public string GetFarmMapAssetName()
+        {
+            // loaded
+            if (this.IsBasicInfoLoaded)
+                return Farm.getMapNameFromTypeInt(Game1.whichFarm);
+
+            // loading
+            if (this.IsParsed)
+            {
+                string farmId = SaveGame.loaded.whichFarm;
+
+                // standard type
+                if (Utility.TryParseEnum(farmId, out FarmType farmType) && farmType != FarmType.Custom)
+                    return Farm.getMapNameFromTypeInt((int)farmType);
+
+                // custom type
+                foreach (ModFarmType? entry in DataLoader.AdditionalFarms(Game1.content))
+                {
+                    if (entry?.Id == farmId)
+                        return entry.MapName;
+                }
+            }
+
+            // unknown/default type
+            return "Farm";
         }
 
         /// <summary>Get whether the community center is complete.</summary>

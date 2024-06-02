@@ -131,6 +131,9 @@ namespace ContentPatcher.Framework.Conditions
         /// <summary>The upgrade level for the main farmhouse.</summary>
         FarmhouseUpgrade,
 
+        /// <summary>The farm type's map asset path relative to the game's <c>Content/Maps</c> folder.</summary>
+        FarmMapAsset,
+
         /// <summary>The current farm name.</summary>
         FarmName,
 

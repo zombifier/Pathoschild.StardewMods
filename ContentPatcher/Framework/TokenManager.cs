@@ -245,6 +245,7 @@ namespace ContentPatcher.Framework
 
                 // world
                 new ConditionTypeValueProvider(ConditionType.FarmCave, () => save.GetFarmCaveType().ToString(), NeedsSave),
+                new FarmMapAssetValueProvider(save),
                 new ConditionTypeValueProvider(ConditionType.FarmName, save.GetFarmName, NeedsSave),
                 new ConditionTypeValueProvider(ConditionType.FarmType, () => save.GetFarmType(), NeedsSave),
                 new ConditionTypeValueProvider(ConditionType.IsCommunityCenterComplete, () => save.GetIsCommunityCenterComplete().ToString(), NeedsSave),
