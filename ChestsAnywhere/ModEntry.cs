@@ -39,7 +39,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere
         /// <summary>The menu instance for which the <see cref="CurrentOverlay"/> was created, if any.</summary>
         private readonly PerScreen<IClickableMenu> ForMenuInstance = new();
 
-        /// <summary>The overlay for the current menu which which lets the player navigate and edit chests (or <c>null</c> if not applicable).</summary>
+        /// <summary>The overlay for the current menu, which lets the player navigate and edit chests (or <c>null</c> if not applicable).</summary>
         private readonly PerScreen<IStorageOverlay?> CurrentOverlay = new();
 
 

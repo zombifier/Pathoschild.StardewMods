@@ -472,8 +472,14 @@ Whether the [current or specified player](#target-player) is outdoors. Possible 
 <td>
 
 The general world area recognized by the game containing the [current or specified
-player](#target-player). Possible values: `Island` (locations on [Ginger
-Island](https://stardewvalleywiki.com/Ginger_Island)) and `Valley` (anywhere else).
+player](#target-player).
+
+Possible values:
+
+* `Default` (in the valley);
+* `Desert` (in the [desert](https://stardewvalleywiki.com/Desert));
+* `Island` (on [Ginger Island](https://stardewvalleywiki.com/Ginger_Island));
+* or the ID of a custom context [in `Data/LocationContexts`](https://stardewvalleywiki.com/Modding:Migrate_to_Stardew_Valley_1.6#Custom_location_contexts).
 
 ℹ See _[update rate](../author-guide.md#update-rate)_ before using this token.
 
