@@ -69,7 +69,7 @@
     "config.casino-slots.tooltip": "How fast the casino slots turn. Default {{defaultValue}}x.",
 
     "config.fade.name": "Fade",
-    "config.fade.tooltip": "How fast the screen fade to black. Default {{defaultValue}}x.",
+    "config.fade.tooltip": "How fast the screen fades to black and fades back in. Default {{defaultValue}}x.",
 
     "config.fishing-treasure.name": "Fishing treasure chest",
     "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.",
