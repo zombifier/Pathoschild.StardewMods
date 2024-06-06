@@ -193,6 +193,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
+                    name: I18n.Config_Fade_Name,
+                    tooltip: () => I18n.Config_Fade_Tooltip(defaultValue: defaultConfig.FadeSpeed),
+                    get: config => config.FadeSpeed,
+                    set: (config, value) => config.FadeSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
                     name: I18n.Config_FishingTreasure_Name,
                     tooltip: () => I18n.Config_FishingTreasure_Tooltip(defaultValue: defaultConfig.FishingTreasureSpeed),
                     get: config => config.FishingTreasureSpeed,

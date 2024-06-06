@@ -71,6 +71,9 @@
     "config.event.name": "事件",
     "config.event.tooltip": "事件的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x.",
 
+    "config.fade.name": "淡入淡出",
+    "config.fade.tooltip": "屏幕淡入淡出黑色的速度。默认{{defaultValue}}x.",
+
     "config.fishing-treasure.name": "钓鱼宝箱",
     "config.fishing-treasure.tooltip": "钓鱼宝箱打开的速度。默认{{defaultValue}}x.",
 
