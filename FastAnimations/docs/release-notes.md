@@ -2,7 +2,9 @@
 
 # Release notes
 ## Upcoming release
+* Added support for dialogue box, event cutscene, tailoring, parrot express, and screen fade animations (thanks to weizinai!).
 * Fixed slingshot not firing when sped up in 'hold and release' mode.
+* Improved translations. Thanks to MakinDay (updated Italian)!
 
 ## 1.12.1
 Released 27 May 2024 for SMAPI 4.0.0 or later.

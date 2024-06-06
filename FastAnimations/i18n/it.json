@@ -71,8 +71,8 @@
     "config.event.name": "Event cutscene", // TODO
     "config.event.tooltip": "How fast event cutscenes play. Default {{defaultValue}}x, suggested {{suggestedValue}}x.", // TODO
 
-    "config.fade.name": "Fade",
-    "config.fade.tooltip": "How fast the screen fades to black and fades back in. Default {{defaultValue}}x.",
+    "config.fade.name": "Fade", // TODO
+    "config.fade.tooltip": "How fast the screen fades to black and fades back in. Default {{defaultValue}}x.", // TODO
 
     "config.fishing-treasure.name": "Pescare i forzieri del tesoro",
     "config.fishing-treasure.tooltip": "La velocità con cui apri i forzieri del tesoro pescati. Predefinito {{defaultValue}}x.",
