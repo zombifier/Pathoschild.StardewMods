@@ -68,8 +68,8 @@
     "config.casino-slots.name": "カジノスロット",
     "config.casino-slots.tooltip": "カジノスロットの回転速度。標準は{{defaultValue}}x。",
 
-    "config.event.name": "event", // TODO
-    "config.event.tooltip": "How fast the event runs. Default {{defaultValue}}x.", // TODO
+    "config.event.name": "Event cutscene", // TODO
+    "config.event.tooltip": "How fast event cutscenes play. Default {{defaultValue}}x, suggested {{suggestedValue}}x.", // TODO
 
     "config.fishing-treasure.name": "釣りの宝箱",
     "config.fishing-treasure.tooltip": "釣りの宝箱を開ける速さ。標準は{{defaultValue}}x。",

@@ -1,4 +1,4 @@
-﻿using Pathoschild.Stardew.FastAnimations.Framework;
+using Pathoschild.Stardew.FastAnimations.Framework;
 using StardewValley;
 
 namespace Pathoschild.Stardew.FastAnimations.Handlers
@@ -7,10 +7,12 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
     /// <remarks>See game logic in <see cref="Event.Update"/>.</remarks>
     internal class EventHandler : BaseAnimationHandler
     {
+        /*********
+        ** Public methods
+        *********/
         /// <inheritdoc />
-        public EventHandler(float multiplier) : base(multiplier)
-        {
-        }
+        public EventHandler(float multiplier)
+            : base(multiplier) { }
 
         /// <inheritdoc />
         public override bool IsEnabled(int playerAnimationID)

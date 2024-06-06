@@ -68,8 +68,8 @@
     "config.casino-slots.name": "Casino slots",
     "config.casino-slots.tooltip": "How fast the casino slots turn. Default {{defaultValue}}x.",
 
-    "config.event.name": "event",
-    "config.event.tooltip": "How fast the event runs. Default {{defaultValue}}x.",
+    "config.event.name": "Event cutscene",
+    "config.event.tooltip": "How fast event cutscenes play. Default {{defaultValue}}x, suggested {{suggestedValue}}x.",
 
     "config.fishing-treasure.name": "Fishing treasure chest",
     "config.fishing-treasure.tooltip": "How fast you open a fishing treasure chest. Default {{defaultValue}}x.",

@@ -186,7 +186,7 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                 )
                 .AddNumberField(
                     name: I18n.Config_Event_Name,
-                    tooltip: () => I18n.Config_Event_Tooltip(defaultValue: defaultConfig.EventSpeed),
+                    tooltip: () => I18n.Config_Event_Tooltip(defaultValue: defaultConfig.EventSpeed, suggestedValue: 4),
                     get: config => config.EventSpeed,
                     set: (config, value) => config.EventSpeed = value,
                     min: minSpeed,
