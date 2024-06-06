@@ -198,6 +198,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new OpenDialogueBoxHandler(config.OpenDialogueBoxSpeed);
             if (config.PamBusSpeed > 1)
                 yield return new PamBusHandler(config.PamBusSpeed);
+            if (config.ParrotExpressSpeed > 1)
+                yield return new ParrotExpressHandler(config.ParrotExpressSpeed);
             if (config.PrizeTicketMachineSpeed > 1)
                 yield return new PrizeTicketMachineHandler(config.PrizeTicketMachineSpeed, this.Helper.Reflection);
             if (config.TailorSpeed > 1)

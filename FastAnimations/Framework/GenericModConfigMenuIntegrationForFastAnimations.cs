@@ -233,6 +233,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
+                    name: I18n.Config_ParrotExpress_Name,
+                    tooltip: () => I18n.Config_ParrotExpress_Tooltip(defaultValue: defaultConfig.ParrotExpressSpeed),
+                    get: config => config.ParrotExpressSpeed,
+                    set: (config, value) => config.ParrotExpressSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
                     name: I18n.Config_PrizeTicketMachine_Name,
                     tooltip: () => I18n.Config_PrizeTicketMachine_Tooltip(defaultValue: defaultConfig.PrizeTicketMachineSpeed),
                     get: config => config.PrizeTicketMachineSpeed,

@@ -81,6 +81,9 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier when Pam's bus is driving to/from the desert.</summary>
         public float PamBusSpeed { get; set; } = 6;
 
+        /// <summary>The speed multiplier for the parrot express.</summary>
+        public float ParrotExpressSpeed { get; set; } = 4;
+
         /// <summary>The speed multiplier for Lewis' ticket prize machine.</summary>
         public float PrizeTicketMachineSpeed { get; set; } = 20;
 
