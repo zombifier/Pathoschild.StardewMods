@@ -76,7 +76,7 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         public float PrizeTicketMachineSpeed { get; set; } = 20;
 
         /// <summary>The speed multiplier for tailoring.</summary>
-        public float TailoringSpeed { get; set; } = 4;
+        public float TailorSpeed { get; set; } = 4;
 
         /// <summary>The speed multiplier for falling trees.</summary>
         public float TreeFallSpeed { get; set; } = 1;

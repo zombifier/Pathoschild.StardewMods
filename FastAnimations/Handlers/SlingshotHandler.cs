@@ -10,7 +10,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
     internal class SlingshotHandler : BaseAnimationHandler
     {
         /*********
-        ** Public methods
+        ** Fields
         *********/
         /// <summary>The <see cref="GameTime.TotalGameTime"/> in milliseconds when the handler started skipping the current animation.</summary>
         private int LastPullStartTime;

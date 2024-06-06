@@ -80,8 +80,8 @@
     "config.prize-ticket-machine.name": "賞品マシーン",
     "config.prize-ticket-machine.tooltip": "賞品マシーンの演出速度。標準は{{defaultValue}}x。",
 
-    "config.tailoring.name": "Tailoring", // TODO
-    "config.tailoring.tooltip": "How fast sewing machine work. Default {{defaultValue}}x.", // TODO
+    "config.tailor.name": "Tailor", // TODO
+    "config.tailor.tooltip": "How fast the sewing machine works. Default {{defaultValue}}x.", // TODO
 
     "config.tree-fall.name": "倒木",
     "config.tree-fall.tooltip": "切り倒した木が倒れる速さ。標準は{{defaultValue}}x、推奨は{{suggestedValue}}x。",

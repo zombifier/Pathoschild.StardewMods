@@ -217,10 +217,10 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     maxSpeed
                 )
                 .AddNumberField(
-                    name: I18n.Config_Tailoring_Name,
-                    tooltip: () => I18n.Config_Tailoring_Tooltip(defaultValue: defaultConfig.TailoringSpeed),
-                    get: config => config.TailoringSpeed,
-                    set: (config, value) => config.TailoringSpeed = value,
+                    name: I18n.Config_Tailor_Name,
+                    tooltip: () => I18n.Config_Tailor_Tooltip(defaultValue: defaultConfig.TailorSpeed),
+                    get: config => config.TailorSpeed,
+                    set: (config, value) => config.TailorSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
                 )
