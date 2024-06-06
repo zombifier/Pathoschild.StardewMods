@@ -187,7 +187,7 @@ namespace Pathoschild.Stardew.FastAnimations
             if (config.FishingTreasureSpeed > 1)
                 yield return new FishingTreasureHandler(config.FishingTreasureSpeed);
             if (config.ForgeSpeed > 1)
-                yield return new ForgeHandler(config.ForgeSpeed, this.Helper.Reflection);
+                yield return new ForgeHandler(config.ForgeSpeed);
             if (config.OpenChestSpeed > 1)
                 yield return new OpenChestHandler(config.OpenChestSpeed);
             if (config.PamBusSpeed > 1)
