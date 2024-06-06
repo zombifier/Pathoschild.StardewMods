@@ -80,6 +80,9 @@
     "config.prize-ticket-machine.name": "Prize ticket machine", // TODO
     "config.prize-ticket-machine.tooltip": "How fast Lewis' prize ticket machine accepts a ticket and produces an item. Default {{defaultValue}}x.", // TODO
 
+    "config.tailor.name": "Tailor", // TODO
+    "config.tailor.tooltip": "How fast the sewing machine works. Default {{defaultValue}}x.", // TODO
+
     "config.tree-fall.name": "ต้นไม้ล้มลงพื้น",
     "config.tree-fall.tooltip": "ต้องต้นไม้ล้มลงถึงพื้นเร็วแค่ไหนหลังจากที่คุณโค่นมันแล้ว ค่าเริ่มต้นคือ {{defaultValue}}x, ขอแนะนำ {{suggestedValue}}x",
 
