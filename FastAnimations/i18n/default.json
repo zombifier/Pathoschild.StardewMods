@@ -100,6 +100,9 @@
     ****/
     "config.ui-speeds": "UI Animation Speeds",
 
+    "config.dialogue-typing.name": "Dialogue typing",
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x",
+
     "config.title-menu.name": "Title menu transitions",
     "config.title-menu.tooltip": "How fast the title menu transitions between screens. Default {{defaultValue}}x.",
 

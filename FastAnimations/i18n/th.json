@@ -100,6 +100,9 @@
     ****/
     "config.ui-speeds": "ความเร็วของภาพเคลื่อนไหว UI",
 
+    "config.dialogue-typing.name": "Dialogue typing", // TODO
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
+
     "config.title-menu.name": "การเปลี่ยนเมนูชื่อเรื่อง",
     "config.title-menu.tooltip": "ความเร็วในการเปลี่ยนเมนูชื่อเรื่องระหว่างหน้าจอ ค่าเริ่มต้นคือ {{defaultValue}}x",
 

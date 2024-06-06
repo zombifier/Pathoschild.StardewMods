@@ -100,6 +100,9 @@
     ****/
     "config.ui-speeds": "Скорость анимации пользовательского интерфейса",
 
+    "config.dialogue-typing.name": "Dialogue typing", // TODO
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
+
     "config.title-menu.name": "Переходы в главном меню игры",
     "config.title-menu.tooltip": "Как быстро главное меню переключается между экранами. Значение по умолчанию {{defaultValue}}x.",
 

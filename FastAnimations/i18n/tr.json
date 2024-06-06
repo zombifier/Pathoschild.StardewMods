@@ -100,6 +100,9 @@
     ****/
     "config.ui-speeds": "Kullanıcı Arayüzü Animasyon Hızları",
 
+    "config.dialogue-typing.name": "Dialogue typing", // TODO
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
+
     "config.title-menu.name": "Başlık menüsü geçişleri",
     "config.title-menu.tooltip": "Başlık menüsünün ekranlar arasında ne kadar hızlı geçiş yaptığı. Varsayılan {{defaultValue}}x.",
 

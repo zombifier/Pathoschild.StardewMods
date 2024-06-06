@@ -93,6 +93,9 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /****
         ** UI animations
         ****/
+        /// <summary>The speed multiplier for the dialogue typing animation.</summary>
+        public float DialogueTypeSpeed { get; set; } = 4;
+
         /// <summary>The speed multiplier for title menu transitions.</summary>
         public float TitleMenuTransitionSpeed { get; set; } = 10;
 

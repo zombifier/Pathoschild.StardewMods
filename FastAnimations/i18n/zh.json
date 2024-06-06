@@ -100,6 +100,9 @@
     ****/
     "config.ui-speeds": "UI动画速度",
 
+    "config.dialogue-typing.name": "对话速度",
+    "config.dialogue-typing.tooltip": "对话的速度。默认{{defaultValue}}x",
+
     "config.title-menu.name": "标题菜单的转场效果",
     "config.title-menu.tooltip": "标题菜单的转场速度，即新建、加载存档时屏幕切换的速度。默认{{defaultValue}}x。",
 

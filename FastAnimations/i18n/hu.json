@@ -100,6 +100,9 @@
     ****/
     "config.ui-speeds": "Felhasználói Felület Animációinak Sebessége",
 
+    "config.dialogue-typing.name": "Dialogue typing", // TODO
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
+
     "config.title-menu.name": "Főmenü átmenetei",
     "config.title-menu.tooltip": "Milyen gyorsan vált a főmenü képernyők között. Alapból {{defaultValue}}x.",
 
