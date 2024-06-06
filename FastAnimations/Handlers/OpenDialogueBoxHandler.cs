@@ -1,4 +1,4 @@
-﻿using Pathoschild.Stardew.FastAnimations.Framework;
+using Pathoschild.Stardew.FastAnimations.Framework;
 using StardewValley;
 using StardewValley.Menus;
 
@@ -8,10 +8,12 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
     /// <remarks>See game logic in <see cref="DialogueBox.update"/>.</remarks>
     internal class OpenDialogueBoxHandler : BaseAnimationHandler
     {
+        /*********
+        ** Public methods
+        *********/
         /// <inheritdoc />
-        public OpenDialogueBoxHandler(float multiplier) : base(multiplier)
-        {
-        }
+        public OpenDialogueBoxHandler(float multiplier)
+            : base(multiplier) { }
 
         /// <inheritdoc />
         public override bool IsEnabled(int playerAnimationID)
