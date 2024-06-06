@@ -192,6 +192,8 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new ForgeHandler(config.ForgeSpeed);
             if (config.OpenChestSpeed > 1)
                 yield return new OpenChestHandler(config.OpenChestSpeed);
+            if (config.OpenDialogueBoxSpeed > 1)
+                yield return new OpenDialogueBoxHandler(config.OpenDialogueBoxSpeed);
             if (config.PamBusSpeed > 1)
                 yield return new PamBusHandler(config.PamBusSpeed);
             if (config.PrizeTicketMachineSpeed > 1)

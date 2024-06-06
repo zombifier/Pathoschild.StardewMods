@@ -80,6 +80,9 @@
     "config.open-chest.name": "宝箱打开",
     "config.open-chest.tooltip": "宝箱打开的速度。默认{{defaultValue}}x.",
 
+    "config.open-dialogue-box.name": "对话框打开",
+    "config.open-dialogue-box.tooltip": "对话框打开的速度。默认{{defaultValue}}x.",
+
     "config.prize-ticket-machine.name": "兑奖机",
     "config.prize-ticket-machine.tooltip": "兑奖机兑奖的速度。默认{{defaultValue}}x.",
 
