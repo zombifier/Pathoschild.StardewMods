@@ -1,23 +1,26 @@
-﻿using Pathoschild.Stardew.FastAnimations.Framework;
+using Pathoschild.Stardew.FastAnimations.Framework;
 using StardewValley;
 using StardewValley.Menus;
 
 namespace Pathoschild.Stardew.FastAnimations.Handlers
 {
-    /// <summary>Handles the dialogue-type animation.</summary>
+    /// <summary>Handles the dialogue-typing animation.</summary>
     /// <remarks>See game logic in <see cref="DialogueBox.update"/>.</remarks>
-    internal class TypeDialogueHandler : BaseAnimationHandler
+    internal class DialogueTypingHandler : BaseAnimationHandler
     {
+        /*********
+        ** Public methods
+        *********/
         /// <inheritdoc />
-        public TypeDialogueHandler(float multiplier) : base(multiplier)
-        {
-        }
+        public DialogueTypingHandler(float multiplier)
+            : base(multiplier) { }
 
         /// <inheritdoc />
         public override bool IsEnabled(int playerAnimationID)
         {
-            return Game1.activeClickableMenu is DialogueBox { transitioning: false } menu &&
-                   menu.characterIndexInDialogue < menu.getCurrentString().Length;
+            return
+                Game1.activeClickableMenu is DialogueBox { transitioning: false } menu
+                && menu.characterIndexInDialogue < menu.getCurrentString().Length;
         }
 
         /// <inheritdoc />

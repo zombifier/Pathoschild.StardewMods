@@ -196,12 +196,12 @@ namespace Pathoschild.Stardew.FastAnimations
                 yield return new PrizeTicketMachineHandler(config.PrizeTicketMachineSpeed, this.Helper.Reflection);
             if (config.TreeFallSpeed > 1)
                 yield return new TreeFallingHandler(config.TreeFallSpeed);
-            if (config.TypeDialogueSpeed > 1)
-                yield return new TypeDialogueHandler(config.TypeDialogueSpeed);
             if (config.WheelSpinSpeed > 1)
                 yield return new WheelSpinHandler(config.WheelSpinSpeed);
 
             // UI animations
+            if (config.DialogueTypeSpeed > 1)
+                yield return new DialogueTypingHandler(config.DialogueTypeSpeed);
             if (config.TitleMenuTransitionSpeed > 1)
                 yield return new TitleMenuHandler(config.TitleMenuTransitionSpeed);
             if (config.LoadGameBlinkSpeed > 1)

@@ -225,14 +225,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
-                    name: I18n.Config_TypeDialogue_Name,
-                    tooltip: () => I18n.Config_TypeDialogue_Tooltip(defaultValue: defaultConfig.TypeDialogueSpeed),
-                    get: config => config.TypeDialogueSpeed,
-                    set: (config, value) => config.TypeDialogueSpeed = value,
-                    min: minSpeed,
-                    max: maxSpeed
-                )
-                .AddNumberField(
                     name: I18n.Config_WheelSpin_Name,
                     tooltip: () => I18n.Config_WheelSpin_Tooltip(defaultValue: defaultConfig.WheelSpinSpeed),
                     get: config => config.WheelSpinSpeed,
@@ -242,6 +234,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                 )
 
                 .AddSectionTitle(I18n.Config_UiSpeeds)
+                .AddNumberField(
+                    name: I18n.Config_DialogueTyping_Name,
+                    tooltip: () => I18n.Config_DialogueTyping_Tooltip(defaultValue: defaultConfig.DialogueTypeSpeed),
+                    get: config => config.DialogueTypeSpeed,
+                    set: (config, value) => config.DialogueTypeSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
                 .AddNumberField(
                     name: I18n.Config_TitleMenu_Name,
                     tooltip: () => I18n.Config_TitleMenu_Tooltip(defaultValue: defaultConfig.TitleMenuTransitionSpeed),

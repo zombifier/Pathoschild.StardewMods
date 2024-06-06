@@ -83,9 +83,6 @@
     "config.tree-fall.name": "Tree falling",
     "config.tree-fall.tooltip": "How fast trees fall after you chop them down. Default {{defaultValue}}x, suggested {{suggestedValue}}x.",
 
-    "config.type-dialogue.name": "Type Dialogue",
-    "config.type-dialogue.tooltip": "How fast the box type dialogue. Default {{defaultValue}}x",
-
     "config.wheel-spin.name": "Wheel spin",
     "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.",
 
@@ -93,6 +90,9 @@
     ** 'UI Animation Speeds' section
     ****/
     "config.ui-speeds": "UI Animation Speeds",
+
+    "config.dialogue-typing.name": "Dialogue typing",
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x",
 
     "config.title-menu.name": "Title menu transitions",
     "config.title-menu.tooltip": "How fast the title menu transitions between screens. Default {{defaultValue}}x.",

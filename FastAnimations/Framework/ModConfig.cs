@@ -78,15 +78,15 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier for falling trees.</summary>
         public float TreeFallSpeed { get; set; } = 1;
 
-        /// <summary>The speed multiplier for typing dialogue.</summary>
-        public float TypeDialogueSpeed { get; set; } = 4;
-
         /// <summary>The speed multiplier for the Stardew Valley Fair wheel spin minigame.</summary>
         public float WheelSpinSpeed { get; set; } = 16;
 
         /****
         ** UI animations
         ****/
+        /// <summary>The speed multiplier for the dialogue typing animation.</summary>
+        public float DialogueTypeSpeed { get; set; } = 4;
+
         /// <summary>The speed multiplier for title menu transitions.</summary>
         public float TitleMenuTransitionSpeed { get; set; } = 10;
 

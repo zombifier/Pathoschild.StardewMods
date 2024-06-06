@@ -83,9 +83,6 @@
     "config.tree-fall.name": "ต้นไม้ล้มลงพื้น",
     "config.tree-fall.tooltip": "ต้องต้นไม้ล้มลงถึงพื้นเร็วแค่ไหนหลังจากที่คุณโค่นมันแล้ว ค่าเริ่มต้นคือ {{defaultValue}}x, ขอแนะนำ {{suggestedValue}}x",
 
-    "config.type-dialogue.name": "Type Dialogue", // TODO
-    "config.type-dialogue.tooltip": "How fast the box type dialogue. Default {{defaultValue}}x", // TODO
-
     "config.wheel-spin.name": "Wheel spin", // TODO
     "config.wheel-spin.tooltip": "How fast the Stardew Valley Fair wheel minigame spins. Default {{defaultValue}}x.", // TODO
 
@@ -93,6 +90,9 @@
     ** 'UI Animation Speeds' section
     ****/
     "config.ui-speeds": "ความเร็วของภาพเคลื่อนไหว UI",
+
+    "config.dialogue-typing.name": "Dialogue typing", // TODO
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
 
     "config.title-menu.name": "การเปลี่ยนเมนูชื่อเรื่อง",
     "config.title-menu.tooltip": "ความเร็วในการเปลี่ยนเมนูชื่อเรื่องระหว่างหน้าจอ ค่าเริ่มต้นคือ {{defaultValue}}x",

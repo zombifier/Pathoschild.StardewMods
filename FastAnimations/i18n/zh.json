@@ -83,9 +83,6 @@
     "config.tree-fall.name": "树倒下",
     "config.tree-fall.tooltip": "树被砍倒的速度。默认{{defaultValue}}x，建议{{suggestedValue}}x。",
 
-    "config.type-dialogue.name": "对话速度",
-    "config.type-dialogue.tooltip": "对话的速度。默认{{defaultValue}}x",
-
     "config.wheel-spin.name": "转轮盘",
     "config.wheel-spin.tooltip": "轮盘旋转的速度。默认{{defaultValue}}x.",
 
@@ -93,6 +90,9 @@
     ** 'UI Animation Speeds' section
     ****/
     "config.ui-speeds": "UI动画速度",
+
+    "config.dialogue-typing.name": "对话速度",
+    "config.dialogue-typing.tooltip": "对话的速度。默认{{defaultValue}}x",
 
     "config.title-menu.name": "标题菜单的转场效果",
     "config.title-menu.tooltip": "标题菜单的转场速度，即新建、加载存档时屏幕切换的速度。默认{{defaultValue}}x。",

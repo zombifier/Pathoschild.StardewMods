@@ -83,9 +83,6 @@
     "config.tree-fall.name": "倒木",
     "config.tree-fall.tooltip": "切り倒した木が倒れる速さ。標準は{{defaultValue}}x、推奨は{{suggestedValue}}x。",
 
-    "config.type-dialogue.name": "Type Dialogue", // TODO
-    "config.type-dialogue.tooltip": "How fast the box type dialogue. Default {{defaultValue}}x", // TODO
-
     "config.wheel-spin.name": "まつりのルーレット",
     "config.wheel-spin.tooltip": "スターデューバレーまつりのルーレットの演出速度。標準は{{defaultValue}}x。",
 
@@ -93,6 +90,9 @@
     ** 'UI Animation Speeds' section
     ****/
     "config.ui-speeds": "UIアニメーション速度",
+
+    "config.dialogue-typing.name": "Dialogue typing", // TODO
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
 
     "config.title-menu.name": "タイトルメニューの遷移",
     "config.title-menu.tooltip": "タイトルメニューの画面遷移の速さ。標準は{{defaultValue}}x。",

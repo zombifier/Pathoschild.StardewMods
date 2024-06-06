@@ -83,9 +83,6 @@
     "config.tree-fall.name": "Caduta degli alberi",
     "config.tree-fall.tooltip": "Velocità con cui gli alberi cadono dopo essere stati abbattuti. Predefinito {{defaultValue}}x, valore suggerito {{suggestedValue}}x.",
 
-    "config.type-dialogue.name": "Type Dialogue", // TODO
-    "config.type-dialogue.tooltip": "How fast the box type dialogue. Default {{defaultValue}}x", // TODO
-
     "config.wheel-spin.name": "Giro della ruota",
     "config.wheel-spin.tooltip": "La velocità con cui gira la ruota della Fiera di Stardew Valley. Predefinito {{defaultValue}}x.",
 
@@ -93,6 +90,9 @@
     ** 'UI Animation Speeds' section
     ****/
     "config.ui-speeds": "Velocità animazioni IU",
+
+    "config.dialogue-typing.name": "Dialogue typing", // TODO
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
 
     "config.title-menu.name": "Transizioni del menu principale",
     "config.title-menu.tooltip": "Velocità di transizione del menu principale tra le schermate. Predefinito {{defaultValue}}x.",
