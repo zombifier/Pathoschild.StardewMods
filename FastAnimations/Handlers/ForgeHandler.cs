@@ -13,9 +13,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         *********/
         /// <inheritdoc />
         public ForgeHandler(float multiplier)
-            : base(multiplier)
-        {
-        }
+            : base(multiplier) { }
 
         /// <inheritdoc />
         public override bool IsEnabled(int playerAnimationID)
