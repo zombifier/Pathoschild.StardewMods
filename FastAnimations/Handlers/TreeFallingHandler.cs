@@ -11,7 +11,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
 {
     /// <summary>Handles the falling-tree animation.</summary>
     /// <remarks>See game logic in <see cref="Tree.tickUpdate"/>.</remarks>
-    internal class TreeFallingHandler : BaseAnimationHandler
+    internal sealed class TreeFallingHandler : BaseAnimationHandler
     {
         /*********
         ** Fields
@@ -52,21 +52,26 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         }
 
         /// <inheritdoc />
-        public override bool IsEnabled(int playerAnimationID)
+        public override bool TryApply(int playerAnimationId)
         {
-            return
-                Context.IsWorldReady
-                && this.GetFallingTrees().Any();
-        }
+            bool applied = false;
 
-        /// <inheritdoc />
-        public override void Update(int playerAnimationID)
-        {
-            GameTime gameTime = Game1.currentGameTime;
+            if (Context.IsWorldReady)
+            {
+                GameTime gameTime = Game1.currentGameTime;
 
-            int skips = this.GetSkipsThisTick();
-            foreach (TerrainFeature tree in this.GetFallingTrees())
-                this.ApplySkips(skips, () => tree.tickUpdate(gameTime), until: () => tree.Location is null);
+                foreach (TerrainFeature tree in this.GetFallingTrees())
+                {
+                    applied |= this.ApplySkipsWhile(() =>
+                    {
+                        tree.tickUpdate(gameTime);
+
+                        return tree.Location is not null;
+                    });
+                }
+            }
+
+            return applied;
         }
 
 

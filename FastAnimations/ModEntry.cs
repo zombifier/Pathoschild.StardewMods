@@ -122,11 +122,8 @@ namespace Pathoschild.Stardew.FastAnimations
             int playerAnimationId = Game1.player.FarmerSprite.currentSingleAnimation;
             foreach (IAnimationHandler handler in this.Handlers)
             {
-                if (handler.IsEnabled(playerAnimationId))
-                {
-                    handler.Update(playerAnimationId);
+                if (handler.TryApply(playerAnimationId))
                     break;
-                }
             }
         }
 

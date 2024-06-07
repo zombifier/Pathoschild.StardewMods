@@ -6,7 +6,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
 {
     /// <summary>Handles the volcano forge animations.</summary>
     /// <remarks>See game logic in <see cref="ForgeMenu.receiveLeftClick"/>.</remarks>
-    internal class ForgeHandler : BaseAnimationHandler
+    internal sealed class ForgeHandler : BaseAnimationHandler
     {
         /*********
         ** Public methods
@@ -16,20 +16,17 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
             : base(multiplier) { }
 
         /// <inheritdoc />
-        public override bool IsEnabled(int playerAnimationID)
+        public override bool TryApply(int playerAnimationId)
         {
-            return Game1.activeClickableMenu is ForgeMenu menu && menu.IsBusy();
-        }
+            return
+                Game1.activeClickableMenu is ForgeMenu menu
+                && menu.IsBusy()
+                && this.ApplySkipsWhile(() =>
+                {
+                    menu.update(Game1.currentGameTime);
 
-        /// <inheritdoc />
-        public override void Update(int playerAnimationID)
-        {
-            ForgeMenu menu = (ForgeMenu)Game1.activeClickableMenu;
-
-            this.ApplySkips(
-                () => menu.update(Game1.currentGameTime),
-                () => !this.IsEnabled(playerAnimationID)
-            );
+                    return menu.IsBusy();
+                });
         }
     }
 }

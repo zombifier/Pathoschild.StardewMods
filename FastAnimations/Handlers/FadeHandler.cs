@@ -7,7 +7,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
 {
     /// <summary>Handles the screen fade-to-black and fade-in animations.</summary>
     /// <remarks>See game logic in <see cref="Game1._update"/>.</remarks>
-    internal class FadeHandler : BaseAnimationHandler
+    internal sealed class FadeHandler : BaseAnimationHandler
     {
         /*********
         ** Public methods
@@ -17,18 +17,16 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
             : base(multiplier) { }
 
         /// <inheritdoc />
-        public override bool IsEnabled(int playerAnimationID)
+        public override bool TryApply(int playerAnimationId)
         {
-            return Game1.fadeToBlack;
-        }
+            return
+                Game1.fadeToBlack
+                && this.ApplySkipsWhile(() =>
+                {
+                    this.UpdateFadeToBlack();
 
-        /// <inheritdoc />
-        public override void Update(int playerAnimationID)
-        {
-            this.ApplySkips(
-                this.UpdateFadeToBlack,
-                () => !this.IsEnabled(playerAnimationID)
-            );
+                    return Game1.fadeToBlack;
+                });
         }
 
 

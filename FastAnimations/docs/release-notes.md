@@ -4,6 +4,7 @@
 ## Upcoming release
 * Added support for dialogue box, event cutscene, tailoring, parrot express, and screen fade animations (thanks to weizinai!).
 * Fixed slingshot not firing when sped up in 'hold and release' mode.
+* Optimized performance a bit.
 * Improved translations. Thanks to MakinDay (updated Italian)!
 
 ## 1.12.1

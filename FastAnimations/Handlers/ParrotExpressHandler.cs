@@ -6,7 +6,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
 {
     /// <summary>Handles the parrot-express animation.</summary>
     /// <remarks>See game logic in <see cref="ParrotPlatform.Update"/>.</remarks>
-    internal class ParrotExpressHandler : BaseAnimationHandler
+    internal sealed class ParrotExpressHandler : BaseAnimationHandler
     {
         /*********
         ** Public methods
@@ -16,23 +16,30 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
             : base(multiplier) { }
 
         /// <inheritdoc />
-        public override bool IsEnabled(int playerAnimationID)
+        public override bool TryApply(int playerAnimationId)
         {
             ParrotPlatform? platform = ParrotPlatform.activePlatform;
+
             return
                 platform is not null
-                && platform.takeoffState > ParrotPlatform.TakeoffState.Idle;
+                && this.IsAnimating(platform)
+                && this.ApplySkipsWhile(() =>
+                {
+                    platform.Update(Game1.currentGameTime);
+
+                    return this.IsAnimating(platform);
+                });
         }
 
-        /// <inheritdoc />
-        public override void Update(int playerAnimationID)
-        {
-            ParrotPlatform platform = ParrotPlatform.activePlatform;
 
-            this.ApplySkips(
-                () => platform.Update(Game1.currentGameTime),
-                () => !this.IsEnabled(playerAnimationID)
-            );
+        /*********
+        ** Private methods
+        *********/
+        /// <summary>Get whether the target animation is playing.</summary>
+        /// <param name="platform">The parrot platform to check.</param>
+        private bool IsAnimating(ParrotPlatform platform)
+        {
+            return platform.takeoffState > ParrotPlatform.TakeoffState.Idle;
         }
     }
 }

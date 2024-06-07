@@ -6,7 +6,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
 {
     /// <summary>Handles the dialogue-typing animation.</summary>
     /// <remarks>See game logic in <see cref="DialogueBox.update"/>.</remarks>
-    internal class DialogueTypingHandler : BaseAnimationHandler
+    internal sealed class DialogueTypingHandler : BaseAnimationHandler
     {
         /*********
         ** Public methods
@@ -16,22 +16,17 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
             : base(multiplier) { }
 
         /// <inheritdoc />
-        public override bool IsEnabled(int playerAnimationID)
+        public override bool TryApply(int playerAnimationId)
         {
             return
                 Game1.activeClickableMenu is DialogueBox { transitioning: false } menu
-                && menu.characterIndexInDialogue < menu.getCurrentString().Length;
-        }
+                && menu.characterIndexInDialogue < menu.getCurrentString().Length
+                && this.ApplySkipsWhile(() =>
+                {
+                    menu.update(Game1.currentGameTime);
 
-        /// <inheritdoc />
-        public override void Update(int playerAnimationID)
-        {
-            DialogueBox menu = (DialogueBox)Game1.activeClickableMenu;
-
-            this.ApplySkips(
-                () => menu.update(Game1.currentGameTime),
-                () => !this.IsEnabled(playerAnimationID)
-            );
+                    return menu.characterIndexInDialogue < menu.getCurrentString().Length;
+                });
         }
     }
 }
