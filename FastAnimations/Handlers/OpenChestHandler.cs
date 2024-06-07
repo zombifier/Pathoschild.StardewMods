@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Pathoschild.Stardew.FastAnimations.Framework;
+using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Objects;
@@ -23,7 +24,11 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         *********/
         /// <inheritdoc />
         public OpenChestHandler(float multiplier)
-            : base(multiplier) { }
+            : base(multiplier)
+        {
+            if (Context.IsWorldReady)
+                this.UpdateChestCache(Game1.currentLocation);
+        }
 
         /// <inheritdoc />
         public override bool TryApply(int playerAnimationId)

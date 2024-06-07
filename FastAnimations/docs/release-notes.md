@@ -4,7 +4,8 @@
 ## Upcoming release
 * Added support for dialogue box, event cutscene, tailoring, parrot express, and screen fade animations (thanks to weizinai!).
 * Fixed slingshot not firing when sped up in 'hold and release' mode.
-* Fixed slingshot option ignored if tool swing option is enabled.
+* Fixed _use slingshot_ ignored if _swing tool_ is enabled.
+* Fixed issue where enabling _tree falling_ or _open chest_ in-game would only affect the current location when you left and re-entered it.
 * Optimized performance a bit.
 * Improved translations. Thanks to MakinDay (updated Italian)!
 
