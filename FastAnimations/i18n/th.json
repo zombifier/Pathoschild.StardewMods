@@ -83,9 +83,6 @@
     "config.open-chest.name": "Open chest", // TODO
     "config.open-chest.tooltip": "How fast you open chests. Default {{defaultValue}}x.", // TODO
 
-    "config.open-dialogue-box.name": "Open dialogue box", // TODO
-    "config.open-dialogue-box.tooltip": "How fast dialogue boxes open. Default {{defaultValue}}x.", // TODO
-
     "config.parrot-express.name": "Parrot express", // TODO
     "config.parrot-express.tooltip": "How fast the parrot express runs. Default {{defaultValue}}x.", // TODO
 
@@ -108,6 +105,9 @@
 
     "config.dialogue-typing.name": "Dialogue typing", // TODO
     "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
+
+    "config.open-dialogue-box.name": "Open dialogue box", // TODO
+    "config.open-dialogue-box.tooltip": "How fast dialogue boxes open. Default {{defaultValue}}x.", // TODO
 
     "config.title-menu.name": "การเปลี่ยนเมนูชื่อเรื่อง",
     "config.title-menu.tooltip": "ความเร็วในการเปลี่ยนเมนูชื่อเรื่องระหว่างหน้าจอ ค่าเริ่มต้นคือ {{defaultValue}}x",

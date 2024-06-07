@@ -225,14 +225,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
-                    name: I18n.Config_OpenDialogueBox_Name,
-                    tooltip: () => I18n.Config_OpenDialogueBox_Tooltip(defaultValue: defaultConfig.OpenDialogueBoxSpeed),
-                    get: config => config.OpenDialogueBoxSpeed,
-                    set: (config, value) => config.OpenDialogueBoxSpeed = value,
-                    min: minSpeed,
-                    max: maxSpeed
-                )
-                .AddNumberField(
                     name: I18n.Config_ParrotExpress_Name,
                     tooltip: () => I18n.Config_ParrotExpress_Tooltip(defaultValue: defaultConfig.ParrotExpressSpeed),
                     get: config => config.ParrotExpressSpeed,
@@ -279,6 +271,14 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     tooltip: () => I18n.Config_DialogueTyping_Tooltip(defaultValue: defaultConfig.DialogueTypeSpeed),
                     get: config => config.DialogueTypeSpeed,
                     set: (config, value) => config.DialogueTypeSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+                .AddNumberField(
+                    name: I18n.Config_OpenDialogueBox_Name,
+                    tooltip: () => I18n.Config_OpenDialogueBox_Tooltip(defaultValue: defaultConfig.OpenDialogueBoxSpeed),
+                    get: config => config.OpenDialogueBoxSpeed,
+                    set: (config, value) => config.OpenDialogueBoxSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
                 )
