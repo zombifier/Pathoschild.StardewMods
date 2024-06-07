@@ -1,3 +1,4 @@
+using System;
 using Pathoschild.Stardew.FastAnimations.Framework;
 using StardewValley;
 
@@ -22,7 +23,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
                 && this.ApplySkipsWhile(
                 () =>
                 {
-                    if (Game1.CurrentEvent.GetCurrentCommand().StartsWith("pause"))
+                    if (Game1.CurrentEvent.GetCurrentCommand()?.StartsWith(nameof(Event.DefaultCommands.Pause), StringComparison.OrdinalIgnoreCase) is true)
                         Game1.updatePause(Game1.currentGameTime);
                     else
                         Game1.CurrentEvent.Update(Game1.currentLocation, Game1.currentGameTime);
