@@ -39,7 +39,11 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         /// <summary>Get whether the handler should be applied now.</summary>
         private bool ShouldApply()
         {
-            return Game1.eventUp && !Game1.isFestival() && !Game1.fadeToBlack;
+            return
+                Game1.eventUp
+                && !Game1.isFestival()
+                && !Game1.fadeToBlack
+                && !string.Equals(ArgUtility.Get(Game1.CurrentEvent.eventCommands, 3), $"{nameof(Event.DefaultCommands.PlayerControl)} parrotRide", StringComparison.OrdinalIgnoreCase); // handled by ParrotExpressHandler
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
                 && tool is not null
                 && (
                     (tool as MeleeWeapon)?.isScythe() is true
-                    || tool is not (FishingRod or MeleeWeapon)
+                    || tool is not (FishingRod or MeleeWeapon or Slingshot)
                 )
                 && this.SpeedUpPlayer(until: () => !player.UsingTool);
         }
