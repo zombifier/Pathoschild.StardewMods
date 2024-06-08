@@ -4,6 +4,7 @@
 ## Upcoming release
 * Raw conditions and context tags are now formatted like _context tag "tag"_ and _query "query"_ to reduce confusion.
 * Fixed search UI not listing dried items, pickled forage, smoked fish, and specific bait.
+* Fixed search UI error if a custom pet type has no display name.
 * Improved translations. Thanks to DARKS0UND (updated Korean), MakinDay (updated Italian), mehmetgorkemarslan (updated Turkish), mezen (updated German), and weizinai (updated Chinese)!
 
 ## 1.44.0

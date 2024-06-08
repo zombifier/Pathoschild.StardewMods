@@ -441,7 +441,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
 
                 case SubjectType.Pet when npc is Pet pet && Pet.TryGetData(pet.petType.Value, out PetData petData):
                     {
-                        string typeName = TokenParser.ParseText(petData.DisplayName);
+                        string typeName = TokenParser.ParseText(petData.DisplayName) ?? pet.petType.Value;
                         if (typeName.Length > 1)
                             typeName = char.ToUpperInvariant(typeName[0]) + typeName.Substring(1);
                         return typeName;
