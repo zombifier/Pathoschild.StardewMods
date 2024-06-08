@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using ContentPatcher.Framework.Conditions;
@@ -30,7 +29,7 @@ namespace ContentPatcher.Framework.Commands
         /// <param name="state">Diagnostic info about the patch.</param>
         public PatchBaseInfo(Condition[]? parsedConditions, bool matchesContext, IContextualState state)
         {
-            this.ParsedConditions = parsedConditions ?? Array.Empty<Condition>();
+            this.ParsedConditions = parsedConditions ?? [];
             this.MatchesContext = matchesContext;
             this.State = state;
         }

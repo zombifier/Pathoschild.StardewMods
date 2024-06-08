@@ -4,6 +4,7 @@
 ## Upcoming release
 * Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.
   _This avoids errors due to breaking changes in earlier 1.6 patches._
+* Internal refactoring.
 * Improved translations. Thanks to mehmetgorkemarslan (updated Turkish)!
 
 ## 2.2.2

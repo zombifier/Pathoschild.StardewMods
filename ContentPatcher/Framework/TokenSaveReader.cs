@@ -121,7 +121,7 @@ namespace ContentPatcher.Framework
                 if (this.IsParsed)
                     return new[] { SaveGame.loaded.player }.Concat(SaveGame.loaded.farmhands);
 
-                return Array.Empty<Farmer>();
+                return [];
             });
         }
 
@@ -376,11 +376,11 @@ namespace ContentPatcher.Framework
             // get world state IDs
             IEnumerable<string> worldStateIds;
             if (this.IsBasicInfoLoaded)
-                worldStateIds = Game1.worldStateIDs ?? Enumerable.Empty<string>();
+                worldStateIds = Game1.worldStateIDs ?? [];
             else if (this.IsParsed)
-                worldStateIds = SaveGame.loaded.worldStateIDs ?? Enumerable.Empty<string>();
+                worldStateIds = SaveGame.loaded.worldStateIDs ?? [];
             else
-                worldStateIds = Enumerable.Empty<string>();
+                worldStateIds = [];
 
             // get flags
             return player
@@ -449,7 +449,7 @@ namespace ContentPatcher.Framework
                 (this.GetLocationFromName(player.homeLocation.Value) as FarmHouse)?.getChildren()
             );
             if (children == null)
-                return Enumerable.Empty<string>();
+                return [];
 
             // get values
             Func<Child, string> filter = type switch
@@ -679,7 +679,7 @@ namespace ContentPatcher.Framework
                         );
                 }
 
-                return Enumerable.Empty<GameLocation>();
+                return [];
             });
         }
 

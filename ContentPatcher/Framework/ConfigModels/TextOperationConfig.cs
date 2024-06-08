@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -52,7 +51,7 @@ namespace ContentPatcher.Framework.ConfigModels
         public TextOperationConfig(string? operation, string?[]? target, string? value, string? delimiter, string? search, string? replaceMode)
         {
             this.Operation = operation;
-            this.Target = target ?? Array.Empty<string>();
+            this.Target = target ?? [];
             this.Value = value;
             this.Delimiter = delimiter;
             this.Search = search;

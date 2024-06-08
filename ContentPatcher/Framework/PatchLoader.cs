@@ -87,7 +87,7 @@ namespace ContentPatcher.Framework
             // preprocess patches
             PatchConfig[] patches = this.SplitPatches(rawPatches).ToArray();
             if (!patches.Any())
-                return Array.Empty<IPatch>();
+                return [];
             this.UniquelyNamePatches(patches);
 
             // apply patch-list migrations
@@ -95,7 +95,7 @@ namespace ContentPatcher.Framework
             if (!contentPack.Migrator.TryMigrate(ref patches, out string? error))
             {
                 this.Monitor.Log($"Ignored {path}: {error}", LogLevel.Warn);
-                return Array.Empty<IPatch>();
+                return [];
             }
 
             // load patches
@@ -142,7 +142,7 @@ namespace ContentPatcher.Framework
             if (raw == null || !raw.Any())
             {
                 immutableRequiredModIDs = InvariantSets.Empty;
-                conditions = Array.Empty<Condition>();
+                conditions = [];
                 error = null;
                 return true;
             }
@@ -155,7 +155,7 @@ namespace ContentPatcher.Framework
                 if (!this.TryParseCondition(key, value, tokenParser, path.With(key), out Condition? condition, ref requiredModIds, out error))
                 {
                     immutableRequiredModIDs = InvariantSets.Empty;
-                    conditions = Array.Empty<Condition>();
+                    conditions = [];
                     return false;
                 }
 

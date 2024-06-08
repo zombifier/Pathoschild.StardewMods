@@ -602,7 +602,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             if (ItemRegistry.QualifyItemId(dirt.fertilizer.Value) != null)
                 return new[] { dirt.fertilizer.Value };
 
-            return Enumerable.Empty<string>();
+            return [];
         }
 
         /// <summary>Get the custom fields for machine output.</summary>

@@ -52,7 +52,7 @@ namespace Pathoschild.Stardew.Automate.Framework
         {
             return this.Entities.TryGetValue(tile, out object[]? entities)
                 ? entities
-                : Array.Empty<object>();
+                : [];
         }
 
 

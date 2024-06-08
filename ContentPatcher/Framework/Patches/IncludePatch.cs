@@ -160,7 +160,7 @@ namespace ContentPatcher.Framework.Patches
         /// <inheritdoc />
         public override IEnumerable<string> GetChangeLabels()
         {
-            return Array.Empty<string>();
+            return [];
         }
 
 

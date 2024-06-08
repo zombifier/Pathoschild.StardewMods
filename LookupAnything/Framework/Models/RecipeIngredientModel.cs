@@ -1,4 +1,3 @@
-using System;
 using StardewValley;
 using SObject = StardewValley.Object;
 
@@ -38,7 +37,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         public RecipeIngredientModel(string? inputId, int count, string[]? inputContextTags = null, SObject.PreserveType? preserveType = null, string? preservedItemId = null)
         {
             this.InputId = inputId;
-            this.InputContextTags = inputContextTags ?? Array.Empty<string>();
+            this.InputContextTags = inputContextTags ?? [];
             this.Count = count;
             this.PreserveType = preserveType;
             this.PreservedItemId = preservedItemId;

@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Pathoschild.Stardew.DataLayers.Framework;
 using StardewModdingAPI.Utilities;
@@ -31,7 +30,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         public KeybindList ShortcutKey { get; }
 
         /// <inheritdoc />
-        public LegendEntry[] Legend { get; protected set; } = Array.Empty<LegendEntry>();
+        public LegendEntry[] Legend { get; protected set; } = [];
 
         /// <inheritdoc />
         public bool AlwaysShowGrid { get; protected set; }

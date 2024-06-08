@@ -267,7 +267,7 @@ namespace Pathoschild.Stardew.LookupAnything
         public IEnumerable<GiftTasteModel> GetGiftTastes(NPC npc)
         {
             if (!this.IsSocialVillager(npc))
-                return Array.Empty<GiftTasteModel>();
+                return [];
 
             return
                 (
@@ -376,7 +376,7 @@ namespace Pathoschild.Stardew.LookupAnything
         {
             // ignore invalid ingredients
             if (item.TypeDefinitionId != ItemRegistry.type_object)
-                return Enumerable.Empty<RecipeModel>();
+                return [];
 
             // from cached recipes
             List<RecipeModel> recipes = this.GetRecipes()
@@ -421,7 +421,7 @@ namespace Pathoschild.Stardew.LookupAnything
         public IEnumerable<RecipeModel> GetRecipesForMachine(SObject? machine)
         {
             if (machine == null)
-                return Enumerable.Empty<RecipeModel>();
+                return [];
 
             // from cached recipes
             return this.GetRecipes()
@@ -434,7 +434,7 @@ namespace Pathoschild.Stardew.LookupAnything
         public IEnumerable<RecipeModel> GetRecipesForBuilding(Building? building)
         {
             if (building == null)
-                return Array.Empty<RecipeModel>();
+                return [];
 
             // from cached recipes
             return this.GetRecipes()
@@ -736,7 +736,7 @@ namespace Pathoschild.Stardew.LookupAnything
                 {
                     return contextLookupCache.TryGetValue(contextTags[0], out Item[]? items)
                         ? items
-                        : Array.Empty<Item>();
+                        : [];
                 }
 
                 // complex lookup

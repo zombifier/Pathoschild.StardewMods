@@ -35,7 +35,7 @@ namespace Pathoschild.Stardew.DataLayers
         private ColorScheme Colors = null!; // loaded in Entry
 
         /// <summary>The available data layers.</summary>
-        private ILayer[] Layers = Array.Empty<ILayer>();
+        private ILayer[] Layers = [];
 
         /// <summary>Maps key bindings to the layers they should activate.</summary>
         private readonly IDictionary<KeybindList, ILayer> ShortcutMap = new Dictionary<KeybindList, ILayer>();
@@ -165,7 +165,7 @@ namespace Pathoschild.Stardew.DataLayers
         {
             this.CurrentOverlay.Value?.Dispose();
             this.CurrentOverlay.Value = null;
-            this.Layers = Array.Empty<ILayer>();
+            this.Layers = [];
         }
 
         /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>

@@ -145,7 +145,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                     (
                         from token in tokenManager.GetTokens(enforceContext: false).OrderByHuman(p => p.Name)
                         let inputArgs = token.GetAllowedInputArguments()
-                        let rootValues = !token.RequiresInput ? this.GetValues(token, InputArguments.Empty, sort).ToArray() : Array.Empty<string>()
+                        let rootValues = !token.RequiresInput ? this.GetValues(token, InputArguments.Empty, sort).ToArray() : []
                         let isMultiValue =
                             inputArgs?.Count > 1
                             || rootValues.Length > 1
@@ -282,7 +282,7 @@ namespace ContentPatcher.Framework.Commands.Commands
 
                                 // get input arguments
                                 let validInputs = token.IsReady && token.RequiresInput
-                                    ? token.GetAllowedInputArguments()?.Select(p => new LiteralString(p, path.With(patchGroup.Key, token.Name, $"input '{p}'"))).AsEnumerable<ITokenString?>() ?? Array.Empty<ITokenString?>()
+                                    ? token.GetAllowedInputArguments()?.Select(p => new LiteralString(p, path.With(patchGroup.Key, token.Name, $"input '{p}'"))).AsEnumerable<ITokenString?>() ?? []
                                     : new ITokenString?[] { null }
                                 from ITokenString input in validInputs
 
@@ -292,7 +292,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                                 let result = new
                                 {
                                     Name = token.RequiresInput ? $"{token.Name}:{input}" : token.Name,
-                                    Values = token.IsReady ? this.GetValues(token, input != null ? new InputArguments(input) : InputArguments.Empty, sort).ToArray() : Array.Empty<string>(),
+                                    Values = token.IsReady ? this.GetValues(token, input != null ? new InputArguments(input) : InputArguments.Empty, sort).ToArray() : [],
                                     token.IsReady
                                 }
                                 orderby result.Name
@@ -486,7 +486,7 @@ namespace ContentPatcher.Framework.Commands.Commands
         private IEnumerable<string> GetValues(IToken token, IInputArguments input, bool sort)
         {
             if (!token.IsReady)
-                return Array.Empty<string>();
+                return [];
 
             IEnumerable<string> values = token.GetValues(input);
 

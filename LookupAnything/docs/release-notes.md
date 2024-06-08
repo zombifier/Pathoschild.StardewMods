@@ -7,6 +7,7 @@
 * Fixed search UI error if a custom pet type has no display name.
 * Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.
   _This avoids errors due to breaking changes in earlier 1.6 patches._
+* Internal refactoring.
 * Improved translations. Thanks to DARKS0UND (updated Korean), MakinDay (updated Italian), mehmetgorkemarslan (updated Turkish), mezen (updated German), and weizinai (updated Chinese)!
 
 ## 1.44.0

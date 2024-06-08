@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -59,7 +58,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
         {
             if (!location.IsBuildableLocation())
-                return Array.Empty<TileGroup>();
+                return [];
 
             // get Junimo huts
             Rectangle searchArea = visibleArea;

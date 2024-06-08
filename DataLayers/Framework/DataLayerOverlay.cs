@@ -52,13 +52,13 @@ namespace Pathoschild.Stardew.DataLayers.Framework
         private readonly bool CombineOverlappingBorders;
 
         /// <summary>An empty set of tiles.</summary>
-        private readonly Vector2[] EmptyTiles = Array.Empty<Vector2>();
+        private readonly Vector2[] EmptyTiles = [];
 
         /// <summary>An empty set of tile groups.</summary>
-        private readonly TileGroup[] EmptyTileGroups = Array.Empty<TileGroup>();
+        private readonly TileGroup[] EmptyTileGroups = [];
 
         /// <summary>The visible tiles.</summary>
-        private Vector2[] VisibleTiles = Array.Empty<Vector2>();
+        private Vector2[] VisibleTiles = [];
 
         /// <summary>The tile layer data to render.</summary>
         private TileGroup[] TileGroups;

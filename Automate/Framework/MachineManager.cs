@@ -28,10 +28,10 @@ namespace Pathoschild.Stardew.Automate.Framework
         private readonly Dictionary<string, MachineDataForLocation> MachineData = new();
 
         /// <summary>The cached machines to process.</summary>
-        private IMachineGroup[] ActiveMachineGroups = Array.Empty<IMachineGroup>();
+        private IMachineGroup[] ActiveMachineGroups = [];
 
         /// <summary>The cached disabled machine groups (e.g. machines not connected to a chest).</summary>
-        private IMachineGroup[] DisabledMachineGroups = Array.Empty<IMachineGroup>();
+        private IMachineGroup[] DisabledMachineGroups = [];
 
         /// <summary>The locations that should be removed on the next update tick.</summary>
         private readonly HashSet<GameLocation> RemoveQueue = new(new GameLocationNameComparer());
@@ -139,8 +139,8 @@ namespace Pathoschild.Stardew.Automate.Framework
         public void Clear()
         {
             this.MachineData.Clear();
-            this.ActiveMachineGroups = Array.Empty<IMachineGroup>();
-            this.DisabledMachineGroups = Array.Empty<IMachineGroup>();
+            this.ActiveMachineGroups = [];
+            this.DisabledMachineGroups = [];
             this.JunimoMachineGroup.Clear();
         }
 

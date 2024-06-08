@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -60,7 +59,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
             // get harvested item
             SObject harvestedObj = player.mostRecentlyGrabbedItem as SObject ?? player.ActiveObject;
             if (harvestedObj is null)
-                return Array.Empty<TemporaryAnimatedSprite>();
+                return [];
 
             // get source rectangles
             ParsedItemData data = ItemRegistry.GetDataOrErrorItem(harvestedObj.QualifiedItemId);

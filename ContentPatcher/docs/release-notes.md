@@ -17,6 +17,7 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
   _This was temporarily disabled for older content packs in 2.1.1 so affected content packs could be updated._
 * Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.
   _This avoids errors due to breaking changes in earlier 1.6 patches._
+* Internal refactoring.
 * Fixed the `HavingChild` and `Pregnant` tokens not accounting for the new `SpouseAdopts` field in `Data/Characters`.
 
 ## 2.1.2

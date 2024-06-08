@@ -157,7 +157,7 @@ namespace ContentPatcher.Framework.Lexing
         public IEnumerable<string> SplitLexically(string? str, string delimiter = ",", bool ignoreEmpty = true, bool trim = true)
         {
             if (str == null)
-                return Enumerable.Empty<string>();
+                return [];
 
             static IEnumerable<string> RawSplit(Lexer lexer, string str, string delimiter)
             {

@@ -237,7 +237,7 @@ namespace ContentPatcher.Framework.Locations
             // read values
             string? name = config?.Name?.Trim();
             string? fromMapFile = config?.FromMapFile?.Trim();
-            string[] migrateLegacyNames = config?.MigrateLegacyNames.Select(p => p?.Trim()!).Where(p => !string.IsNullOrWhiteSpace(p)).ToArray() ?? Array.Empty<string>();
+            string[] migrateLegacyNames = config?.MigrateLegacyNames.Select(p => p?.Trim()!).Where(p => !string.IsNullOrWhiteSpace(p)).ToArray() ?? [];
             parsed = null;
 
             // validate name

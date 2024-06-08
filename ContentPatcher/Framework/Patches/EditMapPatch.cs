@@ -102,10 +102,10 @@ namespace ContentPatcher.Framework.Patches
             this.FromArea = fromArea;
             this.ToArea = toArea;
             this.PatchMode = patchMode;
-            this.MapProperties = mapProperties?.ToArray() ?? Array.Empty<EditMapPatchProperty>();
-            this.MapTiles = mapTiles?.ToArray() ?? Array.Empty<EditMapPatchTile>();
-            this.AddWarps = addWarps?.Reverse().ToArray() ?? Array.Empty<IManagedTokenString>(); // reversing the warps allows later ones to 'overwrite' earlier ones, since the game checks them in the listed order
-            this.TextOperations = textOperations?.ToArray() ?? Array.Empty<ITextOperation>();
+            this.MapProperties = mapProperties?.ToArray() ?? [];
+            this.MapTiles = mapTiles?.ToArray() ?? [];
+            this.AddWarps = addWarps?.Reverse().ToArray() ?? []; // reversing the warps allows later ones to 'overwrite' earlier ones, since the game checks them in the listed order
+            this.TextOperations = textOperations?.ToArray() ?? [];
             this.Monitor = monitor;
 
             this.Contextuals

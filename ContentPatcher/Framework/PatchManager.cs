@@ -99,7 +99,7 @@ namespace ContentPatcher.Framework
         {
             LoadPatch[] loaders = !ignoreLoadPatches
                 ? this.GetCurrentLoaders(e).ToArray()
-                : Array.Empty<LoadPatch>();
+                : [];
 
             IPatch[] editors = this.GetCurrentEditors(e).ToArray();
 
@@ -383,7 +383,7 @@ namespace ContentPatcher.Framework
         {
             if (this.PatchesByCurrentTarget.TryGetValue(assetName, out SortedSet<IPatch>? patches))
                 return patches;
-            return Array.Empty<IPatch>();
+            return [];
         }
 
         /// <summary>Get all valid patches grouped by their current target value.</summary>
@@ -434,7 +434,7 @@ namespace ContentPatcher.Framework
         {
             PatchType? patchType = this.GetEditType(request.DataType);
             if (patchType == null)
-                return Array.Empty<IPatch>();
+                return [];
 
             return this
                 .GetPatches(request.NameWithoutLocale)

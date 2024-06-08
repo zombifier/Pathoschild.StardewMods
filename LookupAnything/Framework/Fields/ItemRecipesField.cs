@@ -223,7 +223,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                             name: recipe.Key,
                             type: recipe.DisplayType,
                             isKnown: recipe.IsKnown(),
-                            inputs: Array.Empty<RecipeItemEntry>(),
+                            inputs: [],
                             output: this.CreateItemEntry(
                                 name: I18n.Item_RecipesForMachine_TooComplex(),
                                 item: outputItem,

@@ -134,7 +134,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
                     _ when this.IsGourmand => this.GetDataForGourmand(),
                     _ => this.GetDataForVillager(npc)
                 },
-                _ => Enumerable.Empty<ICustomField>()
+                _ => []
             };
         }
 
@@ -539,7 +539,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             ItemDropData[]? possibleDrops = this.GameHelper.GetMonsterData().FirstOrDefault(p => p.Name == monster.Name)?.Drops;
             if (this.IsHauntedSkull)
                 possibleDrops ??= this.GameHelper.GetMonsterData().FirstOrDefault(p => p.Name == "Lava Bat")?.Drops; // haunted skulls use lava bat data
-            possibleDrops ??= Array.Empty<ItemDropData>();
+            possibleDrops ??= [];
 
             // get actual drops
             IDictionary<string, List<ItemDropData>> dropsLeft = monster

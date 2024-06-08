@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -65,7 +64,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers
                 .Select(type =>
                 {
                     if (!tiles.TryGetValue(type.Id, out TileData[]? groupTiles))
-                        groupTiles = Array.Empty<TileData>();
+                        groupTiles = [];
 
                     return new TileGroup(groupTiles, outerBorderColor: type.Color);
                 })

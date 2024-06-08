@@ -103,7 +103,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
             this.DisplayType = displayType;
             this.Ingredients = ingredients.ToArray();
             this.MachineId = machineId;
-            this.ExceptIngredients = exceptIngredients?.ToArray() ?? Array.Empty<RecipeIngredientModel>();
+            this.ExceptIngredients = exceptIngredients?.ToArray() ?? [];
             this.Item = item;
             this.IsKnown = isKnown;
             this.OutputQualifiedItemId = outputQualifiedItemId;
@@ -111,7 +111,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
             this.MaxOutput = maxOutput!.Value;
             this.OutputChance = outputChance is > 0 and < 100 ? outputChance.Value : 100;
             this.Quality = quality;
-            this.Conditions = conditions ?? Array.Empty<string>();
+            this.Conditions = conditions ?? [];
         }
 
         /// <summary>Construct an instance.</summary>
@@ -190,7 +190,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
                     .ToArray();
             }
             else
-                return Array.Empty<RecipeIngredientModel>();
+                return [];
         }
 
         /// <summary>Get whether this recipe is for the given building.</summary>
