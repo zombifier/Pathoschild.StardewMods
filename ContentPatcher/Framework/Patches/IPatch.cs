@@ -3,7 +3,6 @@ using ContentPatcher.Framework.Conditions;
 using ContentPatcher.Framework.Migrations;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewValley;
 
 namespace ContentPatcher.Framework.Patches
 {
