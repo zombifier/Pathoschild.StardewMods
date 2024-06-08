@@ -4,7 +4,7 @@
 ## Upcoming release
 * Raw conditions and context tags are now formatted like _context tag "tag"_ and _query "query"_ to reduce confusion.
 * Fixed search UI not listing dried items, pickled forage, smoked fish, and specific bait.
-* Improved translations. Thanks to DARKS0UND (updated Korean), MakinDay (updated Italian), mezen (updated German), and weizinai (updated Chinese)!
+* Improved translations. Thanks to DARKS0UND (updated Korean), MakinDay (updated Italian), mehmetgorkemarslan (updated Turkish), mezen (updated German), and weizinai (updated Chinese)!
 
 ## 1.44.0
 Released 27 May 2024 for SMAPI 4.0.0 or later.

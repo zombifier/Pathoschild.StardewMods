@@ -51,4 +51,5 @@
 
     // special settings for individual machines
     "config.machines.wild-tree.collect-moss.name": "Yosunları Topla",
-    "config.machines.wild-tree.collect-moss.desc": "Yosunların toplanıp toplanmayacağı. Örneğin, ağaçlardaki yosunu toplamamak Mantar Kütüğü tarafından üretilecek mantarların kalitesini arttırır."}
+    "config.machines.wild-tree.collect-moss.desc": "Yosunların toplanıp toplanmayacağı. Örneğin, ağaçlardaki yosunu toplamamak Mantar Kütüğü tarafından üretilecek mantarların kalitesini arttırır."
+}

@@ -7,7 +7,7 @@
 * Fixed _use slingshot_ ignored if _swing tool_ is enabled.
 * Fixed issue where enabling _tree falling_ or _open chest_ in-game would only affect the current location when you left and re-entered it.
 * Optimized performance a bit.
-* Improved translations. Thanks to MakinDay (updated Italian)!
+* Improved translations. Thanks to MakinDay (updated Italian) and mehmetgorkemarslan (updated Turkish)!
 
 ## 1.12.1
 Released 27 May 2024 for SMAPI 4.0.0 or later.

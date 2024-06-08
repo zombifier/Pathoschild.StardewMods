@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Added in-game config UI through [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098).
+* Improved translations. Thanks to mehmetgorkemarslan (updated Turkish)!
 
 ## 1.16.1
 Released 22 May 2024 for SMAPI 4.0.0 or later.

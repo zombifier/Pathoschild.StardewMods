@@ -28,7 +28,7 @@
     "generic.price": "{{price}}g",
     "generic.price-for-quality": "{{price}}g ({{quality}})",
     "generic.price-for-stack": "{{count}} adet için {{price}}g",
-    "generic.show-x-results": "{{count}} sonuçlarını göster", 
+    "generic.show-x-results": "{{count}} sonuçlarını göster",
 
     // types
     "type.building": "Bina",
@@ -101,7 +101,7 @@
     // location names
     "location.beach.east-pier": "Sahil (doğu iskelesi)",
     "location.bugLand": "Mutant böcek yuvası",
-    "location.desert.topPond": "Çöl (Kuzey Göleti)", 
+    "location.desert.topPond": "Çöl (Kuzey Göleti)",
     "location.farmCave": "Çiftlik Mağarası",
     "location.farmHouse": "Çiftlik Evi",
     "location.forest.island-tip": "Orman Nehri (büyük adanın güney ucu)",
@@ -336,7 +336,7 @@
     "item.recipes-for-ingredient.entry": "{{name}} (lazım {{count}})",
     "item.recipes-for-machine.multiple-items": "{{name}} x{{count}}",
     "item.recipes-for-machine.same-as-input": "[içine koyulan nesne ile aynı]", // e.g. crystalarium produces same item that was put in 
-    "item.recipes-for-machine.conditions": "[Şartlar: {{conditions}}]", 
+    "item.recipes-for-machine.conditions": "[Şartlar: {{conditions}}]",
     "item.recipes-for-machine.too-complex": "Bazı makinelerin işlevleri gösterilemeyecek kadar karmaşık",
     "item.number-owned.summary": "bundan {{count}} tane sahipsin",
     "item.number-crafted.summary": "bundan {{count}} tane yaptın",
