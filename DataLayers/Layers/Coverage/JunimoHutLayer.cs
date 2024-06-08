@@ -43,11 +43,10 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
 
             this.Mods = mods;
             this.SelectedColor = colors.Get(layerId, "Selected", Color.Blue);
-            this.Legend = new[]
-            {
+            this.Legend = [
                 this.Covered = new LegendEntry(I18n.Keys.JunimoHuts_CanHarvest, colors.Get(layerId, "Covered", Color.Green)),
                 this.NotCovered = new LegendEntry(I18n.Keys.JunimoHuts_CannotHarvest, colors.Get(layerId, "NotCovered", Color.Red))
-            };
+            ];
         }
 
         /// <summary>Get the updated data layer tiles.</summary>

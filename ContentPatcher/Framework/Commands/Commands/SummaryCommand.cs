@@ -283,7 +283,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                                 // get input arguments
                                 let validInputs = token.IsReady && token.RequiresInput
                                     ? token.GetAllowedInputArguments()?.Select(p => new LiteralString(p, path.With(patchGroup.Key, token.Name, $"input '{p}'"))).AsEnumerable<ITokenString?>() ?? []
-                                    : new ITokenString?[] { null }
+                                    : [null]
                                 from ITokenString input in validInputs
 
                                 where !token.RequiresInput || validInputs.Any() // don't show tokens which can't be represented

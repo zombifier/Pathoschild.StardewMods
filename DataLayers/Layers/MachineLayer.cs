@@ -37,12 +37,11 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         {
             const string layerId = "MachineProcessing";
 
-            this.Legend = new[]
-            {
+            this.Legend = [
                 this.Empty = new LegendEntry(I18n.Keys.Machines_Empty, colors.Get(layerId, "Empty", Color.Red)),
                 this.Processing = new LegendEntry(I18n.Keys.Machines_Processing, colors.Get(layerId, "Processing", Color.Orange)),
                 this.Finished = new LegendEntry(I18n.Keys.Machines_Finished, colors.Get(layerId, "Finished", Color.Green))
-            };
+            ];
             this.Mods = mods;
         }
 

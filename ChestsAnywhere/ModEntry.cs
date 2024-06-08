@@ -286,7 +286,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere
         {
             long hostId = Game1.MasterPlayer.UniqueMultiplayerID;
             var message = new AutomateUpdateChestMessage { LocationName = chest.Location.NameOrUniqueName, Tile = chest.Tile };
-            this.Helper.Multiplayer.SendMessage(message, nameof(AutomateUpdateChestMessage), modIDs: new[] { "Pathoschild.Automate" }, playerIDs: new[] { hostId });
+            this.Helper.Multiplayer.SendMessage(message, nameof(AutomateUpdateChestMessage), modIDs: ["Pathoschild.Automate"], playerIDs: [hostId]);
         }
 
         /// <summary>Validate that the game versions match the minimum requirements, and return an appropriate error message if not.</summary>

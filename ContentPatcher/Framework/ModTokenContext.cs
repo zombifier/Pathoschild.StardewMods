@@ -340,7 +340,7 @@ namespace ContentPatcher.Framework
         /// <summary>Get the underlying contexts in priority order.</summary>
         private IEnumerable<IContext> GetContexts()
         {
-            return new[] { this.ParentContext, this.LocalContext, this.DynamicContext };
+            return [this.ParentContext, this.LocalContext, this.DynamicContext];
         }
     }
 }

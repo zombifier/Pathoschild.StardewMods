@@ -38,8 +38,7 @@ namespace ContentPatcher
         private LoadedContentPack[]? ContentPacks;
 
         /// <summary>The recognized format versions and their migrations.</summary>
-        private readonly Func<ContentConfig?, IMigration[]> GetFormatVersions = content => new IMigration[]
-        {
+        private readonly Func<ContentConfig?, IMigration[]> GetFormatVersions = content => [
             new Migration_1_0(),
             new Migration_1_3(),
             new Migration_1_4(),
@@ -72,13 +71,12 @@ namespace ContentPatcher
             new Migration_2_0(),
             new Migration_2_1(),
             new Migration_2_2()
-        };
+        ];
 
         /// <summary>The special validation logic to apply to assets affected by patches.</summary>
-        private readonly Func<IAssetValidator[]> AssetValidators = () => new IAssetValidator[]
-        {
+        private readonly Func<IAssetValidator[]> AssetValidators = () => [
             new StardewValley_1_3_36_Validator()
-        };
+        ];
 
         /// <summary>Handles the 'patch' console command.</summary>
         private CommandHandler CommandHandler = null!; // set in Entry

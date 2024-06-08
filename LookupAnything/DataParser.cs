@@ -543,7 +543,7 @@ namespace Pathoschild.Stardew.LookupAnything
                     if (!this.TryGetMostSpecificIngredientIds(null, rule.RequiredTags, out string? ingredientId, out string[] ingredientContextTags))
                         continue;
 
-                    RecipeIngredientModel[] ingredients = new[] { new RecipeIngredientModel(ingredientId, rule.RequiredCount, ingredientContextTags) };
+                    RecipeIngredientModel[] ingredients = [new RecipeIngredientModel(ingredientId, rule.RequiredCount, ingredientContextTags)];
 
                     foreach (GenericSpawnItemDataWithCondition? outputItem in rule.ProducedItems)
                     {

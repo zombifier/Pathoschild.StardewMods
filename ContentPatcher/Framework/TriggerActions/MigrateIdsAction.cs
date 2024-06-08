@@ -22,11 +22,11 @@ namespace ContentPatcher.Framework.TriggerActions
         /// <summary>The Json Assets mapped ID types, with their corresponding <see cref="ItemRegistry"/> data types.</summary>
         private readonly Dictionary<string, string[]> JsonAssetsTypes = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
         {
-            ["big-craftables"] = new[] { ItemRegistry.type_bigCraftable },
-            ["clothing"] = new[] { ItemRegistry.type_pants, ItemRegistry.type_shirt },
-            ["hats"] = new[] { ItemRegistry.type_hat },
-            ["objects"] = new[] { ItemRegistry.type_object },
-            ["weapons"] = new[] { ItemRegistry.type_weapon }
+            ["big-craftables"] = [ItemRegistry.type_bigCraftable],
+            ["clothing"] = [ItemRegistry.type_pants, ItemRegistry.type_shirt],
+            ["hats"] = [ItemRegistry.type_hat],
+            ["objects"] = [ItemRegistry.type_object],
+            ["weapons"] = [ItemRegistry.type_weapon]
         };
 
 

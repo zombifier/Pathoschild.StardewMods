@@ -46,7 +46,7 @@ namespace ContentPatcher.Framework.Conditions
         {
             this.Raw = value;
             this.Value = value ?? string.Empty;
-            this.LexTokens = new ILexToken[] { new LexTokenLiteral(value) };
+            this.LexTokens = [new LexTokenLiteral(value)];
             this.Path = path.ToString();
         }
 

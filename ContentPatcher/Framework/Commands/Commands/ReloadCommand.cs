@@ -82,7 +82,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             patchLoader.LoadPatches(
                 contentPack: pack,
                 rawPatches: pack.Content.Changes,
-                rootIndexPath: new[] { pack.Index },
+                rootIndexPath: [pack.Index],
                 path: new LogPathBuilder(pack.Manifest.Name),
                 parentPatch: null
             );

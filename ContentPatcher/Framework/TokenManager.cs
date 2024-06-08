@@ -53,10 +53,10 @@ namespace ContentPatcher.Framework
         public bool IsSaveLoaded { get; set; }
 
         /// <summary>The tokens which should always be used with a specific update rate.</summary>
-        public Tuple<UpdateRate, string, IInvariantSet>[] TokensWithSpecialUpdateRates { get; } = {
-            Tuple.Create(UpdateRate.OnLocationChange, "location tokens", InvariantSets.From(new[] { nameof(ConditionType.LocationContext), nameof(ConditionType.LocationName), nameof(ConditionType.LocationUniqueName), nameof(ConditionType.IsOutdoors) })),
+        public Tuple<UpdateRate, string, IInvariantSet>[] TokensWithSpecialUpdateRates { get; } = [
+            Tuple.Create(UpdateRate.OnLocationChange, "location tokens", InvariantSets.From([nameof(ConditionType.LocationContext), nameof(ConditionType.LocationName), nameof(ConditionType.LocationUniqueName), nameof(ConditionType.IsOutdoors)])),
             Tuple.Create(UpdateRate.OnTimeChange, "time tokens", InvariantSets.FromValue(nameof(ConditionType.Time)))
-        };
+        ];
 
 
         /*********
@@ -197,14 +197,13 @@ namespace ContentPatcher.Framework
             bool NeedsSave() => this.IsSaveParsed;
             var save = new TokenSaveReader(updateTick: () => this.UpdateTick, isParsed: NeedsSave, isBasicInfoLoaded: () => this.IsSaveBasicInfoLoaded, isLoaded: () => this.IsSaveLoaded);
 
-            return new IValueProvider[]
-            {
+            return [
                 // date and weather
                 new ConditionTypeValueProvider(ConditionType.Day, () => save.GetDay().ToString(), NeedsSave, allowedValues: Enumerable.Range(0, 29).Select(p => p.ToString())), // day 0 = new-game intro
                 new ConditionTypeValueProvider(ConditionType.DayEvent, save.GetDayEvent, NeedsSave),
                 new ConditionTypeValueProvider(ConditionType.DayOfWeek, () => save.GetDayOfWeek().ToString(), NeedsSave, allowedValues: Enum.GetNames(typeof(DayOfWeek))),
                 new ConditionTypeValueProvider(ConditionType.DaysPlayed, () => save.GetDaysPlayed().ToString(), NeedsSave),
-                new ConditionTypeValueProvider(ConditionType.Season, save.GetSeason, NeedsSave, allowedValues: new[] { "Spring", "Summer", "Fall", "Winter" }),
+                new ConditionTypeValueProvider(ConditionType.Season, save.GetSeason, NeedsSave, allowedValues: ["Spring", "Summer", "Fall", "Winter"]),
                 new ConditionTypeValueProvider(ConditionType.Year, () => save.GetYear().ToString(), NeedsSave),
                 new WeatherValueProvider(save),
                 new TimeValueProvider(save),
@@ -274,7 +273,7 @@ namespace ContentPatcher.Framework
 
                 // specialized
                 new FormatAssetNameValueProvider()
-            };
+            ];
         }
 
         /// <summary>Get the local value providers with which to initialize a local context.</summary>
@@ -283,15 +282,14 @@ namespace ContentPatcher.Framework
         {
             InvariantSet modIdSet = new(contentPack.Manifest.UniqueID);
 
-            return new IValueProvider[]
-            {
+            return [
                 new AbsoluteFilePathValueProvider(contentPack.DirectoryPath),
                 new ImmutableValueProvider(nameof(ConditionType.ModId), modIdSet, allowedValues: modIdSet),
                 new FirstValidFileValueProvider(contentPack.HasFile),
                 new HasFileValueProvider(contentPack.HasFile),
                 new InternalAssetKeyValueProvider(contentPack.ModContent.GetInternalAssetName),
                 new TranslationValueProvider(contentPack.Translation)
-            };
+            ];
         }
 
         /// <summary>Get the current language code.</summary>
@@ -306,7 +304,7 @@ namespace ContentPatcher.Framework
             if (language == LocalizedContentManager.LanguageCode.mod)
                 code = contentHelper.CurrentLocale ?? code;
 
-            return new[] { code };
+            return [code];
         }
     }
 }

@@ -40,10 +40,9 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             const string layerId = "BeeHouseCoverage";
 
             this.SelectedColor = colors.Get(layerId, "Selected", Color.Blue);
-            this.Legend = new[]
-            {
+            this.Legend = [
                 this.Covered = new LegendEntry(I18n.Keys.BeeHouses_Range, colors.Get(layerId, "Covered", Color.Green))
-            };
+            ];
             this.RelativeRange = BeeHouseLayer
                 .GetRelativeCoverage()
                 .ToArray();

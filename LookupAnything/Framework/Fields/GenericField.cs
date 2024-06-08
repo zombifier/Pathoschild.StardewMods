@@ -94,7 +94,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         protected IFormattedText[] FormatValue(string? value)
         {
             return !string.IsNullOrWhiteSpace(value)
-                ? new IFormattedText[] { new FormattedText(value) }
+                ? [new FormattedText(value)]
                 : [];
         }
 

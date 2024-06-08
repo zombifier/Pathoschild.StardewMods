@@ -23,7 +23,7 @@ namespace Pathoschild.Stardew.Common
         private static readonly Lazy<Texture2D> LazyPixel = new(() =>
         {
             Texture2D pixel = new Texture2D(Game1.graphics.GraphicsDevice, 1, 1);
-            pixel.SetData(new[] { Color.White });
+            pixel.SetData([Color.White]);
             return pixel;
         });
 

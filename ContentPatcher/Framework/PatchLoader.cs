@@ -107,7 +107,7 @@ namespace ContentPatcher.Framework
                 var localPath = path.With(patch.LogName!);
                 if (verbose)
                     this.Monitor.Log($"   loading {localPath}...");
-                IPatch? loaded = this.LoadPatch(contentPack, patch, tokenParser, rootIndexPath.Concat(new[] { index }).ToArray(), localPath, parentPatch, logSkip: reasonPhrase => this.Monitor.Log($"Ignored {localPath}: {reasonPhrase}", LogLevel.Warn));
+                IPatch? loaded = this.LoadPatch(contentPack, patch, tokenParser, rootIndexPath.Concat([index]).ToArray(), localPath, parentPatch, logSkip: reasonPhrase => this.Monitor.Log($"Ignored {localPath}: {reasonPhrase}", LogLevel.Warn));
                 if (loaded != null)
                     loadedPatches.Add(loaded);
             }
@@ -243,7 +243,7 @@ namespace ContentPatcher.Framework
                 {
                     return values.Length > 0
                         ? values
-                        : new string?[] { null };
+                        : [null];
                 }
 
                 // create new patches
@@ -819,7 +819,7 @@ namespace ContentPatcher.Framework
             }
 
             // parse as an offset like 'Medium + 10'
-            int splitAt = patch.Priority.IndexOfAny(new[] { '-', '+' });
+            int splitAt = patch.Priority.IndexOfAny(['-', '+']);
             if (splitAt > 0)
             {
                 string rawPriority = patch.Priority[..splitAt];
@@ -1033,7 +1033,7 @@ namespace ContentPatcher.Framework
                     LogPathBuilder localPath = path.With(nameof(entry.MoveEntries), i++.ToString());
 
                     // validate
-                    string?[] targets = { moveEntry.BeforeID, moveEntry.AfterID, moveEntry.ToPosition };
+                    string?[] targets = [moveEntry.BeforeID, moveEntry.AfterID, moveEntry.ToPosition];
                     if (string.IsNullOrWhiteSpace(moveEntry.ID))
                         return Fail($"{nameof(PatchConfig.MoveEntries)} > move entry is invalid: must specify an {nameof(PatchMoveEntryConfig.ID)} value", out error);
                     switch (targets.Count(p => !string.IsNullOrWhiteSpace(p)))

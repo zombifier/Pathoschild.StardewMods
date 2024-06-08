@@ -768,9 +768,9 @@ namespace Pathoschild.Stardew.LookupAnything
                 if (recipe.CraftedItemIds?.Any() == true)
                     outputItemIds = recipe.CraftedItemIds.ToArray();
                 else if (recipe.CraftedItemIdFeminine != null && Game1.player.Gender == Gender.Female)
-                    outputItemIds = new[] { recipe.CraftedItemIdFeminine };
+                    outputItemIds = [recipe.CraftedItemIdFeminine];
                 else
-                    outputItemIds = new[] { recipe.CraftedItemId };
+                    outputItemIds = [recipe.CraftedItemId];
 
                 // build recipe models
                 foreach (string outputId in outputItemIds)
@@ -803,11 +803,10 @@ namespace Pathoschild.Stardew.LookupAnything
                                 key: null,
                                 type: RecipeType.TailorInput,
                                 displayType: I18n.RecipeType_Tailoring(),
-                                ingredients: new[]
-                                {
+                                ingredients: [
                                     new RecipeIngredientModel(clothItem.QualifiedItemId, 1),
                                     new RecipeIngredientModel(spoolItem.QualifiedItemId, 1)
-                                },
+                                ],
                                 item: _ => output.getOne(),
                                 isKnown: () => Game1.player.HasTailoredThisItem(output),
                                 outputQualifiedItemId: ItemRegistry.QualifyItemId(recipe.CraftedItemId),

@@ -110,7 +110,7 @@ namespace ContentPatcher.Framework
                     .GetMethod(nameof(this.ApplyPatchesToAsset), BindingFlags.Instance | BindingFlags.NonPublic)!
                     .MakeGenericMethod(e.DataType);
 
-                apply.Invoke(this, new object[] { e, loaders, editors });
+                apply.Invoke(this, [e, loaders, editors]);
             }
         }
 

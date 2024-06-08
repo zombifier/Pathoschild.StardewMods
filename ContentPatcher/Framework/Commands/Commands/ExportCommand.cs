@@ -291,19 +291,19 @@ namespace ContentPatcher.Framework.Commands.Commands
         {
             // none specified, default to object
             if (string.IsNullOrWhiteSpace(name))
-                return new[] { typeof(object) };
+                return [typeof(object)];
 
             // short alias
             if (string.Equals(name, "image", StringComparison.OrdinalIgnoreCase))
-                return new[] { typeof(Texture2D) };
+                return [typeof(Texture2D)];
             if (string.Equals(name, "map", StringComparison.OrdinalIgnoreCase))
-                return new[] { typeof(Map) };
+                return [typeof(Map)];
 
             // by assembly-qualified name
             {
                 Type? type = Type.GetType(name);
                 if (type != null)
-                    return new[] { type };
+                    return [type];
             }
 
             // by type name
@@ -405,7 +405,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                 .GetType()
                 .GetMethod(nameof(this.LoadAssetImpl), BindingFlags.NonPublic | BindingFlags.Instance)!
                 .MakeGenericMethod(type)
-                .Invoke(this, new object[] { assetName });
+                .Invoke(this, [assetName]);
         }
 
         /// <summary>Load an asset from a content manager using the given type.</summary>

@@ -34,12 +34,11 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Crops
         {
             const string layerId = "CropsReadyToHarvest";
 
-            this.Legend = new[]
-            {
+            this.Legend = [
                 this.Ready = new LegendEntry(I18n.Keys.CropHarvest_Ready, colors.Get(layerId, "Ready", Color.Green)),
                 this.NotReady = new LegendEntry(I18n.Keys.CropHarvest_NotReady, colors.Get(layerId, "NotReady", Color.Black)),
                 this.NotEnoughTimeOrDead = new LegendEntry(I18n.Keys.CropHarvest_NotEnoughTimeOrDead, colors.Get(layerId, "NotEnoughTimeOrDead", Color.Red))
-            };
+            ];
         }
 
         /// <summary>Get the updated data layer tiles.</summary>
@@ -51,12 +50,11 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Crops
         {
             TileData[] tiles = this.GetTiles(location, visibleTiles).ToArray();
 
-            return new[]
-            {
+            return [
                 new TileGroup(tiles.Where(p => p.Type.Id == this.Ready.Id), outerBorderColor: this.Ready.Color),
                 new TileGroup(tiles.Where(p => p.Type.Id == this.NotReady.Id)),
                 new TileGroup(tiles.Where(p => p.Type.Id == this.NotEnoughTimeOrDead.Id), outerBorderColor: this.NotEnoughTimeOrDead.Color)
-            };
+            ];
         }
 
 

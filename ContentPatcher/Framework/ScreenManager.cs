@@ -344,7 +344,7 @@ namespace ContentPatcher.Framework
                     this.PatchLoader.LoadPatches(
                         contentPack: current,
                         rawPatches: content.Changes,
-                        rootIndexPath: new[] { current.Index },
+                        rootIndexPath: [current.Index],
                         path: current.LogPath,
                         parentPatch: null
                     );
@@ -391,7 +391,7 @@ namespace ContentPatcher.Framework
             this.PatchLoader.LoadPatches(
                 contentPack: contentPack,
                 rawPatches: contentPack.Content.Changes,
-                rootIndexPath: new[] { contentPack.Index },
+                rootIndexPath: [contentPack.Index],
                 path: contentPack.LogPath,
                 parentPatch: null
             );

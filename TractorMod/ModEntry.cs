@@ -540,8 +540,8 @@ namespace Pathoschild.Stardew.TractorMod
                 this.Helper.Multiplayer.SendMessage(
                     message: true,
                     messageType: this.RequestTractorMessageID,
-                    modIDs: new[] { this.ModManifest.UniqueID },
-                    playerIDs: new[] { Game1.MasterPlayer.UniqueMultiplayerID }
+                    modIDs: [this.ModManifest.UniqueID],
+                    playerIDs: [Game1.MasterPlayer.UniqueMultiplayerID]
                 );
             }
         }

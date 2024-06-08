@@ -94,15 +94,14 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.ItemScanning
             this.ScanAndTrack(
                 tracked: items,
                 itemsSeen: itemsSeen,
-                roots: new Item[]
-                {
+                roots: [
                     Game1.player.shirtItem.Value,
                     Game1.player.pantsItem.Value,
                     Game1.player.boots.Value,
                     Game1.player.hat.Value,
                     Game1.player.leftRing.Value,
                     Game1.player.rightRing.Value
-                },
+                ],
                 parent: Game1.player,
                 isInInventory: true
             );
