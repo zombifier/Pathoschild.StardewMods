@@ -1,9 +1,11 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 2.5.6
+Released 08 June 2024 for SMAPI 4.0.7 or later.
+
 * Added validation error if `assets/data.json` is edited to have invalid data.
-* Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.
+* Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.  
   _This avoids errors due to breaking changes in earlier 1.6 patches._
 
 ## 2.5.5

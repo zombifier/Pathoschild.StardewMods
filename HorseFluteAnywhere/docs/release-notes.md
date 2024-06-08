@@ -1,8 +1,10 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
-* Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.
+## 1.2.1
+Released 08 June 2024 for SMAPI 4.0.7 or later.
+
+* Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.  
   _This avoids errors due to breaking changes in earlier 1.6 patches._
 
 ## 1.2.0
