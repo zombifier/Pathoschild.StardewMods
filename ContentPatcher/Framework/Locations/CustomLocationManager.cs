@@ -140,7 +140,11 @@ namespace ContentPatcher.Framework.Locations
 
                         this.Monitor.Log($"'{customLocation.ModName}' recovered TMXL Map Toolkit location '{legacyName}' which will be mapped to new location '{customLocation.Name}'.", LogLevel.Info);
                         saveLocations.Add(tmxlLocation);
+
+#pragma warning disable AvoidNetField // deliberate since the Name property isn't settable
                         tmxlLocation.name.Value = customLocation.Name;
+#pragma warning restore AvoidNetField
+
                         saveLocationsByName.Value[customLocation.Name] = tmxlLocation;
                         break;
                     }

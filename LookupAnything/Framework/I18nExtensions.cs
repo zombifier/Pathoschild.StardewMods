@@ -173,7 +173,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
                             str.AppendLine($"- {pair.Key}: {pair.Value}");
                         return str.ToString().TrimEnd();
                     }
-                    break;
 
                 case SchedulePathDescription schedulePath:
                     return $"{schedulePath.time / 100:00}:{schedulePath.time % 100:00} {schedulePath.targetLocationName} ({schedulePath.targetTile.X}, {schedulePath.targetTile.Y}) {schedulePath.facingDirection} {schedulePath.endOfRouteMessage}";

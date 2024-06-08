@@ -729,8 +729,11 @@ namespace Pathoschild.Stardew.LookupAnything
                 .ToDictionary(group => group.Key, group => group.Select(p => p.item).ToArray());
 
             // build cache lookup logic
-            Item[] GetObjectsWithTags(List<string> contextTags)
+            Item[] GetObjectsWithTags(List<string>? contextTags)
             {
+                if (contextTags is null)
+                    return [];
+
                 // simple tag lookup
                 if (contextTags.Count == 1 && !contextTags[0].StartsWith("!"))
                 {

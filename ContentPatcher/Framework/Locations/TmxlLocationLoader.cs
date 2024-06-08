@@ -40,8 +40,10 @@ namespace ContentPatcher.Framework.Locations
             typeof (ShadowGuy),
             typeof (Child),
             typeof (Pet),
+#pragma warning disable CS0618 // deliberate to support older saves
             typeof (Dog),
             typeof (Cat),
+#pragma warning restore CS0618
             typeof (Horse),
             typeof (SquidKid),
             typeof (Grub),

@@ -241,9 +241,10 @@ namespace ContentPatcher.Framework
                 // to populate the split patches.
                 IEnumerable<string?> AlwaysIterate(string[] values)
                 {
-                    return values.Length > 0
-                        ? values
-                        : [null];
+                    if (values.Length > 0)
+                        return values;
+
+                    return [null];
                 }
 
                 // create new patches

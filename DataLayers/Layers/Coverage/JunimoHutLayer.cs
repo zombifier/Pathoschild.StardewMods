@@ -64,7 +64,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             JunimoHut[] huts =
                 (
                     from JunimoHut hut in location.buildings.OfType<JunimoHut>()
-                    where new Rectangle(hut.tileX + 1, hut.tileY + 1, hut.cropHarvestRadius, hut.cropHarvestRadius).Intersects(searchArea) // range centered on hut door
+                    where new Rectangle(hut.tileX.Value + 1, hut.tileY.Value + 1, hut.cropHarvestRadius, hut.cropHarvestRadius).Intersects(searchArea) // range centered on hut door
                     select hut
                 )
                 .ToArray();

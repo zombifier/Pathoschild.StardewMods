@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using ContentPatcher.Framework.Constants;
 
 namespace ContentPatcher.Framework.TextOperations
@@ -39,6 +40,7 @@ namespace ContentPatcher.Framework.TextOperations
         }
 
         /// <inheritdoc />
+        [return: NotNullIfNotNull(nameof(text))]
         public override string? Apply(string? text)
         {
             if (string.IsNullOrEmpty(text))

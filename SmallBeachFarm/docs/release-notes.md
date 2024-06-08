@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Added validation error if `assets/data.json` is edited to have invalid data.
 * Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.
   _This avoids errors due to breaking changes in earlier 1.6 patches._
 

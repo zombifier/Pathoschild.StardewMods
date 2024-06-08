@@ -16,6 +16,7 @@ using StardewValley.Extensions;
 using xTile;
 using xTile.Dimensions;
 using xTile.Layers;
+using xTile.ObjectModel;
 using xTile.Tiles;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
@@ -279,7 +280,7 @@ namespace ContentPatcher.Framework.Patches
 
                 if (original?.Properties.Count > 0)
                 {
-                    foreach ((string key, string value) in original.Properties)
+                    foreach ((string key, PropertyValue value) in original.Properties)
                         tile.Properties[key] = value;
                 }
 
