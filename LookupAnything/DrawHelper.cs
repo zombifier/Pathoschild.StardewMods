@@ -29,7 +29,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <returns>Returns the text dimensions.</returns>
         public static Vector2 DrawTextBlock(this SpriteBatch batch, SpriteFont font, string? text, Vector2 position, float wrapWidth, Color? color = null, bool bold = false, float scale = 1)
         {
-            return batch.DrawTextBlock(font, new IFormattedText[] { new FormattedText(text, color, bold) }, position, wrapWidth, scale);
+            return batch.DrawTextBlock(font, [new FormattedText(text, color, bold)], position, wrapWidth, scale);
         }
 
         /// <summary>Draw a block of text to the screen with the specified wrap width.</summary>

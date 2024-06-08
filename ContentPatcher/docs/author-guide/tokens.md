@@ -403,6 +403,20 @@ You can use [Debug Mode](https://www.nexusmods.com/stardewvalley/mods/679) to se
 <td><a href="#HasSeenEvent">#</a></td>
 </tr>
 
+<tr valign="top" id="HasVisitedLocation">
+<td>HasVisitedLocation</td>
+<td>
+
+The location internal names which the [current or specified player](#target-player) have previously
+visited, matching IDs in the `Data/Locations` file.
+
+You can use [Debug Mode](https://www.nexusmods.com/stardewvalley/mods/679) to see location names
+in-game.
+
+</td>
+<td><a href="#HasVisitedLocation">#</a></td>
+</tr>
+
 <tr valign="top" id="HasWalletItem">
 <td>HasWalletItem</td>
 <td>
@@ -458,8 +472,14 @@ Whether the [current or specified player](#target-player) is outdoors. Possible 
 <td>
 
 The general world area recognized by the game containing the [current or specified
-player](#target-player). Possible values: `Island` (locations on [Ginger
-Island](https://stardewvalleywiki.com/Ginger_Island)) and `Valley` (anywhere else).
+player](#target-player).
+
+Possible values:
+
+* `Default` (in the valley);
+* `Desert` (in the [desert](https://stardewvalleywiki.com/Desert));
+* `Island` (on [Ginger Island](https://stardewvalleywiki.com/Ginger_Island));
+* or the ID of a custom context [in `Data/LocationContexts`](https://stardewvalleywiki.com/Modding:Migrate_to_Stardew_Valley_1.6#Custom_location_contexts).
 
 ℹ See _[update rate](../author-guide.md#update-rate)_ before using this token.
 
@@ -673,6 +693,31 @@ The [farm cave](https://stardewvalleywiki.com/The_Cave) type. Possible values: `
 
 </td>
 <td><a href="#FarmCave">#</a></td>
+</tr>
+
+<tr valign="top" id="FarmMapAsset">
+<td>FarmMapAsset</td>
+<td>
+
+The farm type's map asset name relative to the game's `Content/Maps` folder.
+
+This is usually one of:
+
+farm type    | value
+------------ | -----
+Standard     | `Farm`
+Beach        | `Farm_Island`
+Forest       | `Farm_Foraging`
+Four Corners | `Farm_FourCorners`
+Hill-top     | `Farm_Mining`
+Meadowlands  | `Farm_Ranching`
+Riverland    | `Farm_Fishing`
+Wilderness   | `Farm_Combat`
+_custom type_  | The `MapName` value in `Data/AdditionalFarms`.
+_invalid type_ | `Farm`
+
+</td>
+<td><a href="#FarmMapAsset">#</a></td>
 </tr>
 
 <tr valign="top" id="FarmName">
@@ -1251,7 +1296,7 @@ For example, you can use this to provide the textures for a custom farm type:
 
 ```js
 {
-    "Format": "2.1.0",
+    "Format": "2.2.0",
     "Changes": [
         {
             "Action": "EditData",
@@ -1274,7 +1319,7 @@ ID](https://stardewvalleywiki.com/Modding:Modder_Guide/Game_Fundamentals#Unique_
 convention is strongly recommended to avoid conflicts. For example:
 ```js
 {
-    "Format": "2.1.0",
+    "Format": "2.2.0",
     "Changes": [
         {
             "Action": "EditData",
@@ -1440,7 +1485,7 @@ For example, you can use config values as tokens and conditions:
 
 ```js
 {
-    "Format": "2.1.0",
+    "Format": "2.2.0",
     "ConfigSchema": {
         "EnableJohn": {
             "AllowValues": "true, false",
@@ -1658,7 +1703,7 @@ crop sprites depending on the weather:
 
 ```js
 {
-   "Format": "2.1.0",
+   "Format": "2.2.0",
    "DynamicTokens": [
       {
          "Name": "Style",
@@ -1691,7 +1736,7 @@ Query expressions are evaluated using the `Query` token. It can be used as a pla
 and can include nested tokens. Here's an example which includes all of those:
 ```js
 {
-   "Format": "2.1.0",
+   "Format": "2.2.0",
    "Changes": [
       {
          "Action": "EditData",
@@ -1816,7 +1861,7 @@ which work just like normal Content Patcher tokens. For example, this patch uses
 Assets:
 ```js
 {
-   "Format": "2.1.0",
+   "Format": "2.2.0",
    "Changes": [
       {
          "Action": "EditData",
@@ -1836,7 +1881,7 @@ To use a mod-provided token, at least one of these must be true:
   which lists the mod:
   ```js
   {
-     "Format": "2.1.0",
+     "Format": "2.2.0",
      "Changes": [
         {
            "Action": "EditData",
@@ -1862,7 +1907,7 @@ alternate name and the value is the original token name. For example:
 
 ```js
 {
-    "Format": "2.1.0",
+    "Format": "2.2.0",
     "AliasTokenNames": {
         "ItemID": "spacechase0.jsonAssets/ObjectId",
         "ItemSprite": "spacechase0.jsonAssets/ObjectSpriteSheetIndex"
@@ -1888,7 +1933,7 @@ token](#dynamic-tokens):
 
 ```js
 {
-    "Format": "2.1.0",
+    "Format": "2.2.0",
     "DynamicTokens": [
         {
             "Name": "PufferchickId",

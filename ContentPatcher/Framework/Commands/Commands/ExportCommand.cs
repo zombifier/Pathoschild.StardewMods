@@ -77,7 +77,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             string? typeName = args.Length > 1 ? args[1] : null;
 
             // get default type
-            List<Type> possibleTypes = new(this.TryGetTypes(typeName));
+            List<Type> possibleTypes = [..this.TryGetTypes(typeName)];
             switch (possibleTypes.Count)
             {
                 case 0:
@@ -291,25 +291,25 @@ namespace ContentPatcher.Framework.Commands.Commands
         {
             // none specified, default to object
             if (string.IsNullOrWhiteSpace(name))
-                return new[] { typeof(object) };
+                return [typeof(object)];
 
             // short alias
             if (string.Equals(name, "image", StringComparison.OrdinalIgnoreCase))
-                return new[] { typeof(Texture2D) };
+                return [typeof(Texture2D)];
             if (string.Equals(name, "map", StringComparison.OrdinalIgnoreCase))
-                return new[] { typeof(Map) };
+                return [typeof(Map)];
 
             // by assembly-qualified name
             {
                 Type? type = Type.GetType(name);
                 if (type != null)
-                    return new[] { type };
+                    return [type];
             }
 
             // by type name
             {
-                HashSet<Type> typesByName = new();
-                HashSet<Type> typesByFullName = new();
+                HashSet<Type> typesByName = [];
+                HashSet<Type> typesByFullName = [];
                 foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     if (assembly.IsDynamic)
@@ -346,7 +346,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             IAssetName assetName = this.ContentHelper.ParseAssetName(asset);
 
             if (assetName.IsDirectlyUnderPath("Maps"))
-                return new() { typeof(Map), typeof(Texture2D) };
+                return [typeof(Map), typeof(Texture2D)];
 
             if (
                 assetName.IsDirectlyUnderPath("Animals")
@@ -357,7 +357,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                 || assetName.IsDirectlyUnderPath("TerrainFeatures")
                 || assetName.IsDirectlyUnderPath("TileSheets")
             )
-                return new() { typeof(Texture2D) };
+                return [typeof(Texture2D)];
 
             if (
                 assetName.IsDirectlyUnderPath("Characters/Dialogue")
@@ -365,7 +365,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                 || assetName.IsDirectlyUnderPath("Data/Events")
                 || assetName.IsDirectlyUnderPath("Data/festivals")
             )
-                return new() { typeof(Dictionary<string, string>) };
+                return [typeof(Dictionary<string, string>)];
 
             return null;
         }
@@ -405,7 +405,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                 .GetType()
                 .GetMethod(nameof(this.LoadAssetImpl), BindingFlags.NonPublic | BindingFlags.Instance)!
                 .MakeGenericMethod(type)
-                .Invoke(this, new object[] { assetName });
+                .Invoke(this, [assetName]);
         }
 
         /// <summary>Load an asset from a content manager using the given type.</summary>

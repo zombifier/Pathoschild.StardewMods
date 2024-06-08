@@ -22,11 +22,11 @@ namespace ContentPatcher.Framework.TriggerActions
         /// <summary>The Json Assets mapped ID types, with their corresponding <see cref="ItemRegistry"/> data types.</summary>
         private readonly Dictionary<string, string[]> JsonAssetsTypes = new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
         {
-            ["big-craftables"] = new[] { ItemRegistry.type_bigCraftable },
-            ["clothing"] = new[] { ItemRegistry.type_pants, ItemRegistry.type_shirt },
-            ["hats"] = new[] { ItemRegistry.type_hat },
-            ["objects"] = new[] { ItemRegistry.type_object },
-            ["weapons"] = new[] { ItemRegistry.type_weapon }
+            ["big-craftables"] = [ItemRegistry.type_bigCraftable],
+            ["clothing"] = [ItemRegistry.type_pants, ItemRegistry.type_shirt],
+            ["hats"] = [ItemRegistry.type_hat],
+            ["objects"] = [ItemRegistry.type_object],
+            ["weapons"] = [ItemRegistry.type_weapon]
         };
 
 
@@ -436,7 +436,7 @@ namespace ContentPatcher.Framework.TriggerActions
             // not a Json Assets ID
             if (rawId?.StartsWith("JsonAssets", StringComparison.OrdinalIgnoreCase) is not true)
             {
-                oldIds = Array.Empty<string>();
+                oldIds = [];
                 error = null;
                 return false;
             }
@@ -447,7 +447,7 @@ namespace ContentPatcher.Framework.TriggerActions
                 string[] parts = rawId.Split(':', 3, StringSplitOptions.TrimEntries);
                 if (parts.Length != 3)
                 {
-                    oldIds = Array.Empty<string>();
+                    oldIds = [];
                     error = $"the old item ID \"{rawId}\" is not a valid Json Assets item specifier. It must have the form \"JsonAssets:<type>:<name>\", where the type is one of [{string.Join(", ", this.JsonAssetsTypes.Keys)}].";
                     return false;
                 }
@@ -459,7 +459,7 @@ namespace ContentPatcher.Framework.TriggerActions
             // get mapped item ID types
             if (!this.JsonAssetsTypes.TryGetValue(type, out string[]? typeIds))
             {
-                oldIds = Array.Empty<string>();
+                oldIds = [];
                 error = $"the old item ID \"{rawId}\" has invalid Json Assets type '{type}'. This must be one of [{string.Join(", ", this.JsonAssetsTypes.Keys)}].";
                 return false;
             }
@@ -467,7 +467,7 @@ namespace ContentPatcher.Framework.TriggerActions
             // get real qualified item IDs (if any)
             oldIds = jsonAssetsMap.Value.TryGetValue(type, out Dictionary<string, string>? map) && map.TryGetValue(name, out string? newId)
                 ? typeIds.Select(prefix => prefix + newId).ToArray()
-                : Array.Empty<string>();
+                : [];
             error = null;
             return true;
         }

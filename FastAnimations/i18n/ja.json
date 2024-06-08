@@ -68,6 +68,12 @@
     "config.casino-slots.name": "カジノスロット",
     "config.casino-slots.tooltip": "カジノスロットの回転速度。標準は{{defaultValue}}x。",
 
+    "config.event.name": "Event cutscene", // TODO
+    "config.event.tooltip": "How fast event cutscenes play. Default {{defaultValue}}x, suggested {{suggestedValue}}x.", // TODO
+
+    "config.fade.name": "Fade", // TODO
+    "config.fade.tooltip": "How fast the screen fades to black and fades back in. Default {{defaultValue}}x.", // TODO
+
     "config.fishing-treasure.name": "釣りの宝箱",
     "config.fishing-treasure.tooltip": "釣りの宝箱を開ける速さ。標準は{{defaultValue}}x。",
 
@@ -77,8 +83,14 @@
     "config.open-chest.name": "箱を開く",
     "config.open-chest.tooltip": "箱を開ける速さ。標準は{{defaultValue}}x。",
 
+    "config.parrot-express.name": "Parrot express", // TODO
+    "config.parrot-express.tooltip": "How fast the parrot express runs. Default {{defaultValue}}x.", // TODO
+
     "config.prize-ticket-machine.name": "賞品マシーン",
     "config.prize-ticket-machine.tooltip": "賞品マシーンの演出速度。標準は{{defaultValue}}x。",
+
+    "config.tailor.name": "Tailor", // TODO
+    "config.tailor.tooltip": "How fast the sewing machine works. Default {{defaultValue}}x.", // TODO
 
     "config.tree-fall.name": "倒木",
     "config.tree-fall.tooltip": "切り倒した木が倒れる速さ。標準は{{defaultValue}}x、推奨は{{suggestedValue}}x。",
@@ -90,6 +102,12 @@
     ** 'UI Animation Speeds' section
     ****/
     "config.ui-speeds": "UIアニメーション速度",
+
+    "config.dialogue-typing.name": "Dialogue typing", // TODO
+    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
+
+    "config.open-dialogue-box.name": "Open dialogue box", // TODO
+    "config.open-dialogue-box.tooltip": "How fast dialogue boxes open. Default {{defaultValue}}x.", // TODO
 
     "config.title-menu.name": "タイトルメニューの遷移",
     "config.title-menu.tooltip": "タイトルメニューの画面遷移の速さ。標準は{{defaultValue}}x。",

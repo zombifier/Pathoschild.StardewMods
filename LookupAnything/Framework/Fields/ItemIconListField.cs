@@ -32,7 +32,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         public ItemIconListField(GameHelper gameHelper, string label, IEnumerable<Item?>? items, bool showStackSize)
             : base(label, hasValue: items != null)
         {
-            this.Items = items?.WhereNotNull().Select(item => Tuple.Create(item, gameHelper.GetSprite(item))).ToArray() ?? Array.Empty<Tuple<Item, SpriteInfo?>>();
+            this.Items = items?.WhereNotNull().Select(item => Tuple.Create(item, gameHelper.GetSprite(item))).ToArray() ?? [];
             this.HasValue = this.Items.Any();
             this.ShowStackSize = showStackSize;
         }

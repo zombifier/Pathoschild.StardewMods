@@ -10,9 +10,20 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
         /*********
         ** Public methods
         *********/
-        /// <summary>Get a human-readable representation of a game state query, if available.</summary>
+        /// <summary>Get a human-readable representation of a game state query.</summary>
         /// <param name="condition">The raw game state query to parse.</param>
-        public static string Parse(string condition)
+        public static string Format(string condition)
+        {
+            return
+                HumanReadableConditionParser.Format(condition, null)
+                ?? I18n.Condition_RawCondition(condition);
+        }
+
+        /// <summary>Get a human-readable representation of a game state query.</summary>
+        /// <param name="condition">The raw game state query to parse.</param>
+        /// <param name="defaultValue">The value to return if there's no human-readable representation available.</param>
+        [return: NotNullIfNotNull(nameof(defaultValue))]
+        public static string? Format(string condition, string? defaultValue)
         {
             // parse query
             // (If we get unexpected values at this point, bail early.)
@@ -20,11 +31,11 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
             {
                 GameStateQuery.ParsedGameStateQuery[]? queries = GameStateQuery.Parse(condition);
                 if (queries.Length != 1)
-                    return condition;
+                    return defaultValue;
 
                 query = queries[0];
                 if (query.Error != null || query.Query.Length == 0 || string.IsNullOrWhiteSpace(query.Query[0]))
-                    return condition;
+                    return defaultValue;
             }
 
             // apply parser
@@ -43,13 +54,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
             // format value
             if (parsed != null)
             {
-                if (query.Negated)
-                    parsed = I18n.ConditionOrContextTag_Negate(value: parsed);
-
-                return parsed;
+                return query.Negated
+                    ? I18n.ConditionOrContextTag_Negate(value: parsed)
+                    : parsed;
             }
 
-            return condition;
+            return defaultValue;
         }
 
 

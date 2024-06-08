@@ -271,7 +271,7 @@ namespace Pathoschild.Stardew.TractorMod
                                     Amount = p.Value
                                 })
                                 .ToList()
-                            : new(),
+                            : [],
                         BuildDays = 2,
 
                         Size = new Point(4, 2),
@@ -322,7 +322,7 @@ namespace Pathoschild.Stardew.TractorMod
                 Horse[] horses = e.Added.OfType<Horse>().ToArray();
                 if (horses.Any())
                 {
-                    HashSet<Guid> tractorIDs = new HashSet<Guid>(this.GetGaragesIn(e.Location).Select(p => p.HorseId));
+                    HashSet<Guid> tractorIDs = [..this.GetGaragesIn(e.Location).Select(p => p.HorseId)];
                     foreach (Horse horse in horses)
                     {
                         if (tractorIDs.Contains(horse.HorseId) && !TractorManager.IsTractor(horse))
@@ -540,8 +540,8 @@ namespace Pathoschild.Stardew.TractorMod
                 this.Helper.Multiplayer.SendMessage(
                     message: true,
                     messageType: this.RequestTractorMessageID,
-                    modIDs: new[] { this.ModManifest.UniqueID },
-                    playerIDs: new[] { Game1.MasterPlayer.UniqueMultiplayerID }
+                    modIDs: [this.ModManifest.UniqueID],
+                    playerIDs: [Game1.MasterPlayer.UniqueMultiplayerID]
                 );
             }
         }

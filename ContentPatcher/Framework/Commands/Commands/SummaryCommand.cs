@@ -42,8 +42,7 @@ namespace ContentPatcher.Framework.Commands.Commands
 
         /// <summary>The tokens to sort manually for display.</summary>
         /// <remarks>This avoids the performance impact of sorting the actual token each time the context is updated. Note that we shouldn't sort all tokens here, since some have a natural order that affects the <see cref="InputArguments.ValueAtKey"/> input argument.</remarks>
-        private readonly HashSet<ConditionType> SortTokens = new()
-        {
+        private readonly HashSet<ConditionType> SortTokens = [
             ConditionType.HasActiveQuest,
             ConditionType.HasCaughtFish,
             ConditionType.HasCookingRecipe,
@@ -55,7 +54,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             ConditionType.HasReadLetter,
             ConditionType.HasSeenEvent,
             ConditionType.SkillLevel
-        };
+        ];
 
 
         /*********
@@ -103,7 +102,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             // parse arguments
             bool showFull = false;
             bool sort = true;
-            MutableInvariantSet forModIds = new();
+            MutableInvariantSet forModIds = [];
             foreach (string arg in args)
             {
                 // flags
@@ -145,7 +144,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                     (
                         from token in tokenManager.GetTokens(enforceContext: false).OrderByHuman(p => p.Name)
                         let inputArgs = token.GetAllowedInputArguments()
-                        let rootValues = !token.RequiresInput ? this.GetValues(token, InputArguments.Empty, sort).ToArray() : Array.Empty<string>()
+                        let rootValues = !token.RequiresInput ? this.GetValues(token, InputArguments.Empty, sort).ToArray() : []
                         let isMultiValue =
                             inputArgs?.Count > 1
                             || rootValues.Length > 1
@@ -282,8 +281,8 @@ namespace ContentPatcher.Framework.Commands.Commands
 
                                 // get input arguments
                                 let validInputs = token.IsReady && token.RequiresInput
-                                    ? token.GetAllowedInputArguments()?.Select(p => new LiteralString(p, path.With(patchGroup.Key, token.Name, $"input '{p}'"))).AsEnumerable<ITokenString?>() ?? Array.Empty<ITokenString?>()
-                                    : new ITokenString?[] { null }
+                                    ? token.GetAllowedInputArguments()?.Select(p => new LiteralString(p, path.With(patchGroup.Key, token.Name, $"input '{p}'"))).AsEnumerable<ITokenString?>() ?? []
+                                    : [null]
                                 from ITokenString input in validInputs
 
                                 where !token.RequiresInput || validInputs.Any() // don't show tokens which can't be represented
@@ -292,7 +291,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                                 let result = new
                                 {
                                     Name = token.RequiresInput ? $"{token.Name}:{input}" : token.Name,
-                                    Values = token.IsReady ? this.GetValues(token, input != null ? new InputArguments(input) : InputArguments.Empty, sort).ToArray() : Array.Empty<string>(),
+                                    Values = token.IsReady ? this.GetValues(token, input != null ? new InputArguments(input) : InputArguments.Empty, sort).ToArray() : [],
                                     token.IsReady
                                 }
                                 orderby result.Name
@@ -384,7 +383,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                         {
                             string assetName = patch.ParsedTargetAsset.Value!;
 
-                            List<string> issues = new();
+                            List<string> issues = [];
                             if (this.AssetNameWithContentPattern.IsMatch(assetName))
                                 issues.Add("shouldn't include 'Content/' prefix");
                             if (this.AssetNameWithExtensionPattern.IsMatch(assetName))
@@ -435,7 +434,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                             if (displayTarget != null)
                             {
                                 if (!effectsByPatch.TryGetValue(displayTarget, out MutableInvariantSet? effects))
-                                    effectsByPatch[displayTarget] = effects = new MutableInvariantSet();
+                                    effectsByPatch[displayTarget] = effects = [];
 
                                 effects.AddMany(patch.GetChangeLabels());
                             }
@@ -486,7 +485,7 @@ namespace ContentPatcher.Framework.Commands.Commands
         private IEnumerable<string> GetValues(IToken token, IInputArguments input, bool sort)
         {
             if (!token.IsReady)
-                return Array.Empty<string>();
+                return [];
 
             IEnumerable<string> values = token.GetValues(input);
 

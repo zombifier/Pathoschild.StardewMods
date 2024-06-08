@@ -103,7 +103,7 @@ namespace ContentPatcher.Framework.Patches
 
                     // prevent circular reference
                     {
-                        List<string> loopPaths = new List<string>();
+                        List<string> loopPaths = [];
                         for (IPatch? parent = this.ParentPatch; parent != null; parent = parent.ParentPatch)
                         {
                             if (parent.Type == PatchType.Include)
@@ -160,7 +160,7 @@ namespace ContentPatcher.Framework.Patches
         /// <inheritdoc />
         public override IEnumerable<string> GetChangeLabels()
         {
-            return Array.Empty<string>();
+            return [];
         }
 
 

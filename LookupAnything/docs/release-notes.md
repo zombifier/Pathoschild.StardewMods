@@ -1,6 +1,17 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.44.1
+Released 08 June 2024 for SMAPI 4.0.7 or later.
+
+* Raw conditions and context tags are now formatted like _context tag "tag"_ and _query "query"_ to reduce confusion.
+* Fixed search UI not listing dried items, pickled forage, smoked fish, and specific bait.
+* Fixed search UI error if a custom pet type has no display name.
+* Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.  
+  _This avoids errors due to breaking changes in earlier 1.6 patches._
+* Internal refactoring.
+* Improved translations. Thanks to DARKS0UND (updated Korean), MakinDay (updated Italian), mehmetgorkemarslan (updated Turkish), mezen (updated German), and weizinai (updated Chinese)!
+
 ## 1.44.0
 Released 27 May 2024 for SMAPI 4.0.0 or later.
 

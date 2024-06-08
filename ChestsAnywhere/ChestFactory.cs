@@ -130,8 +130,14 @@ namespace Pathoschild.Stardew.ChestsAnywhere
                     }
 
                     // dressers
-                    foreach (StorageFurniture furniture in location.furniture.OfType<StorageFurniture>())
+                    foreach (Furniture rawFurniture in location.furniture)
                     {
+                        if (rawFurniture is not StorageFurniture furniture)
+                            continue;
+
+                        if (furniture.QualifiedItemId == "(F)CCFishTank" && location is CommunityCenter)
+                            continue; // temporary fish tank
+
                         var container = new StorageFurnitureContainer(furniture);
                         yield return new ManagedChest(
                             container: container,

@@ -116,7 +116,7 @@ namespace Pathoschild.Stardew.DataLayers.Framework.Commands
         private record ExportLegendGroup(string Id, string DisplayName)
         {
             /// <summary>The tiles in the group.</summary>
-            public List<Vector2> Tiles { get; } = new();
+            public List<Vector2> Tiles { get; } = [];
         }
     }
 }

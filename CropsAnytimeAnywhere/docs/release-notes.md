@@ -1,6 +1,14 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.5.0
+Released 08 June 2024 for SMAPI 4.0.7 or later.
+
+* Added in-game config UI through [Generic Mod Config Menu](https://www.nexusmods.com/stardewvalley/mods/5098).
+* Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.  
+  _This avoids errors due to breaking changes in earlier 1.6 patches._
+* Improved translations. Thanks to mehmetgorkemarslan (added Turkish)!
+
 ## 1.4.10
 Released 28 March 2024 for SMAPI 4.0.0 or later.
 

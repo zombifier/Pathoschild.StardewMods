@@ -267,7 +267,7 @@ namespace Pathoschild.Stardew.LookupAnything
         public IEnumerable<GiftTasteModel> GetGiftTastes(NPC npc)
         {
             if (!this.IsSocialVillager(npc))
-                return Array.Empty<GiftTasteModel>();
+                return [];
 
             return
                 (
@@ -376,7 +376,7 @@ namespace Pathoschild.Stardew.LookupAnything
         {
             // ignore invalid ingredients
             if (item.TypeDefinitionId != ItemRegistry.type_object)
-                return Enumerable.Empty<RecipeModel>();
+                return [];
 
             // from cached recipes
             List<RecipeModel> recipes = this.GetRecipes()
@@ -421,7 +421,7 @@ namespace Pathoschild.Stardew.LookupAnything
         public IEnumerable<RecipeModel> GetRecipesForMachine(SObject? machine)
         {
             if (machine == null)
-                return Enumerable.Empty<RecipeModel>();
+                return [];
 
             // from cached recipes
             return this.GetRecipes()
@@ -434,7 +434,7 @@ namespace Pathoschild.Stardew.LookupAnything
         public IEnumerable<RecipeModel> GetRecipesForBuilding(Building? building)
         {
             if (building == null)
-                return Array.Empty<RecipeModel>();
+                return [];
 
             // from cached recipes
             return this.GetRecipes()
@@ -667,7 +667,7 @@ namespace Pathoschild.Stardew.LookupAnything
             // get recipes from Producer Framework Mod
             if (this.ProducerFrameworkMod.IsLoaded)
             {
-                List<RecipeModel> customRecipes = new List<RecipeModel>();
+                List<RecipeModel> customRecipes = [];
                 foreach (ProducerFrameworkRecipe recipe in this.ProducerFrameworkMod.GetRecipes())
                 {
                     // remove vanilla recipes overridden by a PFM one
@@ -729,14 +729,17 @@ namespace Pathoschild.Stardew.LookupAnything
                 .ToDictionary(group => group.Key, group => group.Select(p => p.item).ToArray());
 
             // build cache lookup logic
-            Item[] GetObjectsWithTags(List<string> contextTags)
+            Item[] GetObjectsWithTags(List<string>? contextTags)
             {
+                if (contextTags is null)
+                    return [];
+
                 // simple tag lookup
                 if (contextTags.Count == 1 && !contextTags[0].StartsWith("!"))
                 {
                     return contextLookupCache.TryGetValue(contextTags[0], out Item[]? items)
                         ? items
-                        : Array.Empty<Item>();
+                        : [];
                 }
 
                 // complex lookup
@@ -768,9 +771,9 @@ namespace Pathoschild.Stardew.LookupAnything
                 if (recipe.CraftedItemIds?.Any() == true)
                     outputItemIds = recipe.CraftedItemIds.ToArray();
                 else if (recipe.CraftedItemIdFeminine != null && Game1.player.Gender == Gender.Female)
-                    outputItemIds = new[] { recipe.CraftedItemIdFeminine };
+                    outputItemIds = [recipe.CraftedItemIdFeminine];
                 else
-                    outputItemIds = new[] { recipe.CraftedItemId };
+                    outputItemIds = [recipe.CraftedItemId];
 
                 // build recipe models
                 foreach (string outputId in outputItemIds)
@@ -794,7 +797,7 @@ namespace Pathoschild.Stardew.LookupAnything
                             }
                             catch (Exception ex)
                             {
-                                this.Monitor.LogOnce($"Failed to get output #{outputId} for tailoring recipe [{string.Join(", ", recipe.FirstItemTags ?? new())}] + [{string.Join(", ", recipe.SecondItemTags ?? new())}]. Technical details:\n{ex}", LogLevel.Warn);
+                                this.Monitor.LogOnce($"Failed to get output #{outputId} for tailoring recipe [{string.Join(", ", recipe.FirstItemTags ?? [])}] + [{string.Join(", ", recipe.SecondItemTags ?? [])}]. Technical details:\n{ex}", LogLevel.Warn);
                                 continue;
                             }
 
@@ -803,11 +806,10 @@ namespace Pathoschild.Stardew.LookupAnything
                                 key: null,
                                 type: RecipeType.TailorInput,
                                 displayType: I18n.RecipeType_Tailoring(),
-                                ingredients: new[]
-                                {
+                                ingredients: [
                                     new RecipeIngredientModel(clothItem.QualifiedItemId, 1),
                                     new RecipeIngredientModel(spoolItem.QualifiedItemId, 1)
-                                },
+                                ],
                                 item: _ => output.getOne(),
                                 isKnown: () => Game1.player.HasTailoredThisItem(output),
                                 outputQualifiedItemId: ItemRegistry.QualifyItemId(recipe.CraftedItemId),

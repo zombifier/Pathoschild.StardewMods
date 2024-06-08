@@ -38,8 +38,7 @@ namespace ContentPatcher
         private LoadedContentPack[]? ContentPacks;
 
         /// <summary>The recognized format versions and their migrations.</summary>
-        private readonly Func<ContentConfig?, IMigration[]> GetFormatVersions = content => new IMigration[]
-        {
+        private readonly Func<ContentConfig?, IMigration[]> GetFormatVersions = content => [
             new Migration_1_0(),
             new Migration_1_3(),
             new Migration_1_4(),
@@ -70,14 +69,14 @@ namespace ContentPatcher
             new Migration_1_29(),
             new Migration_1_30(),
             new Migration_2_0(),
-            new Migration_2_1()
-        };
+            new Migration_2_1(),
+            new Migration_2_2()
+        ];
 
         /// <summary>The special validation logic to apply to assets affected by patches.</summary>
-        private readonly Func<IAssetValidator[]> AssetValidators = () => new IAssetValidator[]
-        {
+        private readonly Func<IAssetValidator[]> AssetValidators = () => [
             new StardewValley_1_3_36_Validator()
-        };
+        ];
 
         /// <summary>Handles the 'patch' console command.</summary>
         private CommandHandler CommandHandler = null!; // set in Entry
@@ -92,7 +91,7 @@ namespace ContentPatcher
         private readonly PerScreen<DebugOverlay?> DebugOverlay = new();
 
         /// <summary>The mod tokens queued for addition. This is null after the first update tick, when new tokens can no longer be added.</summary>
-        private readonly List<ModProvidedToken> QueuedModTokens = new();
+        private readonly List<ModProvidedToken> QueuedModTokens = [];
 
         /// <summary>The game tick when the conditions API became ready for use.</summary>
         private int ConditionsApiReadyTick = int.MaxValue;

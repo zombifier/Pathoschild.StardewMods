@@ -14,7 +14,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         ** Fields
         *********/
         /// <summary>The valid seasons.</summary>
-        private readonly string[] Seasons = { "spring", "summer", "fall", "winter" };
+        private readonly string[] Seasons = ["spring", "summer", "fall", "winter"];
 
 
         /*********

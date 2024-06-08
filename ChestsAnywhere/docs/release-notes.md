@@ -1,6 +1,14 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.23.5
+Released 08 June 2024 for SMAPI 4.0.7 or later.
+
+* Fixed the community center fish tank being accessible through Chests Anywhere.
+* Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.  
+  _This avoids errors due to breaking changes in earlier 1.6 patches._
+* Internal refactoring.
+
 ## 1.23.4
 Released 22 May 2024 for SMAPI 4.0.0 or later.
 

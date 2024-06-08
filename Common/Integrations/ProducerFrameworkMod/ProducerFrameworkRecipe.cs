@@ -1,5 +1,4 @@
 using System.Linq;
-using StardewValley;
 using PreserveType = StardewValley.Object.PreserveType;
 
 namespace Pathoschild.Stardew.Common.Integrations.ProducerFrameworkMod
