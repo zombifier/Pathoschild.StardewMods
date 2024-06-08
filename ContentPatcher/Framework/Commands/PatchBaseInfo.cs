@@ -42,7 +42,7 @@ namespace ContentPatcher.Framework.Commands
             // state error
             if (state.InvalidTokens.Count > 0 || state.UnreadyTokens.Count > 0 || state.Errors.Count > 0)
             {
-                List<string> reasons = new();
+                List<string> reasons = [];
 
                 if (state.InvalidTokens.Any())
                     reasons.Add($"invalid tokens: {string.Join(", ", state.InvalidTokens.OrderByHuman())}");

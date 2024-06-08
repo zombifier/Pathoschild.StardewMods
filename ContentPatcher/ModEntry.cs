@@ -91,7 +91,7 @@ namespace ContentPatcher
         private readonly PerScreen<DebugOverlay?> DebugOverlay = new();
 
         /// <summary>The mod tokens queued for addition. This is null after the first update tick, when new tokens can no longer be added.</summary>
-        private readonly List<ModProvidedToken> QueuedModTokens = new();
+        private readonly List<ModProvidedToken> QueuedModTokens = [];
 
         /// <summary>The game tick when the conditions API became ready for use.</summary>
         private int ConditionsApiReadyTick = int.MaxValue;

@@ -218,7 +218,7 @@ namespace Pathoschild.Stardew.Automate.Framework
 
             // remove old groups
             {
-                HashSet<string> locationKeys = new(locations.Concat(removedLocations).Select(this.Factory.GetLocationKey));
+                HashSet<string> locationKeys = [..locations.Concat(removedLocations).Select(this.Factory.GetLocationKey)];
                 if (this.Monitor.IsVerbose)
                     this.Monitor.Log($"Reloading machines in {locationKeys.Count} locations: {string.Join(", ", locationKeys)}...");
 
@@ -238,9 +238,9 @@ namespace Pathoschild.Stardew.Automate.Framework
                 string locationKey = this.Factory.GetLocationKey(location);
 
                 // collect new groups
-                List<IMachineGroup> active = new();
-                List<IMachineGroup> disabled = new();
-                List<IMachineGroup> junimo = new();
+                List<IMachineGroup> active = [];
+                List<IMachineGroup> disabled = [];
+                List<IMachineGroup> junimo = [];
                 foreach (IMachineGroup group in this.Factory.GetMachineGroups(location, this.Monitor))
                 {
                     if (!group.HasInternalAutomation)
@@ -270,8 +270,8 @@ namespace Pathoschild.Stardew.Automate.Framework
             // rebuild caches
             if (anyChanged)
             {
-                List<IMachineGroup> active = new();
-                List<IMachineGroup> disabled = new();
+                List<IMachineGroup> active = [];
+                List<IMachineGroup> disabled = [];
 
                 foreach (MachineDataForLocation locationData in this.MachineData.Values)
                 {

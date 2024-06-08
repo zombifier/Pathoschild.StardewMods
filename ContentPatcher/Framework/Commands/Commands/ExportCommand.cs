@@ -77,7 +77,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             string? typeName = args.Length > 1 ? args[1] : null;
 
             // get default type
-            List<Type> possibleTypes = new(this.TryGetTypes(typeName));
+            List<Type> possibleTypes = [..this.TryGetTypes(typeName)];
             switch (possibleTypes.Count)
             {
                 case 0:
@@ -308,8 +308,8 @@ namespace ContentPatcher.Framework.Commands.Commands
 
             // by type name
             {
-                HashSet<Type> typesByName = new();
-                HashSet<Type> typesByFullName = new();
+                HashSet<Type> typesByName = [];
+                HashSet<Type> typesByFullName = [];
                 foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     if (assembly.IsDynamic)
@@ -346,7 +346,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             IAssetName assetName = this.ContentHelper.ParseAssetName(asset);
 
             if (assetName.IsDirectlyUnderPath("Maps"))
-                return new() { typeof(Map), typeof(Texture2D) };
+                return [typeof(Map), typeof(Texture2D)];
 
             if (
                 assetName.IsDirectlyUnderPath("Animals")
@@ -357,7 +357,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                 || assetName.IsDirectlyUnderPath("TerrainFeatures")
                 || assetName.IsDirectlyUnderPath("TileSheets")
             )
-                return new() { typeof(Texture2D) };
+                return [typeof(Texture2D)];
 
             if (
                 assetName.IsDirectlyUnderPath("Characters/Dialogue")
@@ -365,7 +365,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                 || assetName.IsDirectlyUnderPath("Data/Events")
                 || assetName.IsDirectlyUnderPath("Data/festivals")
             )
-                return new() { typeof(Dictionary<string, string>) };
+                return [typeof(Dictionary<string, string>)];
 
             return null;
         }

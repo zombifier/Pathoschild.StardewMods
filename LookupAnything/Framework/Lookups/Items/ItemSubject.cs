@@ -207,7 +207,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                     yield return new GenericField(I18n.Item_SellsFor(), saleValueSummary);
 
                     // sell to
-                    List<string> buyers = new();
+                    List<string> buyers = [];
                     if (obj?.canBeShipped() == true)
                         buyers.Add(I18n.Item_SellsTo_ShippingBox());
                     buyers.AddRange(
@@ -535,7 +535,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             // crop summary
             if (!isForage)
             {
-                List<string> summary = new();
+                List<string> summary = [];
 
                 // harvest
                 if (!crop.forageCrop.Value)
@@ -719,7 +719,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             if (obj == null || obj.TypeDefinitionId != ItemRegistry.type_object)
                 yield break;
 
-            List<string> neededFor = new();
+            List<string> neededFor = [];
 
             // bundles
             {

@@ -42,8 +42,7 @@ namespace ContentPatcher.Framework.Commands.Commands
 
         /// <summary>The tokens to sort manually for display.</summary>
         /// <remarks>This avoids the performance impact of sorting the actual token each time the context is updated. Note that we shouldn't sort all tokens here, since some have a natural order that affects the <see cref="InputArguments.ValueAtKey"/> input argument.</remarks>
-        private readonly HashSet<ConditionType> SortTokens = new()
-        {
+        private readonly HashSet<ConditionType> SortTokens = [
             ConditionType.HasActiveQuest,
             ConditionType.HasCaughtFish,
             ConditionType.HasCookingRecipe,
@@ -55,7 +54,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             ConditionType.HasReadLetter,
             ConditionType.HasSeenEvent,
             ConditionType.SkillLevel
-        };
+        ];
 
 
         /*********
@@ -103,7 +102,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             // parse arguments
             bool showFull = false;
             bool sort = true;
-            MutableInvariantSet forModIds = new();
+            MutableInvariantSet forModIds = [];
             foreach (string arg in args)
             {
                 // flags
@@ -384,7 +383,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                         {
                             string assetName = patch.ParsedTargetAsset.Value!;
 
-                            List<string> issues = new();
+                            List<string> issues = [];
                             if (this.AssetNameWithContentPattern.IsMatch(assetName))
                                 issues.Add("shouldn't include 'Content/' prefix");
                             if (this.AssetNameWithExtensionPattern.IsMatch(assetName))
@@ -435,7 +434,7 @@ namespace ContentPatcher.Framework.Commands.Commands
                             if (displayTarget != null)
                             {
                                 if (!effectsByPatch.TryGetValue(displayTarget, out MutableInvariantSet? effects))
-                                    effectsByPatch[displayTarget] = effects = new MutableInvariantSet();
+                                    effectsByPatch[displayTarget] = effects = [];
 
                                 effects.AddMany(patch.GetChangeLabels());
                             }

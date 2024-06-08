@@ -353,7 +353,7 @@ namespace Pathoschild.Stardew.Common
                 return new Vector2(0, 0);
 
             // get word list
-            List<string> words = new List<string>();
+            List<string> words = [];
             foreach (string word in text.Split(' ', StringSplitOptions.RemoveEmptyEntries))
             {
                 // split on newlines

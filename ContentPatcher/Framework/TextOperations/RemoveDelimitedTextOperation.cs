@@ -61,7 +61,7 @@ namespace ContentPatcher.Framework.TextOperations
                         {
                             if (values[i] == search)
                             {
-                                List<string> modified = new(values);
+                                List<string> modified = [..values];
                                 modified.RemoveAt(i);
                                 values = modified;
 
@@ -76,7 +76,7 @@ namespace ContentPatcher.Framework.TextOperations
                         {
                             if (values[i] == search)
                             {
-                                List<string> modified = new(values);
+                                List<string> modified = [..values];
                                 modified.RemoveAt(i);
                                 values = modified;
 
@@ -94,7 +94,7 @@ namespace ContentPatcher.Framework.TextOperations
                             {
                                 if (values[i] == search)
                                 {
-                                    modified ??= new List<string>(values);
+                                    modified ??= [..values];
                                     modified.RemoveAt(i);
 
                                     replaced = true;

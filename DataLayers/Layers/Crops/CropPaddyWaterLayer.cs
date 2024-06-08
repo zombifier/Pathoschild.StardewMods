@@ -64,7 +64,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Crops
             }
 
             // get paddy tiles
-            HashSet<Vector2> tilesInRange = new HashSet<Vector2>(this.GetTilesInRange(location, visibleTiles));
+            HashSet<Vector2> tilesInRange = [..this.GetTilesInRange(location, visibleTiles)];
             return [
                 new TileGroup(tilesInRange.Select(pos => new TileData(pos, this.InRange)), outerBorderColor: this.InRange.Color),
                 new TileGroup(visibleTiles.Where(pos => !tilesInRange.Contains(pos)).Select(pos => new TileData(pos, this.NotInRange)))

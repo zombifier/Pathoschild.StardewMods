@@ -107,7 +107,7 @@ namespace ContentPatcher.Framework.Conditions
                 IToken? token = context.GetToken(lexToken.Name, enforceContext: false);
                 if (token != null)
                 {
-                    tokensUsed ??= new();
+                    tokensUsed ??= [];
                     tokensUsed.Add(token.Name);
 
                     if (!token.IsDeterministicForInput)

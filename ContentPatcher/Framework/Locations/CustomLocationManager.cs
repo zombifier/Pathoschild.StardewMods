@@ -25,7 +25,7 @@ namespace ContentPatcher.Framework.Locations
         private static readonly Regex ValidNamePattern = new("^[a-z0-9_]+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>The registered locations regardless of validity.</summary>
-        private readonly List<CustomLocationData> CustomLocations = new();
+        private readonly List<CustomLocationData> CustomLocations = [];
 
         /// <summary>The enabled locations indexed by their normalized map path.</summary>
         private readonly Dictionary<IAssetName, CustomLocationData> CustomLocationsByMapPath = new();

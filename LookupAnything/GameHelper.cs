@@ -667,7 +667,7 @@ namespace Pathoschild.Stardew.LookupAnything
             // get recipes from Producer Framework Mod
             if (this.ProducerFrameworkMod.IsLoaded)
             {
-                List<RecipeModel> customRecipes = new List<RecipeModel>();
+                List<RecipeModel> customRecipes = [];
                 foreach (ProducerFrameworkRecipe recipe in this.ProducerFrameworkMod.GetRecipes())
                 {
                     // remove vanilla recipes overridden by a PFM one
@@ -794,7 +794,7 @@ namespace Pathoschild.Stardew.LookupAnything
                             }
                             catch (Exception ex)
                             {
-                                this.Monitor.LogOnce($"Failed to get output #{outputId} for tailoring recipe [{string.Join(", ", recipe.FirstItemTags ?? new())}] + [{string.Join(", ", recipe.SecondItemTags ?? new())}]. Technical details:\n{ex}", LogLevel.Warn);
+                                this.Monitor.LogOnce($"Failed to get output #{outputId} for tailoring recipe [{string.Join(", ", recipe.FirstItemTags ?? [])}] + [{string.Join(", ", recipe.SecondItemTags ?? [])}]. Technical details:\n{ex}", LogLevel.Warn);
                                 continue;
                             }
 

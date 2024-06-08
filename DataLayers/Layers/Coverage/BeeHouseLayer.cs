@@ -123,7 +123,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             const int range = 5;
 
             Queue<Vector2> queue = new Queue<Vector2>();
-            HashSet<Vector2> visited = new HashSet<Vector2>();
+            HashSet<Vector2> visited = [];
             queue.Enqueue(Vector2.Zero);
             while (queue.Count > 0)
             {

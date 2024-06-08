@@ -19,7 +19,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         ** Fields
         *********/
         /// <summary>The temporary animations showing the item thrown into the air.</summary>
-        private readonly HashSet<TemporaryAnimatedSprite> ItemAnimations = new();
+        private readonly HashSet<TemporaryAnimatedSprite> ItemAnimations = [];
 
         /// <summary>Whether to disable the confirmation dialogue before eating or drinking.</summary>
         private readonly bool DisableConfirmation;

@@ -126,7 +126,7 @@ namespace ContentPatcher.Framework
 
             // update tokens
             {
-                MutableInvariantSet changedTokens = new();
+                MutableInvariantSet changedTokens = [];
 
                 // update global tokens
                 foreach (IToken token in this.GlobalContext.Tokens.Values)

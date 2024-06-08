@@ -16,7 +16,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         ** Fields
         *********/
         /// <summary>The chests in the current location.</summary>
-        private readonly List<Chest> Chests = new();
+        private readonly List<Chest> Chests = [];
 
 
         /*********

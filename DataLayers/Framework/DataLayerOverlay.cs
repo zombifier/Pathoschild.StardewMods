@@ -365,7 +365,7 @@ namespace Pathoschild.Stardew.DataLayers.Framework
             IDictionary<Vector2, TileDrawData> tiles = new Dictionary<Vector2, TileDrawData>();
             foreach (TileGroup group in groups)
             {
-                Lazy<HashSet<Vector2>> inGroupLazy = new Lazy<HashSet<Vector2>>(() => new HashSet<Vector2>(group.Tiles.Select(p => p.TilePosition)));
+                Lazy<HashSet<Vector2>> inGroupLazy = new Lazy<HashSet<Vector2>>(() => [..group.Tiles.Select(p => p.TilePosition)]);
                 foreach (TileData groupTile in group.Tiles)
                 {
                     // get tile data

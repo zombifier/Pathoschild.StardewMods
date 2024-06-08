@@ -61,7 +61,7 @@ namespace Pathoschild.Stardew.LookupAnything
                         : valueParts.Last(); // number of fields varies, but display name is always last
 
                     // parse ingredients
-                    List<BundleIngredientModel> ingredients = new List<BundleIngredientModel>();
+                    List<BundleIngredientModel> ingredients = [];
                     string[] ingredientData = valueParts[2].Split(' ');
                     for (int i = 0; i < ingredientData.Length; i += 3)
                     {
@@ -164,7 +164,7 @@ namespace Pathoschild.Stardew.LookupAnything
                 if (metadata.IgnoreFishingLocations.Contains(locationId))
                     continue; // ignore event data
 
-                List<FishSpawnLocationData> curLocations = new List<FishSpawnLocationData>();
+                List<FishSpawnLocationData> curLocations = [];
                 foreach (SpawnFishData fish in data.Fish)
                 {
                     ParsedItemData? fishItem = ItemRegistry.GetData(fish.ItemId);
@@ -378,7 +378,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <param name="extraMachineConfig">The Extra Machine Config mod's API.</param>
         public RecipeModel[] GetRecipes(Metadata metadata, IMonitor monitor, ExtraMachineConfigIntegration extraMachineConfig)
         {
-            List<RecipeModel> recipes = new List<RecipeModel>();
+            List<RecipeModel> recipes = [];
 
             // cooking/crafting recipes
             var craftingRecipes =
@@ -441,10 +441,9 @@ namespace Pathoschild.Stardew.LookupAnything
                                 someRulesTooComplex = true;
 
                             // add ingredients
-                            List<RecipeIngredientModel> ingredients = new()
-                            {
+                            List<RecipeIngredientModel> ingredients = [
                                 new RecipeIngredientModel(inputId, trigger.RequiredCount, inputContextTags)
-                            };
+                            ];
                             ingredients.AddRange(additionalConsumedItems);
 
                             // if there are extra fuels added by the Extra Machine Config mod, add them here

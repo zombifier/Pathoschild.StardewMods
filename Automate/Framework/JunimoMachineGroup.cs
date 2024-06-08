@@ -18,7 +18,7 @@ namespace Pathoschild.Stardew.Automate.Framework
         private readonly Func<IEnumerable<IMachine>, IEnumerable<IMachine>> SortMachines;
 
         /// <summary>The underlying machine groups.</summary>
-        private readonly List<IMachineGroup> MachineGroups = new();
+        private readonly List<IMachineGroup> MachineGroups = [];
 
         /// <summary>A map of covered tiles by location key, if loaded.</summary>
         private Dictionary<string, IReadOnlySet<Vector2>>? Tiles;

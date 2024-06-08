@@ -319,12 +319,11 @@ namespace ContentPatcher.Framework
         {
             return this.GetCached("Contexts", () =>
             {
-                HashSet<string> contexts = new()
-                {
+                HashSet<string> contexts = [
                     LocationContexts.DefaultId,
                     LocationContexts.DesertId,
                     LocationContexts.IslandId
-                };
+                ];
 
                 foreach (GameLocation location in this.GetLocations())
                     contexts.Add(this.GetLocationContext(location));

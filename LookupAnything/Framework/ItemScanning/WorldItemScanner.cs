@@ -43,7 +43,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.ItemScanning
         /// </remarks>
         public IEnumerable<FoundItem> GetAllOwnedItems()
         {
-            List<FoundItem> items = new List<FoundItem>();
+            List<FoundItem> items = [];
             ISet<Item> itemsSeen = new HashSet<Item>(new ObjectReferenceComparer<Item>());
 
             // in locations

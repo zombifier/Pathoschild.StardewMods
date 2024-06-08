@@ -34,10 +34,10 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         /// <summary>The action tile property values which trigger a warp.</summary>
         /// <remarks>See remarks on <see cref="IsWarp"/>.</remarks>
         [SuppressMessage("ReSharper", "StringLiteralTypo", Justification = "These are game values.")]
-        private readonly HashSet<string> WarpActions = new() { "EnterSewer", "LockedDoorWarp", "Mine", "Theater_Entrance", "Warp", "WarpCommunityCenter", "WarpGreenhouse", "WarpMensLocker", "WarpWomensLocker", "WizardHatch" };
+        private readonly HashSet<string> WarpActions = ["EnterSewer", "LockedDoorWarp", "Mine", "Theater_Entrance", "Warp", "WarpCommunityCenter", "WarpGreenhouse", "WarpMensLocker", "WarpWomensLocker", "WizardHatch"];
 
         /// <summary>The touch action tile property values which trigger a warp.</summary>
-        private readonly HashSet<string> TouchWarpActions = new() { "Door", "MagicWarp", "Warp" };
+        private readonly HashSet<string> TouchWarpActions = ["Door", "MagicWarp", "Warp"];
 
 
         /*********
@@ -85,7 +85,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         private IEnumerable<TileData> GetTiles(GameLocation location, IEnumerable<Vector2> visibleTiles)
         {
             // get building warps
-            HashSet<Vector2> buildingDoors = new HashSet<Vector2>();
+            HashSet<Vector2> buildingDoors = [];
             foreach (Building building in location.buildings)
             {
                 if (!building.HasIndoors() || (building.humanDoor.X < 0 && building.humanDoor.Y < 0))

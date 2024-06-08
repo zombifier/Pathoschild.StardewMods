@@ -30,7 +30,7 @@ namespace ContentPatcher.Framework
         private readonly IMonitor Monitor;
 
         /// <summary>The content packs whose configuration changed.</summary>
-        private readonly HashSet<LoadedContentPack> QueuedForConfigUpdates = new();
+        private readonly HashSet<LoadedContentPack> QueuedForConfigUpdates = [];
 
         /// <summary>Whether the next tick is the first one for the current screen.</summary>
         private bool IsFirstTick = true;

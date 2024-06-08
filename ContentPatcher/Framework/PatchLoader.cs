@@ -148,7 +148,7 @@ namespace ContentPatcher.Framework
             }
 
             // parse conditions
-            MutableInvariantSet requiredModIds = new();
+            MutableInvariantSet requiredModIds = [];
             InvariantDictionary<Condition> parsed = new();
             foreach ((string key, string? value) in raw.OrderBy(p => this.GetConditionParseOrder(p.Key, p.Value)))
             {
@@ -263,7 +263,7 @@ namespace ContentPatcher.Framework
                             newPatch.LogName = this.GetDefaultPatchName(newPatch);
                         else
                         {
-                            List<string> labels = new();
+                            List<string> labels = [];
 
                             if (targets.Length > 1)
                                 labels.Add($"{target}");
@@ -888,7 +888,7 @@ namespace ContentPatcher.Framework
                 }
 
                 // parse target
-                List<IManagedTokenString> target = new List<IManagedTokenString>();
+                List<IManagedTokenString> target = [];
                 foreach (string? field in operation.Target)
                 {
                     if (!tokenParser.TryParseString(field, assumeModIds, localPath.With(nameof(TextOperationConfig.Target), i.ToString()), out string? targetError, out IManagedTokenString? parsed))
@@ -969,10 +969,10 @@ namespace ContentPatcher.Framework
         /// <returns>Returns whether parsing succeeded.</returns>
         private bool TryParseEditDataFields(PatchConfig entry, TokenParser tokenParser, IInvariantSet assumeModIds, LogPathBuilder path, out List<EditDataPatchRecord> entries, out List<EditDataPatchField> fields, out List<EditDataPatchMoveRecord> moveEntries, out List<IManagedTokenString> targetField, [NotNullWhen(false)] out string? error)
         {
-            entries = new List<EditDataPatchRecord>();
-            fields = new List<EditDataPatchField>();
-            moveEntries = new List<EditDataPatchMoveRecord>();
-            targetField = new List<IManagedTokenString>();
+            entries = [];
+            fields = [];
+            moveEntries = [];
+            targetField = [];
 
             bool Fail(string reason, out string outReason)
             {

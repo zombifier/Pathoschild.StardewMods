@@ -125,7 +125,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             }
 
             // prices by quality
-            List<string> priceStrings = new List<string>();
+            List<string> priceStrings = [];
             for (ItemQuality quality = ItemQuality.Normal; ; quality = quality.GetNext())
             {
                 if (saleValues.ContainsKey(quality))
