@@ -15,6 +15,8 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
   * [`HasVisitedLocation`](author-guide/tokens.md#HasVisitedLocation) for the locations a player has visited before.
 * Re-enabled Content Patcher 2.1.0's locales change for all content packs.
   _This was temporarily disabled for older content packs in 2.1.1 so affected content packs could be updated._
+* Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.
+  _This avoids errors due to breaking changes in earlier 1.6 patches._
 * Fixed the `HavingChild` and `Pregnant` tokens not accounting for the new `SpouseAdopts` field in `Data/Characters`.
 
 ## 2.1.2

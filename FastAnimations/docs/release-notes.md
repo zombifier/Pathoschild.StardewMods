@@ -6,6 +6,8 @@
 * Fixed slingshot not firing when sped up in 'hold and release' mode.
 * Fixed _use slingshot_ ignored if _swing tool_ is enabled.
 * Fixed issue where enabling _tree falling_ or _open chest_ in-game would only affect the current location when you left and re-entered it.
+* Raised minimum versions to SMAPI 4.0.7 and Stardew Valley 1.6.4.
+  _This avoids errors due to breaking changes in earlier 1.6 patches._
 * Optimized performance a bit.
 * Improved translations. Thanks to MakinDay (updated Italian) and mehmetgorkemarslan (updated Turkish)!
 
