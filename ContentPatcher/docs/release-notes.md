@@ -11,8 +11,10 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 -->
 ## Upcoming release
 * Added new tokens:
-  * [`FarmMapAsset`](author-guide/tokens.md#FarmMapAsset) for the farm type's map asset name relative to the game's `Content/Maps` folder (like `Farm_Combat` for the wilderness farm).
+  * [`FarmMapAsset`](author-guide/tokens.md#FarmMapAsset) for the farm type's map [asset name](https://stardewvalleywiki.com/Modding:Common_data_field_types#Asset_name) without the `Maps/` prefix (like `Farm_Combat` for the wilderness farm).
   * [`HasVisitedLocation`](author-guide/tokens.md#HasVisitedLocation) for the locations a player has visited before.
+* Re-enabled Content Patcher 2.1.0's locales change for all content packs.
+  _This was temporarily disabled for older content packs in 2.1.1 so affected content packs could be updated._
 * Fixed the `HavingChild` and `Pregnant` tokens not accounting for the new `SpouseAdopts` field in `Data/Characters`.
 
 ## 2.1.2

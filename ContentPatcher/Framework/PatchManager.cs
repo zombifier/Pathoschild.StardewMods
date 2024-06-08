@@ -420,12 +420,9 @@ namespace ContentPatcher.Framework
                 .GetPatches(baseAssetName)
                 .Where(patch =>
                     patch.IsReady
-                    && (
-                        patch.PredatesTargetLocale
-                        || (patch.TargetLocale is not null
-                            ? string.Equals(patch.TargetLocale, assetName.LocaleCode, StringComparison.InvariantCultureIgnoreCase)
-                            : !skipLocalizedAssetByDefault
-                        )
+                    && (patch.TargetLocale is not null
+                        ? string.Equals(patch.TargetLocale, assetName.LocaleCode, StringComparison.InvariantCultureIgnoreCase)
+                        : !skipLocalizedAssetByDefault
                     )
                 )
                 .OfType<LoadPatch>();
@@ -445,8 +442,7 @@ namespace ContentPatcher.Framework
                     patch.Type == patchType
                     && patch.IsReady
                     && (
-                        patch.PredatesTargetLocale
-                        || patch.TargetLocale is null
+                        patch.TargetLocale is null
                         || string.Equals(patch.TargetLocale, request.Name.LocaleCode, StringComparison.InvariantCultureIgnoreCase)
                     )
                 );
@@ -484,7 +480,7 @@ namespace ContentPatcher.Framework
                 const int exclusivePriority = (int)AssetLoadPriority.Exclusive;
                 if (candidate.Priority is exclusivePriority && loader?.Priority == exclusivePriority)
                 {
-                    IPatch[] exclusiveLoaders = loaders.Where(p => p.Priority == exclusivePriority).ToArray();
+                    IPatch[] exclusiveLoaders = loaders.Where(p => p.Priority == exclusivePriority).ToArray<IPatch>();
                     string[] modNames = exclusiveLoaders.Select(p => p.ContentPack.Manifest.Name).Distinct().OrderByHuman().ToArray();
                     string[] patchNames = exclusiveLoaders.Select(p => p.Path.ToString()).OrderByHuman().ToArray();
                     switch (modNames.Length)
@@ -558,7 +554,7 @@ namespace ContentPatcher.Framework
                 // apply runtime migration
                 {
                     T? data = default;
-                    if (patch.Migrator.TryApplyLoadPatch<T>(patch, assetName, ref data, out string? error))
+                    if (patch.Migrator.TryApplyLoadPatch(patch, assetName, ref data, out string? error))
                     {
                         patch.IsApplied = true;
                         return data;
