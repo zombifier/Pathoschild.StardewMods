@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Fixed crab pots always being assigned to the main player (so they get the XP). This now only happens for unassigned crab pots.
+* Renamed 'Feed Hopper' in config UI to 'Hay Hopper and Silo' for clarity.
 
 ## 2.2.3
 Released 08 June 2024 for SMAPI 4.0.7 or later.

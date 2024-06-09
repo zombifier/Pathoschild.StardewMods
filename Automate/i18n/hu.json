@@ -49,6 +49,7 @@
     "config.machines.fruit-tree": "Tree (Fruit Tree)",
     "config.machines.trash-can": "Trash Can",
     "config.machines.wild-tree": "Tree (Wild Tree)",
+    "config.machines.feed-hopper": "Etető retesz és siló",
 
     // special settings for individual machines
     // TODO
