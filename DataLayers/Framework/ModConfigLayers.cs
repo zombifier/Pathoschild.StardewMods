@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Runtime.Serialization;
 using Pathoschild.Stardew.Common;
 
@@ -73,6 +74,18 @@ namespace Pathoschild.Stardew.DataLayers.Framework
             this.Machines ??= new LayerConfig { UpdatesPerSecond = 2 };
             this.TileGrid ??= new LayerConfig { UpdatesPerSecond = 1 };
             this.Tillable ??= new LayerConfig { UpdatesPerSecond = 2 };
+        }
+
+        /// <summary>Get whether any layers are enabled.</summary>
+        public bool AnyLayersEnabled()
+        {
+            foreach (PropertyInfo property in typeof(ModConfigLayers).GetProperties())
+            {
+                if (property.GetValue(this) is LayerConfig { Enabled: true })
+                    return true;
+            }
+
+            return false;
         }
     }
 }
