@@ -31,7 +31,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
                 {
                     bool applied = false;
 
-                    foreach (TemporaryAnimatedSprite sprite in this.GetTemporarySprites(player))
+                    foreach (TemporaryAnimatedSprite sprite in this.GetTemporarySprites(player).ToArray())
                     {
                         applied = true;
 
