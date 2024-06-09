@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed crab pots always being assigned to the main player (so they get the XP). This now only happens for unassigned crab pots.
+
 ## 2.2.3
 Released 08 June 2024 for SMAPI 4.0.7 or later.
 
