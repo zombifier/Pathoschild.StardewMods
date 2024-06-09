@@ -64,6 +64,10 @@ namespace Pathoschild.Stardew.DataLayers
             this.ColorSchemes = this.LoadColorSchemes();
             this.Colors = this.LoadColorScheme();
 
+            // validate config
+            if (!this.Config.Layers.AnyLayersEnabled())
+                this.Monitor.Log("You have all layers disabled in the mod settings, so the mod won't do anything currently.", LogLevel.Warn);
+
             // init
             I18n.Init(helper.Translation);
 

@@ -1,6 +1,11 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.17.1
+Released 09 June 2024 for SMAPI 4.0.7 or later.
+
+* Fixed layers defaulting to disabled in 1.17.0.
+
 ## 1.17.0
 Released 08 June 2024 for SMAPI 4.0.7 or later.
 

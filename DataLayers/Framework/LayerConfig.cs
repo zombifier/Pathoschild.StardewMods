@@ -12,13 +12,13 @@ namespace Pathoschild.Stardew.DataLayers.Framework
         ** Accessors
         *********/
         /// <summary>Whether to enable this data layer.</summary>
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; } = true;
 
         /// <summary>The number of updates needed per second.</summary>
-        public decimal UpdatesPerSecond { get; set; }
+        public decimal UpdatesPerSecond { get; set; } = 60;
 
         /// <summary>Whether to update the layer when the player's tile view changes.</summary>
-        public bool UpdateWhenViewChange { get; set; }
+        public bool UpdateWhenViewChange { get; set; } = true;
 
         /// <summary>The key binding which switches to this layer when the overlay is open.</summary>
         public KeybindList ShortcutKey { get; set; } = new();
