@@ -38,7 +38,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
                     player.Update(Game1.currentGameTime, player.currentLocation);
 
                     // animation of item thrown in the air
-                    foreach (TemporaryAnimatedSprite sprite in this.GetTemporarySprites(player))
+                    foreach (TemporaryAnimatedSprite sprite in this.GetTemporarySprites(player).ToArray())
                     {
                         bool done = sprite.update(Game1.currentGameTime);
                         if (done)

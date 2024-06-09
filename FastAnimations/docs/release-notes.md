@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed 'collection was modified' errors when speeding up some animations in 1.13.0.
+
 ## 1.13.0
 Released 08 June 2024 for SMAPI 4.0.7 or later.
 
