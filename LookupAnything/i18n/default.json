@@ -146,6 +146,10 @@
     "condition.item-edibility.min": "{{item}} has edibility of {{min}} or more",
     "condition.item-edibility.range": "{{item}} has edibility of {{min}} to {{max}}",
 
+    "condition.day-of-month": "on day {{days}} of the season",
+    "condition.day-of-month.even": "on even days of the season",
+    "condition.day-of-month.odd": "on odd days of the season",
+
     "context-tag.bone": "any bone",
     "context-tag.egg": "any egg",
     "context-tag.large-egg": "any large egg",

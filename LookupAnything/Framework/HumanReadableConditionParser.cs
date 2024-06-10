@@ -49,6 +49,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
                 case nameof(GameStateQuery.DefaultResolvers.ITEM_EDIBILITY):
                     parsed = HumanReadableConditionParser.ParseItemEdibility(query.Query);
                     break;
+
+                case nameof(GameStateQuery.DefaultResolvers.DAY_OF_MONTH):
+                    parsed = HumanReadableConditionParser.ParseDayOfMonth(query.Query);
+                    break;
             }
 
             // format value
@@ -106,6 +110,20 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
             return max != int.MaxValue
                 ? I18n.Condition_ItemEdibility_Range(item: itemType, min: min, max: max)
                 : I18n.Condition_ItemEdibility_Min(item: itemType, min: min);
+        }
+
+        /// <summary>Parse a <see cref="GameStateQuery.DefaultResolvers.DAY_OF_MONTH"/> query into a human-readable representation, if possible.</summary>
+        /// <param name="query">The raw query arguments.</param>
+        private static string? ParseDayOfMonth(string[] query)
+        {
+            foreach (string rawDay in query)
+            {
+                if (string.Equals(rawDay, "even", StringComparison.OrdinalIgnoreCase))
+                    return I18n.Condition_DayOfMonth_Even();
+                if (string.Equals(rawDay, "odd", StringComparison.OrdinalIgnoreCase))
+                    return I18n.Condition_DayOfMonth_Odd();
+            }
+            return I18n.Condition_DayOfMonth(days: I18n.List(new ArraySegment<string>(query, 1, query.Length - 1)));
         }
 
         /// <summary>Get the translated representation for an item target like 'input' or 'target', if known.</summary>

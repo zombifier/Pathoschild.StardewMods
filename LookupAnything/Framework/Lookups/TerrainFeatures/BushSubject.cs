@@ -53,16 +53,21 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             bool isTeaBush = this.IsTeaBush(bush);
             SDate today = SDate.Now();
 
-            // next harvest
             if (isBerryBush || isTeaBush)
             {
                 SDate nextHarvest = this.GetNextHarvestDate(bush);
                 string nextHarvestStr = nextHarvest == today
                     ? I18n.Generic_Now()
                     : $"{this.Stringify(nextHarvest)} ({this.GetRelativeDateStr(nextHarvest)})";
-                string harvestSchedule = isTeaBush ? I18n.Bush_Schedule_Tea() : I18n.Bush_Schedule_Berry();
-
-                yield return new GenericField(I18n.Bush_NextHarvest(), $"{nextHarvestStr}{Environment.NewLine}{harvestSchedule}");
+                if (this.TryGetCustomBushDrops(bush, out IList<ICustomBushDrop>? drops))
+                {
+                    yield return new CustomBushDropsField(this.GameHelper, I18n.Bush_NextHarvest(), drops, preface: nextHarvestStr);
+                }
+                else
+                {
+                    string harvestSchedule = isTeaBush ? I18n.Bush_Schedule_Tea() : I18n.Bush_Schedule_Berry();
+                    yield return new GenericField(I18n.Bush_NextHarvest(), $"{nextHarvestStr}{Environment.NewLine}{harvestSchedule}");
+                }
             }
 
             // date planted + grown
@@ -158,7 +163,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             return bush.size.Value == Bush.greenTeaBush;
         }
 
-        /// <summary>Get bush data from the Custom Bush mod if applicable.</summary>
+        /// <summary>Get bush model from the Custom Bush mod if applicable.</summary>
         /// <param name="bush">The bush to check.</param>
         /// <param name="customBush">The resulting custom bush, if applicable.</param>
         /// <returns>Returns whether a custom bush was found.</returns>
@@ -168,6 +173,19 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             return
                 this.GameHelper.CustomBush.IsLoaded
                 && this.GameHelper.CustomBush.ModApi.TryGetCustomBush(bush, out customBush);
+        }
+
+        /// <summary>Get bush drops from custom bush.</summary>
+        /// <param name="bush">The bush to check.</param>
+        /// <param name="drops">When this method returns, contains the items produced by the custom bush.</param>
+        /// <returns>Returns whether a custom bush with drops was found.</returns>
+        private bool TryGetCustomBushDrops(Bush bush, [NotNullWhen(true)] out IList<ICustomBushDrop>? drops)
+        {
+            drops = null;
+            return
+                this.GameHelper.CustomBush.IsLoaded
+                && this.GameHelper.CustomBush.ModApi.TryGetCustomBush(bush, out ICustomBush? _customBush, out string? id)
+                && this.GameHelper.CustomBush.ModApi.TryGetDrops(id, out drops);
         }
 
         /// <summary>Get the date when the bush was planted.</summary>
@@ -185,9 +203,35 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
         private SDate GetDateFullyGrown(Bush bush)
         {
             SDate date = this.GetDatePlanted(bush);
-            if (this.IsTeaBush(bush))
+            if (this.TryGetCustomBush(bush, out ICustomBush? customBush))
+                date = date.AddDays(customBush.AgeToProduce);
+            else if (this.IsTeaBush(bush))
                 date = date.AddDays(Bush.daysToMatureGreenTeaBush);
             return date;
+        }
+
+        /// <summary>Get the day of season when this push start to produce.</summary>
+        /// <param name="bush">The bush to check.</param>
+        private int GetDayToBeginProducing(Bush bush)
+        {
+            if (this.TryGetCustomBush(bush, out ICustomBush? customBush))
+                return customBush.DayToBeginProducing;
+            else if (this.IsTeaBush(bush))
+                // tea bushes produce on day 22+ of season
+                return 22;
+            return -1;
+        }
+
+        /// <summary>Get seasons during which this bush will produce (if not sheltered).</summary>
+        /// <param name="bush">The bush to check.</param>
+        private List<Season> GetProducingSeasons(Bush bush)
+        {
+            if (this.TryGetCustomBush(bush, out ICustomBush? customBush))
+                return customBush.Seasons;
+            else if (this.IsTeaBush(bush))
+                return [Season.Spring, Season.Summer, Season.Fall];
+            else
+                return [Season.Spring, Season.Fall];
         }
 
         /// <summary>Get the next date when the bush will produce forage.</summary>
@@ -202,18 +246,26 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             if (bush.tileSheetOffset.Value == 1)
                 return today;
 
-            // tea bushes take 20 days to grow, then produce leaves on day 22+ of each season (except winter if not in the greenhouse)
-            if (this.IsTeaBush(bush))
+            // tea bush and custom bush
+            int dayToBegin = this.GetDayToBeginProducing(bush);
+            if (dayToBegin >= 0)
             {
-                SDate minDate = this.GetDateFullyGrown(bush);
-                if (minDate < tomorrow)
-                    minDate = tomorrow;
-
-                if (minDate.Season == Season.Winter && !bush.IsSheltered())
-                    return new(22, Season.Spring, minDate.Year + 1);
-                if (minDate.Day < 22)
-                    return new(22, minDate.Season);
-                return minDate;
+                SDate readyDate = this.GetDateFullyGrown(bush);
+                if (readyDate < tomorrow)
+                    readyDate = tomorrow;
+                if (!bush.IsSheltered())
+                {
+                    // bush not sheltered, must check producing seasons
+                    List<Season> producingSeasons = this.GetProducingSeasons(bush);
+                    SDate seasonDate = new(Math.Max(1, dayToBegin), readyDate.Season, readyDate.Year);
+                    while (!producingSeasons.Contains(seasonDate.Season))
+                        seasonDate = seasonDate.AddDays(28);
+                    if (readyDate < seasonDate)
+                        return seasonDate;
+                }
+                if (readyDate.Day < dayToBegin)
+                    readyDate = new(dayToBegin, readyDate.Season, readyDate.Year);
+                return readyDate;
             }
 
             // wild bushes produce salmonberries in spring 15-18, and blackberries in fall 8-11
