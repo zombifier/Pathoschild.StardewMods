@@ -83,7 +83,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
 
                 // draw text
                 string text = isGuaranteed ? item.DisplayName : I18n.Generic_PercentChanceOf(percent: (decimal)(Math.Round(drop.Chance, 4) * 100), label: item.DisplayName);
-                if (drop.MinStack != drop.MaxStack)
+                if (drop.MinStack < drop.MaxStack)
                     text += $" ({I18n.Generic_Range(min: drop.MinStack, max: drop.MaxStack)})";
                 else if (drop.MinStack > 1)
                     text += $" ({drop.MinStack})";
