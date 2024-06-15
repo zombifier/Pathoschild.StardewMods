@@ -68,11 +68,11 @@
     "config.casino-slots.name": "Slot del casinò",
     "config.casino-slots.tooltip": "La velocità di rotazione delle slot del casinò. Predefinito {{defaultValue}}x.",
 
-    "config.event.name": "Event cutscene", // TODO
-    "config.event.tooltip": "How fast event cutscenes play. Default {{defaultValue}}x, suggested {{suggestedValue}}x.", // TODO
+    "config.event.name": "Filmati degli eventi",
+    "config.event.tooltip": "La velocità di riproduzione dei filmati degli eventi. Predefinito {{defaultValue}}x, consigliato {{suggestedValue}}x.",
 
-    "config.fade.name": "Fade", // TODO
-    "config.fade.tooltip": "How fast the screen fades to black and fades back in. Default {{defaultValue}}x.", // TODO
+    "config.fade.name": "Dissolvenza",
+    "config.fade.tooltip": "La velocità con cui lo schermo passa al nero e va in dissolvenza. Predefinito {{defaultValue}}x.",
 
     "config.fishing-treasure.name": "Pescare i forzieri del tesoro",
     "config.fishing-treasure.tooltip": "La velocità con cui apri i forzieri del tesoro pescati. Predefinito {{defaultValue}}x.",
@@ -83,14 +83,14 @@
     "config.open-chest.name": "Apertura dei forzieri",
     "config.open-chest.tooltip": "La velocità con cui apri i forzieri. Predefinito {{defaultValue}}x.",
 
-    "config.parrot-express.name": "Parrot express", // TODO
-    "config.parrot-express.tooltip": "How fast the parrot express runs. Default {{defaultValue}}x.", // TODO
+    "config.parrot-express.name": "Pappagallo express",
+    "config.parrot-express.tooltip": "La velocità di azione della pappagallo express. Predefinito {{defaultValue}}x.",
 
     "config.prize-ticket-machine.name": "Macchina dei premi",
     "config.prize-ticket-machine.tooltip": "La velocità con cui la macchina dei premi di Lewis accetta un biglietto e produce un articolo. Predefinito {{defaultValue}}x.",
 
-    "config.tailor.name": "Tailor", // TODO
-    "config.tailor.tooltip": "How fast the sewing machine works. Default {{defaultValue}}x.", // TODO
+    "config.tailor.name": "Sarto",
+    "config.tailor.tooltip": "La velocità di funzionamento della macchina per cucire. Predefinito {{defaultValue}}x.",
 
     "config.tree-fall.name": "Caduta degli alberi",
     "config.tree-fall.tooltip": "La velocità con cui gli alberi cadono dopo essere stati abbattuti. Predefinito {{defaultValue}}x, valore suggerito {{suggestedValue}}x.",
@@ -103,11 +103,11 @@
     ****/
     "config.ui-speeds": "Velocità animazioni IU",
 
-    "config.dialogue-typing.name": "Dialogue typing", // TODO
-    "config.dialogue-typing.tooltip": "How fast text appears in dialogue boxes. Default {{defaultValue}}x", // TODO
+    "config.dialogue-typing.name": "Dialoghi",
+    "config.dialogue-typing.tooltip": "La velocità di visualizzazione del testo nelle finestre di dialogo. Predefinito {{defaultValue}}x",
 
-    "config.open-dialogue-box.name": "Open dialogue box", // TODO
-    "config.open-dialogue-box.tooltip": "How fast dialogue boxes open. Default {{defaultValue}}x.", // TODO
+    "config.open-dialogue-box.name": "Apertura delle finestre di dialogo",
+    "config.open-dialogue-box.tooltip": "La velocità di apertura delle finestre di dialogo. Predefinito {{defaultValue}}x.",
 
     "config.title-menu.name": "Transizioni del menu principale",
     "config.title-menu.tooltip": "La velocità di transizione del menu principale tra le schermate. Predefinito {{defaultValue}}x.",
