@@ -4,12 +4,16 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathoschild.Stardew.Common.Integrations.CustomBush;
+using Pathoschild.Stardew.Common.Integrations.BushBloomMod;
 using Pathoschild.Stardew.LookupAnything.Framework.DebugFields;
 using Pathoschild.Stardew.LookupAnything.Framework.Fields;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.TerrainFeatures;
 using StardewValley.TokenizableStrings;
+using StardewModdingAPI;
+using System.Threading;
+using System.Linq;
 
 namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
 {
@@ -53,35 +57,71 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             bool isTeaBush = this.IsTeaBush(bush);
             SDate today = SDate.Now();
 
-            if (isBerryBush || isTeaBush)
+            if (isBerryBush && this.TryBushBloomGetAllSchedules(out (string, WorldDate, WorldDate)[]? bushBloomSchedule))
             {
-                SDate nextHarvest = this.GetNextHarvestDate(bush);
-                string nextHarvestStr = nextHarvest == today
-                    ? I18n.Generic_Now()
-                    : $"{this.Stringify(nextHarvest)} ({this.GetRelativeDateStr(nextHarvest)})";
-                if (this.TryGetCustomBushDrops(bush, out IList<ICustomBushDrop>? drops))
+                Array.Sort(bushBloomSchedule, ((string, WorldDate, WorldDate) entryX, (string, WorldDate, WorldDate) entryY) =>
                 {
-                    yield return new CustomBushDropsField(this.GameHelper, I18n.Bush_NextHarvest(), drops, preface: nextHarvestStr);
-                }
-                else
+                    if (entryX.Item2 < entryY.Item2)
+                        return -1;
+                    if (entryX.Item2 > entryY.Item2)
+                        return 1;
+                    if (entryX.Item3 < entryY.Item3)
+                        return -1;
+                    if (entryX.Item3 > entryY.Item3)
+                        return 1;
+                    return 0;
+                });
+                List<Item> itemList = [];
+                Dictionary<string, string> displayText = [];
+                foreach ((string, WorldDate, WorldDate) entry in bushBloomSchedule)
                 {
-                    string harvestSchedule = isTeaBush ? I18n.Bush_Schedule_Tea() : I18n.Bush_Schedule_Berry();
-                    yield return new GenericField(I18n.Bush_NextHarvest(), $"{nextHarvestStr}{Environment.NewLine}{harvestSchedule}");
+                    // Item1: ItemId (not qualified, needs (O) prefix)
+                    // Item2: start day
+                    // Item3: end day inclusive
+                    if (today.Season > entry.Item3.Season)
+                        break;
+                    SDate firstDay = SDate.From(entry.Item2);
+                    SDate lastDay = SDate.From(entry.Item3);
+                    if (today < firstDay)
+                        continue;
+                    Item item = ItemRegistry.Create(entry.Item1);
+                    itemList.Add(item);
+                    displayText[item.QualifiedItemId] = $"{item.DisplayName}: {this.Stringify(firstDay)} - {this.Stringify(lastDay)}";
                 }
+                yield return new ItemIconListField(this.GameHelper, I18n.Bush_NextHarvest(), itemList, false, displayText);
             }
-
-            // date planted + grown
-            if (isTeaBush)
+            else
             {
-                SDate datePlanted = this.GetDatePlanted(bush);
-                int daysOld = SDate.Now().DaysSinceStart - datePlanted.DaysSinceStart; // bush.getAge() not reliable, e.g. for Caroline's tea bush
-                SDate dateGrown = this.GetDateFullyGrown(bush);
-
-                yield return new GenericField(I18n.Bush_DatePlanted(), $"{this.Stringify(datePlanted)} ({this.GetRelativeDateStr(-daysOld)})");
-                if (dateGrown > today)
+                if (isBerryBush || isTeaBush)
                 {
-                    string grownOnDateText = I18n.Bush_Growth_Summary(date: this.Stringify(dateGrown));
-                    yield return new GenericField(I18n.Bush_Growth(), $"{grownOnDateText} ({this.GetRelativeDateStr(dateGrown)})");
+                    SDate nextHarvest = this.GetNextHarvestDate(bush);
+                    string nextHarvestStr = nextHarvest == today
+                        ? I18n.Generic_Now()
+                        : $"{this.Stringify(nextHarvest)} ({this.GetRelativeDateStr(nextHarvest)})";
+                    if (this.TryGetCustomBushDrops(bush, out IList<ICustomBushDrop>? drops))
+                    {
+                        yield return new CustomBushDropsField(this.GameHelper, I18n.Bush_NextHarvest(), drops, preface: nextHarvestStr);
+                    }
+                    else
+                    {
+                        string harvestSchedule = isTeaBush ? I18n.Bush_Schedule_Tea() : I18n.Bush_Schedule_Berry();
+                        yield return new GenericField(I18n.Bush_NextHarvest(), $"{nextHarvestStr}{Environment.NewLine}{harvestSchedule}");
+                    }
+                }
+
+                // date planted + grown
+                if (isTeaBush)
+                {
+                    SDate datePlanted = this.GetDatePlanted(bush);
+                    int daysOld = SDate.Now().DaysSinceStart - datePlanted.DaysSinceStart; // bush.getAge() not reliable, e.g. for Caroline's tea bush
+                    SDate dateGrown = this.GetDateFullyGrown(bush);
+
+                    yield return new GenericField(I18n.Bush_DatePlanted(), $"{this.Stringify(datePlanted)} ({this.GetRelativeDateStr(-daysOld)})");
+                    if (dateGrown > today)
+                    {
+                        string grownOnDateText = I18n.Bush_Growth_Summary(date: this.Stringify(dateGrown));
+                        yield return new GenericField(I18n.Bush_Growth(), $"{grownOnDateText} ({this.GetRelativeDateStr(dateGrown)})");
+                    }
                 }
             }
         }
@@ -153,7 +193,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
         /// <param name="bush">The berry busy.</param>
         private bool IsBerryBush(Bush bush)
         {
-            return bush.size.Value == Bush.mediumBush && !bush.townBush.Value;
+            return bush.size.Value == Bush.mediumBush && !bush.townBush.Value && !bush.Location.InIslandContext();
         }
 
         /// <summary>Get whether a given bush produces tea.</summary>
@@ -186,6 +226,40 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                 this.GameHelper.CustomBush.IsLoaded
                 && this.GameHelper.CustomBush.ModApi.TryGetCustomBush(bush, out ICustomBush? _customBush, out string? id)
                 && this.GameHelper.CustomBush.ModApi.TryGetDrops(id, out drops);
+        }
+
+        /// <summary>
+        /// Get custom bush bloom schedule for today at this locaiton
+        /// </summary>
+        /// <returns>Returns BushBloomMod loaded</returns>
+        private bool TryBushBloomGetActiveSchedules(Bush bush, [NotNullWhen(true)] out (string, WorldDate, WorldDate)[]? bushBloomSchedule)
+        {
+            SDate today = SDate.Now();
+            bushBloomSchedule = null;
+            if (this.GameHelper.BushBloomMod.IsLoaded && this.GameHelper.BushBloomMod.ModApi.IsReady())
+            {
+                bushBloomSchedule = this.GameHelper.BushBloomMod.ModApi.GetActiveSchedules(
+                    today.Season.ToString(), today.Day, today.Year,
+                    bush.Location, bush.Tile
+                );
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Get custom bush bloom schedule for today
+        /// </summary>
+        /// <returns>Returns BushBloomMod loaded</returns>
+        private bool TryBushBloomGetAllSchedules([NotNullWhen(true)] out (string, WorldDate, WorldDate)[]? bushBloomSchedule)
+        {
+            bushBloomSchedule = null;
+            if (this.GameHelper.BushBloomMod.IsLoaded && this.GameHelper.BushBloomMod.ModApi.IsReady())
+            {
+                bushBloomSchedule = this.GameHelper.BushBloomMod.ModApi.GetAllSchedules();
+                return true;
+            }
+            return false;
         }
 
         /// <summary>Get the date when the bush was planted.</summary>

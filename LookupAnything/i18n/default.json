@@ -6,11 +6,9 @@
     "generic.now": "now",
     "generic.tomorrow": "tomorrow",
     "generic.yesterday": "yesterday",
-
     // generic values
     "generic.unknown": "unknown",
     "generic.list-separator": ", ", // text between listed values (like ", " in "A, B, C")
-
     // generic field values
     "generic.percent": "{{percent}}%",
     "generic.percent-chance-of": "{{percent}}% chance of {{label}}",
@@ -29,7 +27,6 @@
     "generic.price-for-quality": "{{price}}g ({{quality}})",
     "generic.price-for-stack": "{{price}}g for stack of {{count}}",
     "generic.show-x-results": "show {{count}} results",
-
     // types
     "type.building": "Building",
     "type.bush": "Bush",
@@ -40,13 +37,11 @@
     "type.tree": "Tree",
     "type.villager": "Villager",
     "type.other": "Other", // default type
-
     // item qualities
     "quality.normal": "normal",
     "quality.silver": "silver",
     "quality.gold": "gold",
     "quality.iridium": "iridium",
-
     // NPC friendship
     "friendship-status.friendly": "Friendly",
     "friendship-status.dating": "Dating",
@@ -54,8 +49,6 @@
     "friendship-status.married": "Married",
     "friendship-status.divorced": "Divorced",
     "friendship-status.kicked-out": "Kicked out",
-
-
     /*********
     ** Data translations
     *********/
@@ -67,7 +60,6 @@
     "bundle-area.vault": "Vault",
     "bundle-area.bulletin-board": "Bulletin Board",
     "bundle-area.abandoned-joja-mart": "Abandoned Joja Mart",
-
     // shop names
     "shop.adventure-guild": "Adventure Guild",
     "shop.clint": "Clint",
@@ -76,28 +68,23 @@
     "shop.robin": "Robin",
     "shop.volcano": "volcano shop",
     "shop.willy": "Willy",
-
     // recipe types
     "recipe-type.cooking": "Cooking",
     "recipe-type.crafting": "Crafting",
     "recipe-type.tailoring": "Tailoring",
-
     // NPC descriptions
     "data.npc.pet.description": "Your loyal pet.",
     "data.npc.horse.description": "Your loyal steed.",
     "data.npc.junimo.description": "A forest spirit from the spirit world. Very little is known about them.",
     "data.npc.trash-bear.description": "A friendly spirit who cleans up trash.",
-
     // item types
     "data.type.container": "Container",
-
     // override item text
     "data.item.egg-incubator.description": "Hatches eggs into baby chickens and ducks.",
     "data.item.barrel.name": "Barrel",
     "data.item.barrel.description": "Break apart to obtain sundry goods.",
     "data.item.box.name": "Box",
     "data.item.box.description": "Break apart to obtain sundry goods.",
-
     // location names
     "location.beach.east-pier": "{{locationName}} (eastern pier)",
     "location.bugLand": "Mutant Bug Lair",
@@ -112,7 +99,6 @@
     "location.undergroundMine": "Mines",
     "location.undergroundMine.level": "Mine Level {{level}}",
     "location.witchSwamp": "Witch's Swamp",
-
     "location.caldera": "Ginger Island Caldera",
     "location.islandEast": "Ginger Island East",
     "location.islandNorth": "Ginger Island North",
@@ -122,40 +108,29 @@
     "location.islandWest": "Ginger Island West",
     "location.islandWest.freshwater": "Ginger Island West (pond)",
     "location.islandWest.ocean": "Ginger Island West (ocean)",
-
     "location.fish-area": "{{locationName}} ({{areaName}})",
     "location.unknown-fish-area": "{{locationName}} (fishing area {{id}})",
-
-
     /*********
     ** Conditions & context tags
     *********/
     "condition-or-context-tag.negate": "not {{value}}",
-
     "condition.item-type.input": "input item",
     "condition.item-type.target": "target item",
-
     "condition.raw-context-tag": "context tag \"{{tag}}\"",
     "condition.raw-condition": "query \"{{tag}}\"",
-
     "condition.item-context-tag": "{{item}} has context tag {{tags}}",
     "condition.item-context-tags": "{{item}} has context tags {{tags}}",
     "condition.item-context-tag.value": "'{{tag}}'", // the format of each context tag in the list (each context tag isn't translated)
-
     "condition.item-edibility.edible": "{{item}} is edible",
     "condition.item-edibility.min": "{{item}} has edibility of {{min}} or more",
     "condition.item-edibility.range": "{{item}} has edibility of {{min}} to {{max}}",
-
     "condition.day-of-month": "on day {{days}} of the season",
     "condition.day-of-month.even": "on even days of the season",
     "condition.day-of-month.odd": "on odd days of the season",
-
     "context-tag.bone": "any bone",
     "context-tag.egg": "any egg",
     "context-tag.large-egg": "any large egg",
     "context-tag.preserved-item": "preserved {{name}}",
-
-
     /*********
     ** Animal lookups
     *********/
@@ -167,7 +142,6 @@
     "animal.produce-ready": "Produce ready",
     "animal.growth": "Growth",
     "animal.sells-for": "Sells for",
-
     // values
     "animal.complaints.hungry": "wasn't fed yesterday",
     "animal.complaints.left-out": "was left outside last night",
@@ -175,8 +149,6 @@
     "animal.complaints.no-heater": "no heater in winter",
     "animal.complaints.not-petted": "hasn't been petted today",
     "animal.complaints.wild-animal-attack": "attacked by wild animals during the night",
-
-
     /*********
     ** Building > generic lookups
     *********/
@@ -191,7 +163,6 @@
     "building.stored-hay": "Stored hay",
     "building.upgrades": "Upgrades",
     "building.water-trough": "Water trough",
-
     // values
     "building.animals.summary": "{{count}} of max {{max}} animals",
     "building.construction.summary": "ready on {{date}}",
@@ -214,8 +185,6 @@
     "building.upgrades.coop.1": "up to 8 animals; add incubator, dinosaurs, and ducks",
     "building.upgrades.coop.2": "up to 12 animals; add autofeed and rabbits",
     "building.water-trough.summary": "{{filled}} of {{max}} water troughs filled",
-
-
     /*********
     ** Building > fish pond lookups
     *********/
@@ -223,7 +192,6 @@
     "building.fish-pond.population": "Population",
     "building.fish-pond.drops": "Drops",
     "building.fish-pond.quests": "Quests",
-
     // values
     "building.fish-pond.population.empty": "Add a fish to start this pond",
     "building.fish-pond.population.next-spawn": "New fish spawns {{relativeDate}}",
@@ -233,8 +201,6 @@
     "building.fish-pond.quests.incomplete-one": "{{count}} fish: will need {{itemName}}",
     "building.fish-pond.quests.incomplete-random": "{{count}} fish: will need one of {{itemList}}",
     "building.fish-pond.quests.available": "available {{relativeDate}}",
-
-
     /*********
     ** Bush lookups
     *********/
@@ -248,13 +214,10 @@
     "bush.date-planted": "Date planted",
     "bush.growth": "Growth",
     "bush.next-harvest": "Next harvest",
-
     // values
     "bush.growth.summary": "mature on {{date}}",
     "bush.schedule.berry": "20% chance of salmonberries in spring 15-18 and blackberries in fall 8-11.",
     "bush.schedule.tea": "Grows tea leaves from the 22nd of each season (except winter if not in the greenhouse).",
-
-
     /*********
     ** Fruit tree lookups
     *********/
@@ -265,7 +228,6 @@
     "fruit-tree.next-fruit": "Next fruit",
     "fruit-tree.season": "Season",
     "fruit-tree.quality": "Quality",
-
     // values
     "fruit-tree.complaints.adjacent-objects": "can't grow because there are adjacent objects",
     "fruit-tree.growth.summary": "mature on {{date}}",
@@ -277,8 +239,6 @@
     "fruit-tree.quality.on-date": "{{quality}} on {{date}}",
     "fruit-tree.quality.on-date-next-year": "{{quality}} on {{date}} next year",
     "fruit-tree.season.summary": "{{season}} (or anytime in greenhouse)",
-
-
     /*********
     ** Crop lookups
     *********/
@@ -287,7 +247,6 @@
     "crop.harvest": "Harvest",
     "crop.fertilized": "Fertilized",
     "crop.watered": "Watered",
-
     // values
     "crop.summary.dead": "This crop is dead.",
     "crop.summary.drops-X": "drops {{count}}",
@@ -297,8 +256,6 @@
     "crop.summary.seasons": "grows in {{seasons}}",
     "crop.summary.sells-for": "sells for {{price}}",
     "crop.harvest.too-late": "too late in the season for the next harvest (would be on {{date}})",
-
-
     /*********
     ** Item > generic lookups
     *********/
@@ -320,7 +277,6 @@
     "item.sells-to": "Sells to",
     "item.can-be-dyed": "Can be dyed",
     "item.produces-dye": "Produces dye",
-
     // values
     "item.custom-item.summary": "added by {{modName}}",
     "item.contents.placed": "{{name}} placed",
@@ -344,22 +300,17 @@
     "item.recipes-for-machine.too-complex": "Some machine rules are too dynamic to display.",
     "item.number-owned.summary": "you own {{count}} of these",
     "item.number-crafted.summary": "you made {{count}} of these",
-
-
     /*********
     ** Item > cask lookups
     *********/
     // labels
     "item.cask-contents": "Contents",
     "item.cask-schedule": "Aging",
-
     // values
     "item.cask-schedule.now": "{{quality}} ready now",
     "item.cask-schedule.now-partial": "{{quality}} now (use pickaxe to stop aging)",
     "item.cask-schedule.tomorrow": "{{quality}} tomorrow",
     "item.cask-schedule.in-x-days": "{{quality}} in {{count}} days ({{date}})",
-
-
     /*********
     ** Item > crab pot lookups
     *********/
@@ -367,26 +318,20 @@
     "item.crabpot-bait": "Bait",
     "item.crabpot-bait-needed": "Needs bait!",
     "item.crabpot-bait-not-needed": "Not needed due to Luremaster profession.",
-
-
     /*********
     ** Item > fence lookups
     *********/
     // labels
     "item.fence-health": "Health",
-
     // values
     "item.fence-health.gold-clock": "no decay with Gold Clock",
     "item.fence-health.summary": "{{percent}}% (roughly {{count}} days left)",
-
-
     /*********
     ** Item > fish lookups
     *********/
     // labels
     "item.fish-pond-drops": "Fish pond drops",
     "item.fish-spawn-rules": "Spawn rules",
-
     // values
     "item.fish-spawn-rules.min-fishing-level": "min fishing level: {{level}}",
     "item.fish-spawn-rules.not-caught-yet": "not caught yet (can only be caught once)",
@@ -398,8 +343,6 @@
     "item.fish-spawn-rules.time": "time of day: {{times}}",
     "item.fish-spawn-rules.weather-sunny": "weather: sunny",
     "item.fish-spawn-rules.weather-rainy": "weather: raining",
-
-
     /*********
     ** Item > melee weapon lookups
     *********/
@@ -412,7 +355,6 @@
     "item.melee-weapon.knockback": "Knockback",
     "item.melee-weapon.reach": "Reach",
     "item.melee-weapon.speed": "Attack speed",
-
     // values
     "item.melee-weapon.critical-damage.label": "{{multiplier}} times normal damage (before player bonuses)",
     "item.melee-weapon.defense.label": "{{amount}} while equipped",
@@ -420,8 +362,6 @@
     "item.melee-weapon.reach.label": "{{amount}} pixels",
     "item.melee-weapon.speed.shown-vs-actual": "shown: {{shownSpeed}}{{lineBreak}}actual: {{actualSpeed}}",
     "item.melee-weapon.speed.summary": "{{speed}} ({{milliseconds}} milliseconds per swing frame, before player speed bonuses)",
-
-
     /*********
     ** Item > movie lookups
     *********/
@@ -432,22 +372,17 @@
     "item.movie-ticket.likes-movie": "Likes movie",
     "item.movie-ticket.dislikes-movie": "Dislikes movie",
     "item.movie-ticket.rejects-movie": "Won't watch movie",
-
     // values
     "item.movie-snack-preference.love": "{{name}} loves this",
     "item.movie-snack-preference.like": "{{name}} likes this",
     "item.movie-snack-preference.dislike": "{{name}} dislikes this",
     "item.movie-ticket.movie-this-week.none": "No movie this week",
-
-
     /*********
     ** Item > music block lookups
     *********/
     // labels
     "item.music-block.pitch": "Pitch",
     "item.music-block.drum-type": "Drum type",
-
-
     /*********
     ** Monster lookups
     *********/
@@ -459,12 +394,9 @@
     "monster.defense": "Defense",
     "monster.attack": "Attack",
     "monster.adventure-guild": "Adventure Guild",
-
     // values
     "monster.drops.nothing": "nothing",
     "monster.adventure-guild.eradication-goal": "eradication goal: {{name}} (killed {{count}} of {{requiredCount}})",
-
-
     /*********
     ** NPC > generic lookups
     *********/
@@ -482,7 +414,6 @@
     "npc.neutral-gifts": "Neutral gifts",
     "npc.dislikes-gifts": "Dislikes gifts",
     "npc.hates-gifts": "Hates gifts",
-
     // values
     "npc.can-romance.married": "You're married! <", // < turns into a heart
     "npc.can-romance.housemate": "You're housemates!",
@@ -491,14 +422,11 @@
     "npc.friendship.need-points": "next in {{count}} pts",
     "npc.undiscovered-gift-taste": "{{count}} unrevealed items",
     "npc.unowned-gift-taste": "{{count}} unowned items",
-
-
     /*********
     ** NPC > child lookups
     *********/
     // labels
     "npc.child.age": "Age",
-
     // values
     "npc.child.age.description-partial": "{{label}} ({{count}} days to {{nextLabel}})",
     "npc.child.age.description-grown": "{{label}}",
@@ -506,8 +434,6 @@
     "npc.child.age.baby": "baby",
     "npc.child.age.crawler": "crawler",
     "npc.child.age.toddler": "toddler",
-
-
     /*********
     ** Pet lookups
     *********/
@@ -516,15 +442,12 @@
     "pet.petted-today": "Petted today",
     "pet.last-petted": "Last petted",
     "pet.water-bowl": "Water bowl",
-
     // values
     "pet.last-petted.yes": "yes (+12 love)",
     "pet.last-petted.days-ago": "{{days}} days ago",
     "pet.last-petted.never": "never",
     "pet.water-bowl.empty": "empty",
     "pet.water-bowl.filled": "filled (+6 love)",
-
-
     /*********
     ** Player lookups
     *********/
@@ -543,7 +466,6 @@
     "player.mining-skill": "Mining",
     "player.luck": "Luck",
     "player.save-format": "Save format",
-
     // values
     "player.farm-map.custom": "Custom",
     "player.gender.male": "male",
@@ -551,54 +473,41 @@
     "player.luck.summary": "{{percent}}% to many random checks",
     "player.skill.progress": "level {{level}} ({{expNeeded}} XP to next)",
     "player.skill.progress-last": "level {{level}}",
-
-
     /*********
     ** Puzzles
     *********/
     // labels
     "puzzle.solution": "Solution",
-
     // values
     "puzzle.solution.solved": "Puzzle solved!",
     "puzzle.solution.hidden": "Puzzle solutions are hidden per your settings.",
-
-
     /*********
     ** Puzzles > Fern Islands crystal cave
     *********/
     // labels
     "puzzle.island-crystal-cave.title": "Crystal Cave Puzzle",
     "puzzle.island-crystal-cave.crystal-id": "Crystal ID",
-
     // values
     "puzzle.island-crystal-cave.solution.not-activated": "Activate the statue to start the puzzle.",
     "puzzle.island-crystal-cave.solution.waiting": "Waiting for game to generate sequence...",
     "puzzle.island-crystal-cave.solution.activated": "Repeat the pattern of activated crystals:",
-
-
     /*********
     ** Puzzles > Fern Islands mermaid puzzle
     *********/
     // labels
     "puzzle.island-mermaid.title": "Island Mermaid Puzzle",
     "puzzle.island-mermaid.solution.intro": "Use flute blocks to play the Night Market mermaid song. Pitch values (you can lookup a flute block to see its pitch):",
-
-
     /*********
     ** Puzzles > Fern Islands shrine puzzle
     *********/
     // labels
     "puzzle.island-shrine.title": "Island Shrine Puzzle",
-
     // values
     "puzzle.island-shrine.solution": "For each pedestal, place the item dropped by gem birds in the corresponding island location when it rains. The items are randomized for each save.",
     "puzzle.island-shrine.solution.east": "East: {{item}}",
     "puzzle.island-shrine.solution.north": "North: {{item}}",
     "puzzle.island-shrine.solution.south": "South: {{item}}",
     "puzzle.island-shrine.solution.west": "West: {{item}}",
-
-
     /*********
     ** Tile lookups
     *********/
@@ -612,19 +521,14 @@
     "tile.blend-mode": "{{layerName}}: blend mode",
     "tile.index-property": "{{layerName}}: ix props: {{propertyName}}",
     "tile.tile-property": "{{layerName}}: props: {{propertyName}}",
-
     // values
     "tile.tile.none-here": "no tile here",
-
-
     /*********
     ** Trash Bear or Gourmand lookups
     *********/
     // labels
     "trash-bear-or-gourmand.item-wanted": "Item wanted",
     "trash-bear-or-gourmand.quest-progress": "Quest progress",
-
-
     /*********
     ** Wild tree lookups
     *********/
@@ -633,7 +537,6 @@
     "tree.next-growth": "Next growth",
     "tree.seed": "Seed",
     "tree.is-fertilized": "Is fertilized",
-
     // values
     "tree.name.big-mushroom": "Big Mushroom",
     "tree.name.mahogany": "Mahogany Tree",
@@ -652,7 +555,6 @@
     "tree.seed.not-ready": "Not ready",
     "tree.seed.probability-daily": "{{chance}}% chance of {{itemName}} each day.",
     "tree.seed.probability-on-chop": "{{chance}}% chance of dropping {{itemName}} when chopped down.",
-
     // growth stages
     "tree.stages.seed": "seed",
     "tree.stages.sprout": "sprout",
@@ -660,8 +562,6 @@
     "tree.stages.bush": "bush",
     "tree.stages.smallTree": "small tree",
     "tree.stages.tree": "tree",
-
-
     /*********
     ** Generic Mod Config Menu UI
     *********/
@@ -669,19 +569,14 @@
     "config.title.main-options": "Main options",
     "config.force-full-screen.name": "Force full screen",
     "config.force-full-screen.desc": "Whether the menu should always be full-screen, instead of centered in the window. This is mainly useful when viewing data mining fields.",
-
     // progression mode
     "config.title.progression": "Progression mode",
-
     "config.progression.show-unknown-gift-tastes.name": "Show unknown gift tastes",
     "config.progression.show-unknown-gift-tastes.desc": "Whether to show gift tastes you haven't learned about in-game yet (e.g. from dialogue text or experimenting).",
-
     "config.progression.show-unknown-recipes.name": "Show unknown recipes",
     "config.progression.show-unknown-recipes.desc": "Whether to show recipes you haven't learned in-game yet.",
-
     "config.progression.show-puzzle-solutions.name": "Show puzzle solutions",
     "config.progression.show-puzzle-solutions.desc": "Whether to show puzzle solutions.",
-
     // gift tastes
     "config.title.gift-tastes": "Gift tastes",
     "config.show-gift-tastes.loved.name": "Show loved gifts",
@@ -694,24 +589,18 @@
     "config.show-gift-tastes.disliked.desc": "Whether to show disliked gifts in NPC and item lookups.",
     "config.show-gift-tastes.hated.name": "Show hated gifts",
     "config.show-gift-tastes.hated.desc": "Whether to show hated gifts in NPC and item lookups.",
-
     "config.show-unowned-gifts.name": "Show unowned gifts",
     "config.show-unowned-gifts.desc": "Whether to show gift tastes for items that the player doesn't own somewhere in the world.",
-
     "config.highlight-unrevealed-gift-tastes.name": "Highlight unrevealed gifts",
     "config.highlight-unrevealed-gift-tastes.desc": "Whether to highlight item gift tastes which haven't been revealed in the NPC profile. When enabled, unrevealed gift tastes will be bold.",
-
     // collapse fields
     "config.title.collapse-fields": "Collapse large fields",
-
     "config.collapse-fields.enabled.name": "Enabled",
     "config.collapse-fields.enabled.desc": "Whether to collapse large fields, so the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
-
     "config.collapse-fields.building-recipes.name": "Building lookup: recipes",
     "config.collapse-fields.item-recipes.name": "Item lookup: recipes",
     "config.collapse-fields.npc-gift-tastes.name": "NPC lookup: gift tastes",
     "config.collapse-fields.any.desc": "If the field contains this many values, the lookup menu will replace the list with a clickable 'show X values' link to expand it.",
-
     // advanced options
     "config.title.advanced-options": "Advanced options",
     "config.tile-lookups.name": "Tile lookups",
@@ -722,7 +611,6 @@
     "config.target-redirection.desc": "In some cases the game spawns a temporary entity to represent another one. For example, Abigail in the mines is actually a temporary NPC with the name 'AbigailMine', so looking her up there won't show Abigail's real info. With this option enabled, Lookup Anything will look up the original Abigail instead.",
     "config.scroll-amount.name": "Scroll amount",
     "config.scroll-amount.desc": "The number of pixels to shift content on each up/down scroll.",
-
     // controls section
     "config.title.controls": "Controls",
     "config.hide-on-key-up.name": "Hide on key up",

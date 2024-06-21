@@ -10,6 +10,7 @@ using Pathoschild.Stardew.Common.Integrations.CustomFarmingRedux;
 using Pathoschild.Stardew.Common.Integrations.ExtraMachineConfig;
 using Pathoschild.Stardew.Common.Integrations.MultiFertilizer;
 using Pathoschild.Stardew.Common.Integrations.ProducerFrameworkMod;
+using Pathoschild.Stardew.Common.Integrations.BushBloomMod;
 using Pathoschild.Stardew.Common.Items;
 using Pathoschild.Stardew.LookupAnything.Framework;
 using Pathoschild.Stardew.LookupAnything.Framework.Constants;
@@ -82,6 +83,8 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>The Extra Machine Config integration.</summary>
         public ExtraMachineConfigIntegration ExtraMachineConfig { get; }
 
+        public BushBloomModIntegration BushBloomMod { get; }
+
 
         /*********
         ** Public methods
@@ -103,6 +106,7 @@ namespace Pathoschild.Stardew.LookupAnything
             this.MultiFertilizer = new MultiFertilizerIntegration(modRegistry, monitor);
             this.ProducerFrameworkMod = new ProducerFrameworkModIntegration(modRegistry, monitor);
             this.ExtraMachineConfig = new ExtraMachineConfigIntegration(modRegistry, monitor);
+            this.BushBloomMod = new BushBloomModIntegration(modRegistry, monitor);
 
             this.ResetCache(monitor);
         }
