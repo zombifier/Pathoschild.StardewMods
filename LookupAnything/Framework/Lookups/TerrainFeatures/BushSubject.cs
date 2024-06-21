@@ -78,15 +78,18 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                     // Item1: ItemId (not qualified, needs (O) prefix)
                     // Item2: start day
                     // Item3: end day inclusive
-                    if (today.Season > entry.Item3.Season)
-                        break;
-                    SDate firstDay = SDate.From(entry.Item2);
                     SDate lastDay = SDate.From(entry.Item3);
+                    if (today > lastDay)
+                        continue;
+                    SDate firstDay = SDate.From(entry.Item2);
                     if (today < firstDay)
                         continue;
                     Item item = ItemRegistry.Create(entry.Item1);
                     itemList.Add(item);
-                    displayText[item.QualifiedItemId] = $"{item.DisplayName}: {this.Stringify(firstDay)} - {this.Stringify(lastDay)}";
+                    if (firstDay == lastDay)
+                        displayText[item.QualifiedItemId] = $"{item.DisplayName}: {this.Stringify(firstDay)}";
+                    else
+                        displayText[item.QualifiedItemId] = $"{item.DisplayName}: {this.Stringify(firstDay)} - {this.Stringify(lastDay)}";
                 }
                 yield return new ItemIconListField(this.GameHelper, I18n.Bush_NextHarvest(), itemList, false, displayText);
             }
