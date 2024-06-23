@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Added item context tags to pinned data mining fields.
+
 ## 1.44.1
 Released 08 June 2024 for SMAPI 4.0.7 or later.
 
