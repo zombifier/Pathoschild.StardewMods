@@ -9,6 +9,9 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 
 -->
+## Upcoming release
+* The [`patch summary` console command](author-guide/troubleshooting.md#summary) can now filter by asset name(s) using a new `asset` argument.
+
 ## 2.2.0
 Released 08 June 2024 for SMAPI 4.0.7 or later. See the [release highlights](https://www.patreon.com/posts/105792446).
 

@@ -13,6 +13,7 @@ using Pathoschild.Stardew.Common.Utilities;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
+using StardewValley;
 
 namespace ContentPatcher.Framework.Commands.Commands
 {
@@ -22,6 +23,9 @@ namespace ContentPatcher.Framework.Commands.Commands
         /*********
         ** Fields
         *********/
+        /// <summary>The game content helper to use for parsing asset names.</summary>
+        private readonly IGameContentHelper ContentHelper;
+
         /// <summary>Manages loaded patches.</summary>
         private readonly Func<PatchManager> GetPatchManager;
 
@@ -62,12 +66,14 @@ namespace ContentPatcher.Framework.Commands.Commands
         *********/
         /// <summary>Construct an instance.</summary>
         /// <param name="monitor">Encapsulates monitoring and logging.</param>
+        /// <param name="contentHelper">The game content helper to use for parsing asset names.</param>
         /// <param name="getPatchManager">Manages loaded patches.</param>
         /// <param name="getTokenManager">Manages loading and unloading patches.</param>
         /// <param name="getCustomLocationLoader">Handles loading custom location data and adding it to the game.</param>
-        public SummaryCommand(IMonitor monitor, Func<PatchManager> getPatchManager, Func<TokenManager> getTokenManager, Func<CustomLocationManager> getCustomLocationLoader)
+        public SummaryCommand(IMonitor monitor, IGameContentHelper contentHelper, Func<PatchManager> getPatchManager, Func<TokenManager> getTokenManager, Func<CustomLocationManager> getCustomLocationLoader)
             : base(monitor, "summary")
         {
+            this.ContentHelper = contentHelper;
             this.GetPatchManager = getPatchManager;
             this.GetTokenManager = getTokenManager;
             this.GetCustomLocationLoader = getCustomLocationLoader;
@@ -84,9 +90,16 @@ namespace ContentPatcher.Framework.Commands.Commands
                    Usage: patch summary ""<content pack ID>""
                    Show a summary of the current conditions, and loaded patches for the given content pack.
 
-                   You can also specify any number of optional flags (e.g. `patch summary full unsorted`):
-                      - full: don't truncate very long token values.
-                      - unsorted: don't sort the values for display. This is mainly useful for checking the real order for `valueAt`.
+                   You can specify any number of optional flags (e.g. `patch summary full asset ""Data/Crops""`):
+                      - asset ""<asset name>"":
+                           Only list changes to the given asset. This filters by base asset name, so 'Data/furniture' also matches
+                           edits to 'Data/furniture.fr-FR'. You can list multiple assets by repeating the flag.
+
+                      - full:
+                           Don't truncate very long token values.
+
+                      - unsorted:
+                           Don't sort the values for display. This is mainly useful for checking the real order for `valueAt`.
             ";
         }
 
@@ -103,22 +116,39 @@ namespace ContentPatcher.Framework.Commands.Commands
             bool showFull = false;
             bool sort = true;
             MutableInvariantSet forModIds = [];
-            foreach (string arg in args)
+            HashSet<string> onlyAssets = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            for (int i = 0; i < args.Length; i++)
             {
                 // flags
-                switch (arg.ToLower())
+                switch (args[i].ToLower())
                 {
+                    case "asset":
+                        {
+                            string rawAssetName = ArgUtility.Get(args, i + 1, allowBlank: false);
+                            if (rawAssetName is null)
+                            {
+                                output.AppendLine("When using the 'assets' argument, you must specify an asset name to filter for.");
+                                return;
+                            }
+
+                            IAssetName assetName = this.ContentHelper.ParseAssetName(rawAssetName);
+                            onlyAssets.Add(assetName.BaseName);
+                            i++;
+                        }
+                        break;
+
                     case "full":
                         showFull = true;
-                        continue;
+                        break;
 
                     case "unsorted":
                         sort = false;
-                        continue;
-                }
+                        break;
 
-                // for mod ID
-                forModIds.Add(arg);
+                    default:
+                        forModIds.Add(args[i]);
+                        break;
+                }
             }
 
             // truncate token values if needed
@@ -131,6 +161,20 @@ namespace ContentPatcher.Framework.Commands.Commands
                 return showFull || valueStr.Length <= maxLength
                     ? valueStr
                     : $"{valueStr.Substring(0, maxLength - truncatedSuffix.Length)}{truncatedSuffix}";
+            }
+
+            // filter logic
+            bool MatchesModFilter(string modId) => forModIds.Count == 0 || forModIds.Contains(modId);
+            bool MatchesAssetFilter(string? assetName)
+            {
+                if (onlyAssets.Count == 0)
+                    return true;
+
+                if (string.IsNullOrWhiteSpace(assetName))
+                    return false;
+
+                IAssetName parsedName = this.ContentHelper.ParseAssetName(assetName);
+                return onlyAssets.Contains(parsedName.BaseName);
             }
 
             // add condition summary
@@ -161,7 +205,8 @@ namespace ContentPatcher.Framework.Commands.Commands
                 // group by provider mod (if any)
                 foreach (var tokenGroup in tokensByProvider)
                 {
-                    if (tokenGroup.Key != null && forModIds.Any() && !forModIds.Contains(tokenGroup.First().Mod!.UniqueID))
+                    // filter by mod ID
+                    if (tokenGroup.Key != null && !MatchesModFilter(tokenGroup.First().Mod!.UniqueID))
                         continue;
 
                     // print mod name
@@ -210,9 +255,10 @@ namespace ContentPatcher.Framework.Commands.Commands
             }
 
             // list custom locations
+            if (!onlyAssets.Any())
             {
                 var locations = this.GetCustomLocationLoader().GetCustomLocationData()
-                    .Where(p => !forModIds.Any() || forModIds.Contains(p.ModId))
+                    .Where(p => MatchesModFilter(p.ModId))
                     .GroupByIgnoreCase(p => p.ModName)
                     .OrderByHuman(p => p.Key)
                     .ToArray();
@@ -249,7 +295,7 @@ namespace ContentPatcher.Framework.Commands.Commands
             // list patches
             {
                 var patches = this.GetAllPatches(patchManager)
-                    .Where(p => !forModIds.Any() || forModIds.Contains(p.ContentPack.Manifest.UniqueID))
+                    .Where(p => MatchesModFilter(p.ContentPack.Manifest.UniqueID) && MatchesAssetFilter(p.ParsedTargetAsset?.Value))
                     .GroupByIgnoreCase(p => p.ContentPack.Manifest.Name)
                     .OrderByHuman(p => p.Key)
                     .ToArray();
@@ -263,8 +309,10 @@ namespace ContentPatcher.Framework.Commands.Commands
                     + "  - 'conditions' shows whether the patch matches with the current conditions (see details for the reason if not). If this is unexpectedly false, check (a) the conditions above and (b) your Where field.\n"
                     + "  - 'applied' shows whether the target asset was loaded and patched. If you expected it to be loaded by this point but it's false, double-check (a) that the game has actually loaded the asset yet, and (b) your Targets field is correct.\n"
                     + (forModIds.Any() ? $"\n(Filtered to content pack ID{(forModIds.Count > 1 ? "s" : "")}: {string.Join(", ", forModIds.OrderByHuman())}.)\n" : "")
+                    + (onlyAssets.Any() ? $"\n(Filtered to asset name{(onlyAssets.Count > 1 ? "s" : "")}: {string.Join(", ", onlyAssets.OrderByHuman())}.)\n" : "")
                     + "\n"
                 );
+
                 foreach (var patchGroup in patches)
                 {
                     ModTokenContext tokenContext = tokenManager.TrackLocalTokens(patchGroup.First().ContentPack);
