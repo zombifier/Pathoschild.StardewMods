@@ -57,7 +57,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             bool isTeaBush = this.IsTeaBush(bush);
             SDate today = SDate.Now();
 
-            if (isBerryBush && this.TryBushBloomGetAllSchedules(out (string, WorldDate, WorldDate)[]? bushBloomSchedule))
+            if (isBerryBush && this.TryBushBloomGetActiveSchedules(bush, out (string, WorldDate, WorldDate)[]? bushBloomSchedule))
             {
                 Array.Sort(bushBloomSchedule, ((string, WorldDate, WorldDate) entryX, (string, WorldDate, WorldDate) entryY) =>
                 {
@@ -79,11 +79,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                     // Item2: start day
                     // Item3: end day inclusive
                     SDate lastDay = SDate.From(entry.Item3);
-                    if (today > lastDay)
-                        continue;
                     SDate firstDay = SDate.From(entry.Item2);
-                    if (today < firstDay)
-                        continue;
                     Item item = ItemRegistry.Create(entry.Item1);
                     itemList.Add(item);
                     if (firstDay == lastDay)
@@ -245,21 +241,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                     today.Season.ToString(), today.Day, today.Year,
                     bush.Location, bush.Tile
                 );
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Get custom bush bloom schedule for today
-        /// </summary>
-        /// <returns>Returns BushBloomMod loaded</returns>
-        private bool TryBushBloomGetAllSchedules([NotNullWhen(true)] out (string, WorldDate, WorldDate)[]? bushBloomSchedule)
-        {
-            bushBloomSchedule = null;
-            if (this.GameHelper.BushBloomMod.IsLoaded && this.GameHelper.BushBloomMod.ModApi.IsReady())
-            {
-                bushBloomSchedule = this.GameHelper.BushBloomMod.ModApi.GetAllSchedules();
                 return true;
             }
             return false;
