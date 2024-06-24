@@ -47,19 +47,20 @@ namespace ContentPatcher.Framework.Commands.Commands
         /// <inheritdoc />
         public override string GetDescription()
         {
-            return @"
+            return
+                """
                 patch export
-                   Usage: patch export ""<asset name>""
-                   Saves a copy of an asset (including any changes from mods like Content Patcher) to the game folder. The asset name should be the target without the locale or extension, like ""Characters/Abigail"" if you want to export the value of 'Content/Characters/Abigail.xnb'.
+                   Usage: patch export "<asset name>"
+                   Saves a copy of an asset (including any changes from mods like Content Patcher) to the game folder. The asset name should be the target without the locale or extension, like "Characters/Abigail" if you want to export the value of 'Content/Characters/Abigail.xnb'.
 
-                   Usage: patch export ""<asset name>"" ""<C# type name>""
+                   Usage: patch export "<asset name>" "<C# type name>"
                    Same as the previous, but manually specify the C# data type for the asset. This must be the C# full type name. Example types:
                       - A string/string dictionary: System.Collections.Generic.Dictionary`2[[System.String],[System.String]]
                       - A number/string dictionary: System.Collections.Generic.Dictionary`2[[System.Int32],[System.String]]
                       - Movie reactions: System.Collections.Generic.List<StardewValley.GameData.Movies.MovieReaction>
 
                   You can also specify 'image' as the type for a Texture2D value, or 'map' for a xTile.Map.
-            ";
+                """;
         }
 
         /// <inheritdoc />

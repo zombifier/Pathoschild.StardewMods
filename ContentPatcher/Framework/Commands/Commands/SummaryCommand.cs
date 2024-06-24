@@ -82,16 +82,17 @@ namespace ContentPatcher.Framework.Commands.Commands
         /// <inheritdoc />
         public override string GetDescription()
         {
-            return @"
+            return
+                """
                 patch summary
                    Usage: patch summary
                    Shows a summary of the current conditions and loaded patches.
 
-                   Usage: patch summary ""<content pack ID>""
+                   Usage: patch summary "<content pack ID>"
                    Show a summary of the current conditions, and loaded patches for the given content pack.
 
-                   You can specify any number of optional flags (e.g. `patch summary full asset ""Data/Crops""`):
-                      - asset ""<asset name>"":
+                   You can specify any number of optional flags (e.g. `patch summary full asset "Data/Crops"`):
+                      - asset "<asset name>":
                            Only list changes to the given asset. This filters by base asset name, so 'Data/furniture' also matches
                            edits to 'Data/furniture.fr-FR'. You can list multiple assets by repeating the flag.
 
@@ -100,7 +101,7 @@ namespace ContentPatcher.Framework.Commands.Commands
 
                       - unsorted:
                            Don't sort the values for display. This is mainly useful for checking the real order for `valueAt`.
-            ";
+                """;
         }
 
         /// <inheritdoc />
