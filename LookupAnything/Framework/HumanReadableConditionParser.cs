@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using StardewValley;
 
 namespace Pathoschild.Stardew.LookupAnything.Framework
@@ -72,18 +73,21 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
         *********/
         /// <summary>Parse a <see cref="GameStateQuery.DefaultResolvers.DAY_OF_MONTH"/> query into a human-readable representation, if possible.</summary>
         /// <param name="query">The raw query arguments.</param>
-        private static string? ParseDayOfMonth(string[] query)
+        private static string ParseDayOfMonth(string[] query)
         {
-            foreach (string rawDay in query)
-            {
-                if (string.Equals(rawDay, "even", StringComparison.OrdinalIgnoreCase))
-                    return I18n.Condition_DayOfMonth_Even();
+            string[] days = [..  query.Skip(1)];
 
-                if (string.Equals(rawDay, "odd", StringComparison.OrdinalIgnoreCase))
-                    return I18n.Condition_DayOfMonth_Odd();
+            for (int i = 0; i < days.Length; i++)
+            {
+                string day = days[i];
+
+                if (string.Equals(day, "even", StringComparison.OrdinalIgnoreCase))
+                    days[i] = I18n.Condition_DayOfMonth_Even();
+                else if (string.Equals(day, "odd", StringComparison.OrdinalIgnoreCase))
+                    days[i] = I18n.Condition_DayOfMonth_Odd();
             }
 
-            return I18n.Condition_DayOfMonth(days: I18n.List(new ArraySegment<string>(query, 1, query.Length - 1)));
+            return I18n.Condition_DayOfMonth(days: days);
         }
 
         /// <summary>Parse a <see cref="GameStateQuery.DefaultResolvers.ITEM_CONTEXT_TAG"/> query into a human-readable representation, if possible.</summary>
