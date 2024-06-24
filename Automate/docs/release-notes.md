@@ -4,6 +4,7 @@
 ## Upcoming release
 * Fixed config UI not showing custom machines added through Content Patcher.
 * Fixed crab pots always being assigned to the main player (so they get the XP). This now only happens for unassigned crab pots.
+* Fixed support for modded chests with custom `SpecialChestType` values.
 * Renamed 'Feed Hopper' in config UI to 'Hay Hopper and Silo' for clarity.
 * Improved translations. Thanks to martin66789 (updated Hungarian)!
 
