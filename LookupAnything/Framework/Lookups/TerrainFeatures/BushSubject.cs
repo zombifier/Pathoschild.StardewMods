@@ -1,19 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathoschild.Stardew.Common.Integrations.CustomBush;
-using Pathoschild.Stardew.Common.Integrations.BushBloomMod;
+using Pathoschild.Stardew.Common.Utilities;
 using Pathoschild.Stardew.LookupAnything.Framework.DebugFields;
 using Pathoschild.Stardew.LookupAnything.Framework.Fields;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.TerrainFeatures;
 using StardewValley.TokenizableStrings;
-using StardewModdingAPI;
-using System.Threading;
-using System.Linq;
 
 namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
 {
@@ -57,37 +55,24 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             bool isTeaBush = this.IsTeaBush(bush);
             SDate today = SDate.Now();
 
-            if (isBerryBush && this.TryBushBloomGetActiveSchedules(bush, out (string, WorldDate, WorldDate)[]? bushBloomSchedule))
+            if (isBerryBush && this.TryGetBushBloomSchedules(bush, out var bushBloomSchedule))
             {
-                Array.Sort(bushBloomSchedule, ((string, WorldDate, WorldDate) entryX, (string, WorldDate, WorldDate) entryY) =>
-                {
-                    if (entryX.Item2 < entryY.Item2)
-                        return -1;
-                    if (entryX.Item2 > entryY.Item2)
-                        return 1;
-                    if (entryX.Item3 < entryY.Item3)
-                        return -1;
-                    if (entryX.Item3 > entryY.Item3)
-                        return 1;
-                    return 0;
-                });
                 List<Item> itemList = [];
-                Dictionary<string, string> displayText = [];
-                foreach ((string, WorldDate, WorldDate) entry in bushBloomSchedule)
+                Dictionary<Item, string> displayText = new(new ObjectReferenceComparer<Item>());
+
+                foreach (var entry in bushBloomSchedule.OrderBy(p => p.StartDay).ThenBy(p => p.EndDay))
                 {
-                    // Item1: ItemId (not qualified, needs (O) prefix)
-                    // Item2: start day
-                    // Item3: end day inclusive
-                    SDate lastDay = SDate.From(entry.Item3);
-                    SDate firstDay = SDate.From(entry.Item2);
-                    Item item = ItemRegistry.Create(entry.Item1);
+                    SDate lastDay = SDate.From(entry.EndDay);
+                    SDate firstDay = SDate.From(entry.StartDay);
+                    Item item = ItemRegistry.Create(entry.UnqualifiedItemId);
                     itemList.Add(item);
-                    if (firstDay == lastDay)
-                        displayText[item.QualifiedItemId] = $"{item.DisplayName}: {this.Stringify(firstDay)}";
-                    else
-                        displayText[item.QualifiedItemId] = $"{item.DisplayName}: {this.Stringify(firstDay)} - {this.Stringify(lastDay)}";
+
+                    displayText[item] = firstDay == lastDay
+                        ? $"{item.DisplayName}: {this.Stringify(firstDay)}"
+                        : $"{item.DisplayName}: {this.Stringify(firstDay)} - {this.Stringify(lastDay)}";
                 }
-                yield return new ItemIconListField(this.GameHelper, I18n.Bush_NextHarvest(), itemList, false, displayText);
+
+                yield return new ItemIconListField(this.GameHelper, I18n.Bush_NextHarvest(), itemList, false, item => displayText.GetValueOrDefault(item));
             }
             else
             {
@@ -98,9 +83,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                         ? I18n.Generic_Now()
                         : $"{this.Stringify(nextHarvest)} ({this.GetRelativeDateStr(nextHarvest)})";
                     if (this.TryGetCustomBushDrops(bush, out IList<ICustomBushDrop>? drops))
-                    {
                         yield return new CustomBushDropsField(this.GameHelper, I18n.Bush_NextHarvest(), drops, preface: nextHarvestStr);
-                    }
                     else
                     {
                         string harvestSchedule = isTeaBush ? I18n.Bush_Schedule_Tea() : I18n.Bush_Schedule_Berry();
@@ -202,7 +185,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             return bush.size.Value == Bush.greenTeaBush;
         }
 
-        /// <summary>Get bush model from the Custom Bush mod if applicable.</summary>
+        /// <summary>Get bush data from the Custom Bush mod if applicable.</summary>
         /// <param name="bush">The bush to check.</param>
         /// <param name="customBush">The resulting custom bush, if applicable.</param>
         /// <returns>Returns whether a custom bush was found.</returns>
@@ -214,35 +197,33 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                 && this.GameHelper.CustomBush.ModApi.TryGetCustomBush(bush, out customBush);
         }
 
-        /// <summary>Get bush drops from custom bush.</summary>
+        /// <summary>Get bush drops from the Custom Bush mod if applicable.</summary>
         /// <param name="bush">The bush to check.</param>
-        /// <param name="drops">When this method returns, contains the items produced by the custom bush.</param>
-        /// <returns>Returns whether a custom bush with drops was found.</returns>
+        /// <param name="drops">The items produced by the custom bush, if applicable.</param>
+        /// <returns>Returns whether custom bush drops were found.</returns>
         private bool TryGetCustomBushDrops(Bush bush, [NotNullWhen(true)] out IList<ICustomBushDrop>? drops)
         {
             drops = null;
             return
                 this.GameHelper.CustomBush.IsLoaded
-                && this.GameHelper.CustomBush.ModApi.TryGetCustomBush(bush, out ICustomBush? _customBush, out string? id)
+                && this.GameHelper.CustomBush.ModApi.TryGetCustomBush(bush, out _, out string? id)
                 && this.GameHelper.CustomBush.ModApi.TryGetDrops(id, out drops);
         }
 
-        /// <summary>
-        /// Get custom bush bloom schedule for today at this locaiton
-        /// </summary>
-        /// <returns>Returns BushBloomMod loaded</returns>
-        private bool TryBushBloomGetActiveSchedules(Bush bush, [NotNullWhen(true)] out (string, WorldDate, WorldDate)[]? bushBloomSchedule)
+        /// <summary>Get the berry schedules from Bush Bloom Mod for a given bush, if applicable.</summary>
+        /// <param name="bush">The bush to check.</param>
+        /// <param name="schedule">The berry schedule for this bush.</param>
+        /// <returns>Returns whether Bush Bloom Mod provided custom schedules.</returns>
+        private bool TryGetBushBloomSchedules(Bush bush, [NotNullWhen(true)] out (string UnqualifiedItemId, WorldDate StartDay, WorldDate EndDay)[]? schedule)
         {
-            SDate today = SDate.Now();
-            bushBloomSchedule = null;
             if (this.GameHelper.BushBloomMod.IsLoaded && this.GameHelper.BushBloomMod.ModApi.IsReady())
             {
-                bushBloomSchedule = this.GameHelper.BushBloomMod.ModApi.GetActiveSchedules(
-                    today.Season.ToString(), today.Day, today.Year,
-                    bush.Location, bush.Tile
-                );
+                SDate today = SDate.Now();
+                schedule = this.GameHelper.BushBloomMod.ModApi.GetActiveSchedules(today.Season.ToString(), today.Day, today.Year, bush.Location, bush.Tile);
                 return true;
             }
+
+            schedule = null;
             return false;
         }
 
@@ -261,35 +242,39 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
         private SDate GetDateFullyGrown(Bush bush)
         {
             SDate date = this.GetDatePlanted(bush);
+
             if (this.TryGetCustomBush(bush, out ICustomBush? customBush))
                 date = date.AddDays(customBush.AgeToProduce);
             else if (this.IsTeaBush(bush))
                 date = date.AddDays(Bush.daysToMatureGreenTeaBush);
+
             return date;
         }
 
-        /// <summary>Get the day of season when this push start to produce.</summary>
+        /// <summary>Get the day of season when this bush will start producing berries.</summary>
         /// <param name="bush">The bush to check.</param>
         private int GetDayToBeginProducing(Bush bush)
         {
             if (this.TryGetCustomBush(bush, out ICustomBush? customBush))
                 return customBush.DayToBeginProducing;
-            else if (this.IsTeaBush(bush))
-                // tea bushes produce on day 22+ of season
-                return 22;
+
+            if (this.IsTeaBush(bush))
+                return 22; // tea bushes produce on day 22+ of season
+
             return -1;
         }
 
-        /// <summary>Get seasons during which this bush will produce (if not sheltered).</summary>
+        /// <summary>Get the seasons during which this bush produces berries when not sheltered.</summary>
         /// <param name="bush">The bush to check.</param>
         private List<Season> GetProducingSeasons(Bush bush)
         {
             if (this.TryGetCustomBush(bush, out ICustomBush? customBush))
                 return customBush.Seasons;
-            else if (this.IsTeaBush(bush))
+
+            if (this.IsTeaBush(bush))
                 return [Season.Spring, Season.Summer, Season.Fall];
-            else
-                return [Season.Spring, Season.Fall];
+
+            return [Season.Spring, Season.Fall];
         }
 
         /// <summary>Get the next date when the bush will produce forage.</summary>
@@ -311,6 +296,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                 SDate readyDate = this.GetDateFullyGrown(bush);
                 if (readyDate < tomorrow)
                     readyDate = tomorrow;
+
                 if (!bush.IsSheltered())
                 {
                     // bush not sheltered, must check producing seasons
@@ -318,11 +304,14 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                     SDate seasonDate = new(Math.Max(1, dayToBegin), readyDate.Season, readyDate.Year);
                     while (!producingSeasons.Contains(seasonDate.Season))
                         seasonDate = seasonDate.AddDays(28);
+
                     if (readyDate < seasonDate)
                         return seasonDate;
                 }
+
                 if (readyDate.Day < dayToBegin)
                     readyDate = new(dayToBegin, readyDate.Season, readyDate.Year);
+
                 return readyDate;
             }
 

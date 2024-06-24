@@ -17,8 +17,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <summary>The items to draw.</summary>
         private readonly Tuple<Item, SpriteInfo?>[] Items;
 
-        /// <summary> Text to use in place of DisplayName, dict of QualifiedItemId->String </summary>
-        private readonly IDictionary<string, string>? DisplayText;
+        /// <summary>Get the name to show for an item, or <c>null</c> to use the item's display name.</summary>
+        private readonly Func<Item, string?>? FormatItemName;
 
         /// <summary>Whether to draw the stack size on the item icon.</summary>
         private readonly bool ShowStackSize;
@@ -32,13 +32,14 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="label">A short field label.</param>
         /// <param name="items">The items to display.</param>
         /// <param name="showStackSize">Whether to draw the stack size on the item icon.</param>
-        public ItemIconListField(GameHelper gameHelper, string label, IEnumerable<Item?>? items, bool showStackSize, IDictionary<string, string>? displayText = null)
+        /// <param name="formatItemName">Get the name to show for an item, or <c>null</c> to use the item's display name.</param>
+        public ItemIconListField(GameHelper gameHelper, string label, IEnumerable<Item?>? items, bool showStackSize, Func<Item, string?>? formatItemName = null)
             : base(label, hasValue: items != null)
         {
             this.Items = items?.WhereNotNull().Select(item => Tuple.Create(item, gameHelper.GetSprite(item))).ToArray() ?? [];
             this.HasValue = this.Items.Any();
             this.ShowStackSize = showStackSize;
-            this.DisplayText = displayText;
+            this.FormatItemName = formatItemName;
         }
 
         /// <summary>Draw the value (or return <c>null</c> to render the <see cref="GenericField.Value"/> using the default format).</summary>
@@ -56,7 +57,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             // draw list
             const int padding = 5;
             int topOffset = 0;
-            string displayText;
             foreach ((Item item, SpriteInfo? sprite) in this.Items)
             {
                 // draw icon
@@ -67,10 +67,9 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     Vector2 sizePos = position + new Vector2(iconSize.X - Utility.getWidthOfTinyDigitString(item.Stack, scale), iconSize.Y + topOffset - 6f * scale);
                     Utility.drawTinyDigits(item.Stack, spriteBatch, sizePos, scale: scale, layerDepth: 1f, Color.White);
                 }
-                if (this.DisplayText!.TryGetValue(item.QualifiedItemId, out string? text))
-                    displayText = text;
-                else
-                    displayText = item.DisplayName;
+
+                // draw text
+                string displayText = this.FormatItemName?.Invoke(item) ?? item.DisplayName;
                 Vector2 textSize = spriteBatch.DrawTextBlock(font, displayText, position + new Vector2(iconSize.X + padding, topOffset), wrapWidth);
 
                 topOffset += (int)Math.Max(iconSize.Y, textSize.Y) + padding;

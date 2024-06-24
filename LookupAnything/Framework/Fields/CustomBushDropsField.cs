@@ -9,7 +9,7 @@ using StardewValley;
 
 namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
 {
-    /// <summary>A metadata field which shows a list of bush product drops, for custom bush mod.</summary>
+    /// <summary>A metadata field which shows a list of drops from a Custom Bush bush.</summary>
     internal class CustomBushDropsField : GenericField
     {
         /*********
@@ -24,9 +24,6 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <summary>The text to display before the list, if any.</summary>
         private readonly string? Preface;
 
-        /// <summary>The text to display if there are no items.</summary>
-        private readonly string? DefaultText;
-
 
         /*********
         ** Public methods
@@ -36,9 +33,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="label">A short field label.</param>
         /// <param name="drops">The possible drops.</param>
         /// <param name="sort">Whether to sort the resulting list by probability and name.</param>
-        /// <param name="defaultText">The text to display if there are no items (or <c>null</c> to hide the field).</param>
         /// <param name="preface">The text to display before the list, if any.</param>
-        public CustomBushDropsField(GameHelper gameHelper, string label, IEnumerable<ICustomBushDrop> drops, bool sort = true, string? defaultText = null, string? preface = null)
+        public CustomBushDropsField(GameHelper gameHelper, string label, IEnumerable<ICustomBushDrop> drops, bool sort = true, string? preface = null)
             : base(label)
         {
             this.GameHelper = gameHelper;
@@ -46,22 +42,13 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             if (sort)
                 this.Drops = this.Drops.OrderByDescending(p => p.Item1.Season).ThenBy(p => p.Item1.Chance).ToArray();
 
-            this.HasValue = defaultText != null || this.Drops.Any();
+            this.HasValue = this.Drops.Any();
             this.Preface = preface;
-            this.DefaultText = defaultText;
         }
 
-        /// <summary>Draw the value (or return <c>null</c> to render the <see cref="GenericField.Value"/> using the default format).</summary>
-        /// <param name="spriteBatch">The sprite batch being drawn.</param>
-        /// <param name="font">The recommended font.</param>
-        /// <param name="position">The position at which to draw.</param>
-        /// <param name="wrapWidth">The maximum width before which content should be wrapped.</param>
-        /// <returns>Returns the drawn dimensions, or <c>null</c> to draw the <see cref="GenericField.Value"/> using the default format.</returns>
+        /// <inheritdoc />
         public override Vector2? DrawValue(SpriteBatch spriteBatch, SpriteFont font, Vector2 position, float wrapWidth)
         {
-            if (!this.Drops.Any())
-                return spriteBatch.DrawTextBlock(font, this.DefaultText, position, wrapWidth);
-
             float height = 0;
 
             // draw preface
@@ -88,6 +75,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 else if (drop.MinStack > 1)
                     text += $" ({drop.MinStack})";
                 Vector2 textSize = spriteBatch.DrawTextBlock(font, text, position + new Vector2(iconSize.X + 5, height + 5), wrapWidth);
+
                 if (drop.Condition != null)
                 {
                     string conditionText = I18n.Item_RecipesForMachine_Conditions(conditions: HumanReadableConditionParser.Format(drop.Condition));

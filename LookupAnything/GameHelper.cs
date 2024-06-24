@@ -5,12 +5,12 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathoschild.Stardew.Common;
+using Pathoschild.Stardew.Common.Integrations.BushBloomMod;
 using Pathoschild.Stardew.Common.Integrations.CustomBush;
 using Pathoschild.Stardew.Common.Integrations.CustomFarmingRedux;
 using Pathoschild.Stardew.Common.Integrations.ExtraMachineConfig;
 using Pathoschild.Stardew.Common.Integrations.MultiFertilizer;
 using Pathoschild.Stardew.Common.Integrations.ProducerFrameworkMod;
-using Pathoschild.Stardew.Common.Integrations.BushBloomMod;
 using Pathoschild.Stardew.Common.Items;
 using Pathoschild.Stardew.LookupAnything.Framework;
 using Pathoschild.Stardew.LookupAnything.Framework.Constants;
@@ -74,6 +74,9 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Provides metadata that's not available from the game data directly.</summary>
         public Metadata Metadata { get; }
 
+        /// <summary>The Bush Bloom Mod integration.</summary>
+        public BushBloomModIntegration BushBloomMod { get; }
+
         /// <summary>The Custom Bush integration.</summary>
         public CustomBushIntegration CustomBush { get; }
 
@@ -82,8 +85,6 @@ namespace Pathoschild.Stardew.LookupAnything
 
         /// <summary>The Extra Machine Config integration.</summary>
         public ExtraMachineConfigIntegration ExtraMachineConfig { get; }
-
-        public BushBloomModIntegration BushBloomMod { get; }
 
 
         /*********
@@ -101,12 +102,12 @@ namespace Pathoschild.Stardew.LookupAnything
             this.ModRegistry = modRegistry;
             this.WorldItemScanner = new WorldItemScanner(reflection);
 
+            this.BushBloomMod = new BushBloomModIntegration(modRegistry, monitor);
             this.CustomBush = new CustomBushIntegration(modRegistry, monitor);
             this.CustomFarmingRedux = new CustomFarmingReduxIntegration(modRegistry, monitor);
             this.MultiFertilizer = new MultiFertilizerIntegration(modRegistry, monitor);
             this.ProducerFrameworkMod = new ProducerFrameworkModIntegration(modRegistry, monitor);
             this.ExtraMachineConfig = new ExtraMachineConfigIntegration(modRegistry, monitor);
-            this.BushBloomMod = new BushBloomModIntegration(modRegistry, monitor);
 
             this.ResetCache(monitor);
         }
