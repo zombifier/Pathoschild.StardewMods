@@ -10,6 +10,7 @@ When releasing a format change, don't forget to update the smapi.io/json schema!
 
 -->
 ## Upcoming release
+* Added support for editing list-of-value fields.
 * The [`patch summary` console command](author-guide/troubleshooting.md#summary) can now filter by asset name(s) using a new `asset` argument.
 
 ## 2.2.0
