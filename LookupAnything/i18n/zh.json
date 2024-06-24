@@ -130,13 +130,13 @@
     /*********
     ** Conditions & context tags
     *********/
-    "condition-or-context-tag.negate": "!{{value}}",
+    "condition-or-context-tag.negate": "非{{value}}",
 
     "condition.item-type.input": "输入物品",
     "condition.item-type.target": "产物",
 
-    "condition.raw-context-tag": "context tag \"{{tag}}\"", // TODO
-    "condition.raw-condition": "query \"{{tag}}\"", // TODO
+    "condition.raw-context-tag": "标签 \"{{tag}}\"",
+    "condition.raw-condition": "要求 \"{{tag}}\"",
 
     "condition.item-context-tag": "{{item}}有{{tags}}标签",
     "condition.item-context-tags": "{{item}}有{{tags}}标签",
