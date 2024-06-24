@@ -111,6 +111,19 @@ namespace Pathoschild.Stardew.ChestsAnywhere
                                 defaultCategory: category
                             );
                         }
+
+                        // enricher (on a sprinkler)
+                        else if (obj.IsSprinkler() && obj.heldObject.Value is SObject enricher && enricher.heldObject.Value is Chest enricherChest)
+                        {
+                            yield return new ManagedChest(
+                                container: new ChestContainer(enricherChest, context: enricherChest, showColorPicker: false),
+                                location: location,
+                                tile: tile,
+                                mapEntity: obj,
+                                defaultDisplayName: this.GetDisambiguatedDefaultName(enricher.DisplayName, nameCounts),
+                                defaultCategory: category
+                            );
+                        }
                     }
 
                     // farmhouse fridge
