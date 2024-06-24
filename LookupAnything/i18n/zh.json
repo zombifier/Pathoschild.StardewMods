@@ -132,6 +132,10 @@
     *********/
     "condition-or-context-tag.negate": "非{{value}}",
 
+    "condition.day-of-month": "on specific days ({{days}})", // TODO
+    "condition.day-of-month.even": "even days", // TODO
+    "condition.day-of-month.odd": "odd days", // TODO
+
     "condition.item-type.input": "输入物品",
     "condition.item-type.target": "产物",
 

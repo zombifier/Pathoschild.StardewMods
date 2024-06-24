@@ -1,4 +1,4 @@
-{
+﻿{
     /*********
     ** Generic translations
     *********/
@@ -131,6 +131,10 @@
     ** Conditions & context tags
     *********/
     "condition-or-context-tag.negate": "（{{value}}以外の）",
+
+    "condition.day-of-month": "on specific days ({{days}})", // TODO
+    "condition.day-of-month.even": "even days", // TODO
+    "condition.day-of-month.odd": "odd days", // TODO
 
     "condition.item-type.input": "原料",
     "condition.item-type.target": "対象",

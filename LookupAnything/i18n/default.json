@@ -132,6 +132,10 @@
     *********/
     "condition-or-context-tag.negate": "not {{value}}",
 
+    "condition.day-of-month": "on specific days ({{days}})",
+    "condition.day-of-month.even": "even days",
+    "condition.day-of-month.odd": "odd days",
+
     "condition.item-type.input": "input item",
     "condition.item-type.target": "target item",
 
