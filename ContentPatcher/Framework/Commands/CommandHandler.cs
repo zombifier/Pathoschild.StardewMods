@@ -61,6 +61,7 @@ namespace ContentPatcher.Framework.Commands
                 ),
                 new SummaryCommand(
                     monitor: monitor,
+                    contentHelper: contentHelper,
                     getPatchManager: () => screenManager.Value.PatchManager,
                     getTokenManager: () => screenManager.Value.TokenManager,
                     getCustomLocationLoader: () => screenManager.Value.CustomLocationManager

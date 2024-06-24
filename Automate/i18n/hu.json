@@ -48,6 +48,7 @@
 	"config.machines.fruit-tree": "Fa (Gyümölcsfa)",
 	"config.machines.trash-can": "Szemetes",
 	"config.machines.wild-tree": "Fa (Vad fa)",
+  "config.machines.feed-hopper": "Etető retesz és siló",
 
 	// Speciális beállítások az egyes gépekhez
 	"config.machines.wild-tree.collect-moss.name": "Moha begyűjtése",
