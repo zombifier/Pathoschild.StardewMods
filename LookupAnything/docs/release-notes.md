@@ -2,7 +2,10 @@
 
 # Release notes
 ## Upcoming release
+* Added integration with Bush Bloom Mod (thanks to Mushymato!).
+* Added human-readable text for `DAY_OF_MONTH` conditions (thanks to Mushymato!).
 * Added item context tags to pinned data mining fields.
+* Improved translations. Thanks to DxTea (updated Russian), mitekano23 (updated Japanese), and weizinai (updated Chinese)!
 
 ## 1.44.1
 Released 08 June 2024 for SMAPI 4.0.7 or later.
