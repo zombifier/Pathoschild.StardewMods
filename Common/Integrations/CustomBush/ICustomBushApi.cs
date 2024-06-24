@@ -25,6 +25,6 @@ namespace Pathoschild.Stardew.Common.Integrations.CustomBush
         /// <param name="id">The id of the bush.</param>
         /// <param name="drops">When this method returns, contains the items produced by the custom bush.</param>
         /// <returns>True if the drops associated with the given id is found; otherwise, false.</returns>
-        bool TryGetDrops(string id, out IList<ICustomBushDrop>? drops);
+        bool TryGetDrops(string id, [NotNullWhen(true)] out IList<ICustomBushDrop>? drops);
     }
 }

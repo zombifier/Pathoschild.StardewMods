@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathoschild.Stardew.Common.Integrations.CustomBush;
 using Pathoschild.Stardew.Common.Utilities;
+using Pathoschild.Stardew.LookupAnything.Framework.Data;
 using Pathoschild.Stardew.LookupAnything.Framework.DebugFields;
 using Pathoschild.Stardew.LookupAnything.Framework.Fields;
 using StardewModdingAPI.Utilities;
@@ -82,8 +83,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                     string nextHarvestStr = nextHarvest == today
                         ? I18n.Generic_Now()
                         : $"{this.Stringify(nextHarvest)} ({this.GetRelativeDateStr(nextHarvest)})";
-                    if (this.TryGetCustomBushDrops(bush, out IList<ICustomBushDrop>? drops))
-                        yield return new CustomBushDropsField(this.GameHelper, I18n.Bush_NextHarvest(), drops, preface: nextHarvestStr);
+                    if (this.TryGetCustomBushDrops(bush, out IList<ItemDropData>? drops))
+                        yield return new ItemDropListField(this.GameHelper, I18n.Bush_NextHarvest(), drops, preface: nextHarvestStr);
                     else
                     {
                         string harvestSchedule = isTeaBush ? I18n.Bush_Schedule_Tea() : I18n.Bush_Schedule_Berry();
@@ -201,13 +202,22 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
         /// <param name="bush">The bush to check.</param>
         /// <param name="drops">The items produced by the custom bush, if applicable.</param>
         /// <returns>Returns whether custom bush drops were found.</returns>
-        private bool TryGetCustomBushDrops(Bush bush, [NotNullWhen(true)] out IList<ICustomBushDrop>? drops)
+        private bool TryGetCustomBushDrops(Bush bush, [NotNullWhen(true)] out IList<ItemDropData>? drops)
         {
+            CustomBushIntegration customBush = this.GameHelper.CustomBush;
+
+            if (customBush.IsLoaded && customBush.ModApi.TryGetCustomBush(bush, out _, out string? id) && customBush.ModApi.TryGetDrops(id, out IList<ICustomBushDrop>? rawDrops))
+            {
+                drops = new List<ItemDropData>(rawDrops.Count);
+
+                foreach (ICustomBushDrop drop in rawDrops)
+                    drops.Add(new ItemDropData(drop.ItemId, drop.MinStack, drop.MaxStack, drop.Chance, drop.Condition));
+
+                return true;
+            }
+
             drops = null;
-            return
-                this.GameHelper.CustomBush.IsLoaded
-                && this.GameHelper.CustomBush.ModApi.TryGetCustomBush(bush, out _, out string? id)
-                && this.GameHelper.CustomBush.ModApi.TryGetDrops(id, out drops);
+            return false;
         }
 
         /// <summary>Get the berry schedules from Bush Bloom Mod for a given bush, if applicable.</summary>
