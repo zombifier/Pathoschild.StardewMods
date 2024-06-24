@@ -68,6 +68,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                     Item item = ItemRegistry.Create(entry.UnqualifiedItemId);
                     itemList.Add(item);
 
+                    if (firstDay < today)
+                        firstDay = today;
+
+                    if (lastDay < today)
+                        continue;
+
                     displayText[item] = firstDay == lastDay
                         ? $"{item.DisplayName}: {this.Stringify(firstDay)}"
                         : $"{item.DisplayName}: {this.Stringify(firstDay)} - {this.Stringify(lastDay)}";
