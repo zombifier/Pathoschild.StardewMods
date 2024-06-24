@@ -48,9 +48,8 @@
     "config.build-price.name": "建造价格",
     "config.build-price.tooltip": "拖拉机仓库的价格。默认{{defaultValue}}金。",
 
-    // TODO
-    "config.require-build-materials.name": "Require Build Materials",
-    "config.require-build-materials.tooltip": "Whether you need to provide materials to build a tractor garage, in addition to the gold price.",
+    "config.require-build-materials.name": "需要建造材料",
+    "config.require-build-materials.tooltip": "是否需要提供除金钱以外的建造拖拉机仓库的材料。",
 
     "config.can-summon-without-garage.name": "未建造仓库时召唤拖拉机",
     "config.can-summon-without-garage.tooltip": "在未建造拖拉机仓库的情况下，是否能召唤一台临时拖拉机。",
