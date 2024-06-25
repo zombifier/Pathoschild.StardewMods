@@ -134,7 +134,7 @@
     "condition.day-of-month": "in giorni specifici ({{days}})",
     "condition.day-of-month.even": "giorni pari",
     "condition.day-of-month.odd": "giorni dispari",
-     
+
     "condition.item-type.input": "oggetto inserito",
     "condition.item-type.target": "oggetto finale",
 
