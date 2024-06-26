@@ -5,6 +5,7 @@
 * Added integration with Bush Bloom Mod (thanks to Mushymato!).
 * Added human-readable text for `DAY_OF_MONTH` conditions (thanks to Mushymato!).
 * Added item context tags to pinned data mining fields.
+* Fixed search UI listing some wallpaper/flooring items twice.
 * Improved translations. Thanks to DxTea (updated Russian), mitekano23 (updated Japanese), and weizinai (updated Chinese)!
 
 ## 1.44.1
