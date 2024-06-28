@@ -110,8 +110,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         from season in location.Seasons
                         select new { Season = season, LocationName = location.DisplayName }
                     )
-                    .GroupBy(p => p.Season, p => p.LocationName)
-                    .ToDictionary(p => p.Key, p => p.ToArray());
+                    .GroupBy(p => p.Season, p => p.LocationName, StringComparer.OrdinalIgnoreCase)
+                    .ToDictionary(p => p.Key, p => p.ToArray(), StringComparer.OrdinalIgnoreCase);
 
                 var summary = new List<IFormattedText> { new FormattedText(I18n.Item_FishSpawnRules_LocationsBySeason_Label()) };
                 foreach (string season in this.Seasons)

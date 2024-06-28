@@ -8,6 +8,7 @@
 * Fixed crafting recipe 'any wild seeds' ingredients not handled correctly.
 * Fixed some invalid recipe ingredients being hidden; they're now shown as error items.
 * Fixed error looking up broken crops.
+* Fixed lookup for some fish not listing every location they can spawn in.
 * Fixed search UI listing some wallpaper/flooring items twice.
 * Improved translations. Thanks to DxTea (updated Russian), MakinDay (updated Italian), mitekano23 (updated Japanese), and weizinai (updated Chinese)!
 
