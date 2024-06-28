@@ -7,7 +7,7 @@
 * Fixed support for modded chests with custom `SpecialChestType` values.
 * Fixed feed hoppers inside buildings no longer collecting hay from chests.
 * Renamed 'Feed Hopper' in config UI to 'Hay Hopper and Silo' for clarity.
-* Improved translations. Thanks to martin66789 (updated Hungarian)!
+* Improved translations. Thanks to bl205vn (added Vietnamese) and martin66789 (updated Hungarian)!
 
 ## 2.2.3
 Released 08 June 2024 for SMAPI 4.0.7 or later.
