@@ -3,7 +3,7 @@
 # Release notes
 ## Upcoming release
 * Fixed able to plant seeds in a garden pot which already has a bush.
-* Improved translations. Thanks to weizinai (updated Chinese)!
+* Improved translations. Thanks to CuongNguyen0903 (added Vietnamese) and weizinai (updated Chinese)!
 
 ## 4.19.1
 Released 08 June 2024 for SMAPI 4.0.7 or later.
