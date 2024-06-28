@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed error when speeding up events in some cases.
 * Improved translations. Thanks to MakinDay (updated Italian)!
 
 ## 1.13.1

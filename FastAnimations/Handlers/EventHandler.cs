@@ -41,6 +41,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         {
             return
                 Game1.eventUp
+                && Game1.CurrentEvent != null
                 && !Game1.isFestival()
                 && !Game1.fadeToBlack
                 && !string.Equals(ArgUtility.Get(Game1.CurrentEvent.eventCommands, 3), $"{nameof(Event.DefaultCommands.PlayerControl)} parrotRide", StringComparison.OrdinalIgnoreCase); // handled by ParrotExpressHandler
