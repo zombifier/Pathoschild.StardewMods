@@ -2,7 +2,8 @@
 
 # Release notes
 ## Upcoming release
-* Fixed error when speeding up events in some cases.
+* Fixed error speeding up events in some cases.
+* Fixed events getting stuck when sped up if they have a `pause` command which runs simultaneously with other event commands.
 * Improved translations. Thanks to MakinDay (updated Italian)!
 
 ## 1.13.1

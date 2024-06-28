@@ -23,10 +23,14 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
                 && this.ApplySkipsWhile(
                 () =>
                 {
-                    if (Game1.CurrentEvent.GetCurrentCommand()?.StartsWith(nameof(Event.DefaultCommands.Pause), StringComparison.OrdinalIgnoreCase) is true)
+                    if (this.IsPauseCommand(Game1.CurrentEvent.GetCurrentCommand()))
+                    {
+                        // We need to update both the pause timer and event logic, since commands may happen in
+                        // parallel (e.g. a pause while an NPC moves into position).
                         Game1.updatePause(Game1.currentGameTime);
-                    else
-                        Game1.CurrentEvent.Update(Game1.currentLocation, Game1.currentGameTime);
+                    }
+
+                    Game1.CurrentEvent.Update(Game1.currentLocation, Game1.currentGameTime);
 
                     return this.ShouldApply();
                 });
@@ -45,6 +49,21 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
                 && !Game1.isFestival()
                 && !Game1.fadeToBlack
                 && !string.Equals(ArgUtility.Get(Game1.CurrentEvent.eventCommands, 3), $"{nameof(Event.DefaultCommands.PlayerControl)} parrotRide", StringComparison.OrdinalIgnoreCase); // handled by ParrotExpressHandler
+        }
+
+        /// <summary>Get whether a raw command line is a <see cref="Event.DefaultCommands.Pause"/> command.</summary>
+        /// <param name="rawCommand">The unparsed command line.</param>
+        private bool IsPauseCommand(string rawCommand)
+        {
+            const string pauseCommand = nameof(Event.DefaultCommands.Pause);
+
+            // quick check
+            if (!rawCommand.Contains(pauseCommand, StringComparison.InvariantCultureIgnoreCase))
+                return false;
+
+            // parse command
+            string[] args = ArgUtility.SplitBySpaceQuoteAware(rawCommand);
+            return string.Equals(args[0], pauseCommand, StringComparison.InvariantCultureIgnoreCase);
         }
     }
 }
