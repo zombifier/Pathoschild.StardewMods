@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed able to plant seeds in a garden pot which already has a bush.
 * Improved translations. Thanks to weizinai (updated Chinese)!
 
 ## 4.19.1
