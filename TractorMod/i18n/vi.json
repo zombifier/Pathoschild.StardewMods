@@ -235,8 +235,8 @@
     "config.seed-bags.name": "Bật Túi Hạt giống",
     "config.seed-bags.tooltip": "Có trồng hạt giống từ mod Túi Hạt giống hay không.",
 
-    "config.slingshot.name": "Bật bắn Cung",
-    "config.slingshot.tooltip": "Có bắn cung theo hướng con trỏ. (Cực kỳ mạnh và sẽ tiêu thụ đạn rất nhiều vì tốc độ đánh máy cày rất cao.)",
+    "config.slingshot.name": "Bật ná cao su",
+    "config.slingshot.tooltip": "Có bắn ná cao su theo hướng con trỏ. (Cực kỳ mạnh và sẽ tiêu thụ đạn rất nhiều vì tốc độ đánh máy cày rất cao.)",
 
     "config.custom-tool-names.name": "Tên Công cụ Tùy chỉnh",
     "config.custom-tool-names.tooltip": "Các vật phẩm/công cụ tùy chỉnh để kích hoạt khi lái máy kéo. Công cụ sẽ được sử dụng trên mỗi ô xung quanh, trong khi vật phẩm sẽ được đặt xuống. Nếu bạn chỉ định một cái gì đó đã được hỗ trợ (như rìu), điều này sẽ ghi đè tất cả các hạn chế về việc sử dụng. Bạn phải chỉ định tên nội bộ chính xác (không phải tên hiển thị đã dịch), như 'Rìu' hoặc 'Mega Bomb'. Phân tách nhiều giá trị bằng dấu phẩy."
