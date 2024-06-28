@@ -510,10 +510,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
         /// <param name="isSeed">Whether the crop being displayed is for an unplanted seed.</param>
         private IEnumerable<ICustomField> GetCropFields(HoeDirt? dirt, Crop? crop, bool isSeed)
         {
-            if (crop == null)
+            var data = new CropDataParser(crop, isPlanted: !isSeed);
+            if (data.CropData is null || crop is null)
                 yield break;
 
-            var data = new CropDataParser(crop, isPlanted: !isSeed);
             bool isForage = CommonHelper.IsItemId(crop.whichForageCrop.Value, allowZero: false) && crop.fullyGrown.Value; // show crop fields for growing mixed seeds
 
             // add next-harvest field

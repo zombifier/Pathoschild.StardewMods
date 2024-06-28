@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed error showing crop layer if there are broken crops planted.
 * Improved translations. Thanks to MakinDay (updated Italian), mitekano23 (updated Japanese), and weizinai (updated Chinese)!
 
 ## 1.17.1

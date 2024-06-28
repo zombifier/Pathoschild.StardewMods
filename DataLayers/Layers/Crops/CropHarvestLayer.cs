@@ -82,12 +82,15 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Crops
 
                 // yield tile
                 CropDataParser data = new CropDataParser(crop, isPlanted: true);
-                if (data.CanHarvestNow)
-                    yield return new TileData(tile, this.Ready);
-                else if (!location.SeedsIgnoreSeasonsHere() && !data.Seasons.Contains(data.GetNextHarvest().Season))
-                    yield return new TileData(tile, this.NotEnoughTimeOrDead);
-                else
-                    yield return new TileData(tile, this.NotReady);
+                if (data.CropData != null)
+                {
+                    if (data.CanHarvestNow)
+                        yield return new TileData(tile, this.Ready);
+                    else if (!location.SeedsIgnoreSeasonsHere() && !data.Seasons.Contains(data.GetNextHarvest().Season))
+                        yield return new TileData(tile, this.NotEnoughTimeOrDead);
+                    else
+                        yield return new TileData(tile, this.NotReady);
+                }
             }
         }
     }
