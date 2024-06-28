@@ -7,6 +7,7 @@ using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.LookupAnything.Framework.Fields.Models;
 using Pathoschild.Stardew.LookupAnything.Framework.Models;
 using StardewValley;
+using StardewValley.ItemTypeDefinitions;
 using SObject = StardewValley.Object;
 
 namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
@@ -398,30 +399,30 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             if (int.TryParse(ingredient.InputId, out int category) && category < 0)
             {
                 Item? input = this.GameHelper.GetObjectsByCategory(category).FirstOrDefault();
-                if (input == null)
-                    return null;
-
-                string displayName;
-                switch (input.Category)
+                if (input != null)
                 {
-                    case SObject.EggCategory:
-                        displayName = Game1.content.LoadString("Strings\\StringsFromCSFiles:CraftingRecipe.cs.572"); // Egg (Any)
-                        break;
+                    string displayName;
+                    switch (input.Category)
+                    {
+                        case SObject.EggCategory:
+                            displayName = Game1.content.LoadString("Strings\\StringsFromCSFiles:CraftingRecipe.cs.572"); // Egg (Any)
+                            break;
 
-                    case SObject.MilkCategory:
-                        displayName = Game1.content.LoadString("Strings\\StringsFromCSFiles:CraftingRecipe.cs.573"); // Milk (Any)
-                        break;
+                        case SObject.MilkCategory:
+                            displayName = Game1.content.LoadString("Strings\\StringsFromCSFiles:CraftingRecipe.cs.573"); // Milk (Any)
+                            break;
 
-                    default:
-                        displayName = input.getCategoryName();
-                        break;
+                        default:
+                            displayName = input.getCategoryName();
+                            break;
+                    }
+
+                    return this.CreateItemEntry(
+                        name: displayName,
+                        minCount: ingredient.Count,
+                        maxCount: ingredient.Count
+                    );
                 }
-
-                return this.CreateItemEntry(
-                    name: displayName,
-                    minCount: ingredient.Count,
-                    maxCount: ingredient.Count
-                );
             }
 
             // from item
@@ -462,8 +463,27 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 );
             }
 
-            // invalid?
-            return null;
+            // unsupported type, show placeholder with error sprite
+            {
+                ObjectDataDefinition objectTypeDef = ItemRegistry.GetObjectTypeDefinition();
+
+                string? displayName = ingredient.InputId;
+                if (ingredient.InputContextTags.Length > 0)
+                {
+                    displayName = !string.IsNullOrWhiteSpace(displayName)
+                        ? I18n.List([displayName, .. ingredient.InputContextTags])
+                        : I18n.List(ingredient.InputContextTags);
+                }
+                displayName ??= "???";
+
+                return this.CreateItemEntry(
+                    name: displayName,
+                    sprite: new SpriteInfo(
+                        objectTypeDef.GetErrorTexture(),
+                        objectTypeDef.GetErrorSourceRect()
+                    )
+                );
+            }
         }
 
         /// <summary>Create a recipe item model.</summary>
