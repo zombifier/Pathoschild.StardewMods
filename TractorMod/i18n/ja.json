@@ -137,7 +137,7 @@
     "config.harvest-giant-crops.tooltip": "巨大な作物を収穫する。",
 
     "config.harvest-crops.name": "作物の収穫",
-    "config.Harvest Crops.tooltip": "作物を収穫する。",
+    "config.harvest-crops.tooltip": "作物を収穫する。",
 
     "config.harvest-flowers.name": "花の収穫",
     "config.harvest-flowers.tooltip": "花を収穫する。",
@@ -207,8 +207,8 @@
     /****
     ** Melee
     ****/
-    "config.Attack-monsters.name": "モンスターへの攻撃",
-    "config.Attack-monsters.tooltip": "モンスターを攻撃する。これはトラクターの速度で攻撃するため、非常にオーバーパワーである。",
+    "config.attack-monsters.name": "モンスターへの攻撃",
+    "config.attack-monsters.tooltip": "モンスターを攻撃する。これはトラクターの速度で攻撃するため、非常にオーバーパワーである。",
 
 
     /****

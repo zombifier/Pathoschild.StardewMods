@@ -137,7 +137,7 @@
     "config.harvest-giant-crops.tooltip": "是否收获巨大作物。",
 
     "config.harvest-crops.name": "收获农作物",
-    "config.Harvest Crops.tooltip": "是否收获农作物。",
+    "config.harvest-crops.tooltip": "是否收获农作物。",
 
     "config.harvest-flowers.name": "收获花",
     "config.harvest-flowers.tooltip": "是否收获花。",
@@ -207,8 +207,8 @@
     /****
     ** Melee
     ****/
-    "config.Attack-monsters.name": "攻击怪物",
-    "config.Attack-monsters.tooltip": "是否攻击怪物。（由于拖拉机的攻速，基本上开了就无敌了）",
+    "config.attack-monsters.name": "攻击怪物",
+    "config.attack-monsters.tooltip": "是否攻击怪物。（由于拖拉机的攻速，基本上开了就无敌了）",
 
 
     /****
