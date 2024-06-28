@@ -47,6 +47,9 @@
     "quality.gold": "Золотое",
     "quality.iridium": "Иридиевое",
 
+    // item names shown in recipes
+    "item.wild-seeds": "Wild Seeds (Any)", // TODO
+
     // NPC friendship
     "friendship-status.friendly": "Дружный",
     "friendship-status.dating": "Пара",

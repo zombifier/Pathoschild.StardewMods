@@ -689,7 +689,7 @@ namespace Pathoschild.Stardew.LookupAnything
                         key: null,
                         type: RecipeType.MachineInput,
                         displayType: machine.DisplayName,
-                        ingredients: recipe.Ingredients.Select(p => new RecipeIngredientModel(p.InputId, p.Count)),
+                        ingredients: recipe.Ingredients.Select(p => new RecipeIngredientModel(RecipeType.MachineInput, p.InputId, p.Count)),
                         item: ingredient =>
                         {
                             SObject output = ItemRegistry.Create<SObject>(recipe.OutputId);
@@ -701,7 +701,7 @@ namespace Pathoschild.Stardew.LookupAnything
                             return output;
                         },
                         isKnown: () => true,
-                        exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id, 1)),
+                        exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(RecipeType.MachineInput, id, 1)),
                         outputQualifiedItemId: recipe.OutputId,
                         minOutput: recipe.MinOutput,
                         maxOutput: recipe.MaxOutput,
@@ -812,8 +812,8 @@ namespace Pathoschild.Stardew.LookupAnything
                                 type: RecipeType.TailorInput,
                                 displayType: I18n.RecipeType_Tailoring(),
                                 ingredients: [
-                                    new RecipeIngredientModel(clothItem.QualifiedItemId, 1),
-                                    new RecipeIngredientModel(spoolItem.QualifiedItemId, 1)
+                                    new RecipeIngredientModel(RecipeType.TailorInput, clothItem.QualifiedItemId, 1),
+                                    new RecipeIngredientModel(RecipeType.TailorInput, spoolItem.QualifiedItemId, 1)
                                 ],
                                 item: _ => output.getOne(),
                                 isKnown: () => Game1.player.HasTailoredThisItem(output),

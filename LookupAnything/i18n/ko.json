@@ -47,6 +47,9 @@
     "quality.gold": "금",
     "quality.iridium": "이리듐",
 
+    // item names shown in recipes
+    "item.wild-seeds": "Wild Seeds (Any)", // TODO
+
     // NPC friendship 우정관계
     "friendship-status.friendly": "친근함",
     "friendship-status.dating": "연애 중",

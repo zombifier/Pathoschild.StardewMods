@@ -395,6 +395,17 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <returns>The equivalent item entry model, or <c>null</c> for a category with no matching items.</returns>
         private RecipeItemEntry? TryCreateItemEntry(RecipeIngredientModel ingredient)
         {
+            // special cases
+            switch (ingredient.InputId)
+            {
+                case "-777":
+                    return this.CreateItemEntry(
+                        name: I18n.Item_WildSeeds(),
+                        minCount: ingredient.Count,
+                        maxCount: ingredient.Count
+                    );
+            }
+
             // from category
             if (int.TryParse(ingredient.InputId, out int category) && category < 0)
             {

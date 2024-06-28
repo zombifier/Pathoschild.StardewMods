@@ -47,6 +47,9 @@
     "quality.gold": "金星",
     "quality.iridium": "铱星",
 
+    // item names shown in recipes
+    "item.wild-seeds": "Wild Seeds (Any)", // TODO
+
     // NPC friendship
     "friendship-status.friendly": "友好的",
     "friendship-status.dating": "交往中",

@@ -47,6 +47,9 @@
     "quality.gold": "oro",
     "quality.iridium": "iridio",
 
+    // item names shown in recipes
+    "item.wild-seeds": "Wild Seeds (Any)", // TODO
+
     // NPC friendship
     "friendship-status.friendly": "Amichevole",
     "friendship-status.dating": "Frequentazione",
