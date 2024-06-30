@@ -53,7 +53,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework
         public static string For(FriendshipStatus status, bool wasHousemate)
         {
             if (wasHousemate && status == FriendshipStatus.Divorced)
-                return I18n.GetByKey("friendship-status.kicked-out");
+                return I18n.FriendshipStatus_KickedOut();
             return I18n.GetByKey($"friendship-status.{status.ToString().ToLower()}");
         }
 

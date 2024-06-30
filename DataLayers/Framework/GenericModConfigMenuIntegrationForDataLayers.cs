@@ -151,7 +151,7 @@ namespace Pathoschild.Stardew.DataLayers.Framework
         private string GetLayerSectionTitle(string translationKey)
         {
             string layerName = I18n.GetByKey($"{translationKey}.name");
-            return I18n.GetByKey("config.section.layer", new { LayerName = layerName });
+            return I18n.Config_Section_Layer(layerName);
         }
     }
 }
