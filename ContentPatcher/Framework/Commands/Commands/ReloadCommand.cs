@@ -40,11 +40,12 @@ namespace ContentPatcher.Framework.Commands.Commands
         /// <inheritdoc />
         public override string GetDescription()
         {
-            return @"
+            return
+                """
                 patch reload
-                   Usage: patch reload ""<content pack ID>""
+                   Usage: patch reload "<content pack ID>"
                    Reloads the patches of the content.json of a content pack. Config schema changes and dynamic token changes are unsupported.
-            ";
+                """;
         }
 
         /// <inheritdoc />

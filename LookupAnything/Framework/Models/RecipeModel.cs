@@ -174,8 +174,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /// <param name="recipe">The crafting recipe.</param>
         public static RecipeIngredientModel[] ParseIngredients(CraftingRecipe recipe)
         {
+            RecipeType type = recipe.isCookingRecipe
+                ? RecipeType.Cooking
+                : RecipeType.Crafting;
+
             return recipe.recipeList
-                .Select(p => new RecipeIngredientModel(p.Key, p.Value))
+                .Select(p => new RecipeIngredientModel(type, p.Key, p.Value))
                 .ToArray();
         }
 
@@ -186,7 +190,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
             if (building?.BuildMaterials?.Count > 0)
             {
                 return building.BuildMaterials
-                    .Select(ingredient => new RecipeIngredientModel(ingredient.ItemId, ingredient.Amount))
+                    .Select(ingredient => new RecipeIngredientModel(RecipeType.BuildingBlueprint, ingredient.ItemId, ingredient.Amount))
                     .ToArray();
             }
             else

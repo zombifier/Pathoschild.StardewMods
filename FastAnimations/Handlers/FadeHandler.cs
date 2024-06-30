@@ -21,6 +21,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         {
             return
                 Game1.fadeToBlack
+                && Game1.activeClickableMenu is null // e.g. when you arrive in a location by mine cart, the festival won't start on fade-in if the mine cart dialogue hasn't finished closing yet
                 && this.ApplySkipsWhile(() =>
                 {
                     this.UpdateFadeToBlack();

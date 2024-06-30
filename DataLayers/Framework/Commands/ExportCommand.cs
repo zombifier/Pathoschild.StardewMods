@@ -36,11 +36,12 @@ namespace Pathoschild.Stardew.DataLayers.Framework.Commands
         /// <inheritdoc />
         public override string GetDescription()
         {
-            return @"
+            return
+                """
                 data-layers export
                    Usage: data-layers export
                    Exports the current data layer for the entire location to the game folder.
-            ";
+                """;
         }
 
         /// <inheritdoc />

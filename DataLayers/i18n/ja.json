@@ -77,43 +77,42 @@
     /*********
     ** Generic Mod Config Menu UI
     *********/
-    // TODO
     // section names
-    "config.section.main-options": "Main options",
-    "config.section.main-controls": "Main controls",
-    "config.section.layer": "'{{LayerName}}' layer", // {{LayerName}} is the layer name set above.
+    "config.section.main-options": "メインオプション",
+    "config.section.main-controls": "メインコントロール",
+    "config.section.layer": "「{{LayerName}}」のレイヤー", // {{LayerName}} is the layer name set above.
 
     // main options
-    "config.show-grid.name": "Show grid",
-    "config.show-grid.desc": "Whether to show a tile grid when a layer is open.",
+    "config.show-grid.name": "グリッド表示",
+    "config.show-grid.desc": "レイヤーが開いているときにタイルグリッドを表示する。",
 
-    "config.combine-borders.name": "Combine overlapping borders",
-    "config.combine-borders.desc": "When two groups of the same color overlap, whether to draw one border around their combined edge instead of their individual borders.",
+    "config.combine-borders.name": "重なったボーダーを組み合わせる",
+    "config.combine-borders.desc": "同じ色の2つのグループが重なっている場合、それぞれのボーダーではなく、組み合わされたエッジの周りに1つのボーダーを描く。",
 
-    "config.color-scheme.name": "Color scheme",
-    "config.color-schene.desc": "The color scheme to apply, which changes the colors throughout all the data layers.",
-    "config.color-schemes.default": "default colors",
+    "config.color-scheme.name": "配色",
+    "config.color-schene.desc": "適用する配色で、すべてのデータレイヤー全体の色を変更する。",
+    "config.color-schemes.default": "標準の色",
 
     // main controls
-    "config.toggle-layer-key.name": "Toggle data layers",
-    "config.toggle-layer-key.desc": "The key binding which shows or hides the data layer overlay.",
+    "config.toggle-layer-key.name": "データレイヤーの切り替え",
+    "config.toggle-layer-key.desc": "データレイヤーのオーバーレイを表示または非表示にするキー。",
 
-    "config.prev-layer-key.name": "Previous layer key",
-    "config.prev-layer-key.desc": "The key binding which cycles backwards through the available data layers.",
+    "config.prev-layer-key.name": "前のレイヤー",
+    "config.prev-layer-key.desc": "利用可能なデータレイヤーを循環させるキー。",
 
-    "config.next-layer-key.name": "Next layer key",
-    "config.next-layer-key.desc": "The key binding which cycles forward through the available data layers.",
+    "config.next-layer-key.name": "次のレイヤー",
+    "config.next-layer-key.desc": "利用可能なデータレイヤーを循環させるキー。",
 
     // data layers
-    "config.layer-enabled.name": "Enabled",
-    "config.layer-enabled.desc": "Whether this layer should be available in-game.",
+    "config.layer-enabled.name": "有効",
+    "config.layer-enabled.desc": "このレイヤーをゲーム内で利用可能にする。",
 
-    "config.layer-update-on-view-change.name": "Update when view changes",
-    "config.layer-update-on-view-change.desc": "Whether the drawn layer info should be updated when a new part of the world moves into view, regardless of the 'updates per second' setting.",
+    "config.layer-update-on-view-change.name": "適時更新",
+    "config.layer-update-on-view-change.desc": "「1秒あたりの更新数」の設定に関係なく、ワールドの新しい部分が視界に入ったときに描画レイヤー情報を更新するかどうか。",
 
-    "config.layer-updates-per-second.name": "Updates per second",
-    "config.layer-updates-per-second.desc": "How often the layer should update when it's being displayed, as a number per second. Setting this to a higher value than the default may cause lag. Default {{defaultValue}}.",
+    "config.layer-updates-per-second.name": "1秒あたりの更新数",
+    "config.layer-updates-per-second.desc": "レイヤーを表示する際の更新頻度を1秒あたりの数値で指定する。デフォルトより高い値を設定すると、ラグが発生する可能性があります。標準は{{defaultValue}}。",
 
-    "config.layer-shortcut.name": "Shortcut key",
-    "config.layer-shortcut.desc": "The key binding which selects this layer when the overlay is open."
+    "config.layer-shortcut.name": "ショートカットキー",
+    "config.layer-shortcut.desc": "オーバーレイが開いているときに、このレイヤーを選択するキー。"
 }

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.Common.DataParsers;
+using Pathoschild.Stardew.Common.Utilities;
 using Pathoschild.Stardew.LookupAnything.Framework.Constants;
 using Pathoschild.Stardew.LookupAnything.Framework.Data;
 using Pathoschild.Stardew.LookupAnything.Framework.DebugFields;
@@ -143,7 +144,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 }
             }
 
-            // show item ID
+            // show source mod
             {
                 IModInfo? fromMod = this.GameHelper.TryGetModFromItemId(item.ItemId);
                 if (fromMod != null)
@@ -428,6 +429,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 yield return new GenericDebugField("crop fully grown", this.Stringify(crop.fullyGrown.Value), pinned: true);
                 yield return new GenericDebugField("crop phase", $"{crop.currentPhase} (day {crop.dayOfCurrentPhase} in phase)", pinned: true);
             }
+            yield return new GenericDebugField("context tags", I18n.List(target.GetContextTags().OrderBy(p => p, new HumanSortComparer())), pinned: true);
 
             // raw fields
             foreach (IDebugField field in this.GetDebugFieldsFrom(target))
@@ -508,10 +510,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
         /// <param name="isSeed">Whether the crop being displayed is for an unplanted seed.</param>
         private IEnumerable<ICustomField> GetCropFields(HoeDirt? dirt, Crop? crop, bool isSeed)
         {
-            if (crop == null)
+            var data = new CropDataParser(crop, isPlanted: !isSeed);
+            if (data.CropData is null || crop is null)
                 yield break;
 
-            var data = new CropDataParser(crop, isPlanted: !isSeed);
             bool isForage = CommonHelper.IsItemId(crop.whichForageCrop.Value, allowZero: false) && crop.fullyGrown.Value; // show crop fields for growing mixed seeds
 
             // add next-harvest field

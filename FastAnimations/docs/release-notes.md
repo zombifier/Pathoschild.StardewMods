@@ -1,6 +1,14 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.13.2
+Released 29 June 2024 for SMAPI 4.0.7 or later.
+
+* Fixed _event cutscene_ freezing events if they have a `pause` command which runs simultaneously with other event commands.
+* Fixed _event cutscene_ causing errors in some cases.
+* Fixed _fade_ causing festivals to not start when arriving via mine cart.
+* Improved translations. Thanks to MakinDay (updated Italian)!
+
 ## 1.13.1
 Released 09 June 2024 for SMAPI 4.0.7 or later.
 

@@ -137,7 +137,7 @@
     "config.harvest-giant-crops.tooltip": "Dev ekinlerin kesilip kesilmeyeceği.",
 
     "config.harvest-crops.name": "Ekinleri Hasat Et",
-    "config.Harvest Crops.tooltip": "Ekinlerin hasat edilip edilmeyeceği.",
+    "config.harvest-crops.tooltip": "Ekinlerin hasat edilip edilmeyeceği.",
 
     "config.harvest-flowers.name": "Çiçekleri Hasat Et",
     "config.harvest-flowers.tooltip": "Çiçeklerin hasat edilip edilmeyeceği.",
@@ -207,8 +207,8 @@
     /****
     ** Melee
     ****/
-    "config.Attack-monsters.name": "Canavarlara Saldır",
-    "config.Attack-monsters.tooltip": "Canavarlara saldırıp saldırmayacağı. (Bu, traktör aletinin hızı nedeniyle büyük ölçüde aşırı güçlenmiştir.)",
+    "config.attack-monsters.name": "Canavarlara Saldır",
+    "config.attack-monsters.tooltip": "Canavarlara saldırıp saldırmayacağı. (Bu, traktör aletinin hızı nedeniyle büyük ölçüde aşırı güçlenmiştir.)",
 
 
     /****
