@@ -10,6 +10,7 @@
 * Fixed error looking up broken crops.
 * Fixed lookup for some fish not listing every location they can spawn in.
 * Fixed search UI listing some wallpaper/flooring items twice.
+* Fixed some Chinese and Japanese not line-wrapped after 1.44.0.
 * Improved translations. Thanks to DxTea (updated Russian), MakinDay (updated Italian), mitekano23 (updated Japanese), and weizinai (updated Chinese)!
 
 ## 1.44.1

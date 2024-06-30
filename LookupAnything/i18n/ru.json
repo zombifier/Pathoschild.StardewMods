@@ -2,6 +2,10 @@
     /*********
     ** Generic translations
     *********/
+    // language info
+    "generic.list-separator": ", ", // text between listed values (like ", " in "A, B, C")
+    "generic.line-wrap-on": "",     // characters after which we can line-wrap text if needed, even if there's no space
+
     // date names
     "generic.now": "Сейчас",
     "generic.tomorrow": "Завтра",
@@ -9,7 +13,6 @@
 
     // generic values
     "generic.unknown": "Неизвестно",
-    "generic.list-separator": ", ", // text between listed values (like ", " in "A, B, C")
 
     // generic field values
     "generic.percent": "{{percent}}%",
