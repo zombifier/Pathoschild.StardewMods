@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.17.2
+Released 29 June 2024 for SMAPI 4.0.7 or later.
+
 * Fixed error showing crop layer if there are broken crops planted.
 * Improved translations. Thanks to MakinDay (updated Italian), mitekano23 (updated Japanese), and weizinai (updated Chinese)!
 

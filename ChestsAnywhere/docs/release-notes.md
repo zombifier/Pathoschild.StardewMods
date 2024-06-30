@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.24.0
+Released 29 June 2024 for SMAPI 4.0.7 or later.
+
 * Added support for sprinkler enrichers (thanks to Mushymato!).
 
 ## 1.23.5
