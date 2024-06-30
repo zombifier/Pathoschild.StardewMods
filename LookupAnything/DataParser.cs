@@ -407,6 +407,9 @@ namespace Pathoschild.Stardew.LookupAnything
             {
                 string qualifiedMachineId = entryKey; // avoid referencing loop variable in closure
 
+                if (ItemRegistry.ResolveMetadata(qualifiedMachineId) == null)
+                    continue;
+
                 if (machineData?.OutputRules?.Count is not > 0)
                     continue;
 
