@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Fixed error showing Bush Bloom schedules.
+* Fixed issues with line wrapping and list delimiting in 1.45.
 * Fixed item lookups showning recipes for invalid machines (thanks to zombifier!).
 * Improved translations. Thanks to MakinDay (updated Italian)!
 
