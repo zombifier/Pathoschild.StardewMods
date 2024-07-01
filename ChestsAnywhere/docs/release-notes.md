@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.24.1
+Released 01 July 2024 for SMAPI 4.0.7 or later.
+
 * Support for sprinkler attachments is now optional and disabled by default.
 
 ## 1.24.0

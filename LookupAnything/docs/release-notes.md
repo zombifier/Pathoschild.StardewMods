@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.45.2
+Released 01 July 2024 for SMAPI 4.0.7 or later.
+
 * Fixed error showing Bush Bloom schedules.
 * Fixed issues with line wrapping and list delimiting in 1.45.
 * Fixed item lookups showning recipes for invalid machines (thanks to zombifier!).
