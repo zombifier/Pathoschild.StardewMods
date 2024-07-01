@@ -1,6 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed lists missing comma separators in some cases.
+
 ## 1.45.0
 Released 29 June 2024 for SMAPI 4.0.7 or later.
 
