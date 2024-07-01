@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Fixed error showing Bush Bloom schedules.
 * Fixed item lookups showning recipes for invalid machines (thanks to zombifier!).
 * Improved translations. Thanks to MakinDay (updated Italian)!
 
