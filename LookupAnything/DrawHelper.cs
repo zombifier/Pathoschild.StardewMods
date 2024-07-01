@@ -205,7 +205,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                 break;
                         }
 
-                        output.Add(word.Substring(start, end - start));
+                        output.Add(word.Substring(start, end - start + 1));
                         foundValid = false;
                         start = end;
                     }
