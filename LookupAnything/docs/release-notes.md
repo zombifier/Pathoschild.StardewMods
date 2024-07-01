@@ -1,6 +1,10 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Fixed item lookups showning recipes for invalid machines (thanks to zombifier!).
+* Improved translations. Thanks to MakinDay (updated Italian)!
+
 ## 1.45.1
 Released 30 June 2024 for SMAPI 4.0.7 or later.
 
