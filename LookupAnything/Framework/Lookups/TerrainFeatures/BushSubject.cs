@@ -61,7 +61,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
                 List<Item> itemList = [];
                 Dictionary<Item, string> displayText = new(new ObjectReferenceComparer<Item>());
 
-                foreach (var entry in bushBloomSchedule.OrderBy(p => p.StartDay).ThenBy(p => p.EndDay))
+                foreach (var entry in bushBloomSchedule.OrderBy(p => p.StartDay.TotalDays).ThenBy(p => p.EndDay.TotalDays))
                 {
                     SDate lastDay = SDate.From(entry.EndDay);
                     SDate firstDay = SDate.From(entry.StartDay);

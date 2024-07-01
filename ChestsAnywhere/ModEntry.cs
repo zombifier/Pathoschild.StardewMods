@@ -55,7 +55,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere
             I18n.Init(helper.Translation);
             this.Config = helper.ReadConfig<ModConfig>();
             this.Data = helper.Data.ReadJsonFile<ModData>("assets/data.json") ?? new ModData();
-            this.ChestFactory = new ChestFactory(helper.Multiplayer, () => this.Config.EnableShippingBin);
+            this.ChestFactory = new ChestFactory(helper.Multiplayer, () => this.Config);
 
             // Android workaround: shipping bin feature isn't compatible and breaks the UI
             if (Constants.TargetPlatform == GamePlatform.Android && this.Config.EnableShippingBin)

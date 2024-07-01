@@ -1,10 +1,15 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.24.1
+Released 01 July 2024 for SMAPI 4.0.7 or later.
+
+* Support for sprinkler attachments is now optional and disabled by default.
+
 ## 1.24.0
 Released 29 June 2024 for SMAPI 4.0.7 or later.
 
-* Added support for sprinkler enrichers (thanks to Mushymato!).
+* Added support for sprinkler attachments (thanks to Mushymato!).
 
 ## 1.23.5
 Released 08 June 2024 for SMAPI 4.0.7 or later.

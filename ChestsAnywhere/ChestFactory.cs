@@ -29,8 +29,8 @@ namespace Pathoschild.Stardew.ChestsAnywhere
         /// <summary>Provides multiplayer utilities.</summary>
         private readonly IMultiplayerHelper Multiplayer;
 
-        /// <summary>Whether to support access to the shipping bin.</summary>
-        private readonly Func<bool> EnableShippingBin;
+        /// <summary>The mod settings to apply.</summary>
+        private readonly Func<ModConfig> Config;
 
 
         /*********
@@ -38,11 +38,11 @@ namespace Pathoschild.Stardew.ChestsAnywhere
         *********/
         /// <summary>Construct an instance.</summary>
         /// <param name="multiplayer">Provides multiplayer utilities.</param>
-        /// <param name="enableShippingBin">Whether to support access to the shipping bin.</param>
-        public ChestFactory(IMultiplayerHelper multiplayer, Func<bool> enableShippingBin)
+        /// <param name="config">The mod settings to apply.</param>
+        public ChestFactory(IMultiplayerHelper multiplayer, Func<ModConfig> config)
         {
             this.Multiplayer = multiplayer;
-            this.EnableShippingBin = enableShippingBin;
+            this.Config = config;
         }
 
         /// <summary>Get all player chests.</summary>
@@ -51,6 +51,8 @@ namespace Pathoschild.Stardew.ChestsAnywhere
         /// <param name="alwaysInclude">A chest to include even if it would normally be hidden.</param>
         public IEnumerable<ManagedChest> GetChests(RangeHandler range, bool excludeHidden = false, ManagedChest? alwaysInclude = null)
         {
+            ModConfig config = this.Config();
+
             IEnumerable<ManagedChest> Search()
             {
                 // get location info
@@ -112,17 +114,25 @@ namespace Pathoschild.Stardew.ChestsAnywhere
                             );
                         }
 
-                        // enricher (on a sprinkler)
-                        else if (obj.IsSprinkler() && obj.heldObject.Value is SObject enricher && enricher.heldObject.Value is Chest enricherChest)
+                        // sprinkler attachments
+                        else if (config.EnableSprinklerAttachments && obj.IsSprinkler() && obj.heldObject.Value is { } attachment)
                         {
-                            yield return new ManagedChest(
-                                container: new ChestContainer(enricherChest, context: enricherChest, showColorPicker: false),
-                                location: location,
-                                tile: tile,
-                                mapEntity: obj,
-                                defaultDisplayName: this.GetDisambiguatedDefaultName(enricher.DisplayName, nameCounts),
-                                defaultCategory: category
-                            );
+                            Chest? attachmentChest = (attachment as Chest) ?? (attachment.heldObject.Value as Chest);
+                            if (attachmentChest is not null)
+                            {
+                                string displayName = attachment.DisplayName;
+                                if (displayName == ItemRegistry.GetDataOrErrorItem("(O)130").DisplayName) // if the display name is just "Chest", show the sprinkler name
+                                    displayName = obj.DisplayName;
+
+                                yield return new ManagedChest(
+                                    container: new ChestContainer(attachmentChest, context: attachmentChest, showColorPicker: false),
+                                    location: location,
+                                    tile: tile,
+                                    mapEntity: obj,
+                                    defaultDisplayName: this.GetDisambiguatedDefaultName(displayName, nameCounts),
+                                    defaultCategory: category
+                                );
+                            }
                         }
                     }
 
@@ -465,7 +475,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere
         /// <param name="location">The location to check.</param>
         private bool HasShippingBin(GameLocation location)
         {
-            if (!this.EnableShippingBin())
+            if (!this.Config().EnableShippingBin)
                 return false;
 
             return location switch

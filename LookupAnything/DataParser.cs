@@ -407,7 +407,7 @@ namespace Pathoschild.Stardew.LookupAnything
             {
                 string qualifiedMachineId = entryKey; // avoid referencing loop variable in closure
 
-                if (machineData?.OutputRules?.Count is not > 0)
+                if (!ItemRegistry.Exists(qualifiedMachineId) || machineData?.OutputRules?.Count is not > 0)
                     continue;
 
                 RecipeIngredientModel[] additionalConsumedItems =

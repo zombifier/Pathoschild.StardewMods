@@ -56,6 +56,8 @@ namespace Pathoschild.Stardew.LookupAnything
             if (text == null)
                 return new Vector2(0, 0);
 
+            DrawTextHelper.InitIfNeeded();
+
             // track draw values
             float xOffset = 0;
             float yOffset = 0;
@@ -71,77 +73,57 @@ namespace Pathoschild.Stardew.LookupAnything
                 if (snippet?.Text == null)
                     continue;
 
-                // get word list
-                IList<string> words = new List<string>();
+                // build word list
+                string[] rawWords = snippet.Text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (rawWords.Length > 0)
                 {
-                    // track surrounding spaces for combined translations
-                    bool startSpace = snippet.Text.StartsWith(" ");
-                    bool endSpace = snippet.Text.EndsWith(" ");
-
-                    // build word list
-                    IList<string> rawWords = DrawTextHelper.SplitForLineWrapping(snippet.Text);
-                    for (int i = 0, last = rawWords.Count - 1; i <= last; i++)
-                    {
-                        // get word
-                        string word = rawWords[i];
-                        if (startSpace && i == 0)
-                            word = $" {word}";
-                        if (endSpace && i == last)
-                            word += " ";
-
-                        // split on newlines
-                        string wordPart = word;
-                        int newlineIndex;
-                        while ((newlineIndex = wordPart.IndexOf(Environment.NewLine, StringComparison.Ordinal)) >= 0)
-                        {
-                            if (newlineIndex == 0)
-                            {
-                                words.Add(Environment.NewLine);
-                                wordPart = wordPart.Substring(Environment.NewLine.Length);
-                            }
-                            else if (newlineIndex > 0)
-                            {
-                                words.Add(wordPart.Substring(0, newlineIndex));
-                                words.Add(Environment.NewLine);
-                                wordPart = wordPart.Substring(newlineIndex + Environment.NewLine.Length);
-                            }
-                        }
-
-                        // add remaining word (after newline split)
-                        if (wordPart.Length > 0)
-                            words.Add(wordPart);
-                    }
+                    // keep surrounding spaces, since this snippet may be drawn before or after another
+                    if (snippet.Text.StartsWith(" "))
+                        rawWords[0] = $" {rawWords[0]}";
+                    if (snippet.Text.EndsWith(" "))
+                        rawWords[^1] += " ";
                 }
+                //for (int i = 0; i < rawWords.Length; i++) rawWords[i] = '[' + rawWords[i] + ']';
 
-                // draw words to screen
+                // draw words
                 bool isFirstOfLine = true;
-                foreach (string word in words)
+                foreach (string rawWord in rawWords)
                 {
-                    // check wrap width
-                    float wordWidth = font.MeasureString(word).X * scale;
-                    float prependSpace = isFirstOfLine ? 0 : spaceWidth;
-                    if (word == Environment.NewLine || ((wordWidth + xOffset + prependSpace) > wrapWidth && (int)xOffset != 0))
+                    // split within words if needed (e.g. list separators)
+                    bool isStartOfWord = true;
+                    foreach (string wordPart in DrawTextHelper.SplitWithinWordForLineWrapping(rawWord))
                     {
-                        xOffset = 0;
-                        yOffset += lineHeight;
-                        blockHeight += lineHeight;
-                        isFirstOfLine = true;
+                        // check wrap width
+                        float wordWidth = font.MeasureString(wordPart).X * scale;
+                        float prependSpace = isStartOfWord && !isFirstOfLine
+                            ? spaceWidth
+                            : 0; // no space around soft breaks or start of line
+
+                        if (wordPart == Environment.NewLine || ((wordWidth + xOffset + prependSpace) > wrapWidth && (int)xOffset != 0))
+                        {
+                            xOffset = 0;
+                            yOffset += lineHeight;
+                            blockHeight += lineHeight;
+                            isFirstOfLine = true;
+                        }
+                        if (wordPart == Environment.NewLine)
+                            continue;
+
+                        // draw text
+                        Vector2 wordPosition = new Vector2(position.X + xOffset + prependSpace, position.Y + yOffset);
+                        if (snippet.Bold)
+                            Utility.drawBoldText(batch, wordPart, font, wordPosition, snippet.Color ?? Color.Black, scale);
+                        else
+                            batch.DrawString(font, wordPart, wordPosition, snippet.Color ?? Color.Black, 0, Vector2.Zero, scale, SpriteEffects.None, 1);
+
+                        // update draw values
+                        if (xOffset + wordWidth + prependSpace > blockWidth)
+                            blockWidth = xOffset + wordWidth + prependSpace;
+                        xOffset += wordWidth + prependSpace;
+
+                        isFirstOfLine = false;
+                        isStartOfWord = false;
                     }
-                    if (word == Environment.NewLine)
-                        continue;
-
-                    // draw text
-                    Vector2 wordPosition = new Vector2(position.X + xOffset + prependSpace, position.Y + yOffset);
-                    if (snippet.Bold)
-                        Utility.drawBoldText(batch, word, font, wordPosition, snippet.Color ?? Color.Black, scale);
-                    else
-                        batch.DrawString(font, word, wordPosition, snippet.Color ?? Color.Black, 0, Vector2.Zero, scale, SpriteEffects.None, 1);
-
-                    // update draw values
-                    if (xOffset + wordWidth + prependSpace > blockWidth)
-                        blockWidth = xOffset + wordWidth + prependSpace;
-                    xOffset += wordWidth + prependSpace;
-                    isFirstOfLine = false;
                 }
             }
 
@@ -161,64 +143,71 @@ namespace Pathoschild.Stardew.LookupAnything
             if (DrawTextHelper.LastLanguage != language)
             {
                 string characters = I18n.GetByKey(I18n.Keys.Generic_LineWrapOn).UsePlaceholder(false);
+
+                DrawTextHelper.SoftBreakCharacters.Clear();
                 if (!string.IsNullOrEmpty(characters))
-                {
-                    DrawTextHelper.SoftBreakCharacters.Clear();
                     DrawTextHelper.SoftBreakCharacters.AddMany(characters);
-                }
 
                 DrawTextHelper.LastLanguage = language;
             }
         }
 
-        /// <summary>Split a block of text into segments that can have line breaks between them.</summary>
+        /// <summary>Split a word into segments based on newlines and soft-break characters.</summary>
         /// <param name="text">The text to split.</param>
-        private static IList<string> SplitForLineWrapping(string text)
+        private static IList<string> SplitWithinWordForLineWrapping(string text)
         {
             HashSet<char> splitChars = DrawTextHelper.SoftBreakCharacters;
+            string newLine = Environment.NewLine;
 
-            // simple case: just split on space
-            string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            if (splitChars.Count == 0)
-                return words;
-
-            // else check for soft breaks within words
-            List<string> output = new List<string>(words.Length);
-            foreach (string word in words)
+            // handle soft breaks within word
+            List<string> words = new List<string>();
+            int start = 0;
+            for (int i = 0; i < text.Length; i++)
             {
-                int start = 0;
-                bool foundValid = false;
+                char ch = text[i];
 
-                for (int i = 0; i < word.Length; i++)
+                // newline marker
+                if (ch == newLine[0] && DrawTextHelper.IsNewlineAt(text, i))
                 {
-                    bool canBreakHere = splitChars.Contains(word[i]);
+                    if (i > start)
+                        words.Add(text.Substring(start, i));
+                    words.Add(newLine);
 
-                    // found breakable character
-                    if (foundValid && canBreakHere)
-                    {
-                        int end = i;
-
-                        for (int next = i + 1; next < word.Length; next++)
-                        {
-                            end = next;
-                            if (!splitChars.Contains(word[next]))
-                                break;
-                        }
-
-                        output.Add(word.Substring(start, end - start + 1));
-                        foundValid = false;
-                        start = end;
-                    }
-                    else if (!canBreakHere)
-                        foundValid = true;
+                    i += newLine.Length;
+                    start = i;
                 }
 
-                if (start == 0)
-                    output.Add(word);
-                else if (start < word.Length - 1)
-                    output.Add(word.Substring(start));
+                // soft break character
+                else if (splitChars.Contains(ch))
+                {
+                    words.Add(text.Substring(start, i - start + 1));
+                    start = i + 1;
+                }
             }
-            return output;
+
+            // add any remainder
+            if (start == 0)
+                words.Add(text);
+            else if (start < text.Length - 1)
+                words.Add(text.Substring(start));
+
+            return words;
+        }
+
+        /// <summary>Get whether there's a newline sequence at a given text position.</summary>
+        /// <param name="text">The text to search.</param>
+        /// <param name="index">The index to check.</param>
+        private static bool IsNewlineAt(string text, int index)
+        {
+            string newline = Environment.NewLine;
+
+            for (int i = index, n = 0; i < text.Length && n < newline.Length; i++, n++)
+            {
+                if (text[i] != newline[n])
+                    return false;
+            }
+
+            return true;
         }
     }
 }

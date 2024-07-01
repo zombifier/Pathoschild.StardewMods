@@ -58,6 +58,12 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Framework
                     set: (config, value) => config.EnableShippingBin = value
                 )
                 .AddCheckbox(
+                    name: I18n.Config_EnableSprinklerAttachments_Name,
+                    tooltip: I18n.Config_EnableSprinklerAttachments_Desc,
+                    get: config => config.EnableSprinklerAttachments,
+                    set: (config, value) => config.EnableSprinklerAttachments = value
+                )
+                .AddCheckbox(
                     name: I18n.Config_AddOrganizePlayerItems_Name,
                     tooltip: I18n.Config_AddOrganizePlayerItems_Desc,
                     get: config => config.AddOrganizePlayerInventoryButton,
