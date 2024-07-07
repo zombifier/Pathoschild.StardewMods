@@ -1,7 +1,9 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
-## Upcoming release
+## 1.45.3
+Released 07 July 2024 for SMAPI 4.0.7 or later.
+
 * Fixed error formatting Chinese/Japanese text in some cases.
 
 ## 1.45.2
