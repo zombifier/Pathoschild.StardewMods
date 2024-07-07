@@ -170,7 +170,7 @@ namespace Pathoschild.Stardew.LookupAnything
                 if (ch == newLine[0] && DrawTextHelper.IsNewlineAt(text, i))
                 {
                     if (i > start)
-                        words.Add(text.Substring(start, i));
+                        words.Add(text.Substring(start, i - start));
                     words.Add(newLine);
 
                     i += newLine.Length;

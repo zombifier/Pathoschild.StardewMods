@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using StardewValley;
 using StardewValley.Objects;
@@ -45,31 +46,39 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Objects
         /*********
         ** Private methods
         *********/
-        /// <summary>Get the output chest.</summary>
-        private Chest GetOutputChest()
+        /// <summary>Get the output chest, if valid.</summary>
+        /// <param name="chest">The chest that was found, if any.</param>
+        /// <returns>Returns whether an output chest was found.</returns>
+        private bool TryGetOutputChest([NotNullWhen(true)] out Chest? chest)
         {
-            return (Chest)this.Machine.heldObject.Value;
+            chest = this.Machine.heldObject.Value as Chest;
+            return chest != null;
         }
 
         /// <summary>Remove an output item once it's been taken.</summary>
         /// <param name="item">The removed item.</param>
         private void OnOutputTaken(Item item)
         {
-            Chest output = this.GetOutputChest();
-            output.clearNulls();
-            output.Items.Remove(item);
-            this.Machine.showNextIndex.Value = !output.isEmpty();
+            if (this.TryGetOutputChest(out Chest? output))
+            {
+                output.clearNulls();
+                output.Items.Remove(item);
+                this.Machine.showNextIndex.Value = !output.isEmpty();
+            }
         }
 
         /// <summary>Get the next output item.</summary>
         private Item? GetNextOutput()
         {
-            foreach (Item item in this.GetOutputChest().Items)
+            if (this.TryGetOutputChest(out Chest? output))
             {
-                if (item == null)
-                    continue;
+                foreach (Item item in output.Items)
+                {
+                    if (item == null)
+                        continue;
 
-                return item;
+                    return item;
+                }
             }
 
             return null;

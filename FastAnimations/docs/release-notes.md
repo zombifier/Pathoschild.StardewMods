@@ -1,6 +1,11 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 1.13.3
+Released 07 July 2024 for SMAPI 4.0.7 or later.
+
+* The new _event cutscene_ option is now marked experimental. If you want to use it, you'll need to re-enable it in the options.
+
 ## 1.13.2
 Released 29 June 2024 for SMAPI 4.0.7 or later.
 

@@ -185,14 +185,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     max: maxSpeed
                 )
                 .AddNumberField(
-                    name: I18n.Config_Event_Name,
-                    tooltip: () => I18n.Config_Event_Tooltip(defaultValue: defaultConfig.EventSpeed, suggestedValue: 4),
-                    get: config => config.EventSpeed,
-                    set: (config, value) => config.EventSpeed = value,
-                    min: minSpeed,
-                    max: maxSpeed
-                )
-                .AddNumberField(
                     name: I18n.Config_Fade_Name,
                     tooltip: () => I18n.Config_Fade_Tooltip(defaultValue: defaultConfig.FadeSpeed),
                     get: config => config.FadeSpeed,
@@ -295,6 +287,17 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
                     tooltip: () => I18n.Config_LoadGameBlink_Tooltip(defaultValue: defaultConfig.LoadGameBlinkSpeed),
                     get: config => config.LoadGameBlinkSpeed,
                     set: (config, value) => config.LoadGameBlinkSpeed = value,
+                    min: minSpeed,
+                    max: maxSpeed
+                )
+
+                .AddSectionTitle(I18n.Config_Experimental)
+                .AddParagraph(I18n.Config_ExperimentalWarning)
+                .AddNumberField(
+                    name: I18n.Config_Event_Name,
+                    tooltip: () => I18n.Config_Event_Tooltip(defaultValue: defaultConfig.Experimental_EventSpeed, suggestedValue: 4),
+                    get: config => config.Experimental_EventSpeed,
+                    set: (config, value) => config.Experimental_EventSpeed = value,
                     min: minSpeed,
                     max: maxSpeed
                 );

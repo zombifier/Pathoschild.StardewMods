@@ -1,6 +1,11 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## 2.2.5
+Released 07 July 2024 for SMAPI 4.0.7 or later.
+
+* Fixed error if another mod creates a broken auto-grabber.
+
 ## 2.2.4
 Released 29 June 2024 for SMAPI 4.0.7 or later.
 
