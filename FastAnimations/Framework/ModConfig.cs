@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Pathoschild.Stardew.FastAnimations.Framework
 {
     /// <summary>The mod configuration.</summary>
@@ -60,9 +62,6 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
         /// <summary>The speed multiplier for the casino slots minigame.</summary>
         public float CasinoSlotsSpeed { get; set; } = 8;
 
-        /// <summary>The speed multiplier for event cutscenes.</summary>
-        public float EventSpeed { get; set; } = 1;
-
         /// <summary>The speed multiplier for the screen fade to black.</summary>
         public float FadeSpeed { get; set; } = 4;
 
@@ -107,5 +106,12 @@ namespace Pathoschild.Stardew.FastAnimations.Framework
 
         /// <summary>The speed multiplier for the blinking-slot delay after clicking a load slot.</summary>
         public float LoadGameBlinkSpeed { get; set; } = 2;
+
+        /****
+        ** Experimental options
+        ****/
+        /// <summary>The speed multiplier for event cutscenes.</summary>
+        [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Deliberately named for clarity for players who edit the config directly.")]
+        public float Experimental_EventSpeed { get; set; } = 1;
     }
 }
