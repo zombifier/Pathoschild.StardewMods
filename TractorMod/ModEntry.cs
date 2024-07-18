@@ -203,13 +203,21 @@ namespace Pathoschild.Stardew.TractorMod
             // reload textures
             this.TextureManager.UpdateTextures();
 
-            // init garages + tractors
             if (Context.IsMainPlayer)
             {
+                // init garages + tractors
+                Dictionary<Guid, Horse?> validTractors = new();
                 foreach (GameLocation location in this.GetLocations())
                 {
                     foreach (Stable garage in this.GetGaragesIn(location))
                     {
+                        // fix duplicate ID
+                        if (validTractors.ContainsKey(garage.HorseId))
+                        {
+                            garage.HorseId = Guid.NewGuid();
+                            garage.id.Value = garage.HorseId;
+                        }
+
                         // spawn new tractor if needed
                         Horse? tractor = this.FindHorse(garage.HorseId);
                         if (!garage.isUnderConstruction())
@@ -234,7 +242,34 @@ namespace Pathoschild.Stardew.TractorMod
 
                         // apply textures
                         this.TextureManager.ApplyTextures(tractor, this.IsTractor);
+
+                        // track tractor
+                        validTractors[garage.HorseId] = tractor;
                     }
+                }
+
+                // clean up duplicate/invalid tractors
+                foreach (GameLocation location in this.GetLocations())
+                {
+                    location.characters.RemoveWhere(npc =>
+                    {
+                        if (npc is Horse tractor && this.IsTractor(tractor))
+                        {
+                            if (!validTractors.TryGetValue(tractor.HorseId, out Horse? validTractor))
+                            {
+                                this.Monitor.Log($"Removed unknown tractor in {location.NameOrUniqueName} (ID: {tractor.HorseId}).");
+                                return true;
+                            }
+
+                            if (!object.ReferenceEquals(tractor, validTractor))
+                            {
+                                this.Monitor.Log($"Removed duplicate tractor in {location.NameOrUniqueName} (ID: {tractor.HorseId}).");
+                                return true;
+                            }
+                        }
+
+                        return false;
+                    });
                 }
             }
         }
@@ -322,7 +357,7 @@ namespace Pathoschild.Stardew.TractorMod
                 Horse[] horses = e.Added.OfType<Horse>().ToArray();
                 if (horses.Any())
                 {
-                    HashSet<Guid> tractorIDs = [..this.GetGaragesIn(e.Location).Select(p => p.HorseId)];
+                    HashSet<Guid> tractorIDs = [.. this.GetGaragesIn(e.Location).Select(p => p.HorseId)];
                     foreach (Horse horse in horses)
                     {
                         if (tractorIDs.Contains(horse.HorseId) && !TractorManager.IsTractor(horse))
@@ -385,36 +420,18 @@ namespace Pathoschild.Stardew.TractorMod
             if (!this.IsEnabled)
                 return;
 
+            // move tractors out of locations which Utility.findHorse can't find
             if (Context.IsMainPlayer)
             {
-                // collect valid stable IDs
-                HashSet<Guid> validStableIDs = new HashSet<Guid>(
-                    from location in this.GetLocations()
-                    from garage in this.GetGaragesIn(location)
-                    select garage.HorseId
-                );
+                HashSet<GameLocation> vanillaLocations = new(Game1.locations, new ObjectReferenceComparer<GameLocation>());
 
-                // get locations reachable by Utility.findHorse
-                HashSet<GameLocation> vanillaLocations = new HashSet<GameLocation>(Game1.locations, new ObjectReferenceComparer<GameLocation>());
-
-                // clean up
                 foreach (GameLocation location in this.GetLocations())
                 {
-                    bool isValidLocation = vanillaLocations.Contains(location);
+                    if (vanillaLocations.Contains(location))
+                        continue;
 
                     foreach (Horse tractor in this.GetTractorsIn(location).ToArray())
-                    {
-                        // remove invalid tractor (e.g. building demolished)
-                        if (!validStableIDs.Contains(tractor.HorseId))
-                        {
-                            location.characters.Remove(tractor);
-                            continue;
-                        }
-
-                        // move tractor out of location that Utility.findHorse can't find
-                        if (!isValidLocation)
-                            Game1.warpCharacter(tractor, "Farm", new Point(0, 0));
-                    }
+                        Game1.warpCharacter(tractor, "Farm", new Point(0, 0));
                 }
             }
         }

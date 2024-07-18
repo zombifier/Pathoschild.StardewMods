@@ -1,6 +1,11 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Added more auto-fixes on day start:
+  * invalid or duplicate tractors are removed;
+  * duplicate garage IDs are reassigned.
+
 ## 4.19.2
 Released 29 June 2024 for SMAPI 4.0.7 or later.
 
