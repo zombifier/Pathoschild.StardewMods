@@ -47,6 +47,26 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
             }
         }
 
+        /// <inheritdoc />
+        public override IEnumerable<ISubject> GetSearchSubjects()
+        {
+            foreach (string buildingId in Game1.buildingData.Keys)
+            {
+                Building building;
+
+                try
+                {
+                    building = new Building(buildingId, Vector2.Zero);
+                }
+                catch
+                {
+                    continue; // ignore invalid data
+                }
+
+                yield return this.BuildSubject(building);
+            }
+        }
+
 
         /*********
         ** Private methods
