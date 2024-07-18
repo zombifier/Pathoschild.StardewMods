@@ -188,6 +188,7 @@
     // labels
     "building.animals": "Animali",
     "building.construction": "Costruzione",
+    "building.construction-costs": "Construction costs", // TODO
     "building.feed-trough": "Trogolo per il cibo",
     "building.horse": "Cavallo",
     "building.horse-location": "Posizione cavallo",

@@ -189,6 +189,7 @@
     // labels
     "building.animals": "動物",
     "building.construction": "建設",
+    "building.construction-costs": "Construction costs", // TODO
     "building.feed-trough": "給餌台",
     "building.horse": "馬",
     "building.horse-location": "馬の場所",

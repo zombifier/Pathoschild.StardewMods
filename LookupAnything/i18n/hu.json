@@ -190,6 +190,7 @@
     // labels
     "building.animals": "Állatok",
     "building.construction": "Építkezés",
+    "building.construction-costs": "Construction costs", // TODO
     "building.feed-trough": "Etetővályú",
     "building.horse": "Ló",
     "building.horse-location": "Ló elhelyezkedése",

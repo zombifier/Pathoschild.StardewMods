@@ -192,6 +192,7 @@
     // labels
     "building.animals": "Animaux",
     "building.construction": "Construction",
+    "building.construction-costs": "Construction costs", // TODO
     "building.feed-trough": "Mangeoire",
     "building.horse": "Cheval",
     "building.horse-location": "Position du cheval",

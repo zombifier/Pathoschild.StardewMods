@@ -190,6 +190,7 @@
     // labels
     "building.animals": "จำนวนสัตว์เลี้ยง",
     "building.construction": "กำลังก่อสร้าง",
+    "building.construction-costs": "Construction costs", // TODO
     "building.feed-trough": "การให้อาหาร",
     "building.horse": "ม้าชื่อ",
     "building.horse-location": "ตำแหน่งของม้า",

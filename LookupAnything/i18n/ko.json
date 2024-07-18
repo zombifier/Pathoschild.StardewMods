@@ -189,6 +189,7 @@
     // labels
     "building.animals": "동물",
     "building.construction": "건물",
+    "building.construction-costs": "Construction costs", // TODO
     "building.feed-trough": "여물통",
     "building.horse": "말",
     "building.horse-location": "말의 위치",

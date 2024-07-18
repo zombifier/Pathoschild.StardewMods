@@ -24,7 +24,6 @@ using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Characters;
 using StardewValley.Extensions;
-using StardewValley.GameData.Buildings;
 using StardewValley.GameData.Crafting;
 using StardewValley.GameData.FishPonds;
 using StardewValley.Locations;
@@ -405,9 +404,6 @@ namespace Pathoschild.Stardew.LookupAnything
                     && category < 0
                     && recipes.Any(other => other.Ingredients.FirstOrDefault()?.InputId == item.QualifiedItemId && other.DisplayType == recipe.DisplayType);
             });
-
-            // from construction recipes
-            recipes.AddRange(this.GetConstructionRecipes(item));
 
             return recipes;
         }
@@ -855,35 +851,6 @@ namespace Pathoschild.Stardew.LookupAnything
             {
                 // fails for non-social NPCs
                 return null;
-            }
-        }
-
-        /// <summary>Get construction recipes which use an item as a building material.</summary>
-        /// <param name="input">The ingredient to match.</param>
-        /// <remarks>Derived from the <see cref="CarpenterMenu"/> constructor.</remarks>
-        private IEnumerable<RecipeModel> GetConstructionRecipes(Item? input)
-        {
-            if (input?.TypeDefinitionId != ItemRegistry.type_object)
-                yield break;
-
-            foreach ((string key, BuildingData data) in Game1.buildingData)
-            {
-                // create recipe
-                RecipeIngredientModel[] ingredients = RecipeModel.ParseIngredients(data);
-                if (ingredients.Any(p => p.Matches(input)))
-                {
-                    Building building;
-                    try
-                    {
-                        building = new Building(key, Vector2.Zero);
-                    }
-                    catch
-                    {
-                        continue; // ignore recipe if the building data is invalid
-                    }
-
-                    yield return new RecipeModel(building, ingredients, data.BuildCost);
-                }
             }
         }
     }

@@ -197,14 +197,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
         /// <param name="building">The building data.</param>
         public static RecipeIngredientModel[] ParseIngredients(BuildingData? building)
         {
-            if (building?.BuildMaterials?.Count > 0)
-            {
-                return building.BuildMaterials
-                    .Select(ingredient => new RecipeIngredientModel(RecipeType.BuildingBlueprint, ingredient.ItemId, ingredient.Amount))
-                    .ToArray();
-            }
-            else
+            if (building?.BuildMaterials?.Count is not > 0)
                 return [];
+
+            return building.BuildMaterials
+                .Select(ingredient => new RecipeIngredientModel(RecipeType.BuildingBlueprint, ingredient.ItemId, ingredient.Amount))
+                .ToArray();
         }
 
         /// <summary>Get whether this recipe is for the given building.</summary>

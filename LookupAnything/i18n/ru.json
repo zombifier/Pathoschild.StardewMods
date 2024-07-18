@@ -189,6 +189,7 @@
     // labels
     "building.animals": "Животные",
     "building.construction": "Строительство",
+    "building.construction-costs": "Construction costs", // TODO
     "building.feed-trough": "Кормушка",
     "building.horse": "Лошадь",
     "building.horse-location": "Местоположение лошади",

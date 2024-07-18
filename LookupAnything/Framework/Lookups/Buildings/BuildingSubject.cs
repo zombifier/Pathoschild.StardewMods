@@ -70,6 +70,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         {
             // get info
             Building building = this.Target;
+            var data = building.GetData();
             bool built = !building.isUnderConstruction();
             int? upgradeLevel = this.GetUpgradeLevel(building);
 
@@ -195,7 +196,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                             yield return field;
 
                             // return items being processed
-                            if (MachineDataHelper.TryGetBuildingChestNames(building.GetData(), out ISet<string> inputChestIds, out ISet<string> outputChestIds))
+                            if (MachineDataHelper.TryGetBuildingChestNames(data, out ISet<string> inputChestIds, out ISet<string> outputChestIds))
                             {
                                 IEnumerable<Item?> inputItems = MachineDataHelper.GetBuildingChests(building, inputChestIds).SelectMany(p => p.GetItemsForPlayer());
                                 IEnumerable<Item?> outputItems = MachineDataHelper.GetBuildingChests(building, outputChestIds).SelectMany(p => p.GetItemsForPlayer());
@@ -218,6 +219,22 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
                         I18n.Building_StoredHay(),
                         I18n.Building_StoredHay_Summary(hayCount: hayCount, maxHayInLocation: maxHay, maxHayInBuilding: building.hayCapacity.Value)
                     );
+                }
+            }
+
+            // construction recipe
+            {
+                RecipeModel[] recipes = this.GameHelper
+                    .GetRecipes()
+                    .Where(recipe => recipe.Type == RecipeType.BuildingBlueprint && recipe.MachineId == building.buildingType.Value)
+                    .ToArray();
+
+                if (recipes.Length > 0)
+                {
+                    var field = new ItemRecipesField(this.GameHelper, I18n.Building_ConstructionCosts(), null, recipes, showUnknownRecipes: true, showLabelForSingleGroup: false, showOutputLabels: false);
+                    if (this.CollapseFieldsConfig.Enabled && recipes.Length >= this.CollapseFieldsConfig.BuildingRecipes)
+                        field.CollapseByDefault(I18n.Generic_ShowXResults(count: recipes.Length));
+                    yield return field;
                 }
             }
         }

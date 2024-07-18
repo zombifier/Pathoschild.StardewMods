@@ -189,6 +189,7 @@
     // labels
     "building.animals": "Animals",
     "building.construction": "Construction",
+    "building.construction-costs": "Construction costs",
     "building.feed-trough": "Feed trough",
     "building.horse": "Horse",
     "building.horse-location": "Horse location",

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.Common.Integrations.ExtraMachineConfig;
 using Pathoschild.Stardew.LookupAnything.Framework;
@@ -10,6 +11,7 @@ using Pathoschild.Stardew.LookupAnything.Framework.Models;
 using Pathoschild.Stardew.LookupAnything.Framework.Models.FishData;
 using StardewModdingAPI;
 using StardewValley;
+using StardewValley.Buildings;
 using StardewValley.Characters;
 using StardewValley.GameData;
 using StardewValley.GameData.Buildings;
@@ -531,53 +533,74 @@ namespace Pathoschild.Stardew.LookupAnything
             // building recipes from Data/Buildings
             foreach ((string buildingType, BuildingData buildingData) in Game1.buildingData)
             {
-                if (buildingData?.ItemConversions?.Count is not > 0)
-                    continue;
-
-                foreach (BuildingItemConversion? rule in buildingData.ItemConversions)
+                // construction recipe
+                if (buildingData?.BuildCost > 0 || buildingData?.BuildMaterials?.Count > 0)
                 {
-                    if (rule?.ProducedItems?.Count is not > 0 || rule.RequiredTags?.Count is not > 0)
-                        continue;
+                    RecipeIngredientModel[] ingredients = RecipeModel.ParseIngredients(buildingData);
 
-                    if (!this.TryGetMostSpecificIngredientIds(null, rule.RequiredTags, out string? ingredientId, out string[] ingredientContextTags))
-                        continue;
-
-                    RecipeIngredientModel[] ingredients = [new RecipeIngredientModel(RecipeType.BuildingInput, ingredientId, rule.RequiredCount, ingredientContextTags)];
-
-                    foreach (GenericSpawnItemDataWithCondition? outputItem in rule.ProducedItems)
+                    Building building;
+                    try
                     {
-                        if (outputItem is null)
+                        building = new Building(buildingType, Vector2.Zero);
+                    }
+                    catch
+                    {
+                        continue; // ignore recipe if the building data is invalid
+                    }
+
+                    recipes.Add(
+                        new RecipeModel(building, ingredients, buildingData.BuildCost)
+                    );
+                }
+
+                // processing recipes
+                if (buildingData?.ItemConversions?.Count > 0)
+                {
+                    foreach (BuildingItemConversion? rule in buildingData.ItemConversions)
+                    {
+                        if (rule?.ProducedItems?.Count is not > 0 || rule.RequiredTags?.Count is not > 0)
                             continue;
 
-                        // add produced item
-                        IList<ItemQueryResult> itemQueryResults = ItemQueryResolver.TryResolve(outputItem, new ItemQueryContext());
+                        if (!this.TryGetMostSpecificIngredientIds(null, rule.RequiredTags, out string? ingredientId, out string[] ingredientContextTags))
+                            continue;
 
-                        // get conditions
-                        string[]? conditions = !string.IsNullOrWhiteSpace(outputItem.Condition)
-                            ? GameStateQuery.SplitRaw(outputItem.Condition).Distinct().ToArray()
-                            : null;
+                        RecipeIngredientModel[] ingredients = [new RecipeIngredientModel(RecipeType.BuildingInput, ingredientId, rule.RequiredCount, ingredientContextTags)];
 
-                        // add to list
-                        recipes.AddRange(
-                            from result in itemQueryResults
-                            select new RecipeModel(
-                                key: null,
-                                type: RecipeType.BuildingInput,
-                                displayType: TokenParser.ParseText(buildingData?.Name) ?? buildingType,
-                                ingredients,
-                                goldPrice: 0,
-                                item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
-                                isKnown: () => true,
-                                machineId: buildingType,
-                                exceptIngredients: null,
-                                outputQualifiedItemId: result.Item.QualifiedItemId,
-                                minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,
-                                maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null, // TODO: Calculate this better
-                                quality: outputItem.Quality,
-                                outputChance: 100 / itemQueryResults.Count,
-                                conditions: conditions
-                            )
-                        );
+                        foreach (GenericSpawnItemDataWithCondition? outputItem in rule.ProducedItems)
+                        {
+                            if (outputItem is null)
+                                continue;
+
+                            // add produced item
+                            IList<ItemQueryResult> itemQueryResults = ItemQueryResolver.TryResolve(outputItem, new ItemQueryContext());
+
+                            // get conditions
+                            string[]? conditions = !string.IsNullOrWhiteSpace(outputItem.Condition)
+                                ? GameStateQuery.SplitRaw(outputItem.Condition).Distinct().ToArray()
+                                : null;
+
+                            // add to list
+                            recipes.AddRange(
+                                from result in itemQueryResults
+                                select new RecipeModel(
+                                    key: null,
+                                    type: RecipeType.BuildingInput,
+                                    displayType: TokenParser.ParseText(buildingData?.Name) ?? buildingType,
+                                    ingredients,
+                                    goldPrice: 0,
+                                    item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
+                                    isKnown: () => true,
+                                    machineId: buildingType,
+                                    exceptIngredients: null,
+                                    outputQualifiedItemId: result.Item.QualifiedItemId,
+                                    minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,
+                                    maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null, // TODO: Calculate this better
+                                    quality: outputItem.Quality,
+                                    outputChance: 100 / itemQueryResults.Count,
+                                    conditions: conditions
+                                )
+                            );
+                        }
                     }
                 }
             }

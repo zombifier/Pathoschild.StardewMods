@@ -19,13 +19,19 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         ** Fields
         *********/
         /// <summary>The recipes to list by type.</summary>
-        private readonly RecipeByTypeGroup[] Recipes;
+        private readonly RecipeByTypeGroup[] RecipesByType;
 
         /// <summary>Provides utility methods for interacting with the game code.</summary>
         private readonly GameHelper GameHelper;
 
         /// <summary>Whether to show recipes the player hasn't learned in-game yet.</summary>
         private readonly bool ShowUnknownRecipes;
+
+        /// <summary>Whether to show the recipe group labels even if there's only one group.</summary>
+        private readonly bool ShowLabelForSingleGroup;
+
+        /// <summary>Whether to show the output item for recipes.</summary>
+        private readonly bool ShowOutputLabels;
 
         /// <summary>The number of pixels between an item's icon and text.</summary>
         private readonly int IconMargin = 5;
@@ -46,12 +52,16 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <param name="ingredient">The ingredient item.</param>
         /// <param name="recipes">The recipes to list.</param>
         /// <param name="showUnknownRecipes">Whether to show recipes the player hasn't learned in-game yet.</param>
-        public ItemRecipesField(GameHelper gameHelper, string label, Item? ingredient, RecipeModel[] recipes, bool showUnknownRecipes)
+        /// <param name="showLabelForSingleGroup">Whether to show the recipe group labels even if there's only one group.</param>
+        /// <param name="showOutputLabels">Whether to show the output item for recipes.</param>
+        public ItemRecipesField(GameHelper gameHelper, string label, Item? ingredient, RecipeModel[] recipes, bool showUnknownRecipes, bool showLabelForSingleGroup = true, bool showOutputLabels = true)
             : base(label, true)
         {
             this.GameHelper = gameHelper;
-            this.Recipes = this.BuildRecipeGroups(ingredient, recipes).ToArray();
+            this.RecipesByType = this.BuildRecipeGroups(ingredient, recipes).ToArray();
             this.ShowUnknownRecipes = showUnknownRecipes;
+            this.ShowLabelForSingleGroup = showLabelForSingleGroup;
+            this.ShowOutputLabels = showOutputLabels;
         }
 
         /// <inheritdoc />
@@ -77,14 +87,17 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
 
             // draw recipes
             curPos.Y += groupVerticalMargin;
-            foreach (RecipeByTypeGroup group in this.Recipes)
+            foreach (RecipeByTypeGroup group in this.RecipesByType)
             {
                 // check if we can align columns
                 bool alignColumns = wrapWidth >= (group.TotalColumnWidth + itemSpacer + ((group.ColumnWidths.Length - 1) * joinerWidth)); // columns + space between output/input + space between each input
 
                 // draw group label
-                curPos.X = position.X + groupLeftMargin;
-                curPos += this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, $"{group.Type}:", Color.Black);
+                if (this.ShowLabelForSingleGroup || this.RecipesByType.Length > 1)
+                {
+                    curPos.X = position.X + groupLeftMargin;
+                    curPos += this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, $"{group.Type}:", Color.Black);
+                }
 
                 int hiddenUnknownRecipesCount = 0;
 
@@ -109,9 +122,10 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     );
 
                     // draw output item (icon + name + count + chance)
-                    float inputLeft;
+                    float inputLeft = 0;
+                    if (this.ShowOutputLabels)
                     {
-                        var outputSize = this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, entry.Output.DisplayText, textColor, entry.Output.Sprite, iconSize, iconColor, qualityIcon: entry.Output.Quality);
+                        Vector2 outputSize = this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, entry.Output.DisplayText, textColor, entry.Output.Sprite, iconSize, iconColor, qualityIcon: entry.Output.Quality);
                         float outputWidth = alignColumns
                             ? group.ColumnWidths[0]
                             : outputSize.X;

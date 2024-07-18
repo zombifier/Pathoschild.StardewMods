@@ -4,6 +4,7 @@
 ## Upcoming release
 * Added buildings to search UI.
 * Building recipes in item lookups now show the build gold price.
+* Building lookups now show their build cost/materials.
 
 ## 1.45.3
 Released 07 July 2024 for SMAPI 4.0.7 or later.
