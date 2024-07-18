@@ -396,7 +396,7 @@ is within the previous value, and can be one of these:
 
 type       | effect
 ---------- | ------
-ID         | A [dictionary key](#edit-a-dictionary) or [list key](#edit-a-list) within the data (e.g. `"Crafts Room"` in the example below).
+ID         | A [dictionary key](#edit-a-dictionary) or [list key](#edit-a-list) within the data (e.g. `"Goby"` in the example below).
 field name | The name of a field on a data model.
 list value | For a simple list of strings or values, the value to target (see examples below).
 list index | The position of a value within the list (like `#0` for the first value). This must be prefixed with `#`, otherwise it'll be treated as an ID instead. This is fragile since it depends on the list order not changing from what you expect; consider using an ID or field name instead when possible.
