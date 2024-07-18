@@ -63,7 +63,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework.Attachments
             // apply item
             if (item is { Stack: > 0 } && this.CustomNames.Contains(item.Name))
             {
-                if (item is SObject obj && obj.canBePlacedHere(location, tile) && obj.placementAction(location, (int)(tile.X * Game1.tileSize), (int)(tile.Y * Game1.tileSize), player))
+                if (item is SObject obj && obj.isPlaceable() && obj.canBePlacedHere(location, tile) && obj.placementAction(location, (int)(tile.X * Game1.tileSize), (int)(tile.Y * Game1.tileSize), player))
                 {
                     this.ConsumeItem(player, item);
                     return true;

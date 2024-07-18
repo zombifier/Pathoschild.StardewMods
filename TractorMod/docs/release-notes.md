@@ -5,6 +5,7 @@
 * Added more auto-fixes on day start:
   * invalid or duplicate tractors are removed;
   * duplicate garage IDs are reassigned.
+* Fixed able to place unplaceable items using the 'custom attachments' option.
 
 ## 4.19.2
 Released 29 June 2024 for SMAPI 4.0.7 or later.
