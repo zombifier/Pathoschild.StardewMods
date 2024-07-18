@@ -690,6 +690,7 @@ namespace Pathoschild.Stardew.LookupAnything
                         type: RecipeType.MachineInput,
                         displayType: machine.DisplayName,
                         ingredients: recipe.Ingredients.Select(p => new RecipeIngredientModel(RecipeType.MachineInput, p.InputId, p.Count)),
+                        goldPrice: 0,
                         item: ingredient =>
                         {
                             SObject output = ItemRegistry.Create<SObject>(recipe.OutputId);
@@ -815,6 +816,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                     new RecipeIngredientModel(RecipeType.TailorInput, clothItem.QualifiedItemId, 1),
                                     new RecipeIngredientModel(RecipeType.TailorInput, spoolItem.QualifiedItemId, 1)
                                 ],
+                                goldPrice: 0,
                                 item: _ => output.getOne(),
                                 isKnown: () => Game1.player.HasTailoredThisItem(output),
                                 outputQualifiedItemId: ItemRegistry.QualifyItemId(recipe.CraftedItemId),
@@ -880,7 +882,7 @@ namespace Pathoschild.Stardew.LookupAnything
                         continue; // ignore recipe if the building data is invalid
                     }
 
-                    yield return new RecipeModel(building, ingredients);
+                    yield return new RecipeModel(building, ingredients, data.BuildCost);
                 }
             }
         }

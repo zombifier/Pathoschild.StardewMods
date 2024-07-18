@@ -491,6 +491,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                     type: RecipeType.MachineInput,
                                     displayType: ItemRegistry.GetDataOrErrorItem(qualifiedMachineId).DisplayName,
                                     ingredients,
+                                    goldPrice: 0,
                                     item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
                                     isKnown: () => true,
                                     machineId: qualifiedMachineId,
@@ -516,7 +517,8 @@ namespace Pathoschild.Stardew.LookupAnything
                             key: null,
                             type: RecipeType.MachineInput,
                             displayType: ItemRegistry.GetDataOrErrorItem(qualifiedMachineId).DisplayName,
-                            [],
+                            ingredients: [],
+                            goldPrice: 0,
                             item: _ => ItemRegistry.Create(DataParser.ComplexRecipeId),
                             isKnown: () => true,
                             machineId: qualifiedMachineId,
@@ -527,10 +529,8 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             // building recipes from Data/Buildings
-            foreach ((string entryKey, BuildingData buildingData) in Game1.buildingData)
+            foreach ((string buildingType, BuildingData buildingData) in Game1.buildingData)
             {
-                string buildingType = entryKey; // avoid referencing loop variable in closure
-
                 if (buildingData?.ItemConversions?.Count is not > 0)
                     continue;
 
@@ -565,6 +565,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                 type: RecipeType.BuildingInput,
                                 displayType: TokenParser.ParseText(buildingData?.Name) ?? buildingType,
                                 ingredients,
+                                goldPrice: 0,
                                 item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
                                 isKnown: () => true,
                                 machineId: buildingType,

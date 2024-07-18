@@ -125,8 +125,13 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     {
                         RecipeItemEntry input = entry.Inputs[i];
 
+                        // get icon size
+                        Vector2 curIconSize = iconSize;
+                        if (input is { IsGoldPrice: true, Sprite: not null })
+                            curIconSize = Utility.PointToVector2(input.Sprite.SourceRectangle.Size) * Game1.pixelZoom; // gold icon doesn't resize well, draw it at the intended size
+
                         // move the draw position down to a new line if the next item would be drawn off the right edge
-                        Vector2 inputSize = this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, input.DisplayText, textColor, input.Sprite, iconSize, iconColor, input.Quality, probe: true);
+                        Vector2 inputSize = this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, input.DisplayText, textColor, input.Sprite, curIconSize, iconColor, input.Quality, probe: true);
                         if (alignColumns)
                             inputSize.X = group.ColumnWidths[i + 1];
 
@@ -139,7 +144,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                         }
 
                         // draw input item (icon + name + count)
-                        this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, input.DisplayText, textColor, input.Sprite, iconSize, iconColor, input.Quality);
+                        this.DrawIconText(spriteBatch, font, curPos, absoluteWrapWidth, input.DisplayText, textColor, input.Sprite, curIconSize, iconColor, input.Quality);
                         curPos = new Vector2(
                             x: curPos.X + inputSize.X,
                             y: curPos.Y
@@ -273,6 +278,19 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     if (recipe.Type != RecipeType.TailorInput) // tailoring is always two ingredients with cloth first
                         inputs = inputs.OrderBy(entry => entry.DisplayText);
 
+                    if (recipe.GoldPrice > 0)
+                    {
+                        inputs = inputs.Concat(new[]
+                        {
+                            new RecipeItemEntry(
+                                new SpriteInfo(Game1.debrisSpriteSheet, new Rectangle(5, 69, 6, 6)),
+                                Utility.getNumberWithCommas(recipe.GoldPrice),
+                                null,
+                                IsGoldPrice: true
+                            )
+                        });
+                    }
+
                     // build recipe
                     return new RecipeEntry(
                         name: recipe.Key,
@@ -393,7 +411,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         /// <summary>Create a recipe item model.</summary>
         /// <param name="ingredient">The recipe ingredient model for the item.</param>
         /// <returns>The equivalent item entry model, or <c>null</c> for a category with no matching items.</returns>
-        private RecipeItemEntry? TryCreateItemEntry(RecipeIngredientModel ingredient)
+        private RecipeItemEntry TryCreateItemEntry(RecipeIngredientModel ingredient)
         {
             // special cases
             switch (ingredient.InputId)
@@ -531,7 +549,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             return new RecipeItemEntry(
                 Sprite: sprite ?? this.GameHelper.GetSprite(item),
                 DisplayText: text,
-                Quality: quality
+                Quality: quality,
+                IsGoldPrice: false
             );
         }
     }
