@@ -17,6 +17,7 @@ using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Extensions;
+using StardewValley.GameData.Crops;
 using StardewValley.GameData.FishPonds;
 using StardewValley.GameData.Movies;
 using StardewValley.Locations;
@@ -739,12 +740,23 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                     neededFor.Add(I18n.Item_NeededFor_CommunityCenter(bundles: I18n.List(missingBundles)));
             }
 
-            // polyculture achievement (ship 15 crops)
-            if (this.Constants.PolycultureCrops.Contains(obj.QualifiedItemId))
+            CropData? cropData = this.FromCrop != null ? this.FromCrop.GetData() : GameHelper.GetCropDataByHarvestItem(obj.ItemId);
+            if (cropData != null)
             {
-                int needed = this.Constants.PolycultureCount - this.GameHelper.GetShipped(obj.ItemId);
-                if (needed > 0)
-                    neededFor.Add(I18n.Item_NeededFor_Polyculture(count: needed));
+                if (cropData.CountForPolyculture)
+                {
+                    // polyculture achievement (ship 15 of each flagged crop)
+                    int needed = this.Constants.PolycultureCount - this.GameHelper.GetShipped(obj.ItemId);
+                    if (needed > 0)
+                        neededFor.Add(I18n.Item_NeededFor_Polyculture(count: needed));
+                }
+                if (!Game1.player.achievements.Contains(this.Constants.MonocultureAchievement) && cropData.CountForMonoculture)
+                {
+                    // polyculture achievement (ship 300 of one crop)
+                    int needed = this.Constants.MonocultureCount - this.GameHelper.GetShipped(obj.ItemId);
+                    if (needed > 0)
+                        neededFor.Add(I18n.Item_NeededFor_Monoculture(count: needed));
+                }
             }
 
             // full shipment achievement (ship every item)

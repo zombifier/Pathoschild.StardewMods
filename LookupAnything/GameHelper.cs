@@ -25,6 +25,7 @@ using StardewValley.Buildings;
 using StardewValley.Characters;
 using StardewValley.Extensions;
 using StardewValley.GameData.Crafting;
+using StardewValley.GameData.Crops;
 using StardewValley.GameData.FishPonds;
 using StardewValley.Locations;
 using StardewValley.Menus;
@@ -199,6 +200,17 @@ namespace Pathoschild.Stardew.LookupAnything
 
                 select new KeyValuePair<string, bool>(obj.QualifiedItemId, Game1.player.basicShipped.ContainsKey(obj.ItemId))
             );
+        }
+
+        /// <summary>
+        /// Retrieve the CropData for the crop which produces a given item.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public static CropData? GetCropDataByHarvestItem(string itemId)
+        {
+            IEnumerable<CropData> matching = Game1.cropData.Values.Where((crop) => crop.HarvestItemId == itemId);
+            return matching.Any() ? matching.First() : null;
         }
 
         /// <summary>Get all items owned by the player.</summary>
