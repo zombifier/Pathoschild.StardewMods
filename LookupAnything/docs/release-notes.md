@@ -5,6 +5,7 @@
 * Added buildings to search UI.
 * Building recipes in item lookups now show the build gold price.
 * Building lookups now show their build cost/materials.
+* Fixed support for custom machine rules using `ITEM_ID` and `ITEM_CONTEXT_TAG` game state queries.
 
 ## 1.45.3
 Released 07 July 2024 for SMAPI 4.0.7 or later.
