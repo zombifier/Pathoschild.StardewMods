@@ -420,7 +420,7 @@ namespace Pathoschild.Stardew.LookupAnything
 
                 foreach (MachineOutputRule? outputRule in machineData.OutputRules)
                 {
-                    if (outputRule.Triggers?.Count is not > 0 || outputRule.OutputItem?.Count is not > 0)
+                    if (outputRule?.Triggers?.Count is not > 0 || outputRule.OutputItem?.Count is not > 0)
                         continue;
 
                     foreach (MachineOutputTriggerRule? trigger in outputRule.Triggers)
