@@ -128,8 +128,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             bool isCrop = this.FromCrop != null;
             bool isSeed = this.SeedForCrop != null;
             bool isDeadCrop = this.FromCrop?.dead.Value == true;
-            bool canSell = obj?.canBeShipped() == true || this.Metadata.Shops.Any(shop => shop.BuysCategories.Contains(item.Category));
-            bool isMovieTicket = obj?.QualifiedItemId == "(O)809";
+            bool canSell = item.canBeShipped() || this.Metadata.Shops.Any(shop => shop.BuysCategories.Contains(item.Category));
+            bool isMovieTicket = item.QualifiedItemId == "(O)809";
 
             // get overrides
             bool showInventoryFields = obj?.IsBreakableStone() != true;
@@ -163,7 +163,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 yield return field;
 
             // indoor pot crop
-            if (obj is IndoorPot pot)
+            if (item is IndoorPot pot)
             {
                 Crop? potCrop = pot.hoeDirt.Value.crop;
                 Bush? potBush = pot.bush.Value;
@@ -209,7 +209,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
 
                     // sell to
                     List<string> buyers = [];
-                    if (obj?.canBeShipped() == true)
+                    if (item.canBeShipped())
                         buyers.Add(I18n.Item_SellsTo_ShippingBox());
                     buyers.AddRange(
                         from shop in this.Metadata.Shops

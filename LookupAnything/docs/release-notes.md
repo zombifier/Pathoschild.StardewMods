@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Updated for Stardew Valley 1.6.9.
 * Added buildings to search UI.
 * Building recipes in item lookups now show the build gold price.
 * Building lookups now show their build cost/materials.
