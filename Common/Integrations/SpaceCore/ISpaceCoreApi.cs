@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 using StardewValley;
 
-namespace Pathoschild.Stardew.LookupAnything.Framework.Fields.SpaceCoreAPI
+namespace Pathoschild.Stardew.Common.Integrations.SpaceCore
 {
-    public interface ISpaceCore
+    public interface ISpaceCoreApi
     {
         /// <summary>
         /// Returns a list of all currently loaded skill's string IDs

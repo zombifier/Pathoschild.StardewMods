@@ -9,13 +9,11 @@ using Newtonsoft.Json.Linq;
 using Pathoschild.Stardew.Common;
 using Pathoschild.Stardew.LookupAnything.Components;
 using Pathoschild.Stardew.LookupAnything.Framework;
-using Pathoschild.Stardew.LookupAnything.Framework.Fields.SpaceCoreAPI;
 using Pathoschild.Stardew.LookupAnything.Framework.Lookups;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
 using StardewValley;
-using StardewValley.Characters;
 using StardewValley.Menus;
 
 namespace Pathoschild.Stardew.LookupAnything
@@ -62,13 +60,6 @@ namespace Pathoschild.Stardew.LookupAnything
 
         /// <summary>The previous menus shown before the current lookup UI was opened.</summary>
         private readonly PerScreen<Stack<IClickableMenu>> PreviousMenus = new(() => new());
-
-
-        /// <summary>Bool to see if Spacecore is loaded.</summary>
-        public static bool SpaceCoreLoaded;
-
-        /// <summary>The interfact in which we register SpaceCore's API to.</summary>
-        public static ISpaceCore? iSpaceCore;
 
 
         /*********
@@ -136,23 +127,6 @@ namespace Pathoschild.Stardew.LookupAnything
                 monitor: this.Monitor,
                 manifest: this.ModManifest
             ).Register();
-
-            // register with the spacecore api if spacecore is loaded
-            try
-            {
-                // set the bool to if space core is loaded or not
-                SpaceCoreLoaded = this.Helper.ModRegistry.IsLoaded("spacechase0.SpaceCore");
-                if (SpaceCoreLoaded)
-                {
-                    // if it is, register the api
-                    iSpaceCore = this.Helper.ModRegistry.GetApi<ISpaceCore>("spacechase0.SpaceCore");
-                }
-            }
-            catch
-            {
-
-            }
-
         }
 
         /// <inheritdoc cref="IGameLoopEvents.DayStarted"/>

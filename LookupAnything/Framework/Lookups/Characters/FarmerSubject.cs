@@ -72,13 +72,12 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             yield return new SkillBarField(I18n.Player_FishingSkill(), target.experiencePoints[SFarmer.fishingSkill], maxSkillPoints, skillPointsPerLevel);
             yield return new SkillBarField(I18n.Player_CombatSkill(), target.experiencePoints[SFarmer.combatSkill], maxSkillPoints, skillPointsPerLevel);
 
-
-            if (ModEntry.SpaceCoreLoaded && ModEntry.iSpaceCore is not null)
+            // custom skills
+            var spaceCore = this.GameHelper.SpaceCore;
+            if (spaceCore.IsLoaded)
             {
-                foreach (string skill in ModEntry.iSpaceCore.GetCustomSkills())
-                {
-                    yield return new SkillBarField(ModEntry.iSpaceCore.GetDisplayNameOfCustomSkill(skill), ModEntry.iSpaceCore.GetExperienceForCustomSkill(target, skill), maxSkillPoints, skillPointsPerLevel);
-                }
+                foreach (string skill in spaceCore.ModApi.GetCustomSkills())
+                    yield return new SkillBarField(spaceCore.ModApi.GetDisplayNameOfCustomSkill(skill), spaceCore.ModApi.GetExperienceForCustomSkill(target, skill), maxSkillPoints, skillPointsPerLevel);
             }
 
             // luck
