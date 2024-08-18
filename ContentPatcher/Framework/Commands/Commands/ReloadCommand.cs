@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
+using ContentPatcher.Framework.Conditions;
 using ContentPatcher.Framework.Patches;
 using Pathoschild.Stardew.Common.Commands;
 using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
+using StardewValley;
 
 namespace ContentPatcher.Framework.Commands.Commands
 {
@@ -32,6 +34,7 @@ namespace ContentPatcher.Framework.Commands.Commands
         /// <summary>Construct an instance.</summary>
         /// <param name="monitor">Encapsulates monitoring and logging.</param>
         /// <param name="getPatchLoader">Manages loading and unloading patches.</param>
+        /// <param name="getPatchManager">Manages loaded patches.</param>
         /// <param name="contentPacks">The loaded content packs.</param>
         /// <param name="updateContext">A callback which immediately updates the current condition context.</param>
         public ReloadCommand(IMonitor monitor, Func<PatchLoader> getPatchLoader, Func<PatchManager> getPatchManager, LoadedContentPack[] contentPacks, Action updateContext)
@@ -47,10 +50,13 @@ namespace ContentPatcher.Framework.Commands.Commands
         public override string GetDescription()
         {
             return
-                """
+                $"""
                 patch reload
-                   Usage: patch reload "<content pack ID>" "[optional specific included file to reload]"
-                   Reloads the patches of the content.json (or a specified json loaded by an Include patch) of a content pack. Config schema changes and dynamic token changes are unsupported.
+                   Usage: patch reload "<content pack ID>"
+                   Reloads every patch for the content pack with this mod ID. Non-patch content (like config schema and dynamic tokens) aren't reloaded.
+                   
+                   Usage: patch reload "<content pack ID>" "<include file>"
+                   Reloads patches for the content pack with this mod ID, but only those loaded through an {PatchType.Include} patch with this relative path. Non-patch content (like config schema and dynamic tokens) aren't reloaded.
                 """;
         }
 
@@ -60,13 +66,14 @@ namespace ContentPatcher.Framework.Commands.Commands
             var patchLoader = this.GetPatchLoader();
             var patchManager = this.GetPatchManager();
 
-            // get pack ID
-            if (args.Length < 1 || args.Length > 2)
+            // get args
+            string packId = ArgUtility.Get(args, 0, allowBlank: false);
+            string? includePath = ArgUtility.Get(args, 1, allowBlank: false);
+            if (packId is null)
             {
-                this.Monitor.Log("The 'patch reload' command expects a single argument containing the target content pack ID, with an optional additional argument for a specific file. See 'patch help' for more info.", LogLevel.Error);
+                this.Monitor.Log("The 'patch reload' command expects the first argument to be the target content pack's mod ID. See 'patch help' for more info.", LogLevel.Error);
                 return;
             }
-            string packId = args[0];
 
             // get pack
             RawContentPack? pack = this.ContentPacks.SingleOrDefault(p => p.Manifest.UniqueID == packId);
@@ -76,25 +83,31 @@ namespace ContentPatcher.Framework.Commands.Commands
                 return;
             }
 
-            if (args.Length >= 2)
+            // get patch
+            IncludePatch? includePatch = null;
+            if (includePath != null)
             {
-                string specificFilePath = args[1];
+                includePath = PathUtilities.NormalizePath(includePath);
+                includePatch = patchManager.GetPatches().FirstOrDefault(p => p.FromAsset == includePath) as IncludePatch;
 
-                IPatch? patch = patchManager.GetPatches().FirstOrDefault(p => p.FromAsset == PathUtilities.NormalizePath(specificFilePath));
-                if (patch == null || patch is not IncludePatch include)
+                if (includePatch is null)
                 {
-                    this.Monitor.Log($"There was no patch including the path \"{specificFilePath}\" (or it was not an Include type patch).", LogLevel.Error);
-                    return;
-                }
-                else if (!include.IsReady || !patch.Conditions.All(p => p.IsMatch))
-                {
-                    this.Monitor.Log($"The specified patch is not currently active.");
+                    this.Monitor.Log($"There's no {PatchType.Include} patch which reads from the path \"{includePath}\".", LogLevel.Error);
                     return;
                 }
 
-                patchLoader.UnloadPatchesLoadedBy(include);
+                if (!includePatch.IsReady || !includePatch.Conditions.All(p => p.IsMatch))
+                {
+                    this.Monitor.Log("The specified patch isn't currently enabled.", LogLevel.Error);
+                    return;
+                }
+            }
 
-                include.AttemptLoad();
+            // apply
+            if (includePatch != null)
+            {
+                patchLoader.UnloadPatchesLoadedBy(includePatch);
+                includePatch.AttemptLoad();
             }
             else
             {

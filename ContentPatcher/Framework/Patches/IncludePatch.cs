@@ -93,15 +93,7 @@ namespace ContentPatcher.Framework.Patches
             return this.MarkUpdated();
         }
 
-        /// <inheritdoc />
-        public override IEnumerable<string> GetChangeLabels()
-        {
-            return [];
-        }
-
-        /// <summary>
-        /// Attempt to load the new patches, if the patch is ready
-        /// </summary>
+        /// <summary>Load the patches in the include file, if the patch is ready.</summary>
         public void AttemptLoad()
         {
             this.AttemptedDataLoad = this.IsReady && this.Conditions.All(p => p.IsMatch);
@@ -169,6 +161,12 @@ namespace ContentPatcher.Framework.Patches
                     return;
                 }
             }
+        }
+
+        /// <inheritdoc />
+        public override IEnumerable<string> GetChangeLabels()
+        {
+            return [];
         }
 
 
