@@ -2,6 +2,7 @@
 
 # Release notes
 ## Upcoming release
+* Updated for Stardew Valley 1.6.9.
 * Improved dropdown positioning to reduce overlap with big chest UI.
 * Improved translations. Thanks to ForgottenZ (updated Chinese) and MakinDay (updated Italian)!
 
