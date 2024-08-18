@@ -16,6 +16,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Buildings;
+using StardewValley.Constants;
 using StardewValley.Extensions;
 using StardewValley.GameData.Crops;
 using StardewValley.GameData.FishPonds;
@@ -740,19 +741,23 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                     neededFor.Add(I18n.Item_NeededFor_CommunityCenter(bundles: I18n.List(missingBundles)));
             }
 
-            CropData? cropData = this.FromCrop != null ? this.FromCrop.GetData() : GameHelper.GetCropDataByHarvestItem(obj.ItemId);
+            CropData? cropData = this.FromCrop != null
+                ? this.FromCrop.GetData()
+                : GameHelper.GetCropDataByHarvestItem(obj.ItemId);
+
             if (cropData != null)
             {
-                if (cropData.CountForPolyculture)
+                // polyculture achievement (ship 15 of each flagged crop)
+                if (cropData.CountForPolyculture && !Game1.player.achievements.Contains(AchievementIds.Polyculture))
                 {
-                    // polyculture achievement (ship 15 of each flagged crop)
                     int needed = this.Constants.PolycultureCount - this.GameHelper.GetShipped(obj.ItemId);
                     if (needed > 0)
                         neededFor.Add(I18n.Item_NeededFor_Polyculture(count: needed));
                 }
-                if (!Game1.player.achievements.Contains(this.Constants.MonocultureAchievement) && cropData.CountForMonoculture)
+
+                // monoculture achievement (ship 300 of one crop)
+                if (cropData.CountForMonoculture && !Game1.player.achievements.Contains(AchievementIds.Monoculture))
                 {
-                    // polyculture achievement (ship 300 of one crop)
                     int needed = this.Constants.MonocultureCount - this.GameHelper.GetShipped(obj.ItemId);
                     if (needed > 0)
                         neededFor.Add(I18n.Item_NeededFor_Monoculture(count: needed));

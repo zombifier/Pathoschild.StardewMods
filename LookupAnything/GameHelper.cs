@@ -202,15 +202,17 @@ namespace Pathoschild.Stardew.LookupAnything
             );
         }
 
-        /// <summary>
-        /// Retrieve the CropData for the crop which produces a given item.
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
+        /// <summary>Get the first crop which returns this item has a harvest, if any.</summary>
+        /// <param name="itemId">The unqualified item ID to check.</param>
         public static CropData? GetCropDataByHarvestItem(string itemId)
         {
-            IEnumerable<CropData> matching = Game1.cropData.Values.Where((crop) => crop.HarvestItemId == itemId);
-            return matching.Any() ? matching.First() : null;
+            foreach (CropData crop in Game1.cropData.Values)
+            {
+                if (crop.HarvestItemId == itemId)
+                    return crop;
+            }
+
+            return null;
         }
 
         /// <summary>Get all items owned by the player.</summary>

@@ -109,7 +109,6 @@ You shouldn't change this file unless you know what you're doing.
 
         /* achievements */
         "PolycultureCount": 15,
-        "MonocultureAchievement": 32,
         "MonocultureCount": 300
     },
 
