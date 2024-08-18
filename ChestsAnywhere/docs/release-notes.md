@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Improved dropdown positioning to reduce overlap with big chest UI.
+* Improved translations. Thanks to ForgottenZ (updated Chinese) and MakinDay (updated Italian)!
 
 ## 1.24.1
 Released 01 July 2024 for SMAPI 4.0.7 or later.
