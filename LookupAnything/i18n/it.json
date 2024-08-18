@@ -336,6 +336,7 @@
     "item.undiscovered-gift-taste-appended": ", e {{count}} abitanti non rivelati",
     "item.needed-for.community-center": "centro sociale ({{bundles}})",
     "item.needed-for.full-shipment": "l'achievement 'spedizione completa' (consegnane uno)",
+    "item.needed-for.monoculture": "monoculture achievement (ship {{count}} more)", // TODO
     "item.needed-for.polyculture": "l'achievement 'policoltura' (consegnane ancora {{count}})",
     "item.needed-for.full-collection": "l'achievement 'collezione completa' (donane ancora uno al museo)",
     "item.needed-for.gourmet-chef": "l'achievement 'chef da gourmet' (cucina {{recipes}})",

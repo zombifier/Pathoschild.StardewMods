@@ -26,6 +26,7 @@ using StardewValley.Buildings;
 using StardewValley.Characters;
 using StardewValley.Extensions;
 using StardewValley.GameData.Crafting;
+using StardewValley.GameData.Crops;
 using StardewValley.GameData.FishPonds;
 using StardewValley.Locations;
 using StardewValley.Menus;
@@ -204,6 +205,19 @@ namespace Pathoschild.Stardew.LookupAnything
 
                 select new KeyValuePair<string, bool>(obj.QualifiedItemId, Game1.player.basicShipped.ContainsKey(obj.ItemId))
             );
+        }
+
+        /// <summary>Get the first crop which returns this item has a harvest, if any.</summary>
+        /// <param name="itemId">The unqualified item ID to check.</param>
+        public static CropData? GetCropDataByHarvestItem(string itemId)
+        {
+            foreach (CropData crop in Game1.cropData.Values)
+            {
+                if (crop.HarvestItemId == itemId)
+                    return crop;
+            }
+
+            return null;
         }
 
         /// <summary>Get all items owned by the player.</summary>
