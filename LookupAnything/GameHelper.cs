@@ -11,6 +11,7 @@ using Pathoschild.Stardew.Common.Integrations.CustomFarmingRedux;
 using Pathoschild.Stardew.Common.Integrations.ExtraMachineConfig;
 using Pathoschild.Stardew.Common.Integrations.MultiFertilizer;
 using Pathoschild.Stardew.Common.Integrations.ProducerFrameworkMod;
+using Pathoschild.Stardew.Common.Integrations.SpaceCore;
 using Pathoschild.Stardew.Common.Items;
 using Pathoschild.Stardew.LookupAnything.Framework;
 using Pathoschild.Stardew.LookupAnything.Framework.Constants;
@@ -79,11 +80,14 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>The Custom Bush integration.</summary>
         public CustomBushIntegration CustomBush { get; }
 
+        /// <summary>The Extra Machine Config integration.</summary>
+        public ExtraMachineConfigIntegration ExtraMachineConfig { get; }
+
         /// <summary>The MultiFertilizer integration.</summary>
         public MultiFertilizerIntegration MultiFertilizer { get; }
 
-        /// <summary>The Extra Machine Config integration.</summary>
-        public ExtraMachineConfigIntegration ExtraMachineConfig { get; }
+        /// <summary>The SpaceCore integration to get info about its custom skills.</summary>
+        public SpaceCoreIntegration SpaceCore { get; }
 
 
         /*********
@@ -104,9 +108,10 @@ namespace Pathoschild.Stardew.LookupAnything
             this.BushBloomMod = new BushBloomModIntegration(modRegistry, monitor);
             this.CustomBush = new CustomBushIntegration(modRegistry, monitor);
             this.CustomFarmingRedux = new CustomFarmingReduxIntegration(modRegistry, monitor);
+            this.ExtraMachineConfig = new ExtraMachineConfigIntegration(modRegistry, monitor);
             this.MultiFertilizer = new MultiFertilizerIntegration(modRegistry, monitor);
             this.ProducerFrameworkMod = new ProducerFrameworkModIntegration(modRegistry, monitor);
-            this.ExtraMachineConfig = new ExtraMachineConfigIntegration(modRegistry, monitor);
+            this.SpaceCore = new SpaceCoreIntegration(modRegistry, monitor);
 
             this.ResetCache(monitor);
         }
