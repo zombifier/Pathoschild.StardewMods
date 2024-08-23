@@ -448,7 +448,9 @@ namespace Pathoschild.Stardew.LookupAnything
                             ];
                             ingredients.AddRange(additionalConsumedItems);
 
-                            // if there are extra fuels added by the Extra Machine Config mod, add them here
+                            List<MachineItemOutput> allOutputItems = [outputItem];
+
+                            // if there are extra fuels or outputs added by the Extra Machine Config mod, add them here
                             if (extraMachineConfig.IsLoaded)
                             {
                                 foreach ((string extraItemId, int extraCount) in extraMachineConfig.ModApi.GetExtraRequirements(outputItem))
@@ -456,57 +458,62 @@ namespace Pathoschild.Stardew.LookupAnything
 
                                 foreach ((string extraContextTags, int extraCount) in extraMachineConfig.ModApi.GetExtraTagsRequirements(outputItem))
                                     ingredients.Add(new RecipeIngredientModel(RecipeType.MachineInput, null, extraCount, extraContextTags.Split(",")));
+
+                                allOutputItems.AddRange(extraMachineConfig.ModApi.GetExtraOutputs(outputItem));
                             }
 
-                            // add produced item
-                            ItemQueryContext itemQueryContext = new();
-                            IList<ItemQueryResult> itemQueryResults = ItemQueryResolver.TryResolve(
-                                outputItem,
-                                itemQueryContext,
-                                formatItemId: id => id?.Replace("DROP_IN_ID", "0").Replace("DROP_IN_PRESERVE", "0").Replace("NEARBY_FLOWER_ID", "0")
-                            );
+                            foreach (var outputItemData in allOutputItems) {
+                                // add produced item
+                                ItemQueryContext itemQueryContext = new();
+                                IList<ItemQueryResult> itemQueryResults = ItemQueryResolver.TryResolve(
+                                    outputItemData,
+                                    itemQueryContext,
+                                    formatItemId: id => id?.Replace("DROP_IN_ID", "0").Replace("DROP_IN_PRESERVE", "0").Replace("NEARBY_FLOWER_ID", "0")
+                                );
 
-                            // get conditions
-                            string[]? conditions = null;
-                            {
-                                // extract raw conditions
-                                string? rawConditions = null;
-                                if (!string.IsNullOrWhiteSpace(trigger.Condition))
-                                    rawConditions = trigger.Condition;
-                                if (!string.IsNullOrWhiteSpace(outputItem.Condition))
+
+                                // get conditions
+                                string[]? conditions = null;
                                 {
-                                    rawConditions = rawConditions != null
-                                        ? rawConditions + ", " + outputItem.Condition
-                                        : outputItem.Condition;
+                                    // extract raw conditions
+                                    string? rawConditions = null;
+                                    if (!string.IsNullOrWhiteSpace(trigger.Condition))
+                                        rawConditions = trigger.Condition;
+                                    if (!string.IsNullOrWhiteSpace(outputItemData.Condition))
+                                    {
+                                        rawConditions = rawConditions != null
+                                            ? rawConditions + ", " + outputItemData.Condition
+                                            : outputItemData.Condition;
+                                    }
+
+                                    // parse
+                                    if (rawConditions != null)
+                                        conditions = GameStateQuery.SplitRaw(rawConditions).Distinct().ToArray();
                                 }
 
-                                // parse
-                                if (rawConditions != null)
-                                    conditions = GameStateQuery.SplitRaw(rawConditions).Distinct().ToArray();
+                                // add to list
+                                recipes.AddRange(
+                                        from result in itemQueryResults
+                                        select new RecipeModel(
+                                            key: null,
+                                            type: RecipeType.MachineInput,
+                                            displayType: ItemRegistry.GetDataOrErrorItem(qualifiedMachineId).DisplayName,
+                                            ingredients,
+                                            goldPrice: 0,
+                                            item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
+                                            isKnown: () => true,
+                                            machineId: qualifiedMachineId,
+                                            //exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id!.Value, 1)),
+                                            exceptIngredients: null,
+                                            outputQualifiedItemId: result.Item.QualifiedItemId,
+                                            minOutput: outputItemData.MinStack > 0 ? outputItemData.MinStack : 1,
+                                            maxOutput: outputItemData.MaxStack > 0 ? outputItemData.MaxStack : null, // TODO: Calculate this better
+                                            quality: outputItemData.Quality,
+                                            outputChance: 100 / outputRule.OutputItem.Count / itemQueryResults.Count,
+                                            conditions: conditions
+                                            )
+                                        );
                             }
-
-                            // add to list
-                            recipes.AddRange(
-                                from result in itemQueryResults
-                                select new RecipeModel(
-                                    key: null,
-                                    type: RecipeType.MachineInput,
-                                    displayType: ItemRegistry.GetDataOrErrorItem(qualifiedMachineId).DisplayName,
-                                    ingredients,
-                                    goldPrice: 0,
-                                    item: _ => ItemRegistry.Create(result.Item.QualifiedItemId),
-                                    isKnown: () => true,
-                                    machineId: qualifiedMachineId,
-                                    //exceptIngredients: recipe.ExceptIngredients.Select(id => new RecipeIngredientModel(id!.Value, 1)),
-                                    exceptIngredients: null,
-                                    outputQualifiedItemId: result.Item.QualifiedItemId,
-                                    minOutput: outputItem.MinStack > 0 ? outputItem.MinStack : 1,
-                                    maxOutput: outputItem.MaxStack > 0 ? outputItem.MaxStack : null, // TODO: Calculate this better
-                                    quality: outputItem.Quality,
-                                    outputChance: 100 / outputRule.OutputItem.Count / itemQueryResults.Count,
-                                    conditions: conditions
-                                )
-                            );
                         }
                     }
                 }
