@@ -1,6 +1,10 @@
 ﻿[← back to readme](README.md)
 
 # Release notes
+## Upcoming release
+* Updated for Stardew Valley 1.6.9.
+* Added support for Ultimate Fertilizer's multi-fertilizer feature.
+
 ## 1.17.2
 Released 29 June 2024 for SMAPI 4.0.7 or later.
 

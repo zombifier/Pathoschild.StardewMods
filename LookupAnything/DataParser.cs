@@ -420,7 +420,7 @@ namespace Pathoschild.Stardew.LookupAnything
 
                 foreach (MachineOutputRule? outputRule in machineData.OutputRules)
                 {
-                    if (outputRule.Triggers?.Count is not > 0 || outputRule.OutputItem?.Count is not > 0)
+                    if (outputRule?.Triggers?.Count is not > 0 || outputRule.OutputItem?.Count is not > 0)
                         continue;
 
                     foreach (MachineOutputTriggerRule? trigger in outputRule.Triggers)
@@ -428,14 +428,33 @@ namespace Pathoschild.Stardew.LookupAnything
                         if (trigger is null)
                             continue;
 
-                        // get ingredient
-                        if (!this.TryGetMostSpecificIngredientIds(trigger.RequiredItemId, trigger.RequiredTags, out string? inputId, out string[] inputContextTags))
-                            continue;
-
                         // build output list
                         foreach (MachineItemOutput? outputItem in outputRule.OutputItem)
                         {
                             if (outputItem is null)
+                                continue;
+
+                            // get conditions
+                            List<string>? conditions = null;
+                            {
+                                // extract raw conditions
+                                string? rawConditions = null;
+                                if (!string.IsNullOrWhiteSpace(trigger.Condition))
+                                    rawConditions = trigger.Condition;
+                                if (!string.IsNullOrWhiteSpace(outputItem.Condition))
+                                {
+                                    rawConditions = rawConditions != null
+                                        ? rawConditions + ", " + outputItem.Condition
+                                        : outputItem.Condition;
+                                }
+
+                                // parse
+                                if (rawConditions != null)
+                                    conditions = GameStateQuery.SplitRaw(rawConditions).Distinct().ToList();
+                            }
+
+                            // get ingredient
+                            if (!this.TryGetMostSpecificIngredientIds(trigger.RequiredItemId, trigger.RequiredTags, ref conditions, out string? inputId, out string[] inputContextTags))
                                 continue;
 
                             // track whether some recipes are too complex to fully display
@@ -510,7 +529,7 @@ namespace Pathoschild.Stardew.LookupAnything
                                             maxOutput: outputItemData.MaxStack > 0 ? outputItemData.MaxStack : null, // TODO: Calculate this better
                                             quality: outputItemData.Quality,
                                             outputChance: 100 / outputRule.OutputItem.Count / itemQueryResults.Count,
-                                            conditions: conditions
+                                            conditions: conditions?.ToArray()
                                             )
                                         );
                             }
@@ -568,7 +587,8 @@ namespace Pathoschild.Stardew.LookupAnything
                         if (rule?.ProducedItems?.Count is not > 0 || rule.RequiredTags?.Count is not > 0)
                             continue;
 
-                        if (!this.TryGetMostSpecificIngredientIds(null, rule.RequiredTags, out string? ingredientId, out string[] ingredientContextTags))
+                        List<string>? ruleConditions = null;
+                        if (!this.TryGetMostSpecificIngredientIds(null, rule.RequiredTags, ref ruleConditions, out string? ingredientId, out string[] ingredientContextTags))
                             continue;
 
                         RecipeIngredientModel[] ingredients = [new RecipeIngredientModel(RecipeType.BuildingInput, ingredientId, rule.RequiredCount, ingredientContextTags)];
@@ -677,10 +697,11 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Normalize raw ingredient ID and context tags from a machine recipe into the most specific item ID and context tags possible.</summary>
         /// <param name="fromItemId">The ingredient's raw item ID from the machine data.</param>
         /// <param name="fromContextTags">The ingredient's raw context tags from the machine data.</param>
+        /// <param name="fromConditions">A game state query which indicates whether an entry is applicable.</param>
         /// <param name="itemId">The item ID matching the item, or <c>null</c> if the recipe is based on <paramref name="contextTags"/>.</param>
         /// <param name="contextTags">The context tags matching the item, or an empty array if it's based on <paramref name="contextTags"/>.</param>
         /// <returns>Returns whether an item ID or any context tags were specified.</returns>
-        private bool TryGetMostSpecificIngredientIds(string? fromItemId, List<string?>? fromContextTags, out string? itemId, out string[] contextTags)
+        private bool TryGetMostSpecificIngredientIds(string? fromItemId, List<string?>? fromContextTags, ref List<string>? fromConditions, out string? itemId, out string[] contextTags)
         {
             // normalize values
             contextTags = fromContextTags?.WhereNotNull().ToArray() ?? [];
@@ -689,10 +710,29 @@ namespace Pathoschild.Stardew.LookupAnything
                 : null;
 
             // convert item ID tag to item ID
-            if (itemId is null && contextTags.Length == 1 && MachineDataHelper.TryGetUniqueItemFromContextTag(contextTags[0], out ParsedItemData? dataFromTag))
+            if (contextTags.Length == 1 && MachineDataHelper.TryGetUniqueItemFromContextTag(contextTags[0], out ParsedItemData? dataFromTag))
             {
+                if (itemId != null && ItemRegistry.QualifyItemId(itemId) != dataFromTag.QualifiedItemId)
+                    return false; // conflicting item IDs
+
                 itemId = dataFromTag.QualifiedItemId;
                 contextTags = [];
+            }
+
+            // convert item query to item ID
+            if (fromConditions != null)
+            {
+                for (int i = 0; i < fromConditions.Count; i++)
+                {
+                    if (MachineDataHelper.TryGetUniqueItemFromGameStateQuery(fromConditions[i], out ParsedItemData? data))
+                    {
+                        if (itemId != null && data.QualifiedItemId != ItemRegistry.QualifyItemId(itemId))
+                            return false; // conflicting item IDs
+
+                        itemId = data.QualifiedItemId;
+                        fromConditions.RemoveAt(i);
+                    }
+                }
             }
 
             return itemId != null || contextTags.Length > 0;
