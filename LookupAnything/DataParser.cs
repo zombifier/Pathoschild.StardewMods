@@ -438,7 +438,7 @@ namespace Pathoschild.Stardew.LookupAnything
                             List<MachineItemOutput> allOutputItems = [mainOutputItem];
                             if (extraMachineConfig.IsLoaded)
                             {
-                                allOutputItems.AddRange(extraMachineConfig.ModApi.GetExtraOutputs(mainOutputItem));
+                                allOutputItems.AddRange(extraMachineConfig.ModApi.GetExtraOutputs(mainOutputItem, machineData));
                             }
 
                             foreach (var outputItem in allOutputItems) {
