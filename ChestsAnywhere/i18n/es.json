@@ -20,7 +20,7 @@
     "label.category": "Categoría",
     "label.order": "Orden",
     "label.hide-chest": "Esconder este cofre",
-    "label.hide-chest-hidden": "Esconder este cofre (¡necesitarás encontrar el cofre para deshacer esto!)",
+    "label.hide-chest-hidden": "Esconder este cofre (¡Necesitarás encontrar el cofre para deshacer esto!)",
     "label.automate-options": "Automático",
     "label.automate-store": "Pon objetos en este cofre",
     "label.automate-store-first": "Pon primero los objetos en este cofre",
@@ -30,10 +30,10 @@
     "label.automate-take-disabled": "Nunca tomes objetos de este cofre",
 
     // button labels
-    "button.edit-chest": "editar cofre",
-    "button.sort-inventory": "ordenar inventario",
-    "button.save": "guardar",
-    "button.reset": "reiniciar",
+    "button.edit-chest": "Editar Cofre",
+    "button.sort-inventory": "Ordenar Inventario",
+    "button.save": "Guardar",
+    "button.reset": "Reiniciar",
 
 
     /**********
