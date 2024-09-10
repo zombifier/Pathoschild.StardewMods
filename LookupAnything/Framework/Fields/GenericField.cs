@@ -68,15 +68,14 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             return null;
         }
 
-        /// <summary>Collapse the field by default, so the user needs to click a link to expand it.</summary>
-        /// <param name="linkText">The link text to show.</param>
-        public void CollapseByDefault(string linkText)
+        /// <summary>Collapse the field by default if it contains at least <c>minResultsForCollapse</c> results.</summary>
+        /// <param name="minResultsForCollapse">The minimum results needed before the field is collapsed by default.</param>
+        public virtual void CollapseIfLengthExceeds(int minResultsForCollapse)
         {
-            this.ExpandLink = new LinkField(this.Label, linkText, () =>
+            if (this.Value?.Length >= minResultsForCollapse)
             {
-                this.ExpandLink = null;
-                return null;
-            });
+                this.CollapseByDefault(I18n.Generic_ShowXResults(count: this.Value.Length));
+            }
         }
 
 
@@ -96,6 +95,17 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             return !string.IsNullOrWhiteSpace(value)
                 ? [new FormattedText(value)]
                 : [];
+        }
+
+        /// <summary>Collapse the field by default, so the user needs to click a link to expand it.</summary>
+        /// <param name="linkText">The link text to show.</param>
+        protected void CollapseByDefault(string linkText)
+        {
+            this.ExpandLink = new LinkField(this.Label, linkText, () =>
+            {
+                this.ExpandLink = null;
+                return null;
+            });
         }
 
         /// <summary>Get the display value for sale price data.</summary>
