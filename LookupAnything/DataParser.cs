@@ -173,11 +173,9 @@ namespace Pathoschild.Stardew.LookupAnything
                     if (fishItem?.ObjectType != "Fish" || fishItem.ItemId != fishID)
                         continue;
 
-                    string displayName = this.GetLocationDisplayName(locationId, data, fish.FishAreaId);
-
                     if (fish.Season.HasValue)
                     {
-                        curLocations.Add(new FishSpawnLocationData(displayName, locationId, fish.FishAreaId, new[] { fish.Season.Value.ToString() }));
+                        curLocations.Add(new FishSpawnLocationData(locationId, fish.FishAreaId, new[] { fish.Season.Value.ToString() }));
                     }
                     else if (fish.Condition != null)
                     {
@@ -191,11 +189,11 @@ namespace Pathoschild.Stardew.LookupAnything
                                 if (!condition.Negated && condition.Query.Any(word => word.Equals(season, StringComparison.OrdinalIgnoreCase)))
                                     seasons.Add(season);
                             }
-                            curLocations.Add(new FishSpawnLocationData(displayName, locationId, fish.FishAreaId, seasons.ToArray()));
+                            curLocations.Add(new FishSpawnLocationData(locationId, fish.FishAreaId, seasons.ToArray()));
                         }
                     }
                     else
-                        curLocations.Add(new FishSpawnLocationData(displayName, locationId, fish.FishAreaId, new[] { "spring", "summer", "fall", "winter" }));
+                        curLocations.Add(new FishSpawnLocationData(locationId, fish.FishAreaId, new[] { "spring", "summer", "fall", "winter" }));
                 }
 
                 // combine seasons for same area
@@ -205,7 +203,7 @@ namespace Pathoschild.Stardew.LookupAnything
                         from areaGroup in curLocations.GroupBy(p => p.Area)
                         let seasons = areaGroup.SelectMany(p => p.Seasons).Distinct().ToArray()
                         let displayName = this.GetLocationDisplayName(locationId, data, areaGroup.Key)
-                        select new FishSpawnLocationData(displayName, locationId, areaGroup.Key, seasons)
+                        select new FishSpawnLocationData(locationId, areaGroup.Key, seasons)
                     );
                 }
             }
@@ -289,6 +287,19 @@ namespace Pathoschild.Stardew.LookupAnything
         public FriendshipModel GetFriendshipForAnimal(SFarmer player, FarmAnimal animal, Metadata metadata)
         {
             return new FriendshipModel(animal.friendshipTowardFarmer.Value, metadata.Constants.AnimalFriendshipPointsPerLevel, metadata.Constants.AnimalFriendshipMaxPoints);
+        }
+
+        /// <summary>Get the translated display name for a fish spawn location.</summary>
+        /// <param name="fishSpawnData">Data for the location whose name to look up.</param>
+        /// <exception cref="NotSupportedException">If the location ID of fishSpawnData does not exist in the game data.</exception>
+        public string GetLocationDisplayName(FishSpawnLocationData fishSpawnData)
+        {
+            if (Game1.locationData.TryGetValue(fishSpawnData.LocationId, out LocationData? locationData))
+            {
+                return this.GetLocationDisplayName(fishSpawnData.LocationId, locationData, fishSpawnData.Area);
+            }
+
+            throw new NotSupportedException($"Unexpected location ID {fishSpawnData.LocationId}.");
         }
 
         /// <summary>Parse monster data.</summary>
@@ -627,7 +638,7 @@ namespace Pathoschild.Stardew.LookupAnything
 
                 // special case: mine level
                 if (string.Equals(id, "UndergroundMine", StringComparison.OrdinalIgnoreCase))
-                    return I18n.Location_UndergroundMine_Level(level: id);
+                    return I18n.Location_UndergroundMine_Level(level: fishAreaId);
             }
 
             // get base data
