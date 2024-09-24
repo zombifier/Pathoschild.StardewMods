@@ -183,7 +183,7 @@ just specify a key that doesn't exist; to delete an entry, set the value to `nul
 `"some key": null`). This field supports [tokens](../author-guide.md#tokens) in entry keys and
 values.
 
-For list values, see also `MoveEntries`.
+For list values, see also [`MoveEntries`](#moving-list-entries).
 
 </td>
 </tr>
@@ -252,7 +252,7 @@ The default levels are -1000 (early), 0 (default), and 1000 (late).
 
 This field does _not_ support tokens, and capitalization doesn't matter.
 
-> [!TIP]  
+> [!TIP]
 > Priorities can make your changes harder to follow and troubleshoot. Suggested best practices:
 > * Consider only using very general priorities when possible (like `Late` for a cosmetic overlay
 >   meant to be applied over base edits from all mods).
@@ -348,10 +348,53 @@ When the value has nested entries, you can use [`TargetField`](#target-field) to
 one.
 
 ### Edit a list
-You can edit a [list](#data-assets) the same way too.
+You can edit a [list](#data-assets) the same way too. Although lists will not use keys in the original asset, you will still need to provide a key in your Entries field when editing or creating a new entry in that list. The resulting patch will look similar to the dictionary example above.
 
-For a list of models (blocks of `{ ... }`), the key is the `Id` field for each model. For a list
-of simple strings, the key is the string itself.
+For a list of models (blocks of `{ ... }`), the key is the `Id` field for each model. For example, in this snippet from `Data\LocationContexts`, `Music` is a list of models that each have an `Id` field:
+```js
+{
+    "Default": {
+        "SeasonOverride": null,
+        "DefaultMusic": null,
+        "DefaultMusicCondition": null,
+        "DefaultMusicDelayOneScreen": true,
+        "Music": [
+            {
+                "Id": "spring1",
+                "Track": "spring1",
+                "Condition": "SEASON Spring"
+            }
+            ...
+        ]
+    }
+}
+```
+
+If you wanted to change the fields for the list entry whose `Id` value was equal to `spring1`, you would use `spring1` as your key in your Entries field and would edit it like so:
+```js
+{
+    "Format": "2.3.0",
+    "Changes": [
+        {
+            "Action": "EditData",
+            "Target": "Data/LocationContexts",
+            "TargetField": [ "Default", "Music" ],
+            "Entries": {
+                "spring1": {
+                    "Id": "spring1",
+                    "Track": "spring1",
+                    "Condition": "SEASON Spring, YEAR 2"
+                }
+            }
+        }
+    ]
+}
+```
+
+For a list of simple strings, the key is the string itself. [See the example for editing object context tags below](#edit-object-context-tags).
+
+
+### Moving list entries
 
 The order is often important for list assets (e.g. the game will use the first entry in
 `Data\MoviesReactions` that matches the NPC it's checking). You can change the order using the
