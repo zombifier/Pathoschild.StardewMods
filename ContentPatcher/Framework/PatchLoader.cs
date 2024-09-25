@@ -946,6 +946,22 @@ namespace ContentPatcher.Framework
                         );
                         break;
 
+                    case TextOperationType.ReplaceDelimited:
+                        if (string.IsNullOrEmpty(operation.Delimiter))
+                            return Fail($"{errorPrefix}: the {nameof(operation.Delimiter)} value must be set for a {operationType} text operation.", out error);
+                        if (string.IsNullOrWhiteSpace(search.Raw))
+                            return Fail($"{errorPrefix}: the {nameof(operation.Search)} value must be set for a {operationType} text operation.", out error);
+
+                        parsedOperation = new ReplaceDelimitedTextOperation(
+                            operation: operationType,
+                            target: target,
+                            search: search,
+                            value: value,
+                            delimiter: operation.Delimiter,
+                            replaceMode: replaceMode
+                        );
+                        break;
+
                     default:
                         return Fail($"{errorPrefix}: unsupported text operation type '{operationType}'", out error);
                 }
