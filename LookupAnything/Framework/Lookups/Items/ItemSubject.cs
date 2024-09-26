@@ -309,7 +309,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             }
 
             // fish spawn rules
-            yield return new FishSpawnRulesField(this.GameHelper, I18n.Item_FishSpawnRules(), item.ItemId);
+            yield return new FishSpawnRulesField(this.GameHelper, I18n.Item_FishSpawnRules(), item.QualifiedItemId);
 
             // fish pond data
             // derived from FishPond::doAction

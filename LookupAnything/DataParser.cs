@@ -149,6 +149,9 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <remarks>Derived from <see cref="GameLocation.getFish"/>.</remarks>
         public FishSpawnData? GetFishSpawnRules(string fishID, Metadata metadata)
         {
+            if (ItemRegistry.GetData(fishID) is not ParsedItemData sourceFishItem)
+                return null;
+            string unqualifiedFishId = sourceFishItem.ItemId;
             // parse location data
             var locations = new List<FishSpawnLocationData>();
             foreach ((string locationId, LocationData data) in DataLoader.Locations(Game1.content))
@@ -160,7 +163,7 @@ namespace Pathoschild.Stardew.LookupAnything
                 foreach (SpawnFishData fish in data.Fish)
                 {
                     ParsedItemData? fishItem = ItemRegistry.GetData(fish.ItemId);
-                    if (fishItem?.ObjectType != "Fish" || fishItem.ItemId != fishID)
+                    if (fishItem?.ObjectType != "Fish" || fishItem.QualifiedItemId != fishID)
                         continue;
 
                     string displayName = this.GetLocationDisplayName(locationId, data, fish.FishAreaId);
@@ -207,7 +210,7 @@ namespace Pathoschild.Stardew.LookupAnything
             bool isUnique = false;
             if (locations.Any()) // ignore default spawn criteria if the fish doesn't spawn naturally; in that case it should be specified explicitly in custom data below (if any)
             {
-                if (DataLoader.Fish(Game1.content).TryGetValue(fishID, out string? rawData))
+                if (DataLoader.Fish(Game1.content).TryGetValue(unqualifiedFishId, out string? rawData))
                 {
                     string[] fishFields = rawData.Split('/');
 
@@ -230,7 +233,7 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             // read custom data
-            if (metadata.CustomFishSpawnRules.TryGetValue(fishID, out FishSpawnData? customRules))
+            if (metadata.CustomFishSpawnRules.TryGetValue(unqualifiedFishId, out FishSpawnData? customRules))
             {
                 if (customRules.MinFishingLevel > minFishingLevel)
                     minFishingLevel = customRules.MinFishingLevel;
