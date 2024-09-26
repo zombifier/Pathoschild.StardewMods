@@ -84,7 +84,7 @@ namespace Pathoschild.Stardew.Automate.Framework
             }
 
             // crab pot
-            if (obj is CrabPot crabPot)
+            if (obj is CrabPot crabPot && obj.QualifiedItemId == "(O)710")
                 return new CrabPotMachine(crabPot, location, tile, this.Monitor);
 
             // machine by item ID
