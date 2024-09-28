@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Updated for Stardew Valley 1.6.9.
+* On the _Accessible_ layer, warps that are hidden just off-screen are now drawn along the edge.
 * Added support for Ultimate Fertilizer's multi-fertilizer feature.
 
 ## 1.17.2
