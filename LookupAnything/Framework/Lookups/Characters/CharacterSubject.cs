@@ -416,7 +416,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
         {
             var field = new CharacterGiftTastesField(label, giftTastes, taste, showUnknown: this.ShowUnknownGiftTastes, highlightUnrevealed: this.HighlightUnrevealedGiftTastes, onlyOwned: !this.ShowUnownedGifts, ownedItemsCache);
             if (this.CollapseFieldsConfig.Enabled)
-                field.CollapseIfLengthExceeds(this.CollapseFieldsConfig.NpcGiftTastes);
+                field.CollapseIfLengthExceeds(this.CollapseFieldsConfig.NpcGiftTastes, field.TotalItems);
             return field;
         }
 

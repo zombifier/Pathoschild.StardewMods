@@ -68,13 +68,14 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             return null;
         }
 
-        /// <summary>Collapse the field by default if it contains at least <c>minResultsForCollapse</c> results.</summary>
-        /// <param name="minResultsForCollapse">The minimum results needed before the field is collapsed by default.</param>
-        public virtual void CollapseIfLengthExceeds(int minResultsForCollapse)
+        /// <summary>Collapse the field content into an expandable link if it contains at least the given number of results.</summary>
+        /// <param name="minResultsForCollapse">The minimum results needed before the field is collapsed.</param>
+        /// <param name="countForLabel">The total number of results represented by the content (including grouped entries like "11 unrevealed items").</param>
+        public virtual void CollapseIfLengthExceeds(int minResultsForCollapse, int countForLabel)
         {
             if (this.Value?.Length >= minResultsForCollapse)
             {
-                this.CollapseByDefault(I18n.Generic_ShowXResults(count: this.Value.Length));
+                this.CollapseByDefault(I18n.Generic_ShowXResults(count: countForLabel));
             }
         }
 

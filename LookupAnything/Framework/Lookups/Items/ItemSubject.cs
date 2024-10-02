@@ -300,7 +300,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 {
                     var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), item, recipes, this.ShowUnknownRecipes);
                     if (this.CollapseFieldsConfig.Enabled)
-                        field.CollapseIfLengthExceeds(this.CollapseFieldsConfig.ItemRecipes);
+                        field.CollapseIfLengthExceeds(this.CollapseFieldsConfig.ItemRecipes, recipes.Length);
                     yield return field;
                 }
             }
