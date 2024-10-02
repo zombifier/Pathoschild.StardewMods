@@ -157,7 +157,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
                 Sprite: new SpriteInfo(building.texture.Value, building.getSourceRectForMenu() ?? building.getSourceRect()),
                 DisplayText: TokenParser.ParseText(building.GetData()?.Name) ?? building.buildingType.Value,
                 Quality: null,
-                IsGoldPrice: false
+                IsGoldPrice: false,
+                IsValid: true
             );
         }
 
