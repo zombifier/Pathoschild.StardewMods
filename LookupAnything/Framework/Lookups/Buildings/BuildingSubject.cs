@@ -295,7 +295,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
             if (target is Stable stable)
             {
                 long ownerID = stable.owner.Value;
-                return Game1.getFarmerMaybeOffline(ownerID);
+                return Game1.GetPlayer(ownerID);
             }
 
             // cabin

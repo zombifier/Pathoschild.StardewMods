@@ -173,7 +173,7 @@ namespace Pathoschild.Stardew.DataLayers.Framework
         }
 
         /// <summary>Update the overlay.</summary>
-        public void Update()
+        public void UpdateDataLayer()
         {
             // move UI if it overlaps pause message
             if (this.WasPaused != Game1.HostPaused)

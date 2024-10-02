@@ -487,7 +487,7 @@ namespace Pathoschild.Stardew.TractorMod
             // tractor request from a farmhand
             if (e.Type == this.RequestTractorMessageID && Context.IsMainPlayer && e.FromModID == this.ModManifest.UniqueID)
             {
-                Farmer player = Game1.getFarmer(e.FromPlayerID);
+                Farmer? player = Game1.GetPlayer(e.FromPlayerID);
                 if (player is { IsMainPlayer: false })
                 {
                     this.Monitor.Log(this.SummonLocalTractorTo(player)
