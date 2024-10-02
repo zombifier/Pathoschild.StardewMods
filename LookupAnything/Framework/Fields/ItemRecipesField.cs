@@ -238,6 +238,22 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
             return new Vector2(wrapWidth, curPos.Y - position.Y - lineHeight);
         }
 
+        /// <inheritdoc />
+        public override void CollapseIfLengthExceeds(int minResultsForCollapse, int countForLabel)
+        {
+            // if recipes are grouped by type, we need to compute the field length
+            if (this.RecipesByType.Length > 0)
+            {
+                // calculate count of recipes that will be shown, in case we're in progression mode and some are hidden
+                int shownRecipesCount = this.RecipesByType.Sum(group => group.Recipes.Count(recipe => this.ShowUnknownRecipes || recipe.IsKnown));
+                if (shownRecipesCount >= minResultsForCollapse)
+                    this.CollapseByDefault(I18n.Generic_ShowXResults(count: shownRecipesCount));
+            }
+            else
+            {
+                base.CollapseIfLengthExceeds(minResultsForCollapse, countForLabel);
+            }
+        }
 
         /*********
         ** Private methods

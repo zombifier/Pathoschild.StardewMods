@@ -304,11 +304,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
                 if (recipes.Length > 0)
                 {
                     var field = new ItemRecipesField(this.GameHelper, I18n.Item_Recipes(), item, recipes, this.ShowUnknownRecipes, this.ShowInvalidRecipes);
-
-                    // calculate count of recipes that will be shown, in case we're in progression mode and some are hidden
-                    int shownRecipesCount = field.GetShownRecipesCount();
-                    if (this.CollapseFieldsConfig.Enabled && shownRecipesCount >= this.CollapseFieldsConfig.ItemRecipes)
-                        field.CollapseByDefault(I18n.Generic_ShowXResults(count: shownRecipesCount));
+                    if (this.CollapseFieldsConfig.Enabled)
+                        field.CollapseIfLengthExceeds(this.CollapseFieldsConfig.ItemRecipes, recipes.Length);
                     yield return field;
                 }
             }
