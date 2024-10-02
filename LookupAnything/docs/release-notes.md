@@ -10,6 +10,7 @@
 * Building lookups now show their build cost/materials.
 * Invalid recipes are now hidden by default (thanks to Mushymato!).
 * Tweaked machine recipes' ingredient order for readability (thanks to zombifier!).
+* Fixed hidden items being counted when deciding whether to collapse a field (thanks to b3nk3lly!).
 * Fixed fishing spawn rules not shown for non-fish catches like River Jelly.
 * Fixed support for custom machine rules using `ITEM_ID` and `ITEM_CONTEXT_TAG` game state queries.
 * Fixed support for custom polyculture crops in 'needed for' field (thanks to Mushymato!).
