@@ -289,10 +289,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     IEnumerable<RecipeItemEntry> inputs = recipe.Ingredients
                         .Select(this.TryCreateItemEntry)
                         .WhereNotNull();
-                    // tailoring is always two ingredients with cloth first
-                    // machine recipes' first ingredient is the 'trigger' item,
-                    // with additional items being the fuel in the player/chest inventory.
-                    if (recipe.Type != RecipeType.TailorInput && recipe.Type != RecipeType.MachineInput)
+
+                    if (recipe.Type is not (RecipeType.TailorInput or RecipeType.MachineInput)) // tailoring and machine recipes are pre-sorted to show the common requirement last
                         inputs = inputs.OrderBy(entry => entry.DisplayText);
 
                     if (recipe.GoldPrice > 0)
