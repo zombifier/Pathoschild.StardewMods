@@ -59,8 +59,8 @@
     "config.enable-shipping-bin.name": "배송 상자 활성화",
     "config.enable-shipping-bin.desc": "배송 상자에 대한 액세스를 활성화할지 여부.",
 
-    "config.enable-sprinkler-attachments.name": "Enable sprinkler attachments", // TODO
-    "config.enable-sprinkler-attachments.desc": "Whether to enable access to sprinkler attachments like enrichers.", // TODO
+    "config.enable-sprinkler-attachments.name": "스프링클러 아이템 활성화",
+    "config.enable-sprinkler-attachments.desc": "비료 분사기 같은 스프링클러 아이템에 엑세스 할지 여부",
 
     "config.add-organize-player-items.name": "플레이어 아이템 정리 버튼 추가",
     "config.add-organize-player-items.desc": "플레이어 인벤토리의 상자 UI에 '구성' 버튼을 추가할지 여부.",
