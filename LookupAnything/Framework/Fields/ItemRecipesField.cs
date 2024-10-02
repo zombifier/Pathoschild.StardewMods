@@ -70,7 +70,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
         }
 
         /// <summary>Get the number of displayed recipes.</summary>
-        public int ShownRecipesCount()
+        public int GetShownRecipesCount()
         {
             int count = 0;
 

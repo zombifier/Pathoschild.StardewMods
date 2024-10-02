@@ -135,8 +135,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Models
                 minOutput: recipe.numberProducedPerCraft,
                 machineId: null,
                 outputQualifiedItemId: RecipeModel.QualifyRecipeOutputId(recipe, outputQualifiedItemId) ?? outputQualifiedItemId
-            )
-        { }
+            ) { }
 
         /// <summary>Construct an instance.</summary>
         /// <param name="building">A sample building constructed by the blueprint.</param>

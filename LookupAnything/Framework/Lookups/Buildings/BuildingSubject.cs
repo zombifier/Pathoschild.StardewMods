@@ -43,6 +43,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Buildings
         /// <summary>Whether to show recipes involving error items.</summary>
         private readonly bool ShowInvalidRecipes;
 
+
         /*********
         ** Public methods
         *********/
