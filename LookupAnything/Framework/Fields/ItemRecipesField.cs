@@ -316,7 +316,8 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                     IEnumerable<RecipeItemEntry> inputs = recipe.Ingredients
                         .Select(this.TryCreateItemEntry)
                         .WhereNotNull();
-                    if (recipe.Type != RecipeType.TailorInput) // tailoring is always two ingredients with cloth first
+
+                    if (recipe.Type is not (RecipeType.TailorInput or RecipeType.MachineInput)) // tailoring and machine recipes are pre-sorted to show the common requirement last
                         inputs = inputs.OrderBy(entry => entry.DisplayText);
 
                     if (recipe.GoldPrice > 0)
