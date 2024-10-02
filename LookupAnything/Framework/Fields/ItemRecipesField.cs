@@ -591,7 +591,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 DisplayText: text,
                 Quality: quality,
                 IsGoldPrice: false,
-                IsError: isError ?? (item != null && ItemRegistry.GetData(item?.QualifiedItemId) == null)
+                IsError: isError ?? (item is null || !ItemRegistry.Exists(item.QualifiedItemId))
             );
         }
     }
