@@ -247,7 +247,9 @@ For example, this removes prismatic shard (item 74) from the list of universally
 
 ### `ReplaceDelimited`
 The `ReplaceDelimited` operation parses the target text into a set of values based on a delimiter,
-then replaces one or more values which match the given search text with a new value.
+then replaces one or more values equal to the given search text with a new value.
+
+This replaces delimited values, _not_ substrings within them.
 
 This expects these fields:
 
@@ -279,9 +281,11 @@ This field supports [tokens](../author-guide.md#tokens), and capitalization **do
 <td><code>Value</code></td>
 <td>
 
-The text to replace the found `Search` value with. Like most Content Patcher fields, **whitespace is trimmed from the start and end**.
+The text with which to replace the value.
 
-This field supports [tokens](../author-guide.md#tokens), and capitalization doesn't matter.
+This field supports [tokens](../author-guide.md#tokens), and capitalization doesn't matter. Like
+most Content Patcher fields, whitespace is trimmed from the start and end.
+
 
 </td>
 </tr>
@@ -319,7 +323,8 @@ Defaults to `All`.
 </tr>
 </table>
 
-For example, this replaces the first instance of the word "Thank" in Penny's gift taste entry with the word "Bless":
+For example, this replaces Rabbit's Foot (item #446) in universal love gift tastes with pufferfish
+(item #128):
 
 ```js
 {
@@ -327,10 +332,10 @@ For example, this replaces the first instance of the word "Thank" in Penny's gif
    "Target": "Data/NPCGiftTastes",
    "TextOperations": [
       {
-         "Operation": "RemoveDelimited",
-         "Target": ["Entries", "Penny"],
-         "Search": "Thank",
-         "Value": "Bless",
+         "Operation": "ReplaceDelimited",
+         "Target": ["Entries", "Universal_Love"],
+         "Search": "446",
+         "Value": "128",
          "Delimiter": " "
       }
    ]
