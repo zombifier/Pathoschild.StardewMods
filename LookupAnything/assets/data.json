@@ -189,7 +189,7 @@ You shouldn't change this file unless you know what you're doing.
         "149": {
             "Locations": [
                 {
-                    "LocationName": "Submarine",
+                    "LocationId": "Submarine",
                     "Seasons": [ "winter" ]
                 }
             ]
@@ -199,7 +199,7 @@ You shouldn't change this file unless you know what you're doing.
         "152": {
             "Locations": [
                 {
-                    "LocationName": "Submarine",
+                    "LocationId": "Submarine",
                     "Seasons": [ "winter" ]
                 }
             ]
@@ -209,7 +209,7 @@ You shouldn't change this file unless you know what you're doing.
         "154": {
             "Locations": [
                 {
-                    "LocationName": "Submarine",
+                    "LocationId": "Submarine",
                     "Seasons": [ "winter" ]
                 }
             ]
@@ -219,7 +219,7 @@ You shouldn't change this file unless you know what you're doing.
         "155": {
             "Locations": [
                 {
-                    "LocationName": "Submarine",
+                    "LocationId": "Submarine",
                     "Seasons": [ "winter" ]
                 }
             ]
@@ -229,7 +229,7 @@ You shouldn't change this file unless you know what you're doing.
         "158": {
             "Locations": [
                 {
-                    "LocationName": "UndergroundMine",
+                    "LocationId": "UndergroundMine",
                     "Area": 20,
                     "Seasons": [ "spring", "summer", "fall", "winter" ]
                 }
@@ -242,7 +242,7 @@ You shouldn't change this file unless you know what you're doing.
             "MinFishingLevel": 5,
             "Locations": [
                 {
-                    "LocationName": "Beach",
+                    "LocationId": "Beach",
                     "Area": "east-pier",
                     "Seasons": [ "summer" ]
                 }
@@ -255,7 +255,7 @@ You shouldn't change this file unless you know what you're doing.
             "MinFishingLevel": 3,
             "Locations": [
                 {
-                    "LocationName": "Town",
+                    "LocationId": "Town",
                     "Area": "northmost-bridge",
                     "Seasons": [ "fall" ]
                 }
@@ -266,7 +266,7 @@ You shouldn't change this file unless you know what you're doing.
         "161": {
             "Locations": [
                 {
-                    "LocationName": "UndergroundMine",
+                    "LocationId": "UndergroundMine",
                     "Area": 60,
                     "Seasons": [ "spring", "summer", "fall", "winter" ]
                 }
@@ -277,7 +277,7 @@ You shouldn't change this file unless you know what you're doing.
         "162": {
             "Locations": [
                 {
-                    "LocationName": "UndergroundMine",
+                    "LocationId": "UndergroundMine",
                     "Area": 100,
                     "Seasons": [ "spring", "summer", "fall", "winter" ]
                 }
@@ -291,7 +291,7 @@ You shouldn't change this file unless you know what you're doing.
             "Weather": "Rainy",
             "Locations": [
                 {
-                    "LocationName": "Mountain",
+                    "LocationId": "Mountain",
                     "Seasons": [ "spring" ]
                 }
             ]
@@ -302,7 +302,7 @@ You shouldn't change this file unless you know what you're doing.
             "IsUnique": true,
             "Locations": [
                 {
-                    "LocationName": "Sewer",
+                    "LocationId": "Sewer",
                     "Seasons": [ "spring", "summer", "fall", "winter" ]
                 }
             ]
@@ -314,7 +314,7 @@ You shouldn't change this file unless you know what you're doing.
             "MinFishingLevel": 6,
             "Locations": [
                 {
-                    "LocationName": "Forest",
+                    "LocationId": "Forest",
                     "Area": "island-tip",
                     "Seasons": [ "winter" ]
                 }
@@ -325,7 +325,7 @@ You shouldn't change this file unless you know what you're doing.
         "798": {
             "Locations": [
                 {
-                    "LocationName": "Submarine",
+                    "LocationId": "Submarine",
                     "Seasons": [ "winter" ]
                 }
             ]
@@ -335,7 +335,7 @@ You shouldn't change this file unless you know what you're doing.
         "799": {
             "Locations": [
                 {
-                    "LocationName": "Submarine",
+                    "LocationId": "Submarine",
                     "Seasons": [ "winter" ]
                 }
             ]
@@ -345,7 +345,7 @@ You shouldn't change this file unless you know what you're doing.
         "800": {
             "Locations": [
                 {
-                    "LocationName": "Submarine",
+                    "LocationId": "Submarine",
                     "Seasons": [ "winter" ]
                 }
             ]

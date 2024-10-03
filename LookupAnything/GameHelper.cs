@@ -375,6 +375,13 @@ namespace Pathoschild.Stardew.LookupAnything
             return this.DataParser.GetFriendshipForAnimal(player, animal, this.Metadata);
         }
 
+        /// <summary>Get the translated display name for a fish spawn location.</summary>
+        /// <param name="fishSpawnData">The location-specific spawn rules for which to get a location name.</param>
+        public string GetLocationDisplayName(FishSpawnLocationData fishSpawnData)
+        {
+            return this.DataParser.GetLocationDisplayName(fishSpawnData);
+        }
+
         /// <summary>Parse monster data.</summary>
         public IEnumerable<MonsterData> GetMonsterData()
         {
