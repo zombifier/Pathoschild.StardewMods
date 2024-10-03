@@ -183,7 +183,7 @@ just specify a key that doesn't exist; to delete an entry, set the value to `nul
 `"some key": null`). This field supports [tokens](../author-guide.md#tokens) in entry keys and
 values.
 
-For list values, see also [`MoveEntries`](#moving-list-entries).
+For list values, see also `MoveEntries` below.
 
 </td>
 </tr>
@@ -192,6 +192,8 @@ For list values, see also [`MoveEntries`](#moving-list-entries).
 
 _(List assets only)_ Change the entry order in a list asset like `Data/MoviesReactions`. (Using
 this with a non-list asset will cause an error, since those have no order.)
+
+See [_moving list entries_](#moving-list-entries) for more info.
 
 </td>
 </tr>
@@ -348,9 +350,14 @@ When the value has nested entries, you can use [`TargetField`](#target-field) to
 one.
 
 ### Edit a list
-You can edit a [list](#data-assets) the same way too. Although lists will not use keys in the original asset, you will still need to provide a key in your Entries field when editing or creating a new entry in that list. The resulting patch will look similar to the dictionary example above.
+You can edit a [list](#data-assets) the same way too.
 
-For a list of models (blocks of `{ ... }`), the key is the `Id` field for each model. For example, in this snippet from `Data\LocationContexts`, `Music` is a list of models that each have an `Id` field:
+Lists don't have keys in the original asset, but they still have a 'key' in Content Patcher which
+identifies each entry for features like `Entries` and `MoveEntries`. In other words, the patch to
+edit a list looks just like one to edit a dictionary above.
+
+For a list of models (blocks of `{ ... }`), the key is the `Id` field within each model. For
+example, this snippet from `Data\LocationContexts` shows one `Music` entry whose ID is `spring1`:
 ```js
 {
     "Default": {
@@ -370,7 +377,7 @@ For a list of models (blocks of `{ ... }`), the key is the `Id` field for each m
 }
 ```
 
-If you wanted to change the fields for the list entry whose `Id` value was equal to `spring1`, you would use `spring1` as your key in your Entries field and would edit it like so:
+To edit that music entry in a content pack, you'd use the ID as the key. For example:
 ```js
 {
     "Format": "2.3.0",
@@ -391,11 +398,10 @@ If you wanted to change the fields for the list entry whose `Id` value was equal
 }
 ```
 
-For a list of simple strings, the key is the string itself. [See the example for editing object context tags below](#edit-object-context-tags).
-
+Editing a list of simple strings works exactly the same way, except that the string itself is the
+key. See the [example for editing object context tags](#edit-object-context-tags) below.
 
 ### Moving list entries
-
 The order is often important for list assets (e.g. the game will use the first entry in
 `Data\MoviesReactions` that matches the NPC it's checking). You can change the order using the
 `MoveEntries` field. For example, this moves the `Abigail` entry using each possible operation:
