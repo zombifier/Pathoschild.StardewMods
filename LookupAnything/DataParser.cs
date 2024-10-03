@@ -202,7 +202,6 @@ namespace Pathoschild.Stardew.LookupAnything
                     locations.AddRange(
                         from areaGroup in curLocations.GroupBy(p => p.Area)
                         let seasons = areaGroup.SelectMany(p => p.Seasons).Distinct().ToArray()
-                        let displayName = this.GetLocationDisplayName(locationId, data, areaGroup.Key)
                         select new FishSpawnLocationData(locationId, areaGroup.Key, seasons)
                     );
                 }
@@ -290,16 +289,14 @@ namespace Pathoschild.Stardew.LookupAnything
         }
 
         /// <summary>Get the translated display name for a fish spawn location.</summary>
-        /// <param name="fishSpawnData">Data for the location whose name to look up.</param>
+        /// <param name="fishSpawnData">The location-specific spawn rules for which to get a location name.</param>
         /// <exception cref="NotSupportedException">If the location ID of fishSpawnData does not exist in the game data.</exception>
         public string GetLocationDisplayName(FishSpawnLocationData fishSpawnData)
         {
-            if (Game1.locationData.TryGetValue(fishSpawnData.LocationId, out LocationData? locationData))
-            {
-                return this.GetLocationDisplayName(fishSpawnData.LocationId, locationData, fishSpawnData.Area);
-            }
+            if (!Game1.locationData.TryGetValue(fishSpawnData.LocationId, out LocationData? locationData))
+                locationData = null;
 
-            throw new NotSupportedException($"Unexpected location ID {fishSpawnData.LocationId}.");
+            return this.GetLocationDisplayName(fishSpawnData.LocationId, locationData, fishSpawnData.Area);
         }
 
         /// <summary>Parse monster data.</summary>
@@ -626,9 +623,9 @@ namespace Pathoschild.Stardew.LookupAnything
         *********/
         /// <summary>Get the translated display name for a location and optional fish area.</summary>
         /// <param name="id">The location's internal name.</param>
-        /// <param name="data">The location data.</param>
+        /// <param name="data">The location data, if available.</param>
         /// <param name="fishAreaId">The fish area ID within the location, if applicable.</param>
-        private string GetLocationDisplayName(string id, LocationData data, string? fishAreaId)
+        private string GetLocationDisplayName(string id, LocationData? data, string? fishAreaId)
         {
             // special cases
             {
@@ -643,7 +640,7 @@ namespace Pathoschild.Stardew.LookupAnything
 
             // get base data
             string locationName = this.GetLocationDisplayName(id, data);
-            string areaName = TokenParser.ParseText(data.FishAreas?.GetValueOrDefault(fishAreaId)?.DisplayName);
+            string areaName = TokenParser.ParseText(data?.FishAreas?.GetValueOrDefault(fishAreaId)?.DisplayName);
 
             // build translation
             string displayName = I18n.GetByKey($"location.{id}.{fishAreaId}", new { locationName }).UsePlaceholder(false); // predefined translation
@@ -658,8 +655,8 @@ namespace Pathoschild.Stardew.LookupAnything
 
         /// <summary>Get the translated display name for a location.</summary>
         /// <param name="id">The location's internal name.</param>
-        /// <param name="data">The location data.</param>
-        private string GetLocationDisplayName(string id, LocationData data)
+        /// <param name="data">The location data, if available.</param>
+        private string GetLocationDisplayName(string id, LocationData? data)
         {
             // from predefined translations
             {
@@ -669,6 +666,7 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             // from location data
+            if (data != null)
             {
                 string name = TokenParser.ParseText(data.DisplayName);
                 if (!string.IsNullOrWhiteSpace(name))

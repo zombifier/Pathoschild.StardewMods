@@ -96,7 +96,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 yield return this.GetCondition(
                     label: I18n.Item_FishSpawnRules_Locations(
                         locations: I18n.List(
-                            spawnRules.Locations.Select(p => gameHelper.GetLocationDisplayName(p)).OrderBy(p => p)
+                            spawnRules.Locations.Select(gameHelper.GetLocationDisplayName).OrderBy(p => p)
                         )
                     ),
                     isMet: spawnRules.MatchesLocation(Game1.currentLocation.Name)
