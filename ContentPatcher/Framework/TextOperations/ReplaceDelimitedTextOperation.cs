@@ -41,7 +41,9 @@ namespace ContentPatcher.Framework.TextOperations
             this.Delimiter = delimiter;
             this.ReplaceMode = replaceMode;
 
-            this.Contextuals.Add(search);
+            this.Contextuals
+                .Add(search)
+                .Add(value);
         }
 
         /// <inheritdoc />
