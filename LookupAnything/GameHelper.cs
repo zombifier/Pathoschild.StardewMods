@@ -130,14 +130,6 @@ namespace Pathoschild.Stardew.LookupAnything
         /****
         ** Date/time helpers
         ****/
-        /// <summary>Format a game time in military 24-hour notation.</summary>
-        /// <param name="time">The time to format.</param>
-        public string FormatMilitaryTime(int time)
-        {
-            time %= 2400;
-            return $"{time / 100:00}:{time % 100:00}";
-        }
-
         /// <summary>Get a translated season name for the current language.</summary>
         /// <param name="season">The English season name.</param>
         public string TranslateSeason(string season)
@@ -346,7 +338,7 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <summary>Read parsed data about the spawn rules for a specific fish.</summary>
         /// <param name="fish">The fish item.</param>
         /// <remarks>Derived from <see cref="GameLocation.getFish"/>.</remarks>
-        public FishSpawnData? GetFishSpawnRules(ParsedItemData fish)
+        public FishSpawnData GetFishSpawnRules(ParsedItemData fish)
         {
             return this.DataParser.GetFishSpawnRules(fish, this.Metadata);
         }

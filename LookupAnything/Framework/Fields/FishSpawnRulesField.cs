@@ -66,7 +66,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Fields
                 yield return this.GetCondition(
                     label: I18n.Item_FishSpawnRules_Time(
                         times: I18n.List(
-                            spawnRules.TimesOfDay.Select(p => I18n.Generic_Range(gameHelper.FormatMilitaryTime(p.MinTime), gameHelper.FormatMilitaryTime(p.MaxTime)).ToString())
+                            spawnRules.TimesOfDay.Select(p => I18n.Generic_Range(Game1.getTimeOfDayString(p.MinTime), Game1.getTimeOfDayString(p.MaxTime)).ToString())
                         )
                     ),
                     isMet: spawnRules.TimesOfDay.Any(p => Game1.timeOfDay >= p.MinTime && Game1.timeOfDay <= p.MaxTime)
