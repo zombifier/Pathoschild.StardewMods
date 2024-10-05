@@ -28,6 +28,7 @@ using StardewValley.Extensions;
 using StardewValley.GameData.Crafting;
 using StardewValley.GameData.Crops;
 using StardewValley.GameData.FishPonds;
+using StardewValley.ItemTypeDefinitions;
 using StardewValley.Locations;
 using StardewValley.Menus;
 using StardewValley.Objects;
@@ -343,11 +344,11 @@ namespace Pathoschild.Stardew.LookupAnything
         }
 
         /// <summary>Read parsed data about the spawn rules for a specific fish.</summary>
-        /// <param name="fishID">The fish ID.</param>
+        /// <param name="fish">The fish item.</param>
         /// <remarks>Derived from <see cref="GameLocation.getFish"/>.</remarks>
-        public FishSpawnData? GetFishSpawnRules(string fishID)
+        public FishSpawnData? GetFishSpawnRules(ParsedItemData fish)
         {
-            return this.DataParser.GetFishSpawnRules(fishID, this.Metadata);
+            return this.DataParser.GetFishSpawnRules(fish, this.Metadata);
         }
 
         /// <summary>Get parsed data about the friendship between a player and NPC.</summary>
