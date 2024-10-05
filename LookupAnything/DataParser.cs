@@ -13,6 +13,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Characters;
+using StardewValley.Extensions;
 using StardewValley.GameData;
 using StardewValley.GameData.Buildings;
 using StardewValley.GameData.FishPonds;
@@ -144,10 +145,10 @@ namespace Pathoschild.Stardew.LookupAnything
         }
 
         /// <summary>Read parsed data about the spawn rules for a specific fish.</summary>
-        /// <param name="fishID">The fish ID.</param>
+        /// <param name="fish">The fish item data.</param>
         /// <param name="metadata">Provides metadata that's not available from the game data directly.</param>
         /// <remarks>Derived from <see cref="GameLocation.getFish"/>.</remarks>
-        public FishSpawnData? GetFishSpawnRules(string fishID, Metadata metadata)
+        public FishSpawnData GetFishSpawnRules(ParsedItemData fish, Metadata metadata)
         {
             // parse location data
             var locations = new List<FishSpawnLocationData>();
@@ -157,19 +158,19 @@ namespace Pathoschild.Stardew.LookupAnything
                     continue; // ignore event data
 
                 List<FishSpawnLocationData> curLocations = [];
-                foreach (SpawnFishData fish in data.Fish)
+                foreach (SpawnFishData spawn in data.Fish)
                 {
-                    ParsedItemData? fishItem = ItemRegistry.GetData(fish.ItemId);
-                    if (fishItem?.ObjectType != "Fish" || fishItem.ItemId != fishID)
+                    ParsedItemData? spawnItemData = ItemRegistry.GetData(spawn.ItemId);
+                    if (spawnItemData?.ObjectType != "Fish" || spawnItemData.QualifiedItemId != fish.QualifiedItemId)
                         continue;
 
-                    if (fish.Season.HasValue)
+                    if (spawn.Season.HasValue)
                     {
-                        curLocations.Add(new FishSpawnLocationData(locationId, fish.FishAreaId, new[] { fish.Season.Value.ToString() }));
+                        curLocations.Add(new FishSpawnLocationData(locationId, spawn.FishAreaId, new[] { spawn.Season.Value.ToString() }));
                     }
-                    else if (fish.Condition != null)
+                    else if (spawn.Condition != null)
                     {
-                        var conditionData = GameStateQuery.Parse(fish.Condition);
+                        var conditionData = GameStateQuery.Parse(spawn.Condition);
                         var seasonalConditions = conditionData.Where(condition => GameStateQuery.SeasonQueryKeys.Contains(condition.Query[0]));
                         foreach (GameStateQuery.ParsedGameStateQuery condition in seasonalConditions)
                         {
@@ -179,11 +180,11 @@ namespace Pathoschild.Stardew.LookupAnything
                                 if (!condition.Negated && condition.Query.Any(word => word.Equals(season, StringComparison.OrdinalIgnoreCase)))
                                     seasons.Add(season);
                             }
-                            curLocations.Add(new FishSpawnLocationData(locationId, fish.FishAreaId, seasons.ToArray()));
+                            curLocations.Add(new FishSpawnLocationData(locationId, spawn.FishAreaId, seasons.ToArray()));
                         }
                     }
                     else
-                        curLocations.Add(new FishSpawnLocationData(locationId, fish.FishAreaId, new[] { "spring", "summer", "fall", "winter" }));
+                        curLocations.Add(new FishSpawnLocationData(locationId, spawn.FishAreaId, new[] { "spring", "summer", "fall", "winter" }));
                 }
 
                 // combine seasons for same area
@@ -202,32 +203,35 @@ namespace Pathoschild.Stardew.LookupAnything
             FishSpawnWeather weather = FishSpawnWeather.Both;
             int minFishingLevel = 0;
             bool isUnique = false;
-            if (locations.Any()) // ignore default spawn criteria if the fish doesn't spawn naturally; in that case it should be specified explicitly in custom data below (if any)
+            if (fish.HasTypeObject())
             {
-                if (DataLoader.Fish(Game1.content).TryGetValue(fishID, out string? rawData))
+                if (locations.Any()) // ignore default spawn criteria if the fish doesn't spawn naturally; in that case it should be specified explicitly in custom data below (if any)
                 {
-                    string[] fishFields = rawData.Split('/');
-
-                    // times of day
-                    string[] timeFields = ArgUtility.Get(fishFields, 5)?.Split(' ') ?? Array.Empty<string>();
-                    for (int i = 0, last = timeFields.Length + 1; i + 1 < last; i += 2)
+                    if (DataLoader.Fish(Game1.content).TryGetValue(fish.ItemId, out string? rawData))
                     {
-                        if (int.TryParse(timeFields[i], out int minTime) && int.TryParse(timeFields[i + 1], out int maxTime))
-                            timesOfDay.Add(new FishSpawnTimeOfDayData(minTime, maxTime));
+                        string[] fishFields = rawData.Split('/');
+
+                        // times of day
+                        string[] timeFields = ArgUtility.Get(fishFields, 5)?.Split(' ') ?? Array.Empty<string>();
+                        for (int i = 0, last = timeFields.Length + 1; i + 1 < last; i += 2)
+                        {
+                            if (int.TryParse(timeFields[i], out int minTime) && int.TryParse(timeFields[i + 1], out int maxTime))
+                                timesOfDay.Add(new FishSpawnTimeOfDayData(minTime, maxTime));
+                        }
+
+                        // weather
+                        if (!Enum.TryParse(ArgUtility.Get(fishFields, 7), true, out weather))
+                            weather = FishSpawnWeather.Both;
+
+                        // min fishing level
+                        if (!int.TryParse(ArgUtility.Get(fishFields, 12), out minFishingLevel))
+                            minFishingLevel = 0;
                     }
-
-                    // weather
-                    if (!Enum.TryParse(ArgUtility.Get(fishFields, 7), true, out weather))
-                        weather = FishSpawnWeather.Both;
-
-                    // min fishing level
-                    if (!int.TryParse(ArgUtility.Get(fishFields, 12), out minFishingLevel))
-                        minFishingLevel = 0;
                 }
             }
 
             // read custom data
-            if (metadata.CustomFishSpawnRules.TryGetValue(fishID, out FishSpawnData? customRules))
+            if (metadata.CustomFishSpawnRules.TryGetValue(fish.QualifiedItemId, out FishSpawnData? customRules))
             {
                 if (customRules.MinFishingLevel > minFishingLevel)
                     minFishingLevel = customRules.MinFishingLevel;
@@ -247,7 +251,7 @@ namespace Pathoschild.Stardew.LookupAnything
 
             // build model
             return new FishSpawnData(
-                FishID: fishID,
+                FishItem: fish,
                 Locations: locations.ToArray(),
                 TimesOfDay: timesOfDay.ToArray(),
                 Weather: weather,

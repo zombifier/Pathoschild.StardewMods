@@ -21,6 +21,7 @@ using StardewValley.Extensions;
 using StardewValley.GameData.Crops;
 using StardewValley.GameData.FishPonds;
 using StardewValley.GameData.Movies;
+using StardewValley.ItemTypeDefinitions;
 using StardewValley.Locations;
 using StardewValley.Objects;
 using StardewValley.TerrainFeatures;
@@ -131,6 +132,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
         {
             // get data
             Item item = this.Target;
+            ParsedItemData itemData = ItemRegistry.GetDataOrErrorItem(item.QualifiedItemId);
             SObject? obj = item as SObject;
             bool isCrop = this.FromCrop != null;
             bool isSeed = this.SeedForCrop != null;
@@ -311,7 +313,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             }
 
             // fish spawn rules
-            yield return new FishSpawnRulesField(this.GameHelper, I18n.Item_FishSpawnRules(), item.ItemId);
+            yield return new FishSpawnRulesField(this.GameHelper, I18n.Item_FishSpawnRules(), itemData);
 
             // fish pond data
             // derived from FishPond::doAction
