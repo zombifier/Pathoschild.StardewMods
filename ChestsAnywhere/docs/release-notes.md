@@ -3,6 +3,9 @@
 # Release notes
 ## Upcoming release
 * Updated for Stardew Valley 1.6.9.
+* Added two config options which apply when you press the 'toggle UI' key:
+   - whether it reopens the last chest you selected;
+   - a category name to open by default (if set).
 * Improved dropdown positioning to reduce overlap with big chest UI.
 * Improved translations. Thanks to celr00 (updated Spanish), ForgottenZ (updated Chinese), MakinDay (updated Italian), and moonggae (updated Korean)!
 
