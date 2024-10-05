@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Updated for Stardew Valley 1.6.9.
+* Fixed ocean area choosing estuary fish instead of ocean fish.
 * Improved translations. Thanks to DonCami (updated Spanish) and moonggae (updated Korean)!
 
 ## 2.5.7
