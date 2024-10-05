@@ -14,7 +14,10 @@
 * Fixed support for custom machine rules using `ITEM_ID` and `ITEM_CONTEXT_TAG` game state queries.
 * Fixed support for custom polyculture crops in 'needed for' field (thanks to Mushymato!).
 * Fixed hidden items being counted when deciding whether to collapse a field (thanks to b3nk3lly!).
-* Fixed fish spawn field not showing some locations' display names (thanks to b3nk3lly!).
+* Fixed fish spawn fields...
+  - not showing some locations' display names (thanks to b3nk3lly!);
+  - sometimes shown for the wrong item (thanks to Mushymato!);
+  - always showing one-time fish as not caught (thanks to Mushymato!).
 * Fixed error getting recipes if a mod adds invalid machine data.
 * Fixed error if an old version of Custom Bush is installed.
 * Fixed format for `DAY_OF_MONTH` queries in lookups (thanks to Mushymato!).
