@@ -45,8 +45,11 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <remarks>Derived from the <see cref="StardewValley.Locations.CommunityCenter"/> constructor and <see cref="StardewValley.Menus.JunimoNoteMenu.openRewardsMenu"/>.</remarks>
         public IEnumerable<BundleModel> GetBundles(IMonitor monitor)
         {
-            foreach ((string key, string value) in Game1.netWorldState.Value.BundleData)
+            foreach ((string key, string? value) in Game1.netWorldState.Value.BundleData)
             {
+                if (value is null)
+                    continue;
+
                 BundleModel bundle;
                 try
                 {
@@ -99,15 +102,21 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <param name="data">The fish pond data.</param>
         public IEnumerable<FishPondPopulationGateData> GetFishPondPopulationGates(FishPondData data)
         {
-            foreach (var gate in data.PopulationGates)
+            if (data.PopulationGates is null)
+                yield break;
+
+            foreach ((int minPopulation, List<string?>? rawData) in data.PopulationGates)
             {
+                if (rawData is null)
+                    continue;
+
                 // get required items
-                FishPondPopulationGateQuestItemData[] questItems = gate.Value
+                FishPondPopulationGateQuestItemData[] questItems = rawData
                     .Select(entry =>
                     {
                         // parse ID
-                        string[] parts = entry.Split(' ');
-                        if (parts.Length is < 1 or > 3)
+                        string[]? parts = entry?.Split(' ');
+                        if (parts is null || parts.Length is < 1 or > 3)
                             return null;
 
                         // parse counts
@@ -132,7 +141,7 @@ namespace Pathoschild.Stardew.LookupAnything
                     .ToArray();
 
                 // build entry
-                yield return new FishPondPopulationGateData(gate.Key, questItems);
+                yield return new FishPondPopulationGateData(minPopulation, questItems);
             }
         }
 
@@ -140,8 +149,14 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <param name="data">The fish pond data.</param>
         public IEnumerable<FishPondDropData> GetFishPondDrops(FishPondData data)
         {
-            foreach (FishPondReward drop in data.ProducedItems)
-                yield return new FishPondDropData(drop.RequiredPopulation, drop.ItemId, drop.MinStack, drop.MaxStack, drop.Chance);
+            if (data.ProducedItems is null)
+                yield break;
+
+            foreach (FishPondReward? drop in data.ProducedItems)
+            {
+                if (drop is not null)
+                    yield return new FishPondDropData(drop.RequiredPopulation, drop.ItemId, drop.MinStack, drop.MaxStack, drop.Chance);
+            }
         }
 
         /// <summary>Read parsed data about the spawn rules for a specific fish.</summary>
@@ -152,39 +167,45 @@ namespace Pathoschild.Stardew.LookupAnything
         {
             // parse location data
             var locations = new List<FishSpawnLocationData>();
-            foreach ((string locationId, LocationData data) in DataLoader.Locations(Game1.content))
+            foreach ((string locationId, LocationData? data) in DataLoader.Locations(Game1.content))
             {
                 if (metadata.IgnoreFishingLocations.Contains(locationId))
                     continue; // ignore event data
 
                 List<FishSpawnLocationData> curLocations = [];
-                foreach (SpawnFishData spawn in data.Fish)
+                if (data?.Fish is not null)
                 {
-                    ParsedItemData? spawnItemData = ItemRegistry.GetData(spawn.ItemId);
-                    if (spawnItemData?.ObjectType != "Fish" || spawnItemData.QualifiedItemId != fish.QualifiedItemId)
-                        continue;
+                    foreach (SpawnFishData spawn in data.Fish)
+                    {
+                        if (spawn is null)
+                            continue;
 
-                    if (spawn.Season.HasValue)
-                    {
-                        curLocations.Add(new FishSpawnLocationData(locationId, spawn.FishAreaId, new[] { spawn.Season.Value.ToString() }));
-                    }
-                    else if (spawn.Condition != null)
-                    {
-                        var conditionData = GameStateQuery.Parse(spawn.Condition);
-                        var seasonalConditions = conditionData.Where(condition => GameStateQuery.SeasonQueryKeys.Contains(condition.Query[0]));
-                        foreach (GameStateQuery.ParsedGameStateQuery condition in seasonalConditions)
+                        ParsedItemData? spawnItemData = ItemRegistry.GetData(spawn.ItemId);
+                        if (spawnItemData?.ObjectType != "Fish" || spawnItemData.QualifiedItemId != fish.QualifiedItemId)
+                            continue;
+
+                        if (spawn.Season.HasValue)
                         {
-                            var seasons = new List<string>();
-                            foreach (string season in new[] { "spring", "summer", "fall", "winter" })
-                            {
-                                if (!condition.Negated && condition.Query.Any(word => word.Equals(season, StringComparison.OrdinalIgnoreCase)))
-                                    seasons.Add(season);
-                            }
-                            curLocations.Add(new FishSpawnLocationData(locationId, spawn.FishAreaId, seasons.ToArray()));
+                            curLocations.Add(new FishSpawnLocationData(locationId, spawn.FishAreaId, new[] { spawn.Season.Value.ToString() }));
                         }
+                        else if (spawn.Condition != null)
+                        {
+                            var conditionData = GameStateQuery.Parse(spawn.Condition);
+                            var seasonalConditions = conditionData.Where(condition => GameStateQuery.SeasonQueryKeys.Contains(condition.Query[0]));
+                            foreach (GameStateQuery.ParsedGameStateQuery condition in seasonalConditions)
+                            {
+                                var seasons = new List<string>();
+                                foreach (string season in new[] { "spring", "summer", "fall", "winter" })
+                                {
+                                    if (!condition.Negated && condition.Query.Any(word => word.Equals(season, StringComparison.OrdinalIgnoreCase)))
+                                        seasons.Add(season);
+                                }
+                                curLocations.Add(new FishSpawnLocationData(locationId, spawn.FishAreaId, seasons.ToArray()));
+                            }
+                        }
+                        else
+                            curLocations.Add(new FishSpawnLocationData(locationId, spawn.FishAreaId, new[] { "spring", "summer", "fall", "winter" }));
                     }
-                    else
-                        curLocations.Add(new FishSpawnLocationData(locationId, spawn.FishAreaId, new[] { "spring", "summer", "fall", "winter" }));
                 }
 
                 // combine seasons for same area
@@ -207,7 +228,7 @@ namespace Pathoschild.Stardew.LookupAnything
             {
                 if (locations.Any()) // ignore default spawn criteria if the fish doesn't spawn naturally; in that case it should be specified explicitly in custom data below (if any)
                 {
-                    if (DataLoader.Fish(Game1.content).TryGetValue(fish.ItemId, out string? rawData))
+                    if (DataLoader.Fish(Game1.content).TryGetValue(fish.ItemId, out string? rawData) && rawData is not null)
                     {
                         string[] fishFields = rawData.Split('/');
 
@@ -302,8 +323,11 @@ namespace Pathoschild.Stardew.LookupAnything
         /// <remarks>Reverse engineered from <see cref="StardewValley.Monsters.Monster.parseMonsterInfo"/>, <see cref="GameLocation.monsterDrop"/>, and the <see cref="Debris"/> constructor.</remarks>
         public IEnumerable<MonsterData> GetMonsters()
         {
-            foreach ((string name, string rawData) in DataLoader.Monsters(Game1.content))
+            foreach ((string name, string? rawData) in DataLoader.Monsters(Game1.content))
             {
+                if (rawData is null)
+                    continue;
+
                 // monster fields
                 string[] fields = rawData.Split('/');
                 int health = int.Parse(fields[0]);
@@ -395,6 +419,9 @@ namespace Pathoschild.Stardew.LookupAnything
                 .Concat(from pair in CraftingRecipe.craftingRecipes select new { pair.Key, pair.Value, IsCookingRecipe = false });
             foreach (var entry in craftingRecipes)
             {
+                if (entry.Value is null)
+                    continue;
+
                 try
                 {
                     var recipe = new CraftingRecipe(entry.Key, entry.IsCookingRecipe);
@@ -412,7 +439,7 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             // machine recipes from Data/Machines
-            foreach ((string entryKey, MachineData machineData) in DataLoader.Machines(Game1.content))
+            foreach ((string entryKey, MachineData? machineData) in DataLoader.Machines(Game1.content))
             {
                 string qualifiedMachineId = entryKey; // avoid referencing loop variable in closure
 
@@ -538,7 +565,7 @@ namespace Pathoschild.Stardew.LookupAnything
             }
 
             // building recipes from Data/Buildings
-            foreach ((string buildingType, BuildingData buildingData) in Game1.buildingData)
+            foreach ((string buildingType, BuildingData? buildingData) in Game1.buildingData)
             {
                 // construction recipe
                 if (buildingData?.BuildCost > 0 || buildingData?.BuildMaterials?.Count > 0)
