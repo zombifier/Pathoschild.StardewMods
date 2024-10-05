@@ -537,7 +537,7 @@ namespace Pathoschild.Stardew.TractorMod
                     new MeleeSwordAttachment(toolConfig.MeleeSword, modRegistry),
                     new MilkPailAttachment(toolConfig.MilkPail, modRegistry),
                     new PickaxeAttachment(toolConfig.PickAxe, modRegistry, reflection),
-                    new ScytheAttachment(toolConfig.Scythe, modRegistry),
+                    new ScytheAttachment(toolConfig.Scythe, modRegistry, reflection),
                     new SeedAttachment(toolConfig.Seeds, modRegistry, reflection),
                     modRegistry.IsLoaded(SeedBagAttachment.ModId) ? new SeedBagAttachment(toolConfig.SeedBagMod, modRegistry) : null,
                     new ShearsAttachment(toolConfig.Shears, modRegistry),

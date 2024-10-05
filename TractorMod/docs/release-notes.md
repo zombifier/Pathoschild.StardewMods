@@ -3,6 +3,7 @@
 # Release notes
 ## Upcoming release
 * Updated for Stardew Valley 1.6.9.
+* The scythe can now harvest green rain bushes.
 * Added more auto-fixes on day start:
   * invalid or duplicate tractors are now removed;
   * duplicate garage IDs are now reassigned.
