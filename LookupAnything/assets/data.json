@@ -186,7 +186,7 @@ You shouldn't change this file unless you know what you're doing.
      */
     "CustomFishSpawnRules": {
         // Octopus
-        "149": {
+        "(O)149": {
             "Locations": [
                 {
                     "LocationName": "Submarine",
@@ -196,7 +196,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Seaweed
-        "152": {
+        "(O)152": {
             "Locations": [
                 {
                     "LocationName": "Submarine",
@@ -206,7 +206,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Sea Cucumber
-        "154": {
+        "(O)154": {
             "Locations": [
                 {
                     "LocationName": "Submarine",
@@ -216,7 +216,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Super Cucumber
-        "155": {
+        "(O)155": {
             "Locations": [
                 {
                     "LocationName": "Submarine",
@@ -226,7 +226,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Stonefish
-        "158": {
+        "(O)158": {
             "Locations": [
                 {
                     "LocationName": "UndergroundMine",
@@ -237,7 +237,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Crimsonfish (legendary)
-        "159": {
+        "(O)159": {
             "IsUnique": true,
             "MinFishingLevel": 5,
             "Locations": [
@@ -250,7 +250,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Angler (legendary)
-        "160": {
+        "(O)160": {
             "IsUnique": true,
             "MinFishingLevel": 3,
             "Locations": [
@@ -263,7 +263,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Ice Pip
-        "161": {
+        "(O)161": {
             "Locations": [
                 {
                     "LocationName": "UndergroundMine",
@@ -274,7 +274,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Lava Eel
-        "162": {
+        "(O)162": {
             "Locations": [
                 {
                     "LocationName": "UndergroundMine",
@@ -285,7 +285,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Legend (legendary)
-        "163": {
+        "(O)163": {
             "IsUnique": true,
             "MinFishingLevel": 10,
             "Weather": "Rainy",
@@ -298,7 +298,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Mutant Carp (legendary)
-        "682": {
+        "(O)682": {
             "IsUnique": true,
             "Locations": [
                 {
@@ -309,7 +309,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Glacierfish (legendary)
-        "775": {
+        "(O)775": {
             "IsUnique": true,
             "MinFishingLevel": 6,
             "Locations": [
@@ -322,7 +322,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Midnight Squid
-        "798": {
+        "(O)798": {
             "Locations": [
                 {
                     "LocationName": "Submarine",
@@ -332,7 +332,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Spook Fish
-        "799": {
+        "(O)799": {
             "Locations": [
                 {
                     "LocationName": "Submarine",
@@ -342,7 +342,7 @@ You shouldn't change this file unless you know what you're doing.
         },
 
         // Blobfish
-        "800": {
+        "(O)800": {
             "Locations": [
                 {
                     "LocationName": "Submarine",

@@ -13,6 +13,7 @@ using StardewModdingAPI;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Characters;
+using StardewValley.Extensions;
 using StardewValley.GameData;
 using StardewValley.GameData.Buildings;
 using StardewValley.GameData.FishPonds;
@@ -208,32 +209,35 @@ namespace Pathoschild.Stardew.LookupAnything
             FishSpawnWeather weather = FishSpawnWeather.Both;
             int minFishingLevel = 0;
             bool isUnique = false;
-            if (locations.Any()) // ignore default spawn criteria if the fish doesn't spawn naturally; in that case it should be specified explicitly in custom data below (if any)
+            if (sourceFishItem.HasTypeObject())
             {
-                if (DataLoader.Fish(Game1.content).TryGetValue(unqualifiedFishId, out string? rawData))
+                if (locations.Any()) // ignore default spawn criteria if the fish doesn't spawn naturally; in that case it should be specified explicitly in custom data below (if any)
                 {
-                    string[] fishFields = rawData.Split('/');
-
-                    // times of day
-                    string[] timeFields = ArgUtility.Get(fishFields, 5)?.Split(' ') ?? Array.Empty<string>();
-                    for (int i = 0, last = timeFields.Length + 1; i + 1 < last; i += 2)
+                    if (DataLoader.Fish(Game1.content).TryGetValue(unqualifiedFishId, out string? rawData))
                     {
-                        if (int.TryParse(timeFields[i], out int minTime) && int.TryParse(timeFields[i + 1], out int maxTime))
-                            timesOfDay.Add(new FishSpawnTimeOfDayData(minTime, maxTime));
+                        string[] fishFields = rawData.Split('/');
+
+                        // times of day
+                        string[] timeFields = ArgUtility.Get(fishFields, 5)?.Split(' ') ?? Array.Empty<string>();
+                        for (int i = 0, last = timeFields.Length + 1; i + 1 < last; i += 2)
+                        {
+                            if (int.TryParse(timeFields[i], out int minTime) && int.TryParse(timeFields[i + 1], out int maxTime))
+                                timesOfDay.Add(new FishSpawnTimeOfDayData(minTime, maxTime));
+                        }
+
+                        // weather
+                        if (!Enum.TryParse(ArgUtility.Get(fishFields, 7), true, out weather))
+                            weather = FishSpawnWeather.Both;
+
+                        // min fishing level
+                        if (!int.TryParse(ArgUtility.Get(fishFields, 12), out minFishingLevel))
+                            minFishingLevel = 0;
                     }
-
-                    // weather
-                    if (!Enum.TryParse(ArgUtility.Get(fishFields, 7), true, out weather))
-                        weather = FishSpawnWeather.Both;
-
-                    // min fishing level
-                    if (!int.TryParse(ArgUtility.Get(fishFields, 12), out minFishingLevel))
-                        minFishingLevel = 0;
                 }
             }
 
             // read custom data
-            if (metadata.CustomFishSpawnRules.TryGetValue(unqualifiedFishId, out FishSpawnData? customRules))
+            if (metadata.CustomFishSpawnRules.TryGetValue(sourceFishItem.QualifiedItemId, out FishSpawnData? customRules))
             {
                 if (customRules.MinFishingLevel > minFishingLevel)
                     minFishingLevel = customRules.MinFishingLevel;
