@@ -33,7 +33,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             this.GetSpriteSheet(value, out this.Texture, out this.SourceRect);
         }
 
-        /// <summary>Get the sprite's source rectangle within its texture.</summary>
+        /// <inheritdoc />
         public override Rectangle GetSpritesheetArea()
         {
             FruitTree tree = this.Value;
@@ -61,7 +61,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             return new Rectangle(this.SourceRect.X + ((12 + (tree.IgnoresSeasonsHere() ? 1 : Game1.seasonIndex) * 3) * 16), this.SourceRect.Y, 48, 16 + 64);
         }
 
-        /// <summary>Get a rectangle which roughly bounds the visible sprite relative the viewport.</summary>
+        /// <inheritdoc />
         /// <remarks>Reverse-engineered from <see cref="FruitTree.draw"/>.</remarks>
         public override Rectangle GetWorldArea()
         {
@@ -91,10 +91,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
             return new Rectangle(x, y, width, height);
         }
 
-        /// <summary>Get whether the visible sprite intersects the specified coordinate. This can be an expensive test.</summary>
-        /// <param name="tile">The tile to search.</param>
-        /// <param name="position">The viewport-relative coordinates to search.</param>
-        /// <param name="spriteArea">The approximate sprite area calculated by <see cref="GetWorldArea"/>.</param>
+        /// <inheritdoc />
         /// <remarks>Reverse engineered from <see cref="FruitTree.draw"/>.</remarks>
         public override bool SpriteIntersectsPixel(Vector2 tile, Vector2 position, Rectangle spriteArea)
         {

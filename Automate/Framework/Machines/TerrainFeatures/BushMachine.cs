@@ -50,7 +50,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             );
         }
 
-        /// <summary>Get the output item.</summary>
+        /// <inheritdoc />
         public override ITrackedStack GetOutput()
         {
             string itemId = this.Machine.GetShakeOffItem();
@@ -65,7 +65,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             return new TrackedItem(ItemRegistry.Create(itemId, count, quality), onReduced: this.OnOutputReduced);
         }
 
-        /// <summary>Get the machine's processing state.</summary>
+        /// <inheritdoc />
         public override MachineState GetState()
         {
             if (!this.IsInSeason.Value)
@@ -76,9 +76,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
                 : MachineState.Processing;
         }
 
-        /// <summary>Provide input to the machine.</summary>
-        /// <param name="input">The available items.</param>
-        /// <returns>Returns whether the machine started processing an item.</returns>
+        /// <inheritdoc />
         public override bool SetInput(IStorage input)
         {
             return false; // no input required

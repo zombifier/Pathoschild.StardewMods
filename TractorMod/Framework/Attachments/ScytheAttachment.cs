@@ -50,11 +50,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework.Attachments
             this.Reflection = reflection;
         }
 
-        /// <summary>Get whether the tool is currently enabled.</summary>
-        /// <param name="player">The current player.</param>
-        /// <param name="tool">The tool selected by the player (if any).</param>
-        /// <param name="item">The item selected by the player (if any).</param>
-        /// <param name="location">The current location.</param>
+        /// <inheritdoc />
         public override bool IsEnabled(Farmer player, Tool? tool, Item? item, GameLocation location)
         {
             return
@@ -62,14 +58,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework.Attachments
                 && weapon.isScythe();
         }
 
-        /// <summary>Apply the tool to the given tile.</summary>
-        /// <param name="tile">The tile to modify.</param>
-        /// <param name="tileObj">The object on the tile.</param>
-        /// <param name="tileFeature">The feature on the tile.</param>
-        /// <param name="player">The current player.</param>
-        /// <param name="tool">The tool selected by the player (if any).</param>
-        /// <param name="item">The item selected by the player (if any).</param>
-        /// <param name="location">The current location.</param>
+        /// <inheritdoc />
         public override bool Apply(Vector2 tile, SObject? tileObj, TerrainFeature? tileFeature, Farmer player, Tool? tool, Item? item, GameLocation location)
         {
             tool = tool.AssertNotNull();
@@ -131,8 +120,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework.Attachments
             return false;
         }
 
-        /// <summary>Method called when the tractor attachments have been activated for a location.</summary>
-        /// <param name="location">The current tractor location.</param>
+        /// <inheritdoc />
         public override void OnActivated(GameLocation location)
         {
             base.OnActivated(location);

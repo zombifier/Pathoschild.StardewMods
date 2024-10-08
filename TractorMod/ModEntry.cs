@@ -75,8 +75,7 @@ namespace Pathoschild.Stardew.TractorMod
         /*********
         ** Public methods
         *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-        /// <param name="helper">Provides simplified APIs for writing mods.</param>
+        /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
             CommonHelper.RemoveObsoleteFiles(this, "TractorMod.pdb"); // removed in 4.16.5
@@ -135,9 +134,7 @@ namespace Pathoschild.Stardew.TractorMod
         /****
         ** Event handlers
         ****/
-        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched" />
         private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
         {
             // add Generic Mod Config Menu integration
@@ -164,9 +161,7 @@ namespace Pathoschild.Stardew.TractorMod
                 this.Monitor.Log("The 'Harvest With Scythe' mod is compatible with Tractor Mod, but it may break some tractor scythe features. You can ignore this warning if you don't have any scythe issues.", LogLevel.Warn);
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded" />
         private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
         {
             // load legacy data
@@ -192,9 +187,7 @@ namespace Pathoschild.Stardew.TractorMod
             }
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.DayStarted"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.DayStarted" />
         private void OnDayStarted(object? sender, DayStartedEventArgs e)
         {
             if (!this.IsEnabled)
@@ -274,9 +267,7 @@ namespace Pathoschild.Stardew.TractorMod
             }
         }
 
-        /// <inheritdoc cref="IContentEvents.AssetRequested"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IContentEvents.AssetRequested" />
         private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
         {
             this.AudioManager.OnAssetRequested(e);
@@ -316,17 +307,13 @@ namespace Pathoschild.Stardew.TractorMod
             }
         }
 
-        /// <inheritdoc cref="IContentEvents.LocaleChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IContentEvents.LocaleChanged" />
         private void OnLocaleChanged(object? sender, LocaleChangedEventArgs e)
         {
             this.Helper.GameContent.InvalidateCache("Data/Buildings");
         }
 
-        /// <inheritdoc cref="IWorldEvents.LocationListChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IWorldEvents.LocationListChanged" />
         private void OnLocationListChanged(object? sender, LocationListChangedEventArgs e)
         {
             if (!this.IsEnabled)
@@ -343,9 +330,7 @@ namespace Pathoschild.Stardew.TractorMod
             }
         }
 
-        /// <inheritdoc cref="IWorldEvents.NpcListChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IWorldEvents.NpcListChanged" />
         private void OnNpcListChanged(object? sender, NpcListChangedEventArgs e)
         {
             if (!this.IsEnabled)
@@ -367,9 +352,7 @@ namespace Pathoschild.Stardew.TractorMod
             }
         }
 
-        /// <inheritdoc cref="IPlayerEvents.Warped"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IPlayerEvents.Warped" />
         private void OnWarped(object? sender, WarpedEventArgs e)
         {
             if (!e.IsLocalPlayer || !this.TractorManager.IsCurrentPlayerRiding)
@@ -386,9 +369,7 @@ namespace Pathoschild.Stardew.TractorMod
                 Game1.player.mount.dismount();
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked" />
         private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
         {
             if (!this.IsEnabled)
@@ -412,9 +393,7 @@ namespace Pathoschild.Stardew.TractorMod
                 this.AudioManager.SetEngineState(EngineState.Stop);
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.DayEnding"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.DayEnding" />
         private void OnDayEnding(object? sender, DayEndingEventArgs e)
         {
             if (!this.IsEnabled)
@@ -436,25 +415,19 @@ namespace Pathoschild.Stardew.TractorMod
             }
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.ReturnedToTitle"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.ReturnedToTitle" />
         private void OnReturnedToTitle(object? sender, ReturnedToTitleEventArgs e)
         {
             this.AudioManager.SetEngineState(EngineState.Stop);
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.Saved"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.Saved" />
         private void OnSaved(object? sender, SavedEventArgs e)
         {
             Migrator.AfterSave();
         }
 
-        /// <inheritdoc cref="IDisplayEvents.RenderedWorld"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IDisplayEvents.RenderedWorld" />
         private void OnRenderedWorld(object? sender, RenderedWorldEventArgs e)
         {
             if (!this.IsEnabled)
@@ -465,9 +438,7 @@ namespace Pathoschild.Stardew.TractorMod
                 this.TractorManager.DrawRadius(Game1.spriteBatch);
         }
 
-        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged" />
         private void OnButtonsChanged(object? sender, ButtonsChangedEventArgs e)
         {
             if (!this.IsEnabled || !Context.IsPlayerFree)
@@ -479,9 +450,7 @@ namespace Pathoschild.Stardew.TractorMod
                 this.DismissTractor(Game1.player.mount);
         }
 
-        /// <inheritdoc cref="IMultiplayerEvents.ModMessageReceived"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IMultiplayerEvents.ModMessageReceived" />
         private void OnModMessageReceived(object? sender, ModMessageReceivedEventArgs e)
         {
             // tractor request from a farmhand

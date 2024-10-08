@@ -34,7 +34,7 @@ namespace ContentPatcher.Framework.TriggerActions
         ** Public methods
         *********/
         /// <summary>Handle the action when it's called by the game.</summary>
-        /// <inheritdoc cref="TriggerActionDelegate"/>
+        /// <inheritdoc cref="TriggerActionDelegate" />
         public bool Handle(string[] args, TriggerActionContext context, [NotNullWhen(false)] out string? error)
         {
             // validate context

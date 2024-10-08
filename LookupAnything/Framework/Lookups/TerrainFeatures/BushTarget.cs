@@ -18,24 +18,20 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.TerrainFeatures
         public BushTarget(GameHelper gameHelper, Bush value, Func<ISubject> getSubject)
             : base(gameHelper, SubjectType.Bush, value, value.Tile, getSubject) { }
 
-        /// <summary>Get the sprite's source rectangle within its texture.</summary>
+        /// <inheritdoc />
         public override Rectangle GetSpritesheetArea()
         {
             Bush bush = this.Value;
             return bush.sourceRect.Value;
         }
 
-        /// <summary>Get a rectangle which roughly bounds the visible sprite relative the viewport.</summary>
-        /// <remarks>Reverse-engineered from <see cref="Tree.draw"/>.</remarks>
+        /// <inheritdoc />
         public override Rectangle GetWorldArea()
         {
             return this.GetSpriteArea(this.Value.getBoundingBox(), this.GetSpritesheetArea());
         }
 
-        /// <summary>Get whether the visible sprite intersects the specified coordinate. This can be an expensive test.</summary>
-        /// <param name="tile">The tile to search.</param>
-        /// <param name="position">The viewport-relative coordinates to search.</param>
-        /// <param name="spriteArea">The approximate sprite area calculated by <see cref="GetWorldArea"/>.</param>
+        /// <inheritdoc />
         /// <remarks>Reverse engineered from <see cref="Tree.draw"/>.</remarks>
         public override bool SpriteIntersectsPixel(Vector2 tile, Vector2 position, Rectangle spriteArea)
         {

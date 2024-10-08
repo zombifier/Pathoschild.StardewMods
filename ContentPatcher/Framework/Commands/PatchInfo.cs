@@ -110,7 +110,7 @@ namespace ContentPatcher.Framework.Commands
             return this.Patch?.GetChangeLabels() ?? [];
         }
 
-        /// <summary>Get a human-readable reason that the patch isn't applied.</summary>
+        /// <inheritdoc />
         public override string? GetReasonNotLoaded()
         {
             return !this.IsApplied

@@ -152,8 +152,7 @@ namespace ContentPatcher.Framework.Locations
             }
         }
 
-        /// <inheritdoc cref="IContentEvents.AssetRequested"/>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IContentEvents.AssetRequested" />
         /// <returns>Returns whether the asset was loaded for a custom location.</returns>
         public bool OnAssetRequested(AssetRequestedEventArgs e)
         {

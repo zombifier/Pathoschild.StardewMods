@@ -93,7 +93,7 @@ namespace ContentPatcher.Framework
         /****
         ** Patching
         ****/
-        /// <inheritdoc cref="IContentEvents.AssetRequested"/>
+        /// <inheritdoc cref="IContentEvents.AssetRequested" />
         /// <param name="e">The event data.</param>
         /// <param name="ignoreLoadPatches">Whether to ignore any load patches for this asset.</param>
         public void OnAssetRequested(AssetRequestedEventArgs e, bool ignoreLoadPatches)

@@ -21,13 +21,13 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
         public CharacterTarget(GameHelper gameHelper, SubjectType type, NPC value, Vector2 tilePosition, Func<ISubject> getSubject)
             : base(gameHelper, type, value, tilePosition, getSubject) { }
 
-        /// <summary>Get the sprite's source rectangle within its texture.</summary>
+        /// <inheritdoc />
         public override Rectangle GetSpritesheetArea()
         {
             return this.Value.Sprite.SourceRect;
         }
 
-        /// <summary>Get a rectangle which roughly bounds the visible sprite relative the viewport.</summary>
+        /// <inheritdoc />
         public override Rectangle GetWorldArea()
         {
             NPC npc = this.Value;
@@ -56,10 +56,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             return new Rectangle((int)(x - Game1.uiViewport.X), (int)(y - Game1.uiViewport.Y), width, height);
         }
 
-        /// <summary>Get whether the visible sprite intersects the specified coordinate. This can be an expensive test.</summary>
-        /// <param name="tile">The tile to search.</param>
-        /// <param name="position">The viewport-relative coordinates to search.</param>
-        /// <param name="spriteArea">The approximate sprite area calculated by <see cref="GetWorldArea"/>.</param>
+        /// <inheritdoc />
         public override bool SpriteIntersectsPixel(Vector2 tile, Vector2 position, Rectangle spriteArea)
         {
             NPC npc = this.Value;

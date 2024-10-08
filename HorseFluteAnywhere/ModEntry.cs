@@ -38,8 +38,7 @@ namespace Pathoschild.Stardew.HorseFluteAnywhere
         /*********
         ** Public methods
         *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-        /// <param name="helper">Provides methods for interacting with the mod directory, such as read/writing a config file or custom JSON files.</param>
+        /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
             I18n.Init(helper.Translation);
@@ -67,9 +66,7 @@ namespace Pathoschild.Stardew.HorseFluteAnywhere
         /*********
         ** Private methods
         *********/
-        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched" />
         private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
         {
             // add Generic Mod Config Menu integration
@@ -92,18 +89,14 @@ namespace Pathoschild.Stardew.HorseFluteAnywhere
             ).Register();
         }
 
-        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged" />
         private void OnButtonsChanged(object? sender, ButtonsChangedEventArgs e)
         {
             if (this.SummonKey.JustPressed() && this.TryUseHorseFlute())
                 this.Helper.Input.SuppressActiveKeybinds(this.SummonKey);
         }
 
-        /// <inheritdoc cref="IWorldEvents.LocationListChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IWorldEvents.LocationListChanged" />
         private void OnLocationListChanged(object? sender, LocationListChangedEventArgs e)
         {
             // rescue lost horses
@@ -117,9 +110,7 @@ namespace Pathoschild.Stardew.HorseFluteAnywhere
             }
         }
 
-        /// <inheritdoc cref="IPlayerEvents.Warped"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IPlayerEvents.Warped" />
         private void OnWarped(object? sender, WarpedEventArgs e)
         {
             if (!e.IsLocalPlayer || !this.IsRidingHorse(Game1.player))

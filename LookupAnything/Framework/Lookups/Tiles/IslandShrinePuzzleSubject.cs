@@ -34,7 +34,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Tiles
             this.ShowPuzzleSolutions = showPuzzleSolutions;
         }
 
-        /// <summary>Get the data to display for this subject.</summary>
+        /// <inheritdoc />
         public override IEnumerable<ICustomField> GetData()
         {
             // island shrine puzzle

@@ -160,7 +160,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
             this.OnChestSelected?.Invoke(chest);
         }
 
-        /// <summary>Release all resources.</summary>
+        /// <inheritdoc cref="IStorageOverlay.Dispose" />
         public override void Dispose()
         {
             this.OnAutomateOptionsChanged = null;
@@ -202,8 +202,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
             this.ReinitializeBaseComponents();
         }
 
-        /// <summary>Draw the overlay to the screen over the UI.</summary>
-        /// <param name="batch">The sprite batch being drawn.</param>
+        /// <inheritdoc />
         protected override void DrawUi(SpriteBatch batch)
         {
             if (this.DrawCount == 0)
@@ -313,15 +312,13 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
         /****
         ** Event handlers
         ****/
-        /// <summary>The method invoked when the player resizes the game window.</summary>
+        /// <inheritdoc />
         protected override void ReceiveGameWindowResized()
         {
             this.ReinitializeComponents();
         }
 
-        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged" />
         protected override void ReceiveButtonsChanged(object? sender, ButtonsChangedEventArgs e)
         {
             if (!this.IsInitialized)
@@ -381,9 +378,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
                 this.InputHelper.Suppress(button);
         }
 
-        /// <summary>The method invoked when the player scrolls the dropdown using the mouse wheel.</summary>
-        /// <param name="amount">The scroll direction.</param>
-        /// <returns>Whether the event has been handled and shouldn't be propagated further.</returns>
+        /// <inheritdoc />
         protected override bool ReceiveScrollWheelAction(int amount)
         {
             if (!this.IsInitialized)
@@ -428,10 +423,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
             }
         }
 
-        /// <summary>The method invoked when the player left-clicks.</summary>
-        /// <param name="x">The X-position of the cursor.</param>
-        /// <param name="y">The Y-position of the cursor.</param>
-        /// <returns>Whether the event has been handled and shouldn't be propagated further.</returns>
+        /// <inheritdoc />
         protected override bool ReceiveLeftClick(int x, int y)
         {
             if (!this.IsInitialized)
@@ -543,10 +535,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
             }
         }
 
-        /// <summary>The method invoked when the cursor is hovered.</summary>
-        /// <param name="x">The cursor's X position.</param>
-        /// <param name="y">The cursor's Y position.</param>
-        /// <returns>Whether the event has been handled and shouldn't be propagated further.</returns>
+        /// <inheritdoc />
         protected override bool ReceiveCursorHover(int x, int y)
         {
             if (!this.IsInitialized)

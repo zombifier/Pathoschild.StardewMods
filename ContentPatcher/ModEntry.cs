@@ -104,8 +104,7 @@ namespace ContentPatcher
         /*********
         ** Public methods
         *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-        /// <param name="helper">Provides simplified APIs for writing mods.</param>
+        /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
             CommonHelper.RemoveObsoleteFiles(this, "ContentPatcher.pdb"); // removed in 1.29.2
@@ -125,7 +124,7 @@ namespace ContentPatcher
                 && typeof(Constants).GetProperty("ExecutionPath") != null; // not SMAPI strict mode (which drops PyTK workarounds)
         }
 
-        /// <summary>Get an API that other mods can access. This is always called after <see cref="Entry"/>.</summary>
+        /// <inheritdoc />
         public override object GetApi()
         {
             return new ContentPatcherAPI(
@@ -146,9 +145,7 @@ namespace ContentPatcher
         /****
         ** Event handlers
         ****/
-        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged" />
         private void OnButtonsChanged(object? sender, ButtonsChangedEventArgs e)
         {
             if (this.Config.EnableDebugFeatures)
@@ -176,49 +173,37 @@ namespace ContentPatcher
             }
         }
 
-        /// <inheritdoc cref="IContentEvents.AssetRequested"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IContentEvents.AssetRequested" />
         private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
         {
             this.ScreenManager.Value.OnAssetRequested(e);
         }
 
-        /// <inheritdoc cref="ISpecializedEvents.LoadStageChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="ISpecializedEvents.LoadStageChanged" />
         private void OnLoadStageChanged(object? sender, LoadStageChangedEventArgs e)
         {
             this.ScreenManager.Value.OnLoadStageChanged(e.OldStage, e.NewStage);
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.DayStarted"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.DayStarted" />
         private void OnDayStarted(object? sender, DayStartedEventArgs e)
         {
             this.ScreenManager.Value.OnDayStarted();
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.TimeChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.TimeChanged" />
         private void OnTimeChanged(object? sender, TimeChangedEventArgs e)
         {
             this.ScreenManager.Value.OnTimeChanged();
         }
 
-        /// <inheritdoc cref="IPlayerEvents.Warped"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IPlayerEvents.Warped" />
         private void OnWarped(object? sender, WarpedEventArgs e)
         {
             this.ScreenManager.Value.OnWarped();
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked" />
         private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
         {
             // initialize after first tick on main screen so other mods can register their tokens in SMAPI's GameLoop.GameLaunched event
@@ -235,9 +220,7 @@ namespace ContentPatcher
             this.ScreenManager.Value.OnUpdateTicked();
         }
 
-        /// <inheritdoc cref="IContentEvents.LocaleChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IContentEvents.LocaleChanged" />
         private void OnLocaleChanged(object? sender, LocaleChangedEventArgs e)
         {
             if (!this.IsFirstTick)

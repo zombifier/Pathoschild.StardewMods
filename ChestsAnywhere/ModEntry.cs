@@ -84,9 +84,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere
         /*********
         ** Private methods
         *********/
-        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched" />
         private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
         {
             // add Generic Mod Config Menu integration
@@ -100,9 +98,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere
             ).Register();
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded" />
         private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
         {
             // validate game version
@@ -118,9 +114,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere
                 this.Monitor.Log("Multiplayer limitations: you can only access chests in synced locations since you're not the main player. This is due to limitations in the game's sync logic.", LogLevel.Info);
         }
 
-        /// <inheritdoc cref="IDisplayEvents.RenderedHud"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IDisplayEvents.RenderedHud" />
         private void OnRenderedHud(object? sender, RenderedHudEventArgs e)
         {
             // show chest label
@@ -135,25 +129,19 @@ namespace Pathoschild.Stardew.ChestsAnywhere
             }
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.UpdateTicking"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.UpdateTicking" />
         private void OnUpdateTicking(object? sender, UpdateTickingEventArgs e)
         {
             this.ChangeOverlayIfNeeded();
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked" />
         private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
         {
             this.ChangeOverlayIfNeeded();
         }
 
-        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged" />
         private void OnButtonsChanged(object? sender, ButtonsChangedEventArgs e)
         {
             if (!Context.IsWorldReady)

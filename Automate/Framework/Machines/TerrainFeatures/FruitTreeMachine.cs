@@ -19,7 +19,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
         public FruitTreeMachine(FruitTree tree, GameLocation location, Vector2 tile)
             : base(tree, location, BaseMachine.GetTileAreaFor(tile)) { }
 
-        /// <summary>Get the machine's processing state.</summary>
+        /// <inheritdoc />
         public override MachineState GetState()
         {
             if (this.Machine.growthStage.Value < FruitTree.treeStage)
@@ -30,7 +30,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
                 : MachineState.Processing;
         }
 
-        /// <summary>Get the output item.</summary>
+        /// <inheritdoc />
         public override ITrackedStack GetOutput()
         {
             FruitTree tree = this.Machine;
@@ -43,9 +43,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.TerrainFeatures
             return new TrackedItem(tree.fruit[^1], onReduced: item => tree.fruit.Remove(item));
         }
 
-        /// <summary>Provide input to the machine.</summary>
-        /// <param name="input">The available items.</param>
-        /// <returns>Returns whether the machine started processing an item.</returns>
+        /// <inheritdoc />
         public override bool SetInput(IStorage input)
         {
             return false; // no input

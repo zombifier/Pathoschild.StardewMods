@@ -157,7 +157,7 @@ namespace ContentPatcher.Framework.Tokens.ValueProviders.ModConvention
             return this.IsMutableImpl?.Invoke() ?? true;
         }
 
-        /// <inheritdoc cref="ConventionDelegates.IsDeterministicForInput"/>
+        /// <inheritdoc cref="ConventionDelegates.IsDeterministicForInput" />
         public bool IsDeterministicForInput()
         {
             return this.IsDeterministicForInputImpl?.Invoke() ?? false;

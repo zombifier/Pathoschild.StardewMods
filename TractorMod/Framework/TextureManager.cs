@@ -96,8 +96,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework
                 horse!.Sprite.spriteTexture = this.TractorTexture;
         }
 
-        /// <inheritdoc cref="IContentEvents.AssetRequested"/>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IContentEvents.AssetRequested" />
         public void OnAssetRequested(AssetRequestedEventArgs e)
         {
             // Allow for garages from older versions that didn't get normalized correctly.

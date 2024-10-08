@@ -45,7 +45,7 @@ namespace Pathoschild.Stardew.Common
             }
         }
 
-        /// <inheritdoc cref="DrawSprite(SpriteBatch, Texture2D, Rectangle, float, float, Vector2, Color?, float)"/>
+        /// <inheritdoc cref="DrawSprite(SpriteBatch, Texture2D, Rectangle, float, float, Vector2, Color?, float)" />
         public static void DrawSprite(this SpriteBatch spriteBatch, Texture2D sheet, Rectangle sprite, float x, float y, Point errorSize, Color? color = null, float scale = 1)
         {
             try

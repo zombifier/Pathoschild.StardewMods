@@ -76,8 +76,7 @@ namespace ContentPatcher.Framework
         /*********
         ** Protected methods
         *********/
-        /// <summary>Draw to the screen.</summary>
-        /// <param name="spriteBatch">The sprite batch to which to draw.</param>
+        /// <inheritdoc />
         protected override void DrawUi(SpriteBatch spriteBatch)
         {
             string name = this.CurrentName?.Name ?? "???";

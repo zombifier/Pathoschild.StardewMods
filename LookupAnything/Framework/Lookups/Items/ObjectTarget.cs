@@ -32,7 +32,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             this.CustomSprite = gameHelper.GetSprite(value, onlyCustom: true); // only get sprite if it's custom; else we'll use contextual logic (e.g. for fence direction)
         }
 
-        /// <summary>Get the sprite's source rectangle within its texture.</summary>
+        /// <inheritdoc />
         public override Rectangle GetSpritesheetArea()
         {
             if (this.CustomSprite != null)
@@ -47,7 +47,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             };
         }
 
-        /// <summary>Get a rectangle which roughly bounds the visible sprite relative the viewport.</summary>
+        /// <inheritdoc />
         public override Rectangle GetWorldArea()
         {
             // get object info
@@ -69,10 +69,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Items
             return this.GetSpriteArea(boundingBox, this.GetSpritesheetArea());
         }
 
-        /// <summary>Get whether the visible sprite intersects the specified coordinate. This can be an expensive test.</summary>
-        /// <param name="tile">The tile to search.</param>
-        /// <param name="position">The viewport-relative coordinates to search.</param>
-        /// <param name="spriteArea">The approximate sprite area calculated by <see cref="GetWorldArea"/>.</param>
+        /// <inheritdoc />
         public override bool SpriteIntersectsPixel(Vector2 tile, Vector2 position, Rectangle spriteArea)
         {
             SObject obj = this.Value;

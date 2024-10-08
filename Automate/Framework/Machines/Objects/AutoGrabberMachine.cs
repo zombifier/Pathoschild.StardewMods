@@ -20,7 +20,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Objects
         public AutoGrabberMachine(SObject machine, GameLocation location, Vector2 tile)
             : base(machine, location, tile) { }
 
-        /// <summary>Get the machine's processing state.</summary>
+        /// <inheritdoc />
         public override MachineState GetState()
         {
             return this.GetNextOutput() != null
@@ -28,15 +28,13 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Objects
                 : MachineState.Processing;
         }
 
-        /// <summary>Get the output item.</summary>
+        /// <inheritdoc />
         public override ITrackedStack? GetOutput()
         {
             return this.GetTracked(this.GetNextOutput(), onEmpty: this.OnOutputTaken);
         }
 
-        /// <summary>Provide input to the machine.</summary>
-        /// <param name="input">The available items.</param>
-        /// <returns>Returns whether the machine started processing an item.</returns>
+        /// <inheritdoc />
         public override bool SetInput(IStorage input)
         {
             return false;

@@ -76,10 +76,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
             }
         }
 
-        /// <summary>The method invoked when the player left-clicks.</summary>
-        /// <param name="x">The X-position of the cursor.</param>
-        /// <param name="y">The Y-position of the cursor.</param>
-        /// <returns>Whether the event has been handled and shouldn't be propagated further.</returns>
+        /// <inheritdoc />
         protected override bool ReceiveLeftClick(int x, int y)
         {
             if (this.IsInitialized)
@@ -117,10 +114,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
             return base.ReceiveLeftClick(x, y);
         }
 
-        /// <summary>The method invoked when the cursor is hovered.</summary>
-        /// <param name="x">The cursor's X position.</param>
-        /// <param name="y">The cursor's Y position.</param>
-        /// <returns>Whether the event has been handled and shouldn't be propagated further.</returns>
+        /// <inheritdoc />
         protected override bool ReceiveCursorHover(int x, int y)
         {
             if (this.IsInitialized)
@@ -132,8 +126,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
             return base.ReceiveCursorHover(x, y);
         }
 
-        /// <summary>Draw the overlay to the screen over the UI.</summary>
-        /// <param name="batch">The sprite batch being drawn.</param>
+        /// <inheritdoc />
         protected override void DrawUi(SpriteBatch batch)
         {
             if (!this.ActiveElement.HasFlag(Element.EditForm))
@@ -145,7 +138,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
             base.DrawUi(batch); // run base logic last, to draw cursor over everything else
         }
 
-        /// <summary>Initialize the edit-chest overlay for rendering.</summary>
+        /// <inheritdoc />
         protected override void ReinitializeComponents()
         {
             base.ReinitializeComponents();
@@ -167,8 +160,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
                 this.SortInventoryButton = null;
         }
 
-        /// <summary>Set whether the chest or inventory items should be clickable.</summary>
-        /// <param name="clickable">Whether items should be clickable.</param>
+        /// <inheritdoc />
         protected override void SetItemsClickable(bool clickable)
         {
             if (clickable)

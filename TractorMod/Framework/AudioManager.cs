@@ -53,8 +53,7 @@ namespace Pathoschild.Stardew.TractorMod.Framework
             this.GetVolume = getVolume;
         }
 
-        /// <inheritdoc cref="IContentEvents.AssetRequested"/>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IContentEvents.AssetRequested" />
         public void OnAssetRequested(AssetRequestedEventArgs e)
         {
             if (e.NameWithoutLocale.IsEquivalentTo("Data/AudioChanges"))

@@ -70,7 +70,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines
             return addedInput;
         }
 
-        /// <summary>Get the output item.</summary>
+        /// <inheritdoc />
         /// <remarks>This implementation is based on <see cref="SObject.CheckForActionOnMachine"/>.</remarks>
         public override ITrackedStack? GetOutput()
         {

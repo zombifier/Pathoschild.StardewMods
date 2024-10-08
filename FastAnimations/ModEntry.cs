@@ -53,8 +53,6 @@ namespace Pathoschild.Stardew.FastAnimations
         ** Events
         ****/
         /// <inheritdoc cref="IGameLoopEvents.GameLaunched" />
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
         private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
         {
             // add Generic Mod Config Menu integration
@@ -78,8 +76,6 @@ namespace Pathoschild.Stardew.FastAnimations
         }
 
         /// <inheritdoc cref="IGameLoopEvents.SaveLoaded" />
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
         private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
         {
             // initialize handlers
@@ -88,8 +84,6 @@ namespace Pathoschild.Stardew.FastAnimations
         }
 
         /// <inheritdoc cref="IPlayerEvents.Warped" />
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
         private void OnWarped(object? sender, WarpedEventArgs e)
         {
             if (!Context.IsWorldReady || Game1.eventUp || !this.Handlers.Any() || !e.IsLocalPlayer)
@@ -100,8 +94,6 @@ namespace Pathoschild.Stardew.FastAnimations
         }
 
         /// <inheritdoc cref="IWorldEvents.ObjectListChanged" />
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
         private void OnObjectListChanged(object? sender, ObjectListChangedEventArgs e)
         {
             if (e.IsCurrentLocation)
@@ -112,8 +104,6 @@ namespace Pathoschild.Stardew.FastAnimations
         }
 
         /// <inheritdoc cref="IGameLoopEvents.UpdateTicked" />
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
         private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
         {
             if (!this.Handlers.Any())

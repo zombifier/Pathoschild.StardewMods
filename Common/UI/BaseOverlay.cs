@@ -41,7 +41,7 @@ namespace Pathoschild.Stardew.Common.UI
         /*********
         ** Public methods
         *********/
-        /// <summary>Release all resources.</summary>
+        /// <inheritdoc />
         public virtual void Dispose()
         {
             this.Events.Display.RenderedActiveMenu -= this.OnRendered;
@@ -112,9 +112,7 @@ namespace Pathoschild.Stardew.Common.UI
             return false;
         }
 
-        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged" />
         protected virtual void ReceiveButtonsChanged(object? sender, ButtonsChangedEventArgs e) { }
 
         /// <summary>The method invoked when the player uses the mouse scroll wheel.</summary>
@@ -157,9 +155,7 @@ namespace Pathoschild.Stardew.Common.UI
         /****
         ** Event listeners
         ****/
-        /// <inheritdoc cref="IDisplayEvents.Rendered"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IDisplayEvents.Rendered" />
         private void OnRendered(object? sender, RenderedActiveMenuEventArgs e)
         {
             if (Context.ScreenId != this.ScreenId)
@@ -168,9 +164,7 @@ namespace Pathoschild.Stardew.Common.UI
             this.DrawUi(Game1.spriteBatch);
         }
 
-        /// <inheritdoc cref="IDisplayEvents.RenderedWorld"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IDisplayEvents.RenderedWorld" />
         private void OnRenderedWorld(object? sender, RenderedWorldEventArgs e)
         {
             if (Context.ScreenId != this.ScreenId)
@@ -179,9 +173,7 @@ namespace Pathoschild.Stardew.Common.UI
             this.DrawWorld(e.SpriteBatch);
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked" />
         private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
         {
             // ignore if it's for a different screen
@@ -213,9 +205,7 @@ namespace Pathoschild.Stardew.Common.UI
             this.Update();
         }
 
-        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged" />
         private void OnButtonsChanged(object? sender, ButtonsChangedEventArgs e)
         {
             if (Context.ScreenId != this.ScreenId)
@@ -224,9 +214,7 @@ namespace Pathoschild.Stardew.Common.UI
             this.ReceiveButtonsChanged(sender, e);
         }
 
-        /// <inheritdoc cref="IInputEvents.ButtonPressed"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonPressed" />
         private void OnButtonPressed(object? sender, ButtonPressedEventArgs e)
         {
             if (Context.ScreenId != this.ScreenId)
@@ -249,9 +237,7 @@ namespace Pathoschild.Stardew.Common.UI
                 this.InputHelper.Suppress(e.Button);
         }
 
-        /// <inheritdoc cref="IInputEvents.MouseWheelScrolled"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.MouseWheelScrolled" />
         private void OnMouseWheelScrolled(object? sender, MouseWheelScrolledEventArgs e)
         {
             if (Context.ScreenId != this.ScreenId)
@@ -274,9 +260,7 @@ namespace Pathoschild.Stardew.Common.UI
             }
         }
 
-        /// <inheritdoc cref="IInputEvents.CursorMoved"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.CursorMoved" />
         private void OnCursorMoved(object? sender, CursorMovedEventArgs e)
         {
             if (Context.ScreenId != this.ScreenId)

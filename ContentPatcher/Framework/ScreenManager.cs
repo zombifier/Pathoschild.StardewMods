@@ -94,8 +94,7 @@ namespace ContentPatcher.Framework
             this.UpdateContext(ContextUpdateType.All);
         }
 
-        /// <inheritdoc cref="IContentEvents.AssetRequested"/>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IContentEvents.AssetRequested" />
         public void OnAssetRequested(AssetRequestedEventArgs e)
         {
             bool ignoreLoads = this.CustomLocationManager.OnAssetRequested(e);

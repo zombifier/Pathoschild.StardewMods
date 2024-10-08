@@ -119,7 +119,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             this.DisablePortraits = CharacterSubject.ShouldDisablePortraits(npc, this.IsGourmand);
         }
 
-        /// <summary>Get the data to display for this subject.</summary>
+        /// <inheritdoc />
         public override IEnumerable<ICustomField> GetData()
         {
             NPC npc = this.Target;
@@ -138,7 +138,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             };
         }
 
-        /// <summary>Get raw debug data to display for this subject.</summary>
+        /// <inheritdoc />
         public override IEnumerable<IDebugField> GetDebugFields()
         {
             NPC target = this.Target;
@@ -160,11 +160,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
                 yield return field;
         }
 
-        /// <summary>Draw the subject portrait (if available).</summary>
-        /// <param name="spriteBatch">The sprite batch being drawn.</param>
-        /// <param name="position">The position at which to draw.</param>
-        /// <param name="size">The size of the portrait to draw.</param>
-        /// <returns>Returns <c>true</c> if a portrait was drawn, else <c>false</c>.</returns>
+        /// <inheritdoc />
         public override bool DrawPortrait(SpriteBatch spriteBatch, Vector2 position, Vector2 size)
         {
             NPC npc = this.Target;

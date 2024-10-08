@@ -53,8 +53,7 @@ namespace Pathoschild.Stardew.DataLayers
         /*********
         ** Public methods
         *********/
-        /// <summary>The mod entry point, called after the mod is first loaded.</summary>
-        /// <param name="helper">Provides methods for interacting with the mod directory, such as read/writing a config file or custom JSON files.</param>
+        /// <inheritdoc />
         public override void Entry(IModHelper helper)
         {
             CommonHelper.RemoveObsoleteFiles(this, "DataLayers.pdb"); // removed in 1.15.8
@@ -87,9 +86,7 @@ namespace Pathoschild.Stardew.DataLayers
         /*********
         ** Private methods
         *********/
-        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched" />
         private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
         {
             // init mod integrations
@@ -115,9 +112,7 @@ namespace Pathoschild.Stardew.DataLayers
             ).Register();
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.SaveLoaded" />
         private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
         {
             // need to do this after the save is loaded so translations use the selected language
@@ -162,9 +157,7 @@ namespace Pathoschild.Stardew.DataLayers
                 yield return new GridLayer(layers.TileGrid);
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.ReturnedToTitle"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.ReturnedToTitle" />
         private void OnReturnedToTitle(object? sender, ReturnedToTitleEventArgs e)
         {
             this.CurrentOverlay.Value?.Dispose();
@@ -172,9 +165,7 @@ namespace Pathoschild.Stardew.DataLayers
             this.Layers = [];
         }
 
-        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged" />
         private void OnButtonsChanged(object? sender, ButtonsChangedEventArgs e)
         {
             if (this.Layers.Length == 0)
@@ -227,9 +218,7 @@ namespace Pathoschild.Stardew.DataLayers
             });
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.UpdateTicked" />
         private void OnUpdateTicked(object? sender, UpdateTickedEventArgs e)
         {
             DataLayerOverlay? overlay = this.CurrentOverlay.Value;

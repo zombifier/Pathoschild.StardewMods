@@ -26,7 +26,7 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Objects
         public FeedHopperMachine(Building silo, GameLocation location)
             : base(location, BaseMachine.GetTileAreaFor(silo)) { }
 
-        /// <summary>Get the machine's processing state.</summary>
+        /// <inheritdoc />
         public override MachineState GetState()
         {
             return this.CanStoreHay(out _, out _)
@@ -34,15 +34,13 @@ namespace Pathoschild.Stardew.Automate.Framework.Machines.Objects
                 : MachineState.Disabled;
         }
 
-        /// <summary>Get the output item.</summary>
+        /// <inheritdoc />
         public override ITrackedStack? GetOutput()
         {
             return null;
         }
 
-        /// <summary>Provide input to the machine.</summary>
-        /// <param name="input">The available items.</param>
-        /// <returns>Returns whether the machine started processing an item.</returns>
+        /// <inheritdoc />
         public override bool SetInput(IStorage input)
         {
             if (!this.CanStoreHay(out GameLocation location, out int freeSpace))

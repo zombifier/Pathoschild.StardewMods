@@ -48,8 +48,7 @@ namespace Pathoschild.Stardew.ChestsAnywhere.Menus.Overlays
         /*********
         ** Protected methods
         *********/
-        /// <summary>Set whether the chest or inventory items should be clickable.</summary>
-        /// <param name="clickable">Whether items should be clickable.</param>
+        /// <inheritdoc />
         protected override void SetItemsClickable(bool clickable)
         {
             if (clickable)

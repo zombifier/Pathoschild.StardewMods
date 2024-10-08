@@ -39,7 +39,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             this.Target = animal;
         }
 
-        /// <summary>Get the data to display for this subject.</summary>
+        /// <inheritdoc />
         public override IEnumerable<ICustomField> GetData()
         {
             FarmAnimal animal = this.Target;
@@ -65,7 +65,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
             yield return new GenericField(I18n.Animal_SellsFor(), GenericField.GetSaleValueString(animal.getSellPrice(), 1));
         }
 
-        /// <summary>Get raw debug data to display for this subject.</summary>
+        /// <inheritdoc />
         public override IEnumerable<IDebugField> GetDebugFields()
         {
             FarmAnimal target = this.Target;
@@ -81,11 +81,7 @@ namespace Pathoschild.Stardew.LookupAnything.Framework.Lookups.Characters
                 yield return field;
         }
 
-        /// <summary>Draw the subject portrait (if available).</summary>
-        /// <param name="spriteBatch">The sprite batch being drawn.</param>
-        /// <param name="position">The position at which to draw.</param>
-        /// <param name="size">The size of the portrait to draw.</param>
-        /// <returns>Returns <c>true</c> if a portrait was drawn, else <c>false</c>.</returns>
+        /// <inheritdoc />
         public override bool DrawPortrait(SpriteBatch spriteBatch, Vector2 position, Vector2 size)
         {
             FarmAnimal animal = this.Target;

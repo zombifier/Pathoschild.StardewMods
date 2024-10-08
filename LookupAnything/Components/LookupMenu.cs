@@ -146,23 +146,16 @@ namespace Pathoschild.Stardew.LookupAnything.Components
         /****
         ** Events
         ****/
-        /// <summary>The method invoked when the player left-clicks on the lookup UI.</summary>
-        /// <param name="x">The X-position of the cursor.</param>
-        /// <param name="y">The Y-position of the cursor.</param>
-        /// <param name="playSound">Whether to enable sound.</param>
+        /// <inheritdoc />
         public override void receiveLeftClick(int x, int y, bool playSound = true)
         {
             this.HandleLeftClick(x, y);
         }
 
-        /// <summary>The method invoked when the player right-clicks on the lookup UI.</summary>
-        /// <param name="x">The X-position of the cursor.</param>
-        /// <param name="y">The Y-position of the cursor.</param>
-        /// <param name="playSound">Whether to enable sound.</param>
+        /// <inheritdoc />
         public override void receiveRightClick(int x, int y, bool playSound = true) { }
 
-        /// <summary>The method invoked when the player scrolls the mouse wheel on the lookup UI.</summary>
-        /// <param name="direction">The scroll direction.</param>
+        /// <inheritdoc />
         public override void receiveScrollWheelAction(int direction)
         {
             if (direction > 0)    // positive number scrolls content up
@@ -171,16 +164,13 @@ namespace Pathoschild.Stardew.LookupAnything.Components
                 this.ScrollDown();
         }
 
-        /// <summary>The method called when the game window changes size.</summary>
-        /// <param name="oldBounds">The former viewport.</param>
-        /// <param name="newBounds">The new viewport.</param>
+        /// <inheritdoc />
         public override void gameWindowSizeChanged(Rectangle oldBounds, Rectangle newBounds)
         {
             this.UpdateLayout();
         }
 
-        /// <summary>The method called when the player presses a controller button.</summary>
-        /// <param name="button">The controller button pressed.</param>
+        /// <inheritdoc />
         public override void receiveGamePadButton(Buttons button)
         {
             switch (button)
@@ -208,8 +198,7 @@ namespace Pathoschild.Stardew.LookupAnything.Components
             }
         }
 
-        /// <summary>Update the menu state if needed.</summary>
-        /// <param name="time">The elapsed game time.</param>
+        /// <inheritdoc />
         public override void update(GameTime time)
         {
             if (this.ExitOnNextTick && this.readyToClose())
@@ -271,9 +260,8 @@ namespace Pathoschild.Stardew.LookupAnything.Components
             }
         }
 
-        /// <summary>Render the UI.</summary>
-        /// <param name="spriteBatch">The sprite batch being drawn.</param>
-        public override void draw(SpriteBatch spriteBatch)
+        /// <inheritdoc />
+        public override void draw(SpriteBatch b)
         {
             this.Monitor.InterceptErrors("drawing the lookup info", () =>
             {
@@ -422,9 +410,9 @@ namespace Pathoschild.Stardew.LookupAnything.Components
 
                         // draw scroll icons
                         if (this.MaxScroll > 0 && this.CurrentScroll > 0)
-                            this.ScrollUpButton.draw(spriteBatch);
+                            this.ScrollUpButton.draw(b);
                         if (this.MaxScroll > 0 && this.CurrentScroll < this.MaxScroll)
-                            this.ScrollDownButton.draw(spriteBatch);
+                            this.ScrollDownButton.draw(b);
 
                         // end draw
                         contentBatch.End();
@@ -447,7 +435,7 @@ namespace Pathoschild.Stardew.LookupAnything.Components
             }, this.OnDrawError);
         }
 
-        /// <summary>Clean up after the menu when it's disposed.</summary>
+        /// <inheritdoc />
         public void Dispose()
         {
             this.ContentBlendState.Dispose();
@@ -498,7 +486,7 @@ namespace Pathoschild.Stardew.LookupAnything.Components
             this.Monitor.InterceptErrors("handling an error in the lookup code", () => this.exitThisMenu());
         }
 
-        /// <summary>Perform any cleanup needed when the menu exits.</summary>
+        /// <inheritdoc />
         protected override void cleanupBeforeExit()
         {
             this.CleanupImpl();

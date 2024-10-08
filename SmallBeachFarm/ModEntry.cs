@@ -70,9 +70,7 @@ namespace Pathoschild.Stardew.SmallBeachFarm
         /*********
         ** Private methods
         *********/
-        /// <inheritdoc cref="IContentEvents.AssetRequested"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IContentEvents.AssetRequested" />
         private void OnAssetRequested(object? sender, AssetRequestedEventArgs e)
         {
             const string farmKey = "Pathoschild_SmallBeachFarm";
@@ -199,9 +197,7 @@ namespace Pathoschild.Stardew.SmallBeachFarm
             }
         }
 
-        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched" />
         private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
         {
             // add Generic Mod Config Menu integration

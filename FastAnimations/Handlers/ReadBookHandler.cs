@@ -16,6 +16,7 @@ namespace Pathoschild.Stardew.FastAnimations.Handlers
         public ReadBookHandler(float multiplier)
             : base(multiplier) { }
 
+        /// <inheritdoc />
         public override bool TryApply(int playerAnimationId)
         {
             Farmer player = Game1.player;

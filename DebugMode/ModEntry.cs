@@ -87,9 +87,7 @@ namespace Pathoschild.Stardew.DebugMode
         /****
         ** Event handlers
         ****/
-        /// <inheritdoc cref="IGameLoopEvents.GameLaunched"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IGameLoopEvents.GameLaunched" />
         private void OnGameLaunched(object? sender, GameLaunchedEventArgs e)
         {
             // add Generic Mod Config Menu integration
@@ -103,9 +101,7 @@ namespace Pathoschild.Stardew.DebugMode
             ).Register();
         }
 
-        /// <inheritdoc cref="IInputEvents.ButtonsChanged"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IInputEvents.ButtonsChanged" />
         private void OnButtonsChanged(object? sender, ButtonsChangedEventArgs e)
         {
             // toggle debug menu
@@ -125,18 +121,14 @@ namespace Pathoschild.Stardew.DebugMode
             }
         }
 
-        /// <inheritdoc cref="IPlayerEvents.Warped"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IPlayerEvents.Warped" />
         private void OnWarped(object? sender, WarpedEventArgs e)
         {
             if (this.GameDebugMode && e.IsLocalPlayer)
                 this.CorrectEntryPosition(e.NewLocation, Game1.player);
         }
 
-        /// <inheritdoc cref="IDisplayEvents.Rendered"/>
-        /// <param name="sender">The event sender.</param>
-        /// <param name="e">The event data.</param>
+        /// <inheritdoc cref="IDisplayEvents.Rendered" />
         public void OnRendered(object? sender, RenderedEventArgs e)
         {
             if (this.ShowOverlay.Value)
