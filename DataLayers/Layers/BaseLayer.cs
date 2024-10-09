@@ -88,5 +88,39 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         {
             return dirt?.crop?.dead.Value == true;
         }
+
+        /// <summary>Get the tile area around an origin that's both within a square radius and within the visible tile area.</summary>
+        /// <param name="radius">The number of tiles around the origin tile to include.</param>
+        /// <param name="origin">The tile at the center of the radius.</param>
+        /// <param name="visibleArea">The tile area currently visible on the screen.</param>
+        protected Rectangle GetVisibleRadiusArea(int radius, Vector2 origin, Rectangle visibleArea)
+        {
+            int x = (int)origin.X - radius;
+            int y = (int)origin.Y - radius;
+            int width = radius + 1 + radius;
+            int height = radius + 1 + radius;
+
+            // not visible
+            if (x > visibleArea.Right || y > visibleArea.Bottom || x + width < visibleArea.X || y + height < visibleArea.Y)
+                return Rectangle.Empty;
+
+            // exclude areas outside visible area
+            if (x < visibleArea.X)
+            {
+                width -= visibleArea.X - x;
+                x = visibleArea.X;
+            }
+            if (y < visibleArea.Y)
+            {
+                height -= visibleArea.Y - y;
+                y = visibleArea.Y;
+            }
+            if (x + width > visibleArea.Right)
+                width = visibleArea.Right - x;
+            if (y + height > visibleArea.Bottom)
+                height = visibleArea.Bottom - y;
+
+            return new Rectangle(x, y, width, height);
+        }
     }
 }

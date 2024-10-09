@@ -77,7 +77,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
                     continue;
 
                 TileData[] tiles = this
-                    .GetCoverage(sprinkler, sprinkler.TileLocation, customCoverageBySprinklerId, isHeld: false)
+                    .GetCoverage(sprinkler, sprinkler.TileLocation, customCoverageBySprinklerId, isHeld: false, visibleTiles)
                     .Select(pos => new TileData(pos, this.Wet))
                     .ToArray();
 
@@ -98,7 +98,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             if (this.IsSprinkler(heldObj, customCoverageBySprinklerId))
             {
                 var tiles = this
-                    .GetCoverage(heldObj, cursorTile, customCoverageBySprinklerId, isHeld: true)
+                    .GetCoverage(heldObj, cursorTile, customCoverageBySprinklerId, isHeld: true, visibleTiles)
                     .Select(pos => new TileData(pos, this.Wet, this.Wet.Color * 0.75f));
                 groups.Add(new TileGroup(tiles, outerBorderColor: this.SelectedColor, shouldExport: false));
             }
@@ -171,8 +171,9 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         /// <param name="origin">The sprinkler's tile.</param>
         /// <param name="customSprinklerRanges">The custom sprinkler ranges centered on (0, 0) indexed by qualified sprinkler ID.</param>
         /// <param name="isHeld">Whether the player is holding the sprinkler.</param>
+        /// <param name="visibleTiles">The tile positions currently visible on the screen.</param>
         /// <remarks>Derived from <see cref="SObject.DayUpdate"/>.</remarks>
-        private IEnumerable<Vector2> GetCoverage(SObject sprinkler, Vector2 origin, IDictionary<string, Vector2[]> customSprinklerRanges, bool isHeld)
+        private IEnumerable<Vector2> GetCoverage(SObject sprinkler, Vector2 origin, IDictionary<string, Vector2[]> customSprinklerRanges, bool isHeld, IReadOnlySet<Vector2> visibleTiles)
         {
             // get vanilla tiles
             IEnumerable<Vector2> tiles = sprinkler.GetSprinklerTiles();
@@ -183,7 +184,8 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             if (customSprinklerRanges.TryGetValue(sprinkler.QualifiedItemId, out Vector2[]? customTiles))
                 tiles = new HashSet<Vector2>(tiles.Concat(customTiles.Select(tile => tile + origin)));
 
-            return tiles;
+            // filter to visible tiles
+            return tiles.Where(visibleTiles.Contains);
         }
 
         /// <summary>Get tiles containing crops not covered by a sprinkler.</summary>

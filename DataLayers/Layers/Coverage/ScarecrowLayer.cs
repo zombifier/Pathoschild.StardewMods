@@ -54,11 +54,11 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             var groups = new List<TileGroup>();
             foreach (Vector2 origin in visibleArea.Expand(this.MaxSearchRadius).GetTiles())
             {
-                if (!location.objects.TryGetValue(origin, out Object scarecrow) || !scarecrow.IsScarecrow())
+                if (!location.objects.TryGetValue(origin, out SObject scarecrow) || !scarecrow.IsScarecrow())
                     continue;
 
                 TileData[] tiles = this
-                    .GetCoverage(scarecrow)
+                    .GetCoverage(scarecrow, visibleArea)
                     .Select(pos => new TileData(pos, this.Covered))
                     .ToArray();
 
@@ -79,7 +79,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             if (heldObj?.IsScarecrow() == true)
             {
                 var tiles = this
-                    .GetCoverage(heldObj, cursorTile)
+                    .GetCoverage(heldObj, visibleArea, cursorTile)
                     .Select(pos => new TileData(pos, this.Covered, this.Covered.Color * 0.75f));
                 groups.Add(new TileGroup(tiles, outerBorderColor: this.SelectedColor, shouldExport: false));
             }
@@ -100,21 +100,18 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
 
         /// <summary>Get a scarecrow tile radius.</summary>
         /// <param name="scarecrow">The scarecrow to check.</param>
-        /// <param name="overrideOrigin">The tile position to check from, if different from <see cref="Object.TileLocation"/>.</param>
+        /// <param name="visibleArea">The tile area currently visible on the screen.</param>
+        /// <param name="overrideOrigin">The tile position to check from, if different from <see cref="SObject.TileLocation"/>.</param>
         /// <remarks>Derived from <see cref="Farm.addCrows"/>.</remarks>
-        private IEnumerable<Vector2> GetCoverage(SObject scarecrow, Vector2? overrideOrigin = null)
+        private IEnumerable<Vector2> GetCoverage(SObject scarecrow, Rectangle visibleArea, Vector2? overrideOrigin = null)
         {
             Vector2 origin = overrideOrigin ?? scarecrow.TileLocation;
             int radius = scarecrow.GetRadiusForScarecrow();
 
-            for (int x = (int)origin.X - radius; x <= origin.X + radius; x++)
+            foreach (Vector2 tile in this.GetVisibleRadiusArea(radius, origin, visibleArea).GetTiles())
             {
-                for (int y = (int)origin.Y - radius; y <= origin.Y + radius; y++)
-                {
-                    Vector2 tile = new Vector2(x, y);
-                    if (Vector2.Distance(tile, origin) < radius)
-                        yield return tile;
-                }
+                if (Vector2.Distance(tile, origin) < radius)
+                    yield return tile;
             }
         }
 

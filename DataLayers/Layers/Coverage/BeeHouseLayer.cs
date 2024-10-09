@@ -59,7 +59,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
                     continue;
 
                 TileData[] tiles = this
-                    .GetCoverage(location, beeHouse.TileLocation)
+                    .GetCoverage(location, beeHouse.TileLocation, visibleTiles)
                     .Select(pos => new TileData(pos, this.Covered))
                     .ToArray();
 
@@ -71,7 +71,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             if (this.IsBeeHouse(heldObj))
             {
                 var tiles = this
-                    .GetCoverage(location, cursorTile)
+                    .GetCoverage(location, cursorTile, visibleTiles)
                     .Select(pos => new TileData(pos, this.Covered, color: this.Covered.Color * 0.75f));
                 groups.Add(new TileGroup(tiles, outerBorderColor: this.SelectedColor, shouldExport: false));
             }
@@ -93,14 +93,19 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         /// <summary>Get a bee house tile radius.</summary>
         /// <param name="location">The bee house's location.</param>
         /// <param name="origin">The bee house's tile.</param>
+        /// <param name="visibleTiles">The tile positions currently visible on the screen.</param>
         /// <remarks>Derived from <see cref="SObject.checkForAction"/> and <see cref="Utility.findCloseFlower"/>.</remarks>
-        private IEnumerable<Vector2> GetCoverage(GameLocation location, Vector2 origin)
+        private IEnumerable<Vector2> GetCoverage(GameLocation location, Vector2 origin, IReadOnlySet<Vector2> visibleTiles)
         {
             if (!location.IsOutdoors)
                 yield break; // bee houses are hardcoded to only work outdoors
 
             foreach (Vector2 relativeTile in this.RelativeRange)
-                yield return origin + relativeTile;
+            {
+                Vector2 tile = origin + relativeTile;
+                if (visibleTiles.Contains(tile))
+                    yield return tile;
+            }
         }
 
         /// <summary>Get the relative tiles covered by a bee house.</summary>

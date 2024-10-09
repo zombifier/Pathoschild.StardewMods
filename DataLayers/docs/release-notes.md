@@ -5,6 +5,7 @@
 * Updated for Stardew Valley 1.6.9.
 * On the _Accessible_ layer, warps that are hidden just off-screen are now drawn along the edge.
 * Added support for Ultimate Fertilizer's multi-fertilizer feature.
+* Fixed lag if a bee house, Junimo hut, scarecrow, or sprinkler has an extremely large range.
 * Improved translations. Thanks to moonggae (updated Korean)!
 
 ## 1.17.2

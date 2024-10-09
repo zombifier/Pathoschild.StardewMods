@@ -63,12 +63,12 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
                 if (building is not JunimoHut hut)
                     continue;
 
-                var range = new Rectangle(hut.tileX.Value + 1, hut.tileY.Value + 1, hut.cropHarvestRadius, hut.cropHarvestRadius); // range centered on hut door
+                Rectangle range = this.GetCoverageArea(hut);
                 if (!range.Intersects(visibleArea))
                     continue;
 
                 TileData[] tiles = this
-                    .GetCoverage(hut, hut.tileX.Value, hut.tileY.Value)
+                    .GetCoverage(hut, hut.tileX.Value, hut.tileY.Value, visibleArea)
                     .Select(pos => new TileData(pos, this.Covered))
                     .ToArray();
 
@@ -89,7 +89,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             {
                 Vector2 tile = TileHelper.GetTileFromCursor();
                 var tiles = this
-                    .GetCoverage(new JunimoHut(), (int)tile.X, (int)tile.Y) // TODO: get hut from carpenter menu
+                    .GetCoverage(new JunimoHut(), (int)tile.X, (int)tile.Y, visibleArea) // TODO: get hut from carpenter menu
                     .Select(pos => new TileData(pos, this.Covered, this.Covered.Color * 0.75f));
 
                 groups.Add(new TileGroup(tiles, outerBorderColor: this.SelectedColor, shouldExport: false));
@@ -131,26 +131,36 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
             return new Rectangle(hut.tileX.Value, hut.tileY.Value, hut.tilesWide.Value, hut.tilesHigh.Value).Contains((int)tile.X, (int)tile.Y);
         }
 
+        /// <summary>Get a Junimo hut's coverage tile area.</summary>
+        /// <param name="hut">The Junimo hut.</param>
         /// <summary>Get a Junimo hut tile radius.</summary>
+        /// <remarks>Derived from <see cref="StardewValley.Characters.JunimoHarvester.pathfindToNewCrop"/>.</remarks>
+        private Rectangle GetCoverageArea(JunimoHut hut)
+        {
+            // note: offset x/y by one so range to center on door
+            return new Rectangle(
+                hut.tileX.Value + 1 - hut.cropHarvestRadius,
+                hut.tileY.Value + 1 - hut.cropHarvestRadius,
+                hut.cropHarvestRadius + 1 + hut.cropHarvestRadius,
+                hut.cropHarvestRadius + 1 + hut.cropHarvestRadius
+            );
+        }
+
+        /// <summary>Get a Junimo hut's coverage tiles.</summary>
         /// <param name="hut">The Junimo hut.</param>
         /// <summary>Get a Junimo hut tile radius.</summary>
         /// <param name="tileX">The hut's tile X position.</param>
         /// <param name="tileY">The hut's tile Y position.</param>
+        /// <param name="visibleArea">The tile area currently visible on the screen.</param>
         /// <remarks>Derived from <see cref="StardewValley.Characters.JunimoHarvester.pathfindToNewCrop"/>.</remarks>
-        private IEnumerable<Vector2> GetCoverage(JunimoHut hut, int tileX, int tileY)
+        private IEnumerable<Vector2> GetCoverage(JunimoHut hut, int tileX, int tileY, Rectangle visibleArea)
         {
-            // center radius on door
-            tileX++;
-            tileY++;
+            Vector2 door = new Vector2(tileX + 1, tileY + 1);
             int radius = hut.cropHarvestRadius;
 
-            // get tiles
-            for (int x = tileX - radius; x <= tileX + radius; x++)
+            foreach (Vector2 tile in this.GetVisibleRadiusArea(radius, door, visibleArea).GetTiles())
             {
-                for (int y = tileY - radius; y <= tileY + radius; y++)
-                {
-                    yield return new Vector2(x, y);
-                }
+                yield return tile;
             }
         }
 
