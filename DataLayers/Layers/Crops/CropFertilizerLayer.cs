@@ -64,7 +64,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Crops
         }
 
         /// <inheritdoc />
-        public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
+        public override TileGroup[] Update(ref readonly GameLocation location, ref readonly Rectangle visibleArea, ref readonly IReadOnlySet<Vector2> visibleTiles, ref readonly Vector2 cursorTile)
         {
             FertilizedTile[] fertilizedTiles = this.GetFertilizedTiles(location, visibleTiles).ToArray();
 
@@ -107,7 +107,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Crops
         /// <summary>Get fertilized tiles.</summary>
         /// <param name="location">The current location.</param>
         /// <param name="visibleTiles">The tiles currently visible on the screen.</param>
-        private IEnumerable<FertilizedTile> GetFertilizedTiles(GameLocation location, IEnumerable<Vector2> visibleTiles)
+        private IEnumerable<FertilizedTile> GetFertilizedTiles(GameLocation location, IReadOnlySet<Vector2> visibleTiles)
         {
             return (
                 from tilePos in visibleTiles

@@ -46,24 +46,17 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         }
 
         /// <inheritdoc />
-        public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
+        public override TileGroup[] Update(ref readonly GameLocation location, ref readonly Rectangle visibleArea, ref readonly IReadOnlySet<Vector2> visibleTiles, ref readonly Vector2 cursorTile)
         {
-            // get tiles by color
-            IDictionary<string, TileData[]> tiles = this
+            var tileGroups = this
                 .GetTiles(location, visibleArea, visibleTiles)
-                .GroupBy(p => p.Type.Id)
-                .ToDictionary(p => p.Key, p => p.ToArray());
+                .ToLookup(p => p.Type.Id);
 
-            // create tile groups
-            return new[] { this.Empty, this.Processing, this.Finished }
-                .Select(type =>
-                {
-                    if (!tiles.TryGetValue(type.Id, out TileData[]? groupTiles))
-                        groupTiles = [];
-
-                    return new TileGroup(groupTiles, outerBorderColor: type.Color);
-                })
-                .ToArray();
+            return [
+                new TileGroup(tileGroups[this.Empty.Id], this.Empty.Color),
+                new TileGroup(tileGroups[this.Processing.Id], this.Processing.Color),
+                new TileGroup(tileGroups[this.Finished.Id], this.Finished.Color)
+            ];
         }
 
 
@@ -74,7 +67,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         /// <param name="location">The current location.</param>
         /// <param name="visibleArea">The tile area currently visible on the screen.</param>
         /// <param name="visibleTiles">The tile positions currently visible on the screen.</param>
-        private IEnumerable<TileData> GetTiles(GameLocation location, Rectangle visibleArea, Vector2[] visibleTiles)
+        private IEnumerable<TileData> GetTiles(GameLocation location, Rectangle visibleArea, IReadOnlySet<Vector2> visibleTiles)
         {
             IDictionary<Vector2, int> machineStates = this.Mods.Automate.GetMachineStates(location, visibleArea);
             foreach (Vector2 tile in visibleTiles)

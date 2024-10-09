@@ -63,28 +63,19 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         }
 
         /// <inheritdoc />
-        public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
+        public override TileGroup[] Update(ref readonly GameLocation location, ref readonly Rectangle visibleArea, ref readonly IReadOnlySet<Vector2> visibleTiles, ref readonly Vector2 cursorTile)
         {
             // get coverage
             IDictionary<string, Vector2[]> customCoverageBySprinklerId = this.GetCustomSprinklerTiles();
 
-            // get sprinklers
-            Vector2[] searchTiles = visibleArea.Expand(this.SearchRadius).GetTiles().ToArray();
-            SObject[] sprinklers =
-                (
-                    from Vector2 tile in searchTiles
-                    where location.objects.ContainsKey(tile)
-                    let sprinkler = location.objects[tile]
-                    where this.IsSprinkler(sprinkler, customCoverageBySprinklerId)
-                    select sprinkler
-                )
-                .ToArray();
-
             // yield sprinkler coverage
             var covered = new HashSet<Vector2>();
             var groups = new List<TileGroup>();
-            foreach (SObject sprinkler in sprinklers)
+            foreach (Vector2 origin in visibleArea.Expand(this.SearchRadius).GetTiles())
             {
+                if (!location.objects.TryGetValue(origin, out SObject sprinkler) || !this.IsSprinkler(sprinkler, customCoverageBySprinklerId))
+                    continue;
+
                 TileData[] tiles = this
                     .GetCoverage(sprinkler, sprinkler.TileLocation, customCoverageBySprinklerId, isHeld: false)
                     .Select(pos => new TileData(pos, this.Wet))
@@ -199,7 +190,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         /// <param name="location">The current location.</param>
         /// <param name="visibleTiles">The tiles currently visible on the screen.</param>
         /// <param name="coveredTiles">The tiles covered by a sprinkler.</param>
-        private IEnumerable<Vector2> GetDryCrops(GameLocation location, Vector2[] visibleTiles, HashSet<Vector2> coveredTiles)
+        private IEnumerable<Vector2> GetDryCrops(GameLocation location, IReadOnlySet<Vector2> visibleTiles, HashSet<Vector2> coveredTiles)
         {
             foreach (Vector2 tile in visibleTiles)
             {

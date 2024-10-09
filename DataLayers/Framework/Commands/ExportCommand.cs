@@ -108,7 +108,10 @@ namespace Pathoschild.Stardew.DataLayers.Framework.Commands
             int height = location.Map.Layers.Max(p => p.LayerHeight);
 
             var visibleArea = new Rectangle(0, 0, width, height);
-            return layer.Update(Game1.currentLocation, visibleArea, visibleArea.GetTiles().ToArray(), new Vector2(0, 0));
+            IReadOnlySet<Vector2> visibleTiles = new HashSet<Vector2>(visibleArea.GetTiles());
+            Vector2 cursorTile = Vector2.Zero;
+
+            return layer.Update(ref location, ref visibleArea, ref visibleTiles, ref cursorTile);
         }
 
         /// <summary>A group of tiles associated with a given legend.</summary>

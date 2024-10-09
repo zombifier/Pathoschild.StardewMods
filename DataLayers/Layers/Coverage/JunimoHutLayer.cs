@@ -50,26 +50,23 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         }
 
         /// <inheritdoc />
-        public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
+        public override TileGroup[] Update(ref readonly GameLocation location, ref readonly Rectangle visibleArea, ref readonly IReadOnlySet<Vector2> visibleTiles, ref readonly Vector2 cursorTile)
         {
             if (!location.IsBuildableLocation())
                 return [];
 
-            // get Junimo huts
-            Rectangle searchArea = visibleArea;
-            JunimoHut[] huts =
-                (
-                    from JunimoHut hut in location.buildings.OfType<JunimoHut>()
-                    where new Rectangle(hut.tileX.Value + 1, hut.tileY.Value + 1, hut.cropHarvestRadius, hut.cropHarvestRadius).Intersects(searchArea) // range centered on hut door
-                    select hut
-                )
-                .ToArray();
-
             // yield Junimo hut coverage
             var groups = new List<TileGroup>();
             var covered = new HashSet<Vector2>();
-            foreach (JunimoHut hut in huts)
+            foreach (Building building in location.buildings)
             {
+                if (building is not JunimoHut hut)
+                    continue;
+
+                var range = new Rectangle(hut.tileX.Value + 1, hut.tileY.Value + 1, hut.cropHarvestRadius, hut.cropHarvestRadius); // range centered on hut door
+                if (!range.Intersects(visibleArea))
+                    continue;
+
                 TileData[] tiles = this
                     .GetCoverage(hut, hut.tileX.Value, hut.tileY.Value)
                     .Select(pos => new TileData(pos, this.Covered))
@@ -161,7 +158,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         /// <param name="location">The current location.</param>
         /// <param name="visibleTiles">The tiles currently visible on the screen.</param>
         /// <param name="coveredTiles">The tiles harvested by Junimo huts.</param>
-        private IEnumerable<Vector2> GetUnharvestedCrops(GameLocation location, Vector2[] visibleTiles, HashSet<Vector2> coveredTiles)
+        private IEnumerable<Vector2> GetUnharvestedCrops(GameLocation location, IReadOnlySet<Vector2> visibleTiles, HashSet<Vector2> coveredTiles)
         {
             foreach (Vector2 tile in visibleTiles)
             {

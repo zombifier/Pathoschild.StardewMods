@@ -49,24 +49,15 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         }
 
         /// <inheritdoc />
-        public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
+        public override TileGroup[] Update(ref readonly GameLocation location, ref readonly Rectangle visibleArea, ref readonly IReadOnlySet<Vector2> visibleTiles, ref readonly Vector2 cursorTile)
         {
-            // get bee houses
-            Vector2[] searchTiles = visibleArea.Expand(this.MaxRadius).GetTiles().ToArray();
-            SObject[] beeHouses =
-                (
-                    from Vector2 tile in searchTiles
-                    where location.objects.ContainsKey(tile)
-                    let beeHouse = location.objects[tile]
-                    where this.IsBeeHouse(beeHouse)
-                    select beeHouse
-                )
-                .ToArray();
-
             // yield coverage
             var groups = new List<TileGroup>();
-            foreach (SObject beeHouse in beeHouses)
+            foreach (Vector2 origin in visibleArea.Expand(this.MaxRadius).GetTiles())
             {
+                if (!location.objects.TryGetValue(origin, out SObject beeHouse) || !this.IsBeeHouse(beeHouse))
+                    continue;
+
                 TileData[] tiles = this
                     .GetCoverage(location, beeHouse.TileLocation)
                     .Select(pos => new TileData(pos, this.Covered))

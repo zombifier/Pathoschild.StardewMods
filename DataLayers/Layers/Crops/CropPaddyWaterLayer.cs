@@ -50,7 +50,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Crops
         }
 
         /// <inheritdoc />
-        public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
+        public override TileGroup[] Update(ref readonly GameLocation location, ref readonly Rectangle visibleArea, ref readonly IReadOnlySet<Vector2> visibleTiles, ref readonly Vector2 cursorTile)
         {
             // update cache on location change
             if (this.LastLocation == null || !object.ReferenceEquals(location, this.LastLocation))
@@ -60,10 +60,10 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Crops
             }
 
             // get paddy tiles
-            HashSet<Vector2> tilesInRange = [..this.GetTilesInRange(location, visibleTiles)];
+            var tilesInRange = visibleTiles.ToLookup(this.GetTilesInRange(location, visibleTiles).Contains);
             return [
-                new TileGroup(tilesInRange.Select(pos => new TileData(pos, this.InRange)), outerBorderColor: this.InRange.Color),
-                new TileGroup(visibleTiles.Where(pos => !tilesInRange.Contains(pos)).Select(pos => new TileData(pos, this.NotInRange)))
+                new TileGroup(tilesInRange[true].Select(pos => new TileData(pos, this.InRange)), outerBorderColor: this.InRange.Color),
+                new TileGroup(tilesInRange[false].Select(pos => new TileData(pos, this.NotInRange)))
             ];
         }
 
@@ -75,16 +75,20 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Crops
         /// <param name="location">The current location.</param>
         /// <param name="visibleTiles">The tiles currently visible on the screen.</param>
         /// <remarks>Derived from <see cref="HoeDirt.paddyWaterCheck"/>.</remarks>
-        private IEnumerable<Vector2> GetTilesInRange(GameLocation location, Vector2[] visibleTiles)
+        private HashSet<Vector2> GetTilesInRange(GameLocation location, IReadOnlySet<Vector2> visibleTiles)
         {
+            HashSet<Vector2> tiles = new();
+
             foreach (Vector2 tile in visibleTiles)
             {
                 if (!this.TilesInRange.TryGetValue(tile, out bool inRange))
                     this.TilesInRange[tile] = inRange = this.RecalculateTileInRange(location, tile, this.PaddyCrop);
 
                 if (inRange)
-                    yield return tile;
+                    tiles.Add(tile);
             }
+
+            return tiles;
         }
 
         /// <summary>Get whether the tile is in range, without caching.</summary>

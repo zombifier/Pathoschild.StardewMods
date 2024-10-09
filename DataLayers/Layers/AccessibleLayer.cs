@@ -59,7 +59,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         }
 
         /// <inheritdoc />
-        public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
+        public override TileGroup[] Update(ref readonly GameLocation location, ref readonly Rectangle visibleArea, ref readonly IReadOnlySet<Vector2> visibleTiles, ref readonly Vector2 cursorTile)
         {
             List<TileData> passableTiles = new();
             List<TileData> warpTiles = new();
@@ -122,7 +122,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         /// <summary>Get the updated data layer tiles.</summary>
         /// <param name="location">The current location.</param>
         /// <param name="visibleTiles">The tiles currently visible on the screen.</param>
-        private IEnumerable<TileData> GetTiles(GameLocation location, IEnumerable<Vector2> visibleTiles)
+        private IEnumerable<TileData> GetTiles(GameLocation location, IReadOnlySet<Vector2> visibleTiles)
         {
             // get building warps
             HashSet<Vector2> buildingDoors = [];

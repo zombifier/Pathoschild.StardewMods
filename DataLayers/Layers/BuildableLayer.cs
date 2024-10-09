@@ -42,14 +42,15 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         }
 
         /// <inheritdoc />
-        public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
+        public override TileGroup[] Update(ref readonly GameLocation location, ref readonly Rectangle visibleArea, ref readonly IReadOnlySet<Vector2> visibleTiles, ref readonly Vector2 cursorTile)
         {
-            TileData[] tiles = this.GetTiles(location, visibleTiles).ToArray();
-            TileData[] buildableTiles = tiles.Where(p => p.Type.Id == this.Buildable.Id).ToArray();
+            var buildableTiles = this
+                .GetTiles(location, visibleTiles)
+                .ToLookup(p => p.Type.Id == this.Buildable.Id);
 
             return [
-                new TileGroup(buildableTiles, outerBorderColor: this.Buildable.Color),
-                new TileGroup(tiles.Except(buildableTiles))
+                new TileGroup(buildableTiles[true], outerBorderColor: this.Buildable.Color),
+                new TileGroup(buildableTiles[false])
             ];
         }
 
@@ -60,7 +61,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers
         /// <summary>Get the updated data layer tiles.</summary>
         /// <param name="location">The current location.</param>
         /// <param name="visibleTiles">The tiles currently visible on the screen.</param>
-        private IEnumerable<TileData> GetTiles(GameLocation location, IEnumerable<Vector2> visibleTiles)
+        private IEnumerable<TileData> GetTiles(GameLocation location, IReadOnlySet<Vector2> visibleTiles)
         {
             // buildable location
             if (location.IsBuildableLocation())

@@ -10,6 +10,7 @@ using Pathoschild.Stardew.DataLayers.Framework.Components;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
+using StardewValley.Extensions;
 using StardewValley.Menus;
 
 namespace Pathoschild.Stardew.DataLayers.Framework
@@ -51,17 +52,11 @@ namespace Pathoschild.Stardew.DataLayers.Framework
         /// <summary>When two groups of the same color overlap, draw one border around their edges instead of their individual borders.</summary>
         private readonly bool CombineOverlappingBorders;
 
-        /// <summary>An empty set of tiles.</summary>
-        private readonly Vector2[] EmptyTiles = [];
-
-        /// <summary>An empty set of tile groups.</summary>
-        private readonly TileGroup[] EmptyTileGroups = [];
-
         /// <summary>The visible tiles.</summary>
-        private Vector2[] VisibleTiles = [];
+        private readonly HashSet<Vector2> VisibleTiles = new();
 
         /// <summary>The tile layer data to render.</summary>
-        private TileGroup[] TileGroups;
+        private readonly List<TileGroup> TileGroups = new();
 
         /// <summary>The tick countdown until the next layer update.</summary>
         private int UpdateCountdown;
@@ -161,12 +156,12 @@ namespace Pathoschild.Stardew.DataLayers.Framework
 
         /// <summary>Switch to the given data layer.</summary>
         /// <param name="layer">The data layer to select.</param>
-        [MemberNotNull(nameof(DataLayerOverlay.CurrentLayer), nameof(DataLayerOverlay.Legend), nameof(DataLayerOverlay.LegendEntries), nameof(DataLayerOverlay.NextButton), nameof(DataLayerOverlay.PrevButton), nameof(DataLayerOverlay.TileGroups))]
+        [MemberNotNull(nameof(DataLayerOverlay.CurrentLayer), nameof(DataLayerOverlay.Legend), nameof(DataLayerOverlay.LegendEntries), nameof(DataLayerOverlay.NextButton), nameof(DataLayerOverlay.PrevButton))]
         public void SetLayer(ILayer layer)
         {
             this.CurrentLayer = layer;
             this.LegendEntries = this.CurrentLayer.Legend.ToArray();
-            this.TileGroups = this.EmptyTileGroups;
+            this.TileGroups.Clear();
             this.UpdateCountdown = 0;
 
             this.ReinitializeComponents();
@@ -185,8 +180,8 @@ namespace Pathoschild.Stardew.DataLayers.Framework
             // get updated tiles
             if (Game1.currentLocation == null)
             {
-                this.VisibleTiles = this.EmptyTiles;
-                this.TileGroups = this.EmptyTileGroups;
+                this.VisibleTiles.Clear();
+                this.TileGroups.Clear();
             }
             else
             {
@@ -195,8 +190,13 @@ namespace Pathoschild.Stardew.DataLayers.Framework
                 {
                     GameLocation location = Game1.currentLocation;
                     Vector2 cursorTile = TileHelper.GetTileFromCursor();
-                    this.VisibleTiles = visibleArea.GetTiles().ToArray();
-                    this.TileGroups = this.CurrentLayer.Update(location, visibleArea, this.VisibleTiles, cursorTile).ToArray();
+
+                    this.VisibleTiles.Clear();
+                    this.VisibleTiles.AddRange(visibleArea.GetTiles());
+
+                    this.TileGroups.Clear();
+                    this.TileGroups.AddRange(this.CurrentLayer.Update(location, visibleArea, this.VisibleTiles, cursorTile));
+
                     this.LastVisibleArea = visibleArea;
                     this.UpdateCountdown = this.CurrentLayer.UpdateTickRate;
                 }

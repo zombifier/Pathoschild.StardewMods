@@ -47,25 +47,16 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         }
 
         /// <inheritdoc />
-        public override TileGroup[] Update(GameLocation location, in Rectangle visibleArea, in Vector2[] visibleTiles, in Vector2 cursorTile)
+        public override TileGroup[] Update(ref readonly GameLocation location, ref readonly Rectangle visibleArea, ref readonly IReadOnlySet<Vector2> visibleTiles, ref readonly Vector2 cursorTile)
         {
-            // get scarecrows
-            Vector2[] searchTiles = visibleArea.Expand(this.MaxSearchRadius).GetTiles().ToArray();
-            SObject[] scarecrows =
-                (
-                    from Vector2 tile in searchTiles
-                    where location.objects.ContainsKey(tile)
-                    let scarecrow = location.objects[tile]
-                    where scarecrow.IsScarecrow()
-                    select scarecrow
-                )
-                .ToArray();
-
             // yield scarecrow coverage
             var covered = new HashSet<Vector2>();
             var groups = new List<TileGroup>();
-            foreach (SObject scarecrow in scarecrows)
+            foreach (Vector2 origin in visibleArea.Expand(this.MaxSearchRadius).GetTiles())
             {
+                if (!location.objects.TryGetValue(origin, out Object scarecrow) || !scarecrow.IsScarecrow())
+                    continue;
+
                 TileData[] tiles = this
                     .GetCoverage(scarecrow)
                     .Select(pos => new TileData(pos, this.Covered))
@@ -131,7 +122,7 @@ namespace Pathoschild.Stardew.DataLayers.Layers.Coverage
         /// <param name="location">The current location.</param>
         /// <param name="visibleTiles">The tiles currently visible on the screen.</param>
         /// <param name="coveredTiles">The tiles protected by a scarecrow.</param>
-        private IEnumerable<Vector2> GetExposedCrops(GameLocation location, Vector2[] visibleTiles, HashSet<Vector2> coveredTiles)
+        private IEnumerable<Vector2> GetExposedCrops(GameLocation location, IReadOnlySet<Vector2> visibleTiles, HashSet<Vector2> coveredTiles)
         {
             foreach (Vector2 tile in visibleTiles)
             {
