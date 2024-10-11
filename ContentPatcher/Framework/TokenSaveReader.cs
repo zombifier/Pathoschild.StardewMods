@@ -198,9 +198,11 @@ namespace ContentPatcher.Framework
                             // loading
                             if (this.IsParsed)
                             {
-                                return SaveGame.loaded.cellarAssignments.TryGetValue(cellarNumber, out long owner)
-                                    ? owner
-                                    : null;
+                                foreach (var pair in SaveGame.loaded.cellarAssignments)
+                                {
+                                    if (pair.Key == cellarNumber)
+                                        return pair.Value;
+                                }
                             }
 
                             return null;
